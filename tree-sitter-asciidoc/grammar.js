@@ -1,9 +1,10 @@
 module.exports = grammar({
   name: 'asciidoc',
 
-  extras: _ => [],
+  extras: $ => [$._NEWLINE],
   externals: $ => [
     $._eof,
+    $.title_h0_marker,
     $.title_h1_marker,
     $.title_h2_marker,
     $.title_h3_marker,
@@ -12,11 +13,16 @@ module.exports = grammar({
   ],
 
   rules: {
-    document: $ => choice($.title1, $.title2, $.title3, $.title4, $.title5),
-    title1: $ => seq($.title_h1_marker, /[^\n]+/, optional('\n')),
-    title2: $ => seq($.title_h2_marker, /[^\n]+/, optional('\n')),
-    title3: $ => seq($.title_h3_marker, /[^\n]+/, optional('\n')),
-    title4: $ => seq($.title_h4_marker, /[^\n]+/, optional('\n')),
-    title5: $ => seq($.title_h5_marker, /[^\n]+/, optional('\n')),
+    document: $ => repeat($._title_block),
+    _title_block: $ =>
+      choice($.title0, $.title1, $.title2, $.title3, $.title4, $.title5),
+    title0: $ => seq($.title_h0_marker, /[^\n]+/, $._block_end),
+    title1: $ => seq($.title_h1_marker, /[^\n]+/, $._block_end),
+    title2: $ => seq($.title_h2_marker, /[^\n]+/, $._block_end),
+    title3: $ => seq($.title_h3_marker, /[^\n]+/, $._block_end),
+    title4: $ => seq($.title_h4_marker, /[^\n]+/, $._block_end),
+    title5: $ => seq($.title_h5_marker, /[^\n]+/, $._block_end),
+    _block_end: $ => choice($._NEWLINE, $._eof),
+    _NEWLINE: _ => /\r?\n/,
   },
 })

@@ -2,6 +2,7 @@
 
 typedef enum TokenType {
     TOKEN_TYPE_EOF,
+    TOKEN_TITLE_H0_MARKER,
     TOKEN_TITLE_H1_MARKER,
     TOKEN_TITLE_H2_MARKER,
     TOKEN_TITLE_H3_MARKER,
@@ -37,10 +38,10 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         switch(lexer->lookahead) {
             case '=': {
                 lexer->advance(lexer, false);
-                if(!valid_symbols[TOKEN_TITLE_H1_MARKER]) {
+                if(!valid_symbols[TOKEN_TITLE_H0_MARKER]) {
                     break;
                 }
-                unsigned level = TOKEN_TITLE_H1_MARKER;
+                unsigned level = TOKEN_TITLE_H0_MARKER;
                 while(lexer->lookahead == '=') {
                     lexer->advance(lexer, false);
                     ++level;

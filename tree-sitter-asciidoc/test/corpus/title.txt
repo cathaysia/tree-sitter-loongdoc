@@ -1,0 +1,51 @@
+===========
+title
+===========
+
+= Document Title (Level 0)
+
+== Level 1 Section Title
+
+=== Level 2 Section Title
+
+==== Level 3 Section Title
+
+===== Level 4 Section Title
+
+====== Level 5 Section Title
+
+== Another Level 1 Section Title
+
+= Document Title
+
+= Illegal Level 0 Section (violates rule #1)
+
+== First Section
+
+==== Illegal Nested Section (violates rule #2)
+
+-----
+
+(document
+  (title0
+    (title_h0_marker))
+  (title1
+    (title_h1_marker))
+  (title2
+    (title_h2_marker))
+  (title3
+    (title_h3_marker))
+  (title4
+    (title_h4_marker))
+  (title5
+    (title_h5_marker))
+  (title1
+    (title_h1_marker))
+  (title0
+    (title_h0_marker))
+  (title0
+    (title_h0_marker))
+  (title1
+    (title_h1_marker))
+  (title3
+    (title_h3_marker)))

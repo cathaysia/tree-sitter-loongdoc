@@ -4,9 +4,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
+        {
+          "type": "title0",
+          "named": true
+        },
         {
           "type": "title1",
           "named": true
@@ -25,6 +29,21 @@
         },
         {
           "type": "title5",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title0",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h0_marker",
           "named": true
         }
       ]
@@ -106,8 +125,8 @@
     }
   },
   {
-    "type": "\n",
-    "named": false
+    "type": "title_h0_marker",
+    "named": true
   },
   {
     "type": "title_h1_marker",
