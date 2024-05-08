@@ -1,0 +1,85 @@
+===========
+unordered
+===========
+
+* Edgar Allan Poe
+* Sheri S. Tepper
+* Bill Bryson
+
+- Edgar Allan Poe
+- Sheri S. Tepper
+- Bill Bryson
+
+* Level 1 list item
+- Level 2 list item
+* Level 1 list item
+
+* West wood maze
+** Maze heart
+*** Reflection pool
+** Secret exit
+* Untracked file in git repository
+
+-----
+
+(document
+  (checked_list
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line)))
+  (checked_list
+    (ul_item
+      (unordered_list_marker
+        (list_marker_hyphen))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_hyphen))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_hyphen))
+      (line)))
+  (checked_list
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_hyphen))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line)))
+  (checked_list
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))))

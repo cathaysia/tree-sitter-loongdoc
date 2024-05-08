@@ -1,0 +1,24 @@
+==============
+checked_list
+==============
+
+* [*] checked
+* [x] also checked
+* [ ] not checked
+
+-----
+
+(document
+  (checked_list
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))
+    (ul_item
+      (unordered_list_marker
+        (list_marker_star))
+      (line))))
