@@ -1,0 +1,132 @@
+[
+  {
+    "type": "document",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title1",
+          "named": true
+        },
+        {
+          "type": "title2",
+          "named": true
+        },
+        {
+          "type": "title3",
+          "named": true
+        },
+        {
+          "type": "title4",
+          "named": true
+        },
+        {
+          "type": "title5",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h1_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h2_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title3",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h3_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title4",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h4_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "title5",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "title_h5_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "title_h1_marker",
+    "named": true
+  },
+  {
+    "type": "title_h2_marker",
+    "named": true
+  },
+  {
+    "type": "title_h3_marker",
+    "named": true
+  },
+  {
+    "type": "title_h4_marker",
+    "named": true
+  },
+  {
+    "type": "title_h5_marker",
+    "named": true
+  }
+]
