@@ -17,6 +17,7 @@ module.exports = grammar({
     $.list_marker_geek,
     $.list_marker_alpha,
     $.document_attr_marker,
+    $.element_attr_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -31,10 +32,14 @@ module.exports = grammar({
           $.title3,
           $.title4,
           $.title5,
-          $.unordered_list,
-          $.ordered_list,
-          $.checked_list,
+          $._section_block,
         ),
+      ),
+
+    _section_block: $ =>
+      seq(
+        optional($.element_attr),
+        choice($.unordered_list, $.ordered_list, $.checked_list),
       ),
     title0: $ =>
       seq(
@@ -52,8 +57,10 @@ module.exports = grammar({
 
     document_attr: $ =>
       seq($.document_attr_marker, /[\w\d_][\w\d-]*/, ':', $.line),
+    element_attr: $ =>
+      seq($.element_attr_marker, /[^\]\r\n]*/, ']', $._NEWLINE),
 
-    checked_list: $ => seq(repeat1($.ul_item), $._block_end),
+    checked_list: $ => seq(repeat1($.ck_item), $._block_end),
     ck_item: $ =>
       seq(
         $.unordered_list_marker,

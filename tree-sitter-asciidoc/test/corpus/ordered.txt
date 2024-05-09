@@ -42,7 +42,7 @@ ordered
       (ordered_list_marker
         (list_marker_dot))
       (line)))
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))
@@ -60,7 +60,7 @@ ordered
       (ordered_list_marker
         (list_marker_dot))
       (line)))
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))

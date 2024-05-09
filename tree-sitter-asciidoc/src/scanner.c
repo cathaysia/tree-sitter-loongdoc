@@ -15,6 +15,7 @@ typedef enum TokenType {
     TOKEN_LIST_MARKER_GEEK,
     TOKEN_LIST_MARKER_ALPHA,
     TOKEN_DOCUMENT_ATTR_MARKER,
+    TOKEN_ELEMENT_ATTR_MARKER,
 } TokenType;
 
 static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols);
@@ -95,7 +96,16 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 if(lexer->get_column(lexer) != 0) {
                     return false;
                 }
-                lexer->advance(lexer, true);
+                lexer->advance(lexer, false);
+                lexer->mark_end(lexer);
+                return true;
+            }
+            case '[': {
+                lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
+                if(lexer->get_column(lexer) != 0) {
+                    return false;
+                }
+                lexer->advance(lexer, false);
                 lexer->mark_end(lexer);
                 return true;
             }

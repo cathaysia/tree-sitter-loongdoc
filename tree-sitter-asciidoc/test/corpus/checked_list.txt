@@ -9,7 +9,7 @@ checked_list
 -----
 
 (document
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))

@@ -23,7 +23,7 @@ unordered
 -----
 
 (document
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))
@@ -36,7 +36,7 @@ unordered
       (unordered_list_marker
         (list_marker_star))
       (line)))
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_hyphen))
@@ -49,7 +49,7 @@ unordered
       (unordered_list_marker
         (list_marker_hyphen))
       (line)))
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))
@@ -62,7 +62,7 @@ unordered
       (unordered_list_marker
         (list_marker_star))
       (line)))
-  (checked_list
+  (unordered_list
     (ul_item
       (unordered_list_marker
         (list_marker_star))

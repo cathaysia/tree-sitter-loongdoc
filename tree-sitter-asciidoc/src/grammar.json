@@ -32,18 +32,44 @@
           },
           {
             "type": "SYMBOL",
-            "name": "unordered_list"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "ordered_list"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "checked_list"
+            "name": "_section_block"
           }
         ]
       }
+    },
+    "_section_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "element_attr"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unordered_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ordered_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "checked_list"
+            }
+          ]
+        }
+      ]
     },
     "title0": {
       "type": "SEQ",
@@ -179,6 +205,27 @@
         }
       ]
     },
+    "element_attr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "element_attr_marker"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\]\\r\\n]*"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_NEWLINE"
+        }
+      ]
+    },
     "checked_list": {
       "type": "SEQ",
       "members": [
@@ -186,7 +233,7 @@
           "type": "REPEAT1",
           "content": {
             "type": "SYMBOL",
-            "name": "ul_item"
+            "name": "ck_item"
           }
         },
         {
@@ -451,6 +498,10 @@
     {
       "type": "SYMBOL",
       "name": "document_attr_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "element_attr_marker"
     }
   ],
   "inline": [],
