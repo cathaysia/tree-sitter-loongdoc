@@ -19,6 +19,7 @@ module.exports = grammar({
     $.document_attr_marker,
     $.element_attr_marker,
     $.block_title_marker,
+    $.breaks_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -34,6 +35,7 @@ module.exports = grammar({
           $.title4,
           $.title5,
           $._section_block,
+          $.breaks,
         ),
       ),
 
@@ -55,6 +57,7 @@ module.exports = grammar({
     title3: $ => seq($.title_h3_marker, $._WHITE_SPACE, $.line),
     title4: $ => seq($.title_h4_marker, $._WHITE_SPACE, $.line),
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
+    breaks: $ => seq($.breaks_marker, $._block_end),
 
     document_attr: $ =>
       seq(

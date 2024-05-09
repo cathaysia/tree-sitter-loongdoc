@@ -19,6 +19,21 @@
     }
   },
   {
+    "type": "breaks",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "breaks_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "checked_list",
     "named": true,
     "fields": {},
@@ -67,6 +82,10 @@
       "types": [
         {
           "type": "block_title",
+          "named": true
+        },
+        {
+          "type": "breaks",
           "named": true
         },
         {
@@ -405,6 +424,10 @@
   },
   {
     "type": "block_title_marker",
+    "named": true
+  },
+  {
+    "type": "breaks_marker",
     "named": true
   },
   {

@@ -17,15 +17,19 @@ typedef enum TokenType {
     TOKEN_DOCUMENT_ATTR_MARKER,
     TOKEN_ELEMENT_ATTR_MARKER,
     TOKEN_BLOCK_TITLE_MARKER,
+    TOKEN_BREAKS_MARKS
 } TokenType;
 
-static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols);
+static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
+static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols);
+static void skip_white_space(TSLexer *lexer);
 static bool is_white_space(int32_t ch);
 static bool is_ascii_digit(int32_t ch);
 static bool is_ascii_alpha_lower(int32_t ch);
 static bool is_geek_lower(int32_t ch);
+static bool is_newline(int32_t ch);
 
 void *tree_sitter_asciidoc_external_scanner_create() {
     return NULL;
@@ -77,15 +81,45 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
             case '*': {
                 lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
-                if(parse_unordered_marker('*', lexer, valid_symbols)) {
+                uintptr_t counter = 0;
+                bool is_unordered_marker = parse_unordered_marker('*', lexer, valid_symbols, &counter);
+                skip_white_space(lexer);
+                while(lexer->lookahead == '-') {
+                    lexer->advance(lexer, false);
+                    skip_white_space(lexer);
+                    ++counter;
+                    if(counter > 3) {
+                        break;
+                    }
+                }
+                if(counter == 3 && is_newline(lexer->lookahead)) {
+                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                    lexer->mark_end(lexer);
                     return true;
                 }
+
+                return is_unordered_marker;
             }
             case '-': {
                 lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
-                if(parse_unordered_marker('-', lexer, valid_symbols)) {
+                uintptr_t counter = 0;
+                bool is_unordered_marker = parse_unordered_marker('-', lexer, valid_symbols, &counter);
+                skip_white_space(lexer);
+                while(lexer->lookahead == '-') {
+                    lexer->advance(lexer, false);
+                    skip_white_space(lexer);
+                    ++counter;
+                    if(counter > 3) {
+                        break;
+                    }
+                }
+                if(counter == 3 && is_newline(lexer->lookahead)) {
+                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                    lexer->mark_end(lexer);
                     return true;
                 }
+
+                return is_unordered_marker;
             }
             case '.': {
                 lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
@@ -122,18 +156,31 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 lexer->mark_end(lexer);
                 return true;
             }
+            case '\'': {
+                lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                if(parse_breaks('\'', lexer, valid_symbols)) {
+                    return true;
+                }
+            }
+            case '<': {
+                lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                if(parse_breaks('<', lexer, valid_symbols)) {
+                    return true;
+                }
+            }
         }
     }
 
     return false;
 }
 
-bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols) {
+bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter) {
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
     while(lexer->lookahead == start) {
         lexer->advance(lexer, false);
+        ++(*counter);
     }
     if(!is_white_space(lexer->lookahead)) {
         return false;
@@ -208,4 +255,38 @@ static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols) 
 
     lexer->mark_end(lexer);
     return true;
+}
+
+static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) {
+    if(!valid_symbols[TOKEN_BREAKS_MARKS]) {
+        return false;
+    }
+    if(lexer->get_column(lexer) != 0) {
+        return false;
+    }
+
+    uint32_t counter = 0;
+
+    while(lexer->lookahead == start) {
+        lexer->advance(lexer, false);
+        skip_white_space(lexer);
+        ++counter;
+        if(counter > 3) {
+            return false;
+        }
+    }
+
+    lexer->mark_end(lexer);
+
+    return counter == 3 && is_newline(lexer->lookahead);
+}
+
+static void skip_white_space(TSLexer *lexer) {
+    while(is_white_space(lexer->lookahead)) {
+        lexer->advance(lexer, false);
+    }
+}
+
+static bool is_newline(int32_t ch) {
+    return ch == '\r' || ch == '\n';
 }

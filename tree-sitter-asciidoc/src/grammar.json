@@ -33,6 +33,10 @@
           {
             "type": "SYMBOL",
             "name": "_section_block"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "breaks"
           }
         ]
       }
@@ -185,6 +189,19 @@
         {
           "type": "SYMBOL",
           "name": "line"
+        }
+      ]
+    },
+    "breaks": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "breaks_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_block_end"
         }
       ]
     },
@@ -544,6 +561,10 @@
     {
       "type": "SYMBOL",
       "name": "block_title_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "breaks_marker"
     }
   ],
   "inline": [],
