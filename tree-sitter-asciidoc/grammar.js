@@ -76,7 +76,7 @@ module.exports = grammar({
       seq(
         $.unordered_list_marker,
         $._WHITE_SPACE,
-        '[',
+        token(prec(1, '[')),
         choice(' ', 'x', '*'),
         ']',
         $._WHITE_SPACE,

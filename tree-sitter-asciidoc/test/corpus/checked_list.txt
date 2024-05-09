@@ -9,16 +9,16 @@ checked_list
 -----
 
 (document
-  (unordered_list
-    (ul_item
+  (checked_list
+    (ck_item
       (unordered_list_marker
         (list_marker_star))
       (line))
-    (ul_item
+    (ck_item
       (unordered_list_marker
         (list_marker_star))
       (line))
-    (ul_item
+    (ck_item
       (unordered_list_marker
         (list_marker_star))
       (line))))
