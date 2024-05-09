@@ -62,6 +62,25 @@
     }
   },
   {
+    "type": "document_attr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "document_attr_marker",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "line",
     "named": true,
     "fields": {}
@@ -135,6 +154,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "document_attr",
+          "named": true
+        },
         {
           "type": "line",
           "named": true
@@ -303,12 +326,20 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "document_attr_marker",
+    "named": true
   },
   {
     "type": "list_marker_alpha",

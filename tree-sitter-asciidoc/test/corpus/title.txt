@@ -3,6 +3,8 @@ title
 ===========
 
 = Document Title (Level 0)
+:url-org: https://example.org/projects
+:url-project: {url-org}/project-name
 
 == Level 1 Section Title
 
@@ -29,7 +31,13 @@ title
 (document
   (title0
     (title_h0_marker)
-    (line))
+    (line)
+    (document_attr
+      (document_attr_marker)
+      (line))
+    (document_attr
+      (document_attr_marker)
+      (line)))
   (title1
     (title_h1_marker)
     (line))

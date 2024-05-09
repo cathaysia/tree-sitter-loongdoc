@@ -16,6 +16,7 @@ module.exports = grammar({
     $.list_marker_digit,
     $.list_marker_geek,
     $.list_marker_alpha,
+    $.document_attr_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -35,12 +36,22 @@ module.exports = grammar({
           $.checked_list,
         ),
       ),
-    title0: $ => seq($.title_h0_marker, $._WHITE_SPACE, $.line),
+    title0: $ =>
+      seq(
+        $.title_h0_marker,
+        $._WHITE_SPACE,
+        $.line,
+        repeat($.document_attr),
+        $._block_end,
+      ),
     title1: $ => seq($.title_h1_marker, $._WHITE_SPACE, $.line),
     title2: $ => seq($.title_h2_marker, $._WHITE_SPACE, $.line),
     title3: $ => seq($.title_h3_marker, $._WHITE_SPACE, $.line),
     title4: $ => seq($.title_h4_marker, $._WHITE_SPACE, $.line),
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
+
+    document_attr: $ =>
+      seq($.document_attr_marker, /[\w\d_][\w\d-]*/, ':', $.line),
 
     checked_list: $ => seq(repeat1($.ul_item), $._block_end),
     ck_item: $ =>
