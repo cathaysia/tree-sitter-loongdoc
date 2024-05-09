@@ -117,15 +117,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "document_attr_marker",
-          "named": true
-        },
-        {
-          "type": "line",
           "named": true
         }
       ]

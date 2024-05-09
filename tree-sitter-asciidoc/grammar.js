@@ -57,7 +57,13 @@ module.exports = grammar({
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
 
     document_attr: $ =>
-      seq($.document_attr_marker, /[\w\d_][\w\d-]*/, ':', $.line),
+      seq(
+        $.document_attr_marker,
+        /[\w\d_][\w\d-]*/,
+        ':',
+        /[^\r\n]*/,
+        $._block_end,
+      ),
     element_attr: $ =>
       seq($.element_attr_marker, /[^\]\r\n]*/, ']', $._NEWLINE),
     block_title: $ => seq($.block_title_marker, $.line),

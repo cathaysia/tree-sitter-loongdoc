@@ -204,8 +204,12 @@
           "value": ":"
         },
         {
+          "type": "PATTERN",
+          "value": "[^\\r\\n]*"
+        },
+        {
           "type": "SYMBOL",
-          "name": "line"
+          "name": "_block_end"
         }
       ]
     },
