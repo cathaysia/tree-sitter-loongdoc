@@ -1,5 +1,24 @@
 [
   {
+    "type": "block_title",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_title_marker",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "checked_list",
     "named": true,
     "fields": {},
@@ -46,6 +65,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "block_title",
+          "named": true
+        },
         {
           "type": "checked_list",
           "named": true
@@ -383,6 +406,10 @@
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "block_title_marker",
+    "named": true
   },
   {
     "type": "document_attr_marker",

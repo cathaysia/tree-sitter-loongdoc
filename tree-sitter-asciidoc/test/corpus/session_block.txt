@@ -6,6 +6,7 @@ session_block
 * Oranges
 
 []
+.title
 . Wash
 . Slice
 
@@ -23,6 +24,9 @@ session_block
       (line)))
   (element_attr
     (element_attr_marker))
+  (block_title
+    (block_title_marker)
+    (line))
   (ordered_list
     (ol_item
       (ordered_list_marker

@@ -16,10 +16,12 @@ typedef enum TokenType {
     TOKEN_LIST_MARKER_ALPHA,
     TOKEN_DOCUMENT_ATTR_MARKER,
     TOKEN_ELEMENT_ATTR_MARKER,
+    TOKEN_BLOCK_TITLE_MARKER,
 } TokenType;
 
 static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
+static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool is_white_space(int32_t ch);
 static bool is_ascii_digit(int32_t ch);
 static bool is_ascii_alpha_lower(int32_t ch);
@@ -86,8 +88,19 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
             }
             case '.': {
+                lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
+                if(parse_block_title_marker(lexer, valid_symbols)) {
+                    return true;
+                }
                 lexer->result_symbol = TOKEN_LIST_MARKER_DOT;
-                if(parse_unordered_marker('.', lexer, valid_symbols)) {
+                if(lexer->get_column(lexer) != 1) {
+                    return false;
+                }
+                while(lexer->lookahead == '.') {
+                    lexer->advance(lexer, false);
+                }
+                if(is_white_space(lexer->lookahead)) {
+                    lexer->mark_end(lexer);
                     return true;
                 }
             }
@@ -178,4 +191,21 @@ static bool is_ascii_alpha_lower(int32_t ch) {
 
 static bool is_geek_lower(int32_t ch) {
     return ch >= 945 && ch <= 969;
+}
+
+static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols) {
+    if(!valid_symbols[TOKEN_BLOCK_TITLE_MARKER]) {
+        return false;
+    }
+    if(lexer->get_column(lexer) != 0) {
+        return false;
+    }
+
+    lexer->advance(lexer, false);
+    if(is_white_space(lexer->lookahead)) {
+        return false;
+    }
+
+    lexer->mark_end(lexer);
+    return true;
 }
