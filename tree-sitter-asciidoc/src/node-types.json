@@ -34,6 +34,11 @@
     }
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "document",
     "named": true,
     "fields": {},
@@ -361,6 +366,10 @@
   },
   {
     "type": "*",
+    "named": false
+  },
+  {
+    "type": "//",
     "named": false
   },
   {

@@ -401,6 +401,19 @@
         }
       ]
     },
+    "comment": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "//"
+        },
+        {
+          "type": "PATTERN",
+          "value": "(\\\\+(.|\\r?\\n)|[^\\\\\\n])*"
+        }
+      ]
+    },
     "_block_end": {
       "type": "CHOICE",
       "members": [
@@ -427,6 +440,10 @@
     {
       "type": "SYMBOL",
       "name": "_NEWLINE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

@@ -1,0 +1,13 @@
+===========
+comment
+===========
+
+// A single-line comment.
+
+//
+
+-----
+
+(document
+  (comment)
+  (comment))

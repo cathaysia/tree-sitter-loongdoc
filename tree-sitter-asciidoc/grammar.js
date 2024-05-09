@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: 'asciidoc',
 
-  extras: $ => [$._NEWLINE],
+  extras: $ => [$._NEWLINE, $.comment],
   externals: $ => [
     $._eof,
     $.title_h0_marker,
@@ -88,6 +88,8 @@ module.exports = grammar({
       ),
 
     line: $ => seq(/[^\n]+/, $._block_end),
+
+    comment: $ => seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
 
     _block_end: $ => choice($._NEWLINE, $._eof),
     _NEWLINE: _ => /\r?\n/,
