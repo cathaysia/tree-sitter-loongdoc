@@ -1,3 +1,4 @@
+#include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
 
 typedef enum TokenType {
@@ -17,7 +18,8 @@ typedef enum TokenType {
     TOKEN_DOCUMENT_ATTR_MARKER,
     TOKEN_ELEMENT_ATTR_MARKER,
     TOKEN_BLOCK_TITLE_MARKER,
-    TOKEN_BREAKS_MARKS
+    TOKEN_BREAKS_MARKS,
+    TOKEN_TABLE_BLOCK_MARKER,
 } TokenType;
 
 static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter);
@@ -30,6 +32,36 @@ static bool is_ascii_digit(int32_t ch);
 static bool is_ascii_alpha_lower(int32_t ch);
 static bool is_geek_lower(int32_t ch);
 static bool is_newline(int32_t ch);
+
+typedef struct Scanner {
+    struct Scanner *parent;
+    int32_t ch;
+    uintptr_t counter;
+} Scanner;
+
+Scanner *scanner_new() {
+    return NULL;
+}
+
+Scanner *scanner_push_block(Scanner *self, int32_t ch, uintptr_t counter) {
+    Scanner *node = (Scanner *)ts_malloc(sizeof(Scanner));
+    node->parent = self;
+    node->ch = ch;
+    node->counter = counter;
+
+    return node;
+}
+
+Scanner *scanner_pop_block(Scanner *self) {
+    if(self == NULL) {
+        return NULL;
+    }
+
+    Scanner *node = self->parent;
+    ts_free(node);
+
+    return node;
+}
 
 void *tree_sitter_asciidoc_external_scanner_create() {
     return NULL;
@@ -48,6 +80,7 @@ void tree_sitter_asciidoc_external_scanner_deserialize(void *payload, const char
 }
 
 bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    Scanner *scanner = (Scanner *)payload;
     if(lexer->eof(lexer)) {
         if(valid_symbols[TOKEN_TYPE_EOF]) {
             lexer->result_symbol = TOKEN_TYPE_EOF;
@@ -166,6 +199,22 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 lexer->result_symbol = TOKEN_BREAKS_MARKS;
                 if(parse_breaks('<', lexer, valid_symbols)) {
                     return true;
+                }
+            }
+            case '|': {
+                lexer->advance(lexer, false);
+                if(lexer->lookahead == '=') {
+                    lexer->advance(lexer, false);
+                    if(lexer->lookahead == '=') {
+                        lexer->advance(lexer, false);
+                        if(lexer->lookahead == '=') {
+                            lexer->advance(lexer, false);
+                            if(is_newline(lexer->lookahead)) {
+                                lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }

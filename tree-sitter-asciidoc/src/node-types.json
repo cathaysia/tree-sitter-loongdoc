@@ -101,6 +101,10 @@
           "named": true
         },
         {
+          "type": "table_block",
+          "named": true
+        },
+        {
           "type": "title0",
           "named": true
         },
@@ -226,6 +230,45 @@
         }
       ]
     }
+  },
+  {
+    "type": "table_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "table_block_marker",
+          "named": true
+        },
+        {
+          "type": "table_cell",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table_cell",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "table_cell_attr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "table_cell_attr",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "title0",
@@ -407,6 +450,10 @@
     "named": false
   },
   {
+    "type": ".^",
+    "named": false
+  },
+  {
     "type": "//",
     "named": false
   },
@@ -415,11 +462,23 @@
     "named": false
   },
   {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
     "named": false
   },
   {
@@ -463,6 +522,10 @@
     "named": true
   },
   {
+    "type": "table_block_marker",
+    "named": true
+  },
+  {
     "type": "title_h0_marker",
     "named": true
   },
@@ -488,6 +551,14 @@
   },
   {
     "type": "x",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]
