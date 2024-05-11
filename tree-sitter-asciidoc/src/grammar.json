@@ -86,6 +86,10 @@
             {
               "type": "SYMBOL",
               "name": "breaks"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "pagragraph"
             }
           ]
         }
@@ -587,12 +591,39 @@
         }
       ]
     },
+    "pagragraph": {
+      "type": "PREC",
+      "value": -1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "line"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_block_end"
+          }
+        ]
+      }
+    },
     "comment": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "//"
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "//"
+            }
+          }
         },
         {
           "type": "PATTERN",

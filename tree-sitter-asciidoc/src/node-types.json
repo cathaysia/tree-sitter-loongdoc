@@ -124,6 +124,10 @@
           "named": true
         },
         {
+          "type": "pagragraph",
+          "named": true
+        },
+        {
           "type": "raw_block",
           "named": true
         },
@@ -253,6 +257,21 @@
         },
         {
           "type": "list_marker_geek",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pagragraph",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
           "named": true
         }
       ]

@@ -52,6 +52,7 @@ module.exports = grammar({
           $.delimited_block,
           $.raw_block,
           $.breaks,
+          $.pagragraph,
         ),
       ),
     title0: $ =>
@@ -121,8 +122,9 @@ module.exports = grammar({
     raw_block: $ => seq($.raw_block_marker, repeat($.line), $.raw_block_marker),
 
     line: $ => seq(/[^\n]+/, $._block_end),
+    pagragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),
 
-    comment: $ => seq('//', /(\\+(.|\r?\n)|[^\\\n])*/),
+    comment: $ => seq(token(prec(1, '//')), /(\\+(.|\r?\n)|[^\\\n])*/),
 
     _block_end: $ => choice($._NEWLINE, $._eof),
     _NEWLINE: _ => /\r?\n/,
