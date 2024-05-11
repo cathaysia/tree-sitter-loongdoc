@@ -1,3 +1,4 @@
+#include "include/base_types.h"
 #include "tree_sitter/parser.h"
 
 typedef enum TokenType {
@@ -23,18 +24,17 @@ typedef enum TokenType {
     TOKEN_RAW_BLOCK_MARKER,
 } TokenType;
 
-static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols);
-static bool consume(int32_t ch, TSLexer *lexer, bool skip_space);
+static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
 static bool skip_white_space(TSLexer *lexer);
-static bool is_white_space(int32_t ch);
-static bool is_new_line(int32_t ch);
-static bool is_ascii_digit(int32_t ch);
-static bool is_ascii_alpha_lower(int32_t ch);
-static bool is_geek_lower(int32_t ch);
-static bool is_newline(int32_t ch);
+static bool is_white_space(i32 ch);
+static bool is_new_line(i32 ch);
+static bool is_ascii_digit(i32 ch);
+static bool is_ascii_alpha_lower(i32 ch);
+static bool is_geek_lower(i32 ch);
+static bool is_newline(i32 ch);
 
 void *tree_sitter_asciidoc_external_scanner_create() {
     return NULL;
@@ -66,14 +66,14 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
         switch(lexer->lookahead) {
             case '=': {
-                consume('=', lexer, false);
-
+                consume('=', lexer, false, NULL, USIZE_MAX);
+                lexer->mark_end(lexer);
                 if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
                     lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
                     return true;
                 }
 
-                uintptr_t level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
+                usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
                 if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
                     lexer->result_symbol = level;
                     return true;
@@ -82,12 +82,14 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
             case '*': {
                 lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
-                uintptr_t counter = 0;
-                bool is_unordered_marker = parse_unordered_marker('*', lexer, valid_symbols, &counter);
-                bool has_space = skip_white_space(lexer);
+                usize counter = 0;
+                consume('*', lexer, false, &counter, USIZE_MAX);
+                lexer->mark_end(lexer);
+                bool is_unordered_marker = is_white_space(lexer->lookahead);
+                skip_white_space(lexer);
                 while(lexer->lookahead == '*') {
                     lexer->advance(lexer, false);
-                    has_space |= skip_white_space(lexer);
+                    skip_white_space(lexer);
                     ++counter;
                     if(counter > 3) {
                         break;
@@ -103,8 +105,10 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
             case '-': {
                 lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
-                uintptr_t counter = 0;
-                bool is_unordered_marker = parse_unordered_marker('-', lexer, valid_symbols, &counter);
+                usize counter = 0;
+                consume('-', lexer, false, &counter, USIZE_MAX);
+                lexer->mark_end(lexer);
+                bool is_unordered_marker = is_white_space(lexer->lookahead);
                 if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
                     lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
                     return true;
@@ -145,50 +149,40 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
             }
             case ':': {
-                lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
-                if(lexer->get_column(lexer) != 0) {
-                    return false;
-                }
                 lexer->advance(lexer, false);
                 lexer->mark_end(lexer);
+                lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
                 return true;
             }
             case '[': {
-                lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
-                if(lexer->get_column(lexer) != 0) {
-                    return false;
-                }
                 lexer->advance(lexer, false);
                 lexer->mark_end(lexer);
+                lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
                 return true;
             }
             case '\'': {
-                lexer->result_symbol = TOKEN_BREAKS_MARKS;
                 if(parse_breaks('\'', lexer, valid_symbols)) {
+                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
                     return true;
                 }
+                break;
             }
             case '<': {
-                lexer->result_symbol = TOKEN_BREAKS_MARKS;
                 if(parse_breaks('<', lexer, valid_symbols)) {
+                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
                     return true;
                 }
+                break;
             }
             case '|': {
                 lexer->advance(lexer, false);
-                if(lexer->lookahead == '=') {
-                    lexer->advance(lexer, false);
-                    if(lexer->lookahead == '=') {
-                        lexer->advance(lexer, false);
-                        if(lexer->lookahead == '=') {
-                            lexer->advance(lexer, false);
-                            if(is_newline(lexer->lookahead)) {
-                                lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
-                                return true;
-                            }
-                        }
-                    }
+                consume('=', lexer, false, NULL, USIZE_MAX);
+                if(is_newline(lexer->lookahead)) {
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                    return true;
                 }
+                break;
             }
         }
     }
@@ -196,28 +190,12 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     return false;
 }
 
-bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter) {
-    if(lexer->get_column(lexer) != 0) {
-        return false;
-    }
-    while(lexer->lookahead == start) {
-        lexer->advance(lexer, false);
-        ++(*counter);
-    }
-    if(!is_white_space(lexer->lookahead)) {
-        return false;
-    }
-    lexer->mark_end(lexer);
-
-    return true;
-}
-
 bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols) {
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
 
-    typedef bool (*FnJudge)(int32_t);
+    typedef bool (*FnJudge)(i32);
     FnJudge is_order_marker;
     if(is_ascii_digit(lexer->lookahead)) {
         is_order_marker = is_ascii_digit;
@@ -246,19 +224,19 @@ bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols) {
     return true;
 }
 
-static bool is_white_space(int32_t ch) {
+static bool is_white_space(i32 ch) {
     return ch == ' ' || ch == '\t';
 }
 
-static bool is_ascii_digit(int32_t ch) {
+static bool is_ascii_digit(i32 ch) {
     return ch >= '0' && ch <= '9';
 }
 
-static bool is_ascii_alpha_lower(int32_t ch) {
+static bool is_ascii_alpha_lower(i32 ch) {
     return ch >= 'a' && ch <= 'z';
 }
 
-static bool is_geek_lower(int32_t ch) {
+static bool is_geek_lower(i32 ch) {
     return ch >= 945 && ch <= 969;
 }
 
@@ -287,7 +265,7 @@ static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) 
         return false;
     }
 
-    uint32_t counter = 0;
+    i32 counter = 0;
 
     while(lexer->lookahead == start) {
         lexer->advance(lexer, false);
@@ -313,15 +291,15 @@ static bool skip_white_space(TSLexer *lexer) {
     return has_skiped;
 }
 
-static bool is_newline(int32_t ch) {
+static bool is_newline(i32 ch) {
     return ch == '\r' || ch == '\n';
 }
 
-static bool is_new_line(int32_t ch) {
+static bool is_new_line(i32 ch) {
     return ch == '\r' || ch == '\n';
 }
 
-static bool consume(int32_t ch, TSLexer *lexer, bool skip_space) {
+static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max) {
     bool has_space = false;
     if(skip_space) {
         has_space |= skip_white_space(lexer);
@@ -331,6 +309,13 @@ static bool consume(int32_t ch, TSLexer *lexer, bool skip_space) {
         lexer->advance(lexer, false);
         if(skip_space) {
             has_space |= skip_white_space(lexer);
+        }
+        --max;
+        if(counter != NULL) {
+            *counter += 1;
+        }
+        if(max == 0) {
+            break;
         }
     }
 

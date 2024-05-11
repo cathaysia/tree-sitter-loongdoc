@@ -5,6 +5,7 @@
     "build": "tree-sitter generate",
     "test": "pnpm build && tree-sitter test",
     "pbuild": "pnpm build && pnpm precommit",
+    "ptest": "pnpm pbuild && tree-sitter test",
     "precommit": "pre-commit run -a 2>&1 >> /dev/null || true",
     "compile": "gcc -shared -fPIC src/parser.c src/scanner.c -o build/asciidoc.so"
   },
