@@ -33,10 +33,6 @@
           {
             "type": "SYMBOL",
             "name": "_section_block"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "breaks"
           }
         ]
       }
@@ -86,6 +82,10 @@
             {
               "type": "SYMBOL",
               "name": "raw_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "breaks"
             }
           ]
         }

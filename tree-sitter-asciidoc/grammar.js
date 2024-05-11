@@ -38,7 +38,6 @@ module.exports = grammar({
           $.title4,
           $.title5,
           $._section_block,
-          $.breaks,
         ),
       ),
 
@@ -52,6 +51,7 @@ module.exports = grammar({
           $.table_block,
           $.delimited_block,
           $.raw_block,
+          $.breaks,
         ),
       ),
     title0: $ =>
