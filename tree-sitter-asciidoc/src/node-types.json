@@ -73,6 +73,25 @@
     "fields": {}
   },
   {
+    "type": "delimited_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "delimited_block_marker",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "document",
     "named": true,
     "fields": {},
@@ -93,11 +112,19 @@
           "named": true
         },
         {
+          "type": "delimited_block",
+          "named": true
+        },
+        {
           "type": "element_attr",
           "named": true
         },
         {
           "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "raw_block",
           "named": true
         },
         {
@@ -226,6 +253,25 @@
         },
         {
           "type": "list_marker_geek",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "raw_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "raw_block_marker",
           "named": true
         }
       ]
@@ -490,6 +536,10 @@
     "named": true
   },
   {
+    "type": "delimited_block_marker",
+    "named": true
+  },
+  {
     "type": "document_attr_marker",
     "named": true
   },
@@ -519,6 +569,10 @@
   },
   {
     "type": "list_marker_star",
+    "named": true
+  },
+  {
+    "type": "raw_block_marker",
     "named": true
   },
   {

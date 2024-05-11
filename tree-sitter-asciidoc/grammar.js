@@ -21,6 +21,8 @@ module.exports = grammar({
     $.block_title_marker,
     $.breaks_marker,
     $.table_block_marker,
+    $.delimited_block_marker,
+    $.raw_block_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -43,7 +45,14 @@ module.exports = grammar({
     _section_block: $ =>
       seq(
         repeat(choice($.element_attr, $.block_title)),
-        choice($.unordered_list, $.ordered_list, $.checked_list, $.table_block),
+        choice(
+          $.unordered_list,
+          $.ordered_list,
+          $.checked_list,
+          $.table_block,
+          $.delimited_block,
+          $.raw_block,
+        ),
       ),
     title0: $ =>
       seq(
@@ -106,6 +115,10 @@ module.exports = grammar({
       repeat1(
         choice(/\w/, '<', '>', '^', '.^', '~', /\d+\+/, /\.\d+\+/, /\d+\.\d+/),
       ),
+
+    delimited_block: $ =>
+      seq($.delimited_block_marker, repeat($.line), $.delimited_block_marker),
+    raw_block: $ => seq($.raw_block_marker, repeat($.line), $.raw_block_marker),
 
     line: $ => seq(/[^\n]+/, $._block_end),
 

@@ -1,4 +1,3 @@
-#include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
 
 typedef enum TokenType {
@@ -20,48 +19,22 @@ typedef enum TokenType {
     TOKEN_BLOCK_TITLE_MARKER,
     TOKEN_BREAKS_MARKS,
     TOKEN_TABLE_BLOCK_MARKER,
+    TOKEN_DELIMITED_BLOCK_MARKER,
+    TOKEN_RAW_BLOCK_MARKER,
 } TokenType;
 
 static bool parse_unordered_marker(char start, TSLexer *lexer, const bool *valid_symbols, uintptr_t *counter);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols);
-static void skip_white_space(TSLexer *lexer);
+static bool consume(int32_t ch, TSLexer *lexer, bool skip_space);
+static bool skip_white_space(TSLexer *lexer);
 static bool is_white_space(int32_t ch);
+static bool is_new_line(int32_t ch);
 static bool is_ascii_digit(int32_t ch);
 static bool is_ascii_alpha_lower(int32_t ch);
 static bool is_geek_lower(int32_t ch);
 static bool is_newline(int32_t ch);
-
-typedef struct Scanner {
-    struct Scanner *parent;
-    int32_t ch;
-    uintptr_t counter;
-} Scanner;
-
-Scanner *scanner_new() {
-    return NULL;
-}
-
-Scanner *scanner_push_block(Scanner *self, int32_t ch, uintptr_t counter) {
-    Scanner *node = (Scanner *)ts_malloc(sizeof(Scanner));
-    node->parent = self;
-    node->ch = ch;
-    node->counter = counter;
-
-    return node;
-}
-
-Scanner *scanner_pop_block(Scanner *self) {
-    if(self == NULL) {
-        return NULL;
-    }
-
-    Scanner *node = self->parent;
-    ts_free(node);
-
-    return node;
-}
 
 void *tree_sitter_asciidoc_external_scanner_create() {
     return NULL;
@@ -80,7 +53,6 @@ void tree_sitter_asciidoc_external_scanner_deserialize(void *payload, const char
 }
 
 bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-    Scanner *scanner = (Scanner *)payload;
     if(lexer->eof(lexer)) {
         if(valid_symbols[TOKEN_TYPE_EOF]) {
             lexer->result_symbol = TOKEN_TYPE_EOF;
@@ -94,32 +66,28 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
         switch(lexer->lookahead) {
             case '=': {
-                if(!valid_symbols[TOKEN_TITLE_H0_MARKER]) {
-                    break;
+                consume('=', lexer, false);
+
+                if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
+                    lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
+                    return true;
                 }
-                unsigned level = TOKEN_TITLE_H0_MARKER - 1;
-                while(lexer->lookahead == '=') {
-                    lexer->advance(lexer, false);
-                    lexer->mark_end(lexer);
-                    ++level;
+
+                uintptr_t level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
+                if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
+                    lexer->result_symbol = level;
+                    return true;
                 }
-                if(level > TOKEN_TITLE_H5_MARKER) {
-                    return false;
-                }
-                if(!is_white_space(lexer->lookahead)) {
-                    return false;
-                }
-                lexer->result_symbol = level;
-                return true;
+                return false;
             }
             case '*': {
                 lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
                 uintptr_t counter = 0;
                 bool is_unordered_marker = parse_unordered_marker('*', lexer, valid_symbols, &counter);
-                skip_white_space(lexer);
-                while(lexer->lookahead == '-') {
+                bool has_space = skip_white_space(lexer);
+                while(lexer->lookahead == '*') {
                     lexer->advance(lexer, false);
-                    skip_white_space(lexer);
+                    has_space |= skip_white_space(lexer);
                     ++counter;
                     if(counter > 3) {
                         break;
@@ -137,6 +105,11 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
                 uintptr_t counter = 0;
                 bool is_unordered_marker = parse_unordered_marker('-', lexer, valid_symbols, &counter);
+                if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
+                    lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                    return true;
+                }
+
                 skip_white_space(lexer);
                 while(lexer->lookahead == '-') {
                     lexer->advance(lexer, false);
@@ -330,12 +303,37 @@ static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) 
     return counter == 3 && is_newline(lexer->lookahead);
 }
 
-static void skip_white_space(TSLexer *lexer) {
+static bool skip_white_space(TSLexer *lexer) {
+    bool has_skiped = false;
     while(is_white_space(lexer->lookahead)) {
-        lexer->advance(lexer, false);
+        lexer->advance(lexer, true);
+        has_skiped = true;
     }
+
+    return has_skiped;
 }
 
 static bool is_newline(int32_t ch) {
     return ch == '\r' || ch == '\n';
+}
+
+static bool is_new_line(int32_t ch) {
+    return ch == '\r' || ch == '\n';
+}
+
+static bool consume(int32_t ch, TSLexer *lexer, bool skip_space) {
+    bool has_space = false;
+    if(skip_space) {
+        has_space |= skip_white_space(lexer);
+    }
+
+    while(lexer->lookahead == ch) {
+        lexer->advance(lexer, false);
+        if(skip_space) {
+            has_space |= skip_white_space(lexer);
+        }
+    }
+
+    lexer->mark_end(lexer);
+    return has_space;
 }
