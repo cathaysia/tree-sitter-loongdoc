@@ -9,6 +9,7 @@ fn main() {
 
     let parser_path = src_dir.join("parser.c");
     c_config.file(&parser_path);
+    c_config.file(src_dir.join("scanner.c"));
     println!("cargo:rerun-if-changed={}", parser_path.to_str().unwrap());
 
     // NOTE: if your language uses an external scanner, uncomment this block:
