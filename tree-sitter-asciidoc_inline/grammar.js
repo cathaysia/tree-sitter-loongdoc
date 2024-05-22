@@ -158,7 +158,7 @@ module.exports = grammar({
         seq(
           'xref',
           ':',
-          alias(/\w+/, $.id),
+          alias(/[^\[]*/, $.id),
           '[',
           alias(/[^\]]*/, $.reftext),
           ']',
