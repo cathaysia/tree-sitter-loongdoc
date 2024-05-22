@@ -7,20 +7,14 @@ this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:i
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
   (anchor
     (id))
-  (word)
   (anchor
     (id)
     (reftext))
-  (word)
   (anchor
     (id)
     (reftext))
-  (word)
   (anchor
     (id)
     (reftext)))

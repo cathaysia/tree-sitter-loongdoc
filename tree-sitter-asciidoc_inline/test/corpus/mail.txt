@@ -7,9 +7,5 @@ this is a email: doc.writer@example.com
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
-  (word)
   (punctuation)
   (email))

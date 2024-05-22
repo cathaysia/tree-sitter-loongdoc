@@ -7,22 +7,15 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
   (footnote_macro
     (reftext))
-  (word)
   (footnote_macro
     (id)
     (reftext))
-  (word)
   (footnote_macro
     (id)
     (reftext))
-  (word)
   (footnote_macro
     (reftext))
-  (word)
   (footnote_macro
     (reftext)))

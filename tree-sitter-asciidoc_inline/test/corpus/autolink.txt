@@ -7,28 +7,21 @@ this is https://github.com or https://github.com[GitHub] or <https://github.com>
 -----
 
 (inline
-  (word)
-  (word)
   (auto_link
     (link_url))
-  (word)
   (auto_link
     (link_url)
     (link_label))
-  (word)
   (punctuation)
   (auto_link
     (link_url))
   (punctuation)
-  (word)
   (link_macro
     (link)
     (link_label))
-  (word)
   (auto_link
     (link_url)
     (link_label))
-  (word)
   (punctuation)
   (auto_link
     (link_url)))

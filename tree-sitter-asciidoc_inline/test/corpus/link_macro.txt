@@ -7,13 +7,9 @@ this is a link:vvv[] and mailto:bbb[ccc]
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
   (link_macro
     (link)
     (link_label))
-  (word)
   (link_macro
     (link)
     (link_label)))

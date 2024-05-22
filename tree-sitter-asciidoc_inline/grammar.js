@@ -19,7 +19,7 @@ module.exports = grammar({
       repeat1(
         choice(
           $.replacement,
-          $.word,
+          $._word,
           $.anchor,
           $.email,
           $.footnote_macro,
@@ -39,7 +39,7 @@ module.exports = grammar({
         ),
       ),
     replacement: $ => seq('{', alias(/\w+/, $.intrinsic_attributes), '}'),
-    word: $ => choice($._word_no_digit, $._digits),
+    _word: $ => choice($._word_no_digit, $._digits),
     _word_no_digit: $ =>
       new RegExp(
         '[^' +

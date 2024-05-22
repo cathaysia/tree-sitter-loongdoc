@@ -109,7 +109,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "anchor",
@@ -173,10 +173,6 @@
         },
         {
           "type": "replacement",
-          "named": true
-        },
-        {
-          "type": "word",
           "named": true
         },
         {
@@ -316,11 +312,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "word",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "xref",
@@ -623,11 +614,11 @@
   },
   {
     "type": "link",
-    "named": true
+    "named": false
   },
   {
     "type": "link",
-    "named": false
+    "named": true
   },
   {
     "type": "link_label",

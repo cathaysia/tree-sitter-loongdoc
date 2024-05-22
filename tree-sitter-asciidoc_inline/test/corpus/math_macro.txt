@@ -7,14 +7,9 @@ this is a stem:[x != 0] or asciimath:[x != 0] or latexmath:[\sqrt{4} = 2]
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
   (math_macro
     (math))
-  (word)
   (math_macro
     (math))
-  (word)
   (math_macro
     (math)))

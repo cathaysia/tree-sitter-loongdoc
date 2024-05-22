@@ -12,7 +12,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "word"
+            "name": "_word"
           },
           {
             "type": "SYMBOL",
@@ -103,7 +103,7 @@
         }
       ]
     },
-    "word": {
+    "_word": {
       "type": "CHOICE",
       "members": [
         {

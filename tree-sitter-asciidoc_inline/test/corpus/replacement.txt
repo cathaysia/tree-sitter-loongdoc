@@ -7,10 +7,6 @@ this is a replacement {cpp}.
 -----
 
 (inline
-  (word)
-  (word)
-  (word)
-  (word)
   (replacement
     (intrinsic_attributes))
   (punctuation))
