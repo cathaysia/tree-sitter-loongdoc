@@ -20,6 +20,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "inline_math_macro"
+          },
+          {
+            "type": "SYMBOL",
             "name": "punctuation"
           }
         ]
@@ -219,6 +223,44 @@
         {
           "type": "PATTERN",
           "value": "[^\\s\\[]+\\[[^\\]]*\\]"
+        }
+      ]
+    },
+    "inline_math_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "stem"
+            },
+            {
+              "type": "STRING",
+              "value": "latexmath"
+            },
+            {
+              "type": "STRING",
+              "value": "asciimath"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\]]*"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     }

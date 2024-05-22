@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "inline_math_macro",
+          "named": true
+        },
+        {
           "type": "punctuation",
           "named": true
         },
@@ -28,6 +32,11 @@
   },
   {
     "type": "inline_link_macro",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "inline_math_macro",
     "named": true,
     "fields": {}
   },
@@ -159,11 +168,23 @@
     "named": false
   },
   {
+    "type": "asciimath",
+    "named": false
+  },
+  {
+    "type": "latexmath",
+    "named": false
+  },
+  {
     "type": "link",
     "named": false
   },
   {
     "type": "mailto",
+    "named": false
+  },
+  {
+    "type": "stem",
     "named": false
   },
   {

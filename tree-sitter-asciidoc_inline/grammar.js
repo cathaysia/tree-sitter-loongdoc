@@ -11,7 +11,13 @@ module.exports = grammar({
   rules: {
     inline: $ =>
       repeat1(
-        choice($.replacement, $.word, $.inline_link_macro, $.punctuation),
+        choice(
+          $.replacement,
+          $.word,
+          $.inline_link_macro,
+          $.inline_math_macro,
+          $.punctuation,
+        ),
       ),
     replacement: $ => seq('{', /\w+/, '}'),
     word: $ => choice($._word_no_digit, $._digits),
@@ -27,5 +33,7 @@ module.exports = grammar({
     punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     inline_link_macro: $ =>
       seq(choice('link', 'mailto'), ':', /[^\s\[]+\[[^\]]*\]/),
+    inline_math_macro: $ =>
+      seq(choice('stem', 'latexmath', 'asciimath'), ':', '[', /[^\]]*/, ']'),
   },
 })
