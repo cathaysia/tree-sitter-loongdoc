@@ -20,6 +20,10 @@
           "named": true
         },
         {
+          "type": "inline_image_macro",
+          "named": true
+        },
+        {
           "type": "inline_link_macro",
           "named": true
         },
@@ -49,6 +53,11 @@
   },
   {
     "type": "inline_footnote_macro",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "inline_image_macro",
     "named": true,
     "fields": {}
   },
@@ -178,6 +187,14 @@
     "named": false
   },
   {
+    "type": "\\[",
+    "named": false
+  },
+  {
+    "type": "\\]",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -211,6 +228,14 @@
   },
   {
     "type": "footnoteref",
+    "named": false
+  },
+  {
+    "type": "icon",
+    "named": false
+  },
+  {
+    "type": "image",
     "named": false
   },
   {

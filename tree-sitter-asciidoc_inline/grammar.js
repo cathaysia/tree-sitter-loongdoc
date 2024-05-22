@@ -17,6 +17,7 @@ module.exports = grammar({
           $.inline_anchor_rx,
           $.inline_email_rx,
           $.inline_footnote_macro,
+          $.inline_image_macro,
           $.inline_link_macro,
           $.inline_math_macro,
           $.punctuation,
@@ -49,6 +50,15 @@ module.exports = grammar({
         optional(field('id', /\w+/)),
         '[',
         choice(seq(/[\w]+/, optional(seq(',', /[^\]]+/))), /[^\]]*/),
+        ']',
+      ),
+    inline_image_macro: $ =>
+      seq(
+        choice('image', 'icon'),
+        ':',
+        /[^\[]+/,
+        '[',
+        repeat(choice(/[^\]]/, '\\[', '\\]')),
         ']',
       ),
     inline_link_macro: $ =>
