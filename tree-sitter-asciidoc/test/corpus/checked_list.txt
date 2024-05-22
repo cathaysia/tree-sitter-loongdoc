@@ -13,12 +13,15 @@ checked_list
     (ck_item
       (unordered_list_marker
         (list_marker_star))
+      (task_list_marker_checked)
       (line))
     (ck_item
       (unordered_list_marker
         (list_marker_star))
+      (task_list_marker_checked)
       (line))
     (ck_item
       (unordered_list_marker
         (list_marker_star))
+      (task_list_marker_unchecked)
       (line))))

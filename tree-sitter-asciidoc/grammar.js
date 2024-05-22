@@ -87,9 +87,10 @@ module.exports = grammar({
       seq(
         $.unordered_list_marker,
         $._WHITE_SPACE,
-        token(prec(1, '[')),
-        choice(' ', 'x', '*'),
-        ']',
+        choice(
+          alias(token(prec(1, /\[[*x]\]/)), $.task_list_marker_checked),
+          alias(token(prec(1, '[ ]')), $.task_list_marker_unchecked),
+        ),
         $._WHITE_SPACE,
         $.line,
       ),

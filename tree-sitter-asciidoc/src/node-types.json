@@ -61,6 +61,14 @@
           "named": true
         },
         {
+          "type": "task_list_marker_checked",
+          "named": true
+        },
+        {
+          "type": "task_list_marker_unchecked",
+          "named": true
+        },
+        {
           "type": "unordered_list_marker",
           "named": true
         }
@@ -503,14 +511,6 @@
     }
   },
   {
-    "type": " ",
-    "named": false
-  },
-  {
-    "type": "*",
-    "named": false
-  },
-  {
     "type": ".^",
     "named": false
   },
@@ -528,10 +528,6 @@
   },
   {
     "type": ">",
-    "named": false
-  },
-  {
-    "type": "[",
     "named": false
   },
   {
@@ -595,6 +591,14 @@
     "named": true
   },
   {
+    "type": "task_list_marker_checked",
+    "named": true
+  },
+  {
+    "type": "task_list_marker_unchecked",
+    "named": true
+  },
+  {
     "type": "title_h0_marker",
     "named": true
   },
@@ -617,10 +621,6 @@
   {
     "type": "title_h5_marker",
     "named": true
-  },
-  {
-    "type": "x",
-    "named": false
   },
   {
     "type": "|",
