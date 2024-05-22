@@ -16,6 +16,7 @@ module.exports = grammar({
           $.word,
           $.inline_link_macro,
           $.inline_math_macro,
+          $.inline_anchor_rx,
           $.punctuation,
         ),
       ),
@@ -35,5 +36,10 @@ module.exports = grammar({
       seq(choice('link', 'mailto'), ':', /[^\s\[]+\[[^\]]*\]/),
     inline_math_macro: $ =>
       seq(choice('stem', 'latexmath', 'asciimath'), ':', '[', /[^\]]*/, ']'),
+    inline_anchor_rx: $ =>
+      choice(
+        seq('[[', /\w+/, optional(seq(',', /[\w\s ]+/)), ']]'),
+        seq('anchor', ':', /\w+/, '[', /[^\]]*/, ']'),
+      ),
   },
 })

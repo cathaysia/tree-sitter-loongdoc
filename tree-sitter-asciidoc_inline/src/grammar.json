@@ -24,6 +24,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "inline_anchor_rx"
+          },
+          {
+            "type": "SYMBOL",
             "name": "punctuation"
           }
         ]
@@ -261,6 +265,78 @@
         {
           "type": "STRING",
           "value": "]"
+        }
+      ]
+    },
+    "inline_anchor_rx": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "[["
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ","
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "[\\w\\s ]+"
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "]]"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "anchor"
+            },
+            {
+              "type": "STRING",
+              "value": ":"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\\]]*"
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
         }
       ]
     }

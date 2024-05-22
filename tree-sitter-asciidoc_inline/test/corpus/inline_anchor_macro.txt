@@ -1,0 +1,19 @@
+====================
+inline_anchor_macro
+====================
+
+this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:idname[Reference Text]
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (inline_anchor_rx)
+  (word)
+  (inline_anchor_rx)
+  (word)
+  (inline_anchor_rx)
+  (word)
+  (inline_anchor_rx))

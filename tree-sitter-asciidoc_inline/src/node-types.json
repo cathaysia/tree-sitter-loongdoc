@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "inline_anchor_rx",
+          "named": true
+        },
+        {
           "type": "inline_link_macro",
           "named": true
         },
@@ -29,6 +33,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "inline_anchor_rx",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "inline_link_macro",
@@ -148,11 +157,19 @@
     "named": false
   },
   {
+    "type": "[[",
+    "named": false
+  },
+  {
     "type": "\\",
     "named": false
   },
   {
     "type": "]",
+    "named": false
+  },
+  {
+    "type": "]]",
     "named": false
   },
   {
@@ -165,6 +182,10 @@
   },
   {
     "type": "`",
+    "named": false
+  },
+  {
+    "type": "anchor",
     "named": false
   },
   {
