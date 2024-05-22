@@ -149,10 +149,13 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
             }
             case ':': {
-                lexer->advance(lexer, false);
-                lexer->mark_end(lexer);
-                lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
-                return true;
+                if(valid_symbols[TOKEN_DOCUMENT_ATTR_MARKER]) {
+                    lexer->advance(lexer, false);
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
+                    return true;
+                }
+                break;
             }
             case '[': {
                 lexer->advance(lexer, false);
