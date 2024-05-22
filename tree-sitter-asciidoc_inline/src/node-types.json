@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "inline_footnote_macro",
+          "named": true
+        },
+        {
           "type": "inline_link_macro",
           "named": true
         },
@@ -40,6 +44,11 @@
   },
   {
     "type": "inline_anchor_rx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "inline_footnote_macro",
     "named": true,
     "fields": {}
   },
@@ -194,6 +203,14 @@
   },
   {
     "type": "asciimath",
+    "named": false
+  },
+  {
+    "type": "footnote",
+    "named": false
+  },
+  {
+    "type": "footnoteref",
     "named": false
   },
   {

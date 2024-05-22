@@ -1,0 +1,21 @@
+====================
+inline_footnote
+====================
+
+this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[id,text] or footnoteref:[id]
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (inline_footnote_macro)
+  (word)
+  (inline_footnote_macro)
+  (word)
+  (inline_footnote_macro)
+  (word)
+  (inline_footnote_macro)
+  (word)
+  (inline_footnote_macro))
