@@ -124,7 +124,7 @@
           "named": true
         },
         {
-          "type": "pagragraph",
+          "type": "paragraph",
           "named": true
         },
         {
@@ -263,7 +263,7 @@
     }
   },
   {
-    "type": "pagragraph",
+    "type": "paragraph",
     "named": true,
     "fields": {},
     "children": {
