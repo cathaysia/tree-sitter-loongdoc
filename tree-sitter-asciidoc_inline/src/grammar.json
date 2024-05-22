@@ -52,6 +52,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "inline_passthrough"
+          },
+          {
+            "type": "SYMBOL",
             "name": "punctuation"
           }
         ]
@@ -797,6 +801,108 @@
           "value": "]"
         }
       ]
+    },
+    "inline_passthrough": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "+"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "+"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "`"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "`"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "+++"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "+++"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "$$"
+            },
+            {
+              "type": "PATTERN",
+              "value": "\\w+"
+            },
+            {
+              "type": "STRING",
+              "value": "$$"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "pass"
+            },
+            {
+              "type": "STRING",
+              "value": ":"
+            },
+            {
+              "type": "STRING",
+              "value": "quotes"
+            },
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\\]]*"
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
+        }
+      ]
     }
   },
   "extras": [
@@ -811,6 +917,16 @@
       {
         "type": "SYMBOL",
         "name": "auto_link"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "punctuation"
+      }
+    ],
+    [
+      {
+        "type": "SYMBOL",
+        "name": "inline_passthrough"
       },
       {
         "type": "SYMBOL",

@@ -1,0 +1,19 @@
+====================
+inline_passthrough
+====================
+
++text+
+`text`
+
+$$text$$
+$$text$$
+pass:quotes[text]
+
+-----
+
+(inline
+  (inline_passthrough)
+  (inline_passthrough)
+  (inline_passthrough)
+  (inline_passthrough)
+  (inline_passthrough))

@@ -59,6 +59,10 @@
           "named": true
         },
         {
+          "type": "inline_passthrough",
+          "named": true
+        },
+        {
           "type": "punctuation",
           "named": true
         },
@@ -119,6 +123,11 @@
     "fields": {}
   },
   {
+    "type": "inline_passthrough",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "key",
     "named": true,
     "fields": {}
@@ -160,6 +169,10 @@
     "named": false
   },
   {
+    "type": "$$",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -185,6 +198,10 @@
   },
   {
     "type": "+",
+    "named": false
+  },
+  {
+    "type": "+++",
     "named": false
   },
   {
@@ -345,6 +362,14 @@
   },
   {
     "type": "menu",
+    "named": false
+  },
+  {
+    "type": "pass",
+    "named": false
+  },
+  {
+    "type": "quotes",
     "named": false
   },
   {
