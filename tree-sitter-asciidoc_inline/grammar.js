@@ -9,6 +9,7 @@ const PUNCTUATION_CHARACTERS_ARRAY = [
 
 module.exports = grammar({
   name: 'asciidoc_inline',
+  precedences: $ => [[$.auto_link, $.punctuation]],
 
   rules: {
     inline: $ =>
@@ -21,6 +22,7 @@ module.exports = grammar({
           $.inline_footnote_macro,
           $.inline_image_macro,
           $.inline_kbd_macro,
+          $.auto_link,
           $.inline_link_macro,
           $.inline_math_macro,
           $.punctuation,
@@ -73,6 +75,20 @@ module.exports = grammar({
         ']',
       ),
     key: $ => choice(/[\w\d]+/, '\\]'),
+    auto_link: $ =>
+      prec.left(
+        choice(
+          seq($.link, optional(seq('[', /[^\]]*/, ']'))),
+          seq('"', $.link, optional(seq('[', /[^\]\"]*/, ']')), '"'),
+        ),
+      ),
+    link: $ =>
+      seq(
+        choice('http', 'https', 'file', 'ftp', 'irc'),
+        '://',
+        prec.right(anySep1($._link_component, '.')),
+      ),
+    _link_component: $ => /[^\.\s\[]+/,
     inline_link_macro: $ =>
       seq(choice('link', 'mailto'), ':', /[^\s\[]+/, '[', /[^\]]*/, ']'),
     inline_math_macro: $ =>

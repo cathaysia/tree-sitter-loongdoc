@@ -1,0 +1,32 @@
+====================
+inline_autolink
+====================
+
+this is https://github.com or https://github.com[GitHub] or <https://github.com> or link:https://github.com[] or "https://github.com[]" or (https://github.com)
+
+-----
+
+(inline
+  (word)
+  (word)
+  (auto_link
+    (link))
+  (word)
+  (auto_link
+    (link))
+  (punctuation)
+  (word)
+  (punctuation)
+  (word)
+  (punctuation)
+  (auto_link
+    (link))
+  (word)
+  (inline_link_macro)
+  (word)
+  (auto_link
+    (link))
+  (word)
+  (punctuation)
+  (auto_link
+    (link)))
