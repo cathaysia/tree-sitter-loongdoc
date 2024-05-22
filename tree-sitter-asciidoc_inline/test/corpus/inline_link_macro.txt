@@ -1,0 +1,15 @@
+=================
+inline_macro_link
+=================
+
+this is a link:vvv[] and mailto:bbb[ccc]
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (inline_link_macro)
+  (word)
+  (inline_link_macro))

@@ -16,6 +16,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "inline_link_macro"
+          },
+          {
+            "type": "SYMBOL",
             "name": "punctuation"
           }
         ]
@@ -189,6 +193,32 @@
         {
           "type": "STRING",
           "value": "~"
+        }
+      ]
+    },
+    "inline_link_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "link"
+            },
+            {
+              "type": "STRING",
+              "value": "mailto"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\s\\[]+\\[[^\\]]*\\]"
         }
       ]
     }

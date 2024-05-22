@@ -8,6 +8,10 @@
       "required": true,
       "types": [
         {
+          "type": "inline_link_macro",
+          "named": true
+        },
+        {
           "type": "punctuation",
           "named": true
         },
@@ -21,6 +25,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "inline_link_macro",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "punctuation",
@@ -147,6 +156,14 @@
   },
   {
     "type": "`",
+    "named": false
+  },
+  {
+    "type": "link",
+    "named": false
+  },
+  {
+    "type": "mailto",
     "named": false
   },
   {

@@ -9,7 +9,10 @@ module.exports = grammar({
   name: 'asciidoc_inline',
 
   rules: {
-    inline: $ => repeat1(choice($.replacement, $.word, $.punctuation)),
+    inline: $ =>
+      repeat1(
+        choice($.replacement, $.word, $.inline_link_macro, $.punctuation),
+      ),
     replacement: $ => seq('{', /\w+/, '}'),
     word: $ => choice($._word_no_digit, $._digits),
     _word_no_digit: $ =>
@@ -22,5 +25,7 @@ module.exports = grammar({
       ),
     _digits: $ => /[0-9][0-9_]*/,
     punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
+    inline_link_macro: $ =>
+      seq(choice('link', 'mailto'), ':', /[^\s\[]+\[[^\]]*\]/),
   },
 })
