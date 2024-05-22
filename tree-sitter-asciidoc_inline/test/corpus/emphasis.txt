@@ -7,6 +7,8 @@ this is a _ltalic_ or in this form__l\_talic__is ok.
 this is a `ltalic` or in this form``lta\`lic``is ok.
 this is a #ltalic# or in this form##lta\#lic##is ok.
 
+this is a _`monospace` inside ltalic_ code.
+
 -----
 
 (inline
@@ -55,5 +57,11 @@ this is a #ltalic# or in this form##lta\#lic##is ok.
   (word)
   (highlight)
   (word)
+  (word)
+  (punctuation)
+  (word)
+  (word)
+  (word)
+  (ltalic)
   (word)
   (punctuation))

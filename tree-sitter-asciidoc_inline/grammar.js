@@ -164,23 +164,26 @@ module.exports = grammar({
           ']',
         ),
       ),
-    emphasis: $ => create_text_formatting('*'),
-    ltalic: $ => create_text_formatting('_'),
+
+    emphasis: $ =>
+      create_text_formatting('*', $.ltalic, $.monospace, $.highlight),
+    ltalic: $ =>
+      create_text_formatting('_', $.emphasis, $.monospace, $.highlight),
     monospace: $ => create_text_formatting('`'),
     highlight: $ => create_text_formatting('#'),
   },
 })
 
-function create_text_formatting(ch) {
+function create_text_formatting(ch, ...args) {
   return choice(
     seq(
       token(prec(1, ' ' + ch)),
-      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch)),
+      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch, ...args)),
       ch + ' ',
     ),
     seq(
       ch + ch,
-      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch)),
+      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch, ...args)),
       ch + ch,
     ),
   )

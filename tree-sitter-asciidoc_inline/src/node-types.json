@@ -40,7 +40,25 @@
   {
     "type": "emphasis",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "highlight",
+          "named": true
+        },
+        {
+          "type": "ltalic",
+          "named": true
+        },
+        {
+          "type": "monospace",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "footnote_macro",
@@ -215,7 +233,25 @@
   {
     "type": "ltalic",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "emphasis",
+          "named": true
+        },
+        {
+          "type": "highlight",
+          "named": true
+        },
+        {
+          "type": "monospace",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "math_macro",

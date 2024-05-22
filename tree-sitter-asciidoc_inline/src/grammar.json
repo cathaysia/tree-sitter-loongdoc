@@ -1097,6 +1097,18 @@
                   {
                     "type": "STRING",
                     "value": "\\*"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ltalic"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "monospace"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "highlight"
                   }
                 ]
               }
@@ -1126,6 +1138,18 @@
                   {
                     "type": "STRING",
                     "value": "\\*"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "ltalic"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "monospace"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "highlight"
                   }
                 ]
               }
@@ -1167,6 +1191,18 @@
                   {
                     "type": "STRING",
                     "value": "\\_"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "emphasis"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "monospace"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "highlight"
                   }
                 ]
               }
@@ -1196,6 +1232,18 @@
                   {
                     "type": "STRING",
                     "value": "\\_"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "emphasis"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "monospace"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "highlight"
                   }
                 ]
               }
