@@ -1,3 +1,5 @@
+const { anySep1 } = require('../common/common.js')
+
 const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
 const PUNCTUATION_CHARACTERS_ARRAY = [
@@ -18,6 +20,7 @@ module.exports = grammar({
           $.inline_email_rx,
           $.inline_footnote_macro,
           $.inline_image_macro,
+          $.inline_kbd_macro,
           $.inline_link_macro,
           $.inline_math_macro,
           $.punctuation,
@@ -61,6 +64,15 @@ module.exports = grammar({
         repeat(choice(/[^\]]/, '\\[', '\\]')),
         ']',
       ),
+    inline_kbd_macro: $ =>
+      seq(
+        choice('kbd', 'btn'),
+        ':',
+        '[',
+        choice(anySep1($.key, '+'), anySep1($.key, ',')),
+        ']',
+      ),
+    key: $ => choice(/[\w\d]+/, '\\]'),
     inline_link_macro: $ =>
       seq(choice('link', 'mailto'), ':', /[^\s\[]+/, '[', /[^\]]*/, ']'),
     inline_math_macro: $ =>

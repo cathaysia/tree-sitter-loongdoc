@@ -24,6 +24,10 @@
           "named": true
         },
         {
+          "type": "inline_kbd_macro",
+          "named": true
+        },
+        {
           "type": "inline_link_macro",
           "named": true
         },
@@ -62,12 +66,32 @@
     "fields": {}
   },
   {
+    "type": "inline_kbd_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "key",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "inline_link_macro",
     "named": true,
     "fields": {}
   },
   {
     "type": "inline_math_macro",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "key",
     "named": true,
     "fields": {}
   },
@@ -223,6 +247,10 @@
     "named": false
   },
   {
+    "type": "btn",
+    "named": false
+  },
+  {
     "type": "footnote",
     "named": false
   },
@@ -241,6 +269,10 @@
   {
     "type": "inline_email_rx",
     "named": true
+  },
+  {
+    "type": "kbd",
+    "named": false
   },
   {
     "type": "latexmath",
