@@ -1,5 +1,5 @@
 ====================
-inline_passthrough
+passthrough
 ====================
 
 +text+
@@ -12,10 +12,10 @@ pass:quotes[text]
 -----
 
 (inline
-  (inline_passthrough)
+  (passthrough)
   (punctuation)
   (word)
   (punctuation)
-  (inline_passthrough)
-  (inline_passthrough)
-  (inline_passthrough))
+  (passthrough)
+  (passthrough)
+  (passthrough))

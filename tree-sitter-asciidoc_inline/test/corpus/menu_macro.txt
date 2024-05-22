@@ -1,5 +1,5 @@
 =================
-inline_menu_macro
+menu_macro
 =================
 
 menu:File[Save As...]
@@ -10,7 +10,15 @@ menu:View[Page Style, No Style]
 -----
 
 (inline
-  (inline_menu_macro)
-  (inline_menu_macro)
-  (inline_menu_macro)
-  (inline_menu_macro))
+  (menu_macro
+    (id)
+    (keys))
+  (menu_macro
+    (id)
+    (keys))
+  (menu_macro
+    (id)
+    (keys))
+  (menu_macro
+    (id)
+    (keys)))

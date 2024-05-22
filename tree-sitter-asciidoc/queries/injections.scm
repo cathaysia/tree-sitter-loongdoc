@@ -1,2 +1,3 @@
-((line) @injection.content
- (#set! injection.language "asciidoc_inline"))
+((paragraph) @injection.content
+  (#set! injection.include-children)
+  (#set! injection.language "asciidoc_inline"))

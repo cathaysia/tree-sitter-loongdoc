@@ -3,15 +3,15 @@ const { anySep1 } = require('../common/common.js')
 const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
 const PUNCTUATION_CHARACTERS_ARRAY = [
-    '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<',
-    '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'
+  '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<',
+  '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'
 ];
 
 module.exports = grammar({
   name: 'asciidoc_inline',
   precedences: $ => [
     [$.auto_link, $.punctuation],
-    [$.inline_passthrough, $.punctuation],
+    [$.passthrough, $.punctuation],
   ],
 
   rules: {
@@ -20,25 +20,25 @@ module.exports = grammar({
         choice(
           $.replacement,
           $.word,
-          $.inline_anchor_rx,
-          $.inline_email_rx,
-          $.inline_footnote_macro,
-          $.inline_image_macro,
-          $.inline_kbd_macro,
+          $.anchor,
+          $.email,
+          $.footnote_macro,
+          $.image_macro,
+          $.kbd_macro,
           $.auto_link,
-          $.inline_link_macro,
-          $.inline_math_macro,
-          $.inline_menu_macro,
-          $.inline_passthrough,
+          $.link_macro,
+          $.math_macro,
+          $.menu_macro,
+          $.passthrough,
           $.punctuation,
-          $.inline_xref,
+          $.xref,
           $.emphasis,
           $.ltalic,
           $.monospace,
           $.highlight,
         ),
       ),
-    replacement: $ => seq('{', /\w+/, '}'),
+    replacement: $ => seq('{', alias(/\w+/, $.intrinsic_attributes), '}'),
     word: $ => choice($._word_no_digit, $._digits),
     _word_no_digit: $ =>
       new RegExp(
@@ -50,33 +50,51 @@ module.exports = grammar({
       ),
     _digits: $ => /[0-9][0-9_]*/,
     punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
-    inline_anchor_rx: $ =>
+    anchor: $ =>
       choice(
-        seq('[[', /\w+/, optional(seq(',', /[\w\s ]+/)), ']]'),
-        seq('anchor', ':', /\w+/, '[', /[^\]]*/, ']'),
+        seq(
+          '[[',
+          alias(/\w+/, $.id),
+          optional(seq(',', alias(/[\w\s ]+/, $.reftext))),
+          ']]',
+        ),
+        seq(
+          'anchor',
+          ':',
+          alias(/\w+/, $.id),
+          '[',
+          alias(/[^\]]*/, $.reftext),
+          ']',
+        ),
       ),
     // https://stackoverflow.com/a/201378
-    inline_email_rx: $ =>
+    email: $ =>
       /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
-    inline_footnote_macro: $ =>
+    footnote_macro: $ =>
       seq(
         choice('footnote', 'footnoteref'),
         ':',
-        optional(field('id', /\w+/)),
+        optional(alias(/\w+/, $.id)),
         '[',
-        choice(seq(/[\w]+/, optional(seq(',', /[^\]]+/))), /[^\]]*/),
+        choice(
+          seq(
+            alias(/[\w]+/, $.id),
+            optional(seq(',', alias(/[^\]]+/, $.reftext))),
+          ),
+          alias(/[^\]]*/, $.reftext),
+        ),
         ']',
       ),
-    inline_image_macro: $ =>
+    image_macro: $ =>
       seq(
         choice('image', 'icon'),
         ':',
-        /[^\[]+/,
+        alias(/[^\[]+/, $.link_url),
         '[',
-        repeat(choice(/[^\]]/, '\\[', '\\]')),
+        repeat(alias(choice(/[^\]]/, '\\[', '\\]'), $.id)),
         ']',
       ),
-    inline_kbd_macro: $ =>
+    kbd_macro: $ =>
       seq(
         choice('kbd', 'btn'),
         ':',
@@ -88,38 +106,61 @@ module.exports = grammar({
     auto_link: $ =>
       prec.left(
         choice(
-          seq($.link, optional(seq('[', /[^\]]*/, ']'))),
-          seq('"', $.link, optional(seq('[', /[^\]\"]*/, ']')), '"'),
+          $.link_url,
+          prec(
+            1,
+            seq($.link_url, seq('[', alias(/[^\]]*/, $.link_label), ']')),
+          ),
+          seq(
+            '"',
+            $.link_url,
+            optional(seq('[', alias(/[^\]\"]*/, $.link_label), ']')),
+            '"',
+          ),
         ),
       ),
-    link: $ =>
+    link_url: $ =>
       seq(
         choice('http', 'https', 'file', 'ftp', 'irc'),
         '://',
         prec.right(anySep1($._link_component, '.')),
       ),
-    _link_component: $ => /[^\.\s\[]+/,
-    inline_link_macro: $ =>
-      seq(choice('link', 'mailto'), ':', /[^\s\[]+/, '[', /[^\]]*/, ']'),
-    inline_math_macro: $ =>
-      seq(choice('stem', 'latexmath', 'asciimath'), ':', '[', /[^\]]*/, ']'),
-    inline_menu_macro: $ => seq('menu', ':', /\w+/, '[', /[^\]]*/, ']'),
-    inline_passthrough: $ =>
+    _link_component: $ => /[^\.\s\[>]+/,
+    link_macro: $ =>
+      seq(
+        choice('link', 'mailto'),
+        ':',
+        alias(/[^\s\[]+/, $.link),
+        '[',
+        alias(/[^\]]*/, $.link_label),
+        ']',
+      ),
+    math_macro: $ =>
+      seq(
+        choice('stem', 'latexmath', 'asciimath'),
+        ':',
+        '[',
+        alias(/[^\]]*/, $.math),
+        ']',
+      ),
+    menu_macro: $ =>
+      seq('menu', ':', alias(/\w+/, $.id), '[', alias(/[^\]]*/, $.keys), ']'),
+    passthrough: $ =>
       choice(
         seq('+', /\w+/, '+'),
         seq('+++', /\w+/, '+++'),
         seq('$$', /\w+/, '$$'),
         seq('pass', ':', 'quotes', '[', /[^\]]*/, ']'),
       ),
-    inline_xref: $ =>
+    xref: $ =>
       choice(
-        seq('<<', field('id', /\w+/), field('reftext', /[^>]*/), '>>'),
+        seq('<<', alias(/\w+/, $.id), alias(/[^>]*/, $.reftext), '>>'),
         seq(
           'xref',
           ':',
-          field('id', /\w+/),
+          alias(/\w+/, $.id),
           '[',
-          field('reftext', /[^\]]*/),
+          alias(/[^\]]*/, $.reftext),
           ']',
         ),
       ),

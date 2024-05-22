@@ -1,5 +1,5 @@
 ====================
-inline_anchor_macro
+anchor_macro
 ====================
 
 this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:idname[Reference Text]
@@ -10,10 +10,17 @@ this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:i
   (word)
   (word)
   (word)
-  (inline_anchor_rx)
+  (anchor
+    (id))
   (word)
-  (inline_anchor_rx)
+  (anchor
+    (id)
+    (reftext))
   (word)
-  (inline_anchor_rx)
+  (anchor
+    (id)
+    (reftext))
   (word)
-  (inline_anchor_rx))
+  (anchor
+    (id)
+    (reftext)))

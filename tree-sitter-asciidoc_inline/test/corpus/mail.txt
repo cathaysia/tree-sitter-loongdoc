@@ -1,5 +1,5 @@
 ====================
-inline_email_rx
+email
 ====================
 
 this is a email: doc.writer@example.com
@@ -12,4 +12,4 @@ this is a email: doc.writer@example.com
   (word)
   (word)
   (punctuation)
-  (inline_email_rx))
+  (email))

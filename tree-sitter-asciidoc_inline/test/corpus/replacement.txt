@@ -11,5 +11,6 @@ this is a replacement {cpp}.
   (word)
   (word)
   (word)
-  (replacement)
+  (replacement
+    (intrinsic_attributes))
   (punctuation))

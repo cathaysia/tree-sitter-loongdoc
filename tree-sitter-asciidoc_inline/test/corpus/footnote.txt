@@ -1,5 +1,5 @@
 ====================
-inline_footnote
+footnote
 ====================
 
 this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[id,text] or footnoteref:[id]
@@ -10,12 +10,19 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
   (word)
   (word)
   (word)
-  (inline_footnote_macro)
+  (footnote_macro
+    (reftext))
   (word)
-  (inline_footnote_macro)
+  (footnote_macro
+    (id)
+    (reftext))
   (word)
-  (inline_footnote_macro)
+  (footnote_macro
+    (id)
+    (reftext))
   (word)
-  (inline_footnote_macro)
+  (footnote_macro
+    (reftext))
   (word)
-  (inline_footnote_macro))
+  (footnote_macro
+    (reftext)))

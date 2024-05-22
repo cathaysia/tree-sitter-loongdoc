@@ -3730,8 +3730,7 @@ M_INLINE size_t m_core_cstr_hash(const char str[]) {
             type x;                                                                                                                                                                                                                                            \
             /* Proper check using _Generic */                                                                                                                                                                                                                  \
             M_STATIC_ASSERT(_Generic(&x, M_GET_TYPE oplist *: 1 /* Ok, type matches */, default: 0 /* NOK, type doesn't match */), M_LIB_TYPE_MISTMACH, "The given type " M_AS_STR(type) " and the type of the oplist does not match: " M_OPL_AS_STR(oplist)); \
-        },                                                                                                                                                                                                                                                     \
-        /* End of TYPE */                                                                                                                                                                                                                                      \
+        }, /* End of TYPE */                                                                                                                                                                                                                                   \
     )
 #else
 #define M_CHECK_COMPATIBLE_OPLIST(name, inst, type, oplist)                                                                                                                                        \
@@ -3740,8 +3739,7 @@ M_INLINE size_t m_core_cstr_hash(const char str[]) {
         M_INLINE void M_C3(m_c0re_ctype_, name, inst)(void) {                                                                                                                                      \
             /* Imperfect check using size of type */                                                                                                                                               \
             M_STATIC_ASSERT(sizeof(type) == sizeof(M_GET_TYPE oplist), M_LIB_TYPE_MISTMACH, "The given type " M_AS_STR(type) " and the type of the oplist does not match: " M_OPL_AS_STR(oplist)); \
-        },                                                                                                                                                                                         \
-        /* End of TYPE */                                                                                                                                                                          \
+        }, /* End of TYPE */                                                                                                                                                                       \
     )
 #endif
 
