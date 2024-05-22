@@ -56,7 +56,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "punctuation"
+            "name": "_punctuation"
           },
           {
             "type": "SYMBOL",
@@ -124,7 +124,7 @@
       "type": "PATTERN",
       "value": "[0-9][0-9_]*"
     },
-    "punctuation": {
+    "_punctuation": {
       "type": "CHOICE",
       "members": [
         {
@@ -1412,7 +1412,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "punctuation"
+        "name": "_punctuation"
       }
     ],
     [
@@ -1422,7 +1422,7 @@
       },
       {
         "type": "SYMBOL",
-        "name": "punctuation"
+        "name": "_punctuation"
       }
     ]
   ],

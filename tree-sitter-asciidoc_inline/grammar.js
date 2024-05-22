@@ -10,8 +10,8 @@ const PUNCTUATION_CHARACTERS_ARRAY = [
 module.exports = grammar({
   name: 'asciidoc_inline',
   precedences: $ => [
-    [$.auto_link, $.punctuation],
-    [$.passthrough, $.punctuation],
+    [$.auto_link, $._punctuation],
+    [$.passthrough, $._punctuation],
   ],
 
   rules: {
@@ -30,7 +30,7 @@ module.exports = grammar({
           $.math_macro,
           $.menu_macro,
           $.passthrough,
-          $.punctuation,
+          $._punctuation,
           $.xref,
           $.emphasis,
           $.ltalic,
@@ -49,7 +49,7 @@ module.exports = grammar({
           ' \\t\\n\\r0-9]+)*',
       ),
     _digits: $ => /[0-9][0-9_]*/,
-    punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
+    _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     anchor: $ =>
       choice(
         seq(

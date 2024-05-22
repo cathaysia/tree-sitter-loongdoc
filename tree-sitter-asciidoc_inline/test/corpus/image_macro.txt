@@ -40,12 +40,6 @@ this is a image:filename.png[Alt Text] or image:http://example.com/images/filena
     (id)
     (id)
     (id))
-  (punctuation)
-  (punctuation)
-  (punctuation)
-  (punctuation)
-  (punctuation)
-  (punctuation)
   (image_macro
     (link_url)
     (id)

@@ -8,5 +8,4 @@ this is a replacement {cpp}.
 
 (inline
   (replacement
-    (intrinsic_attributes))
-  (punctuation))
+    (intrinsic_attributes)))

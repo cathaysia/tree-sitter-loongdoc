@@ -13,8 +13,6 @@ pass:quotes[text]
 
 (inline
   (passthrough)
-  (punctuation)
-  (punctuation)
   (passthrough)
   (passthrough)
   (passthrough))

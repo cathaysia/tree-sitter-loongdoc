@@ -168,10 +168,6 @@
           "named": true
         },
         {
-          "type": "punctuation",
-          "named": true
-        },
-        {
           "type": "replacement",
           "named": true
         },
@@ -290,11 +286,6 @@
   },
   {
     "type": "passthrough",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "punctuation",
     "named": true,
     "fields": {}
   },
@@ -614,11 +605,11 @@
   },
   {
     "type": "link",
-    "named": false
+    "named": true
   },
   {
     "type": "link",
-    "named": true
+    "named": false
   },
   {
     "type": "link_label",
