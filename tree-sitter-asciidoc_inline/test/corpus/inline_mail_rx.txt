@@ -1,0 +1,15 @@
+====================
+inline_email_rx
+====================
+
+this is a email: doc.writer@example.com
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (word)
+  (punctuation)
+  (inline_email_rx))

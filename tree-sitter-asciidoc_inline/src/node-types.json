@@ -12,6 +12,10 @@
           "named": true
         },
         {
+          "type": "inline_email_rx",
+          "named": true
+        },
+        {
           "type": "inline_link_macro",
           "named": true
         },
@@ -191,6 +195,10 @@
   {
     "type": "asciimath",
     "named": false
+  },
+  {
+    "type": "inline_email_rx",
+    "named": true
   },
   {
     "type": "latexmath",

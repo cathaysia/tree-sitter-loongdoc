@@ -1,5 +1,5 @@
 =================
-inline_macro_link
+inline_link_macro
 =================
 
 this is a link:vvv[] and mailto:bbb[ccc]
