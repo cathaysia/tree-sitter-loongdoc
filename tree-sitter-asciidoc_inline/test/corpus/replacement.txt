@@ -1,0 +1,15 @@
+===========
+replacement
+===========
+
+this is a replacement {cpp}.
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (word)
+  (replacement)
+  (punctuation))
