@@ -119,7 +119,12 @@ module.exports = grammar({
 
     delimited_block: $ =>
       seq($.delimited_block_marker, repeat($.line), $.delimited_block_marker),
-    raw_block: $ => seq($.raw_block_marker, repeat($.line), $.raw_block_marker),
+    raw_block: $ =>
+      seq(
+        $.raw_block_marker,
+        repeat(seq(/[^\n]+/, $._block_end)),
+        $.raw_block_marker,
+      ),
 
     line: $ => seq(/[^\n]+/, $._block_end),
     paragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),

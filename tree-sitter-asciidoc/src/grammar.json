@@ -568,8 +568,17 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "line"
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[^\\n]+"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_block_end"
+              }
+            ]
           }
         },
         {

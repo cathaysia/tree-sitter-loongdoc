@@ -286,10 +286,6 @@
       "required": true,
       "types": [
         {
-          "type": "line",
-          "named": true
-        },
-        {
           "type": "raw_block_marker",
           "named": true
         }

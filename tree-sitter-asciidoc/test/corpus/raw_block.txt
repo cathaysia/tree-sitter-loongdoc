@@ -17,5 +17,4 @@ line
     (raw_block_marker))
   (raw_block
     (raw_block_marker)
-    (line)
     (raw_block_marker)))
