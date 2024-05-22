@@ -32,6 +32,10 @@ module.exports = grammar({
           $.inline_passthrough,
           $.punctuation,
           $.inline_xref,
+          $.emphasis,
+          $.ltalic,
+          $.monospace,
+          $.highlight,
         ),
       ),
     replacement: $ => seq('{', /\w+/, '}'),
@@ -103,7 +107,6 @@ module.exports = grammar({
     inline_passthrough: $ =>
       choice(
         seq('+', /\w+/, '+'),
-        seq('`', /\w+/, '`'),
         seq('+++', /\w+/, '+++'),
         seq('$$', /\w+/, '$$'),
         seq('pass', ':', 'quotes', '[', /[^\]]*/, ']'),
@@ -120,5 +123,24 @@ module.exports = grammar({
           ']',
         ),
       ),
+    emphasis: $ => create_text_formatting('*'),
+    ltalic: $ => create_text_formatting('_'),
+    monospace: $ => create_text_formatting('`'),
+    highlight: $ => create_text_formatting('#'),
   },
 })
+
+function create_text_formatting(ch) {
+  return choice(
+    seq(
+      token(prec(1, ' ' + ch)),
+      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch)),
+      ch + ' ',
+    ),
+    seq(
+      ch + ch,
+      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch)),
+      ch + ch,
+    ),
+  )
+}

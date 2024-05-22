@@ -1,0 +1,59 @@
+====================
+emphasis
+====================
+
+this is a *emphasis* or in this form**em\*phasis**.
+this is a _ltalic_ or in this form__l\_talic__is ok.
+this is a `ltalic` or in this form``lta\`lic``is ok.
+this is a #ltalic# or in this form##lta\#lic##is ok.
+
+-----
+
+(inline
+  (word)
+  (word)
+  (word)
+  (emphasis)
+  (word)
+  (word)
+  (word)
+  (word)
+  (emphasis)
+  (punctuation)
+  (word)
+  (word)
+  (word)
+  (ltalic)
+  (word)
+  (word)
+  (word)
+  (word)
+  (punctuation)
+  (punctuation)
+  (word)
+  (word)
+  (punctuation)
+  (word)
+  (word)
+  (word)
+  (monospace)
+  (word)
+  (word)
+  (word)
+  (word)
+  (monospace)
+  (word)
+  (word)
+  (punctuation)
+  (word)
+  (word)
+  (word)
+  (highlight)
+  (word)
+  (word)
+  (word)
+  (word)
+  (highlight)
+  (word)
+  (word)
+  (punctuation))

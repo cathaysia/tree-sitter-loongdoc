@@ -15,6 +15,16 @@
     }
   },
   {
+    "type": "emphasis",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "highlight",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "inline",
     "named": true,
     "fields": {},
@@ -24,6 +34,14 @@
       "types": [
         {
           "type": "auto_link",
+          "named": true
+        },
+        {
+          "type": "emphasis",
+          "named": true
+        },
+        {
+          "type": "highlight",
           "named": true
         },
         {
@@ -64,6 +82,14 @@
         },
         {
           "type": "inline_xref",
+          "named": true
+        },
+        {
+          "type": "ltalic",
+          "named": true
+        },
+        {
+          "type": "monospace",
           "named": true
         },
         {
@@ -147,6 +173,16 @@
     "fields": {}
   },
   {
+    "type": "ltalic",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "monospace",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "punctuation",
     "named": true,
     "fields": {}
@@ -162,6 +198,22 @@
     "fields": {}
   },
   {
+    "type": " #",
+    "named": false
+  },
+  {
+    "type": " *",
+    "named": false
+  },
+  {
+    "type": " _",
+    "named": false
+  },
+  {
+    "type": " `",
+    "named": false
+  },
+  {
     "type": "!",
     "named": false
   },
@@ -171,6 +223,14 @@
   },
   {
     "type": "#",
+    "named": false
+  },
+  {
+    "type": "# ",
+    "named": false
+  },
+  {
+    "type": "##",
     "named": false
   },
   {
@@ -203,6 +263,14 @@
   },
   {
     "type": "*",
+    "named": false
+  },
+  {
+    "type": "* ",
+    "named": false
+  },
+  {
+    "type": "**",
     "named": false
   },
   {
@@ -282,11 +350,27 @@
     "named": false
   },
   {
+    "type": "\\#",
+    "named": false
+  },
+  {
+    "type": "\\*",
+    "named": false
+  },
+  {
     "type": "\\[",
     "named": false
   },
   {
     "type": "\\]",
+    "named": false
+  },
+  {
+    "type": "\\_",
+    "named": false
+  },
+  {
+    "type": "\\`",
     "named": false
   },
   {
@@ -306,7 +390,23 @@
     "named": false
   },
   {
+    "type": "_ ",
+    "named": false
+  },
+  {
+    "type": "__",
+    "named": false
+  },
+  {
     "type": "`",
+    "named": false
+  },
+  {
+    "type": "` ",
+    "named": false
+  },
+  {
+    "type": "``",
     "named": false
   },
   {

@@ -13,7 +13,9 @@ pass:quotes[text]
 
 (inline
   (inline_passthrough)
-  (inline_passthrough)
+  (punctuation)
+  (word)
+  (punctuation)
   (inline_passthrough)
   (inline_passthrough)
   (inline_passthrough))
