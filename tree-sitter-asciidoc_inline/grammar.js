@@ -33,7 +33,7 @@ module.exports = grammar({
     _digits: $ => /[0-9][0-9_]*/,
     punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     inline_link_macro: $ =>
-      seq(choice('link', 'mailto'), ':', /[^\s\[]+\[[^\]]*\]/),
+      seq(choice('link', 'mailto'), ':', /[^\s\[]+/, '[', /[^\]]*/, ']'),
     inline_math_macro: $ =>
       seq(choice('stem', 'latexmath', 'asciimath'), ':', '[', /[^\]]*/, ']'),
     inline_anchor_rx: $ =>

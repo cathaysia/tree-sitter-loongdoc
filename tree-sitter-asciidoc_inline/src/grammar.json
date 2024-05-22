@@ -226,7 +226,19 @@
         },
         {
           "type": "PATTERN",
-          "value": "[^\\s\\[]+\\[[^\\]]*\\]"
+          "value": "[^\\s\\[]+"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "PATTERN",
+          "value": "[^\\]]*"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
