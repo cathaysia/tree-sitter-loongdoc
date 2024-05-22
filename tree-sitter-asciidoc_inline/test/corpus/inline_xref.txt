@@ -1,0 +1,12 @@
+====================
+inline_xref
+====================
+
+<<id,reftext>>
+xref:id[reftext]
+
+-----
+
+(inline
+  (inline_xref)
+  (inline_xref))

@@ -63,6 +63,10 @@
           "named": true
         },
         {
+          "type": "inline_xref",
+          "named": true
+        },
+        {
           "type": "punctuation",
           "named": true
         },
@@ -124,6 +128,11 @@
   },
   {
     "type": "inline_passthrough",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "inline_xref",
     "named": true,
     "fields": {}
   },
@@ -237,11 +246,19 @@
     "named": false
   },
   {
+    "type": "<<",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": ">>",
     "named": false
   },
   {
@@ -374,6 +391,10 @@
   },
   {
     "type": "stem",
+    "named": false
+  },
+  {
+    "type": "xref",
     "named": false
   },
   {

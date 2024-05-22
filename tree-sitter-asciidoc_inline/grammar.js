@@ -31,6 +31,7 @@ module.exports = grammar({
           $.inline_menu_macro,
           $.inline_passthrough,
           $.punctuation,
+          $.inline_xref,
         ),
       ),
     replacement: $ => seq('{', /\w+/, '}'),
@@ -106,6 +107,18 @@ module.exports = grammar({
         seq('+++', /\w+/, '+++'),
         seq('$$', /\w+/, '$$'),
         seq('pass', ':', 'quotes', '[', /[^\]]*/, ']'),
+      ),
+    inline_xref: $ =>
+      choice(
+        seq('<<', field('id', /\w+/), field('reftext', /[^>]*/), '>>'),
+        seq(
+          'xref',
+          ':',
+          field('id', /\w+/),
+          '[',
+          field('reftext', /[^\]]*/),
+          ']',
+        ),
       ),
   },
 })
