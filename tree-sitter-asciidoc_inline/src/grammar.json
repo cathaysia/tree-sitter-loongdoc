@@ -91,8 +91,23 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "PATTERN",
-            "value": "\\w+"
+            "type": "TOKEN",
+            "content": {
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^\\}]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\}"
+                  }
+                ]
+              }
+            }
           },
           "named": true,
           "value": "intrinsic_attributes"

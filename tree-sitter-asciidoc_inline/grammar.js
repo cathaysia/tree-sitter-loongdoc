@@ -38,7 +38,12 @@ module.exports = grammar({
           $.highlight,
         ),
       ),
-    replacement: $ => seq('{', alias(/\w+/, $.intrinsic_attributes), '}'),
+    replacement: $ =>
+      seq(
+        '{',
+        alias(token(repeat1(choice(/[^\}]/, '\\}'))), $.intrinsic_attributes),
+        '}',
+      ),
     _word: $ => choice($._word_no_digit, $._digits),
     _word_no_digit: $ =>
       new RegExp(

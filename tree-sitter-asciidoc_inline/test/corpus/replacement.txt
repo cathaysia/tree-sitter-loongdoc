@@ -2,10 +2,14 @@
 replacement
 ===========
 
-this is a replacement {cpp}.
+this is a replacement {cpp}
+
+{cpp\} 😀}
 
 -----
 
 (inline
+  (replacement
+    (intrinsic_attributes))
   (replacement
     (intrinsic_attributes)))
