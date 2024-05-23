@@ -287,7 +287,7 @@ static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) 
 static bool skip_white_space(TSLexer *lexer) {
     bool has_skiped = false;
     while(is_white_space(lexer->lookahead)) {
-        lexer->advance(lexer, true);
+        lexer->advance(lexer, false);
         has_skiped = true;
     }
 
