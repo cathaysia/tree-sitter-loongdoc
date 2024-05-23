@@ -30,6 +30,7 @@
 [
  (document_attr_marker)
  (element_attr_marker)
+ (raw_block_marker)
 ] @punctuation.delimiter
 
 (document_attr
@@ -40,3 +41,7 @@
 
 (block_title
   (block_title_marker) @punctuation.special) @attribute
+
+(raw_block) @markup.raw.block
+
+(delimited_block) @punctuation.bracket
