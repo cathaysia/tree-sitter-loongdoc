@@ -229,16 +229,39 @@
           "name": "document_attr_marker"
         },
         {
-          "type": "PATTERN",
-          "value": "[\\w\\d_][\\w\\d-]*"
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[\\w\\d_][\\w\\d-]*"
+          },
+          "named": true,
+          "value": "attr_name"
         },
         {
-          "type": "STRING",
-          "value": ":"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          },
+          "named": true,
+          "value": "document_attr_marker"
         },
         {
-          "type": "PATTERN",
-          "value": "[^\\r\\n]*"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\\r\\n]*"
+              },
+              "named": true,
+              "value": "line"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",

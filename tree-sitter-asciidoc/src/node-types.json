@@ -179,11 +179,19 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "attr_name",
+          "named": true
+        },
+        {
           "type": "document_attr_marker",
+          "named": true
+        },
+        {
+          "type": "line",
           "named": true
         }
       ]
@@ -519,10 +527,6 @@
     "named": false
   },
   {
-    "type": ":",
-    "named": false
-  },
-  {
     "type": "<",
     "named": false
   },
@@ -537,6 +541,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "attr_name",
+    "named": true
   },
   {
     "type": "block_title_marker",

@@ -73,9 +73,9 @@ module.exports = grammar({
     document_attr: $ =>
       seq(
         $.document_attr_marker,
-        /[\w\d_][\w\d-]*/,
-        ':',
-        /[^\r\n]*/,
+        alias(/[\w\d_][\w\d-]*/, $.attr_name),
+        alias(':', $.document_attr_marker),
+        optional(alias(/[^\r\n]*/, $.line)),
         $._block_end,
       ),
     element_attr: $ =>

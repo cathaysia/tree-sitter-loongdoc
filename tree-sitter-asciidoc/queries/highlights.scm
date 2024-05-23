@@ -24,3 +24,10 @@
   (list_marker_geek)
   (list_marker_alpha)
 ] @markup.list
+
+(comment) @comment
+
+(document_attr_marker) @punctuation.delimiter
+
+(document_attr
+  (attr_name) @property)
