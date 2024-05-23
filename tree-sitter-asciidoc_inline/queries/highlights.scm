@@ -158,3 +158,7 @@
   "]" @punctuation.bracket)
 
 (pass_value) @markup.raw
+(pass_macro_attr) @attribute
+
+(pass_macro
+  "," @punctuation.delimiter)

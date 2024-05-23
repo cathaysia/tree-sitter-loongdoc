@@ -14,4 +14,6 @@ pass:quotes[text]
 (inline
   (passthrough)
   (passthrough)
-  (passthrough))
+  (pass_macro
+    (pass_macro_attr)
+    (pass_value)))

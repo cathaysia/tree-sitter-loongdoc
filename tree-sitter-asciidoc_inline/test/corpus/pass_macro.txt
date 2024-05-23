@@ -1,0 +1,20 @@
+====================
+pass_macro
+====================
+
+The text pass:q[<u>underline *me* </u>] is underlined.
+
+The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
+
+-----
+
+(inline
+  (pass_macro
+    (pass_macro_attr)
+    (pass_value
+      (emphasis)))
+  (pass_macro
+    (pass_macro_attr)
+    (pass_macro_attr)
+    (pass_value
+      (ltalic))))

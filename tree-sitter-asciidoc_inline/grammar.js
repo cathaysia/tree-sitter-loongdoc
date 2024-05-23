@@ -1,4 +1,4 @@
-const { anySep1 } = require('../common/common.js')
+const { anySep1, commaSep } = require('../common/common.js')
 
 const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
@@ -154,7 +154,6 @@ module.exports = grammar({
         seq('+', /\w+/, '+'),
         seq('+++', /\w+/, '+++'),
         seq('$$', /\w+/, '$$'),
-        seq('pass', ':', 'quotes', '[', /[^\]]*/, ']'),
       ),
     xref: $ =>
       choice(
@@ -175,7 +174,29 @@ module.exports = grammar({
       create_text_formatting('_', $.emphasis, $.monospace, $.highlight),
     monospace: $ => create_text_formatting('`'),
     highlight: $ => create_text_formatting('#'),
-    pass_macro: $ => seq('pass', ':', '[', alias(/[^\]]*/, $.pass_value), ']'),
+    pass_macro: $ =>
+      seq(
+        'pass',
+        ':',
+        commaSep($.pass_macro_attr),
+        '[',
+        alias(optional($._macro_rule), $.pass_value),
+        ']',
+      ),
+    pass_macro_attr: $ =>
+      choice('c', 'a', 'r', 'm', 'p', 'n', 'v', 'quotes', 'q'),
+    _macro_rule: $ =>
+      repeat1(
+        choice(
+          /[^\]]/,
+          '\\]',
+          $.replacement,
+          $.emphasis,
+          $.ltalic,
+          $.monospace,
+          $.highlight,
+        ),
+      ),
   },
 })
 
