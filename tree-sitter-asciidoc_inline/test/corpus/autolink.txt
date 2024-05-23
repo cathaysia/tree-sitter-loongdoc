@@ -15,10 +15,8 @@ this is https://github.com or https://github.com[GitHub] or <https://github.com>
   (auto_link
     (link_url))
   (link_macro
-    (link)
-    (link_label))
+    (link))
   (auto_link
-    (link_url)
-    (link_label))
+    (link_url))
   (auto_link
     (link_url)))

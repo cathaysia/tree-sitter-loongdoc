@@ -199,6 +199,21 @@
     "fields": {}
   },
   {
+    "type": "link_label",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "replacement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "link_macro",
     "named": true,
     "fields": {},
@@ -605,14 +620,10 @@
   },
   {
     "type": "link",
-    "named": true
-  },
-  {
-    "type": "link",
     "named": false
   },
   {
-    "type": "link_label",
+    "type": "link",
     "named": true
   },
   {

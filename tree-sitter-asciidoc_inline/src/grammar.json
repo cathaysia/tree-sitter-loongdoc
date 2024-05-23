@@ -659,13 +659,16 @@
                       "value": "["
                     },
                     {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[^\\]]*"
-                      },
-                      "named": true,
-                      "value": "link_label"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "link_label"
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
                     },
                     {
                       "type": "STRING",
@@ -698,13 +701,16 @@
                         "value": "["
                       },
                       {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "PATTERN",
-                          "value": "[^\\]\\\"]*"
-                        },
-                        "named": true,
-                        "value": "link_label"
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "link_label"
+                          },
+                          {
+                            "type": "BLANK"
+                          }
+                        ]
                       },
                       {
                         "type": "STRING",
@@ -722,6 +728,22 @@
                 "value": "\""
               }
             ]
+          }
+        ]
+      }
+    },
+    "link_label": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\]]"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "replacement"
           }
         ]
       }
@@ -827,13 +849,16 @@
           "value": "["
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[^\\]]*"
-          },
-          "named": true,
-          "value": "link_label"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "link_label"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",

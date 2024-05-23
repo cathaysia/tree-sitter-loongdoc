@@ -112,18 +112,16 @@ module.exports = grammar({
       prec.left(
         choice(
           $.link_url,
-          prec(
-            1,
-            seq($.link_url, seq('[', alias(/[^\]]*/, $.link_label), ']')),
-          ),
+          prec(1, seq($.link_url, seq('[', optional($.link_label), ']'))),
           seq(
             '"',
             $.link_url,
-            optional(seq('[', alias(/[^\]\"]*/, $.link_label), ']')),
+            optional(seq('[', optional($.link_label), ']')),
             '"',
           ),
         ),
       ),
+    link_label: $ => repeat1(choice(/[^\]]/, $.replacement)),
     link_url: $ =>
       seq(
         choice('http', 'https', 'file', 'ftp', 'irc'),
@@ -137,7 +135,7 @@ module.exports = grammar({
         ':',
         alias(/[^\s\[]+/, $.link),
         '[',
-        alias(/[^\]]*/, $.link_label),
+        optional($.link_label),
         ']',
       ),
     math_macro: $ =>

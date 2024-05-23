@@ -8,8 +8,7 @@ this is a link:vvv[] and mailto:bbb[ccc]
 
 (inline
   (link_macro
-    (link)
-    (link_label))
+    (link))
   (link_macro
     (link)
     (link_label)))
