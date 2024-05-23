@@ -79,7 +79,12 @@ module.exports = grammar({
         $._block_end,
       ),
     element_attr: $ =>
-      seq($.element_attr_marker, /[^\]\r\n]*/, ']', $._NEWLINE),
+      seq(
+        $.element_attr_marker,
+        alias(token(repeat(choice(/[^\]\r\n]/, '\\]'))), $.attr_value),
+        alias(']', $.element_attr_marker),
+        $._NEWLINE,
+      ),
     block_title: $ => seq($.block_title_marker, $.line),
 
     checked_list: $ => seq(repeat1($.ck_item), $._block_end),
@@ -123,11 +128,11 @@ module.exports = grammar({
     raw_block: $ =>
       seq(
         $.raw_block_marker,
-        repeat(seq(/[^\n]+/, $._block_end)),
+        repeat(seq(/[^\r\n]+/, $._block_end)),
         $.raw_block_marker,
       ),
 
-    line: $ => seq(/[^\n]+/, $._block_end),
+    line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),
 
     comment: $ => seq(token(prec(1, '//')), /(\\+(.|\r?\n)|[^\\\n])*/),

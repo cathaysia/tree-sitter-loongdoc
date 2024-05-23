@@ -277,12 +277,37 @@
           "name": "element_attr_marker"
         },
         {
-          "type": "PATTERN",
-          "value": "[^\\]\\r\\n]*"
+          "type": "ALIAS",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^\\]\\r\\n]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\]"
+                  }
+                ]
+              }
+            }
+          },
+          "named": true,
+          "value": "attr_value"
         },
         {
-          "type": "STRING",
-          "value": "]"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "]"
+          },
+          "named": true,
+          "value": "element_attr_marker"
         },
         {
           "type": "SYMBOL",
@@ -600,7 +625,7 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[^\\n]+"
+                "value": "[^\\r\\n]+"
               },
               {
                 "type": "SYMBOL",
@@ -620,7 +645,7 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "[^\\n]+"
+          "value": "[^\\r\\n]+"
         },
         {
           "type": "SYMBOL",

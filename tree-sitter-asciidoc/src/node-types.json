@@ -202,9 +202,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "attr_value",
+          "named": true
+        },
         {
           "type": "element_attr_marker",
           "named": true
@@ -535,15 +539,15 @@
     "named": false
   },
   {
-    "type": "]",
-    "named": false
-  },
-  {
     "type": "^",
     "named": false
   },
   {
     "type": "attr_name",
+    "named": true
+  },
+  {
+    "type": "attr_value",
     "named": true
   },
   {

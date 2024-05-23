@@ -23,6 +23,8 @@ session_block
         (list_marker_star))
       (line)))
   (element_attr
+    (element_attr_marker)
+    (attr_value)
     (element_attr_marker))
   (block_title
     (block_title_marker)

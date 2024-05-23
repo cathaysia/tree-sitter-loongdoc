@@ -27,7 +27,16 @@
 
 (comment) @comment
 
-(document_attr_marker) @punctuation.delimiter
+[
+ (document_attr_marker)
+ (element_attr_marker)
+] @punctuation.delimiter
 
 (document_attr
   (attr_name) @property)
+
+(element_attr
+  (attr_value) @attribute)
+
+(block_title
+  (block_title_marker) @punctuation.special) @attribute
