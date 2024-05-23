@@ -6,6 +6,8 @@ title
 :url-org: https://example.org/projects
 :url-project: {url-org}/project-name
 :toc:
+:name: value \
+more value
 :toc-title: Table of Adventures
 
 == Level 1 Section Title
@@ -38,7 +40,8 @@ title
       (document_attr_marker)
       (attr_name)
       (document_attr_marker)
-      (line))
+      (line)
+      (comment))
     (document_attr
       (document_attr_marker)
       (attr_name)
@@ -48,6 +51,11 @@ title
       (document_attr_marker)
       (attr_name)
       (document_attr_marker))
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line))
     (document_attr
       (document_attr_marker)
       (attr_name)

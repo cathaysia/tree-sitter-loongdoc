@@ -10,7 +10,10 @@
 (table_cell
   "|" @punctuation.special)
 
-(breaks) @punctuation.special
+[
+ (breaks)
+ (hard_wrap)
+] @punctuation.special
 
 (task_list_marker_unchecked) @markup.list.unchecked
 

@@ -241,7 +241,7 @@
           "type": "ALIAS",
           "content": {
             "type": "STRING",
-            "value": ":"
+            "value": ": "
           },
           "named": true,
           "value": "document_attr_marker"
@@ -252,8 +252,8 @@
             {
               "type": "ALIAS",
               "content": {
-                "type": "PATTERN",
-                "value": "[^\\r\\n]*"
+                "type": "SYMBOL",
+                "name": "escaped_line"
               },
               "named": true,
               "value": "line"
@@ -268,6 +268,39 @@
           "name": "_block_end"
         }
       ]
+    },
+    "escaped_line": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\/\\n]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\/[^*]"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\\\\\r?\\n"
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "hard_wrap"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "hard_wrap": {
+      "type": "STRING",
+      "value": " +"
     },
     "element_attr": {
       "type": "SEQ",

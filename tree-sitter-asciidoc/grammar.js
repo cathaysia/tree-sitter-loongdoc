@@ -74,10 +74,13 @@ module.exports = grammar({
       seq(
         $.document_attr_marker,
         alias(/[\w\d_][\w\d-]*/, $.attr_name),
-        alias(':', $.document_attr_marker),
-        optional(alias(/[^\r\n]*/, $.line)),
+        alias(': ', $.document_attr_marker),
+        optional(alias($.escaped_line, $.line)),
         $._block_end,
       ),
+    escaped_line: $ =>
+      repeat1(choice(/[^\/\n]/, /\/[^*]/, /\\\r?\n/, seq($.hard_wrap))),
+    hard_wrap: $ => ' +',
     element_attr: $ =>
       seq(
         $.element_attr_marker,

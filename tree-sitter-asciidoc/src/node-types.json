@@ -219,7 +219,17 @@
   {
     "type": "line",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "hard_wrap",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "ol_item",
@@ -568,6 +578,10 @@
   },
   {
     "type": "element_attr_marker",
+    "named": true
+  },
+  {
+    "type": "hard_wrap",
     "named": true
   },
   {
