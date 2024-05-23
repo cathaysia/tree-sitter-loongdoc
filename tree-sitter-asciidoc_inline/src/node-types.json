@@ -164,6 +164,10 @@
           "named": true
         },
         {
+          "type": "pass_macro",
+          "named": true
+        },
+        {
           "type": "passthrough",
           "named": true
         },
@@ -298,6 +302,21 @@
     "type": "monospace",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "pass_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "pass_value",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "passthrough",
@@ -620,11 +639,11 @@
   },
   {
     "type": "link",
-    "named": false
+    "named": true
   },
   {
     "type": "link",
-    "named": true
+    "named": false
   },
   {
     "type": "mailto",
@@ -641,6 +660,10 @@
   {
     "type": "pass",
     "named": false
+  },
+  {
+    "type": "pass_value",
+    "named": true
   },
   {
     "type": "quotes",

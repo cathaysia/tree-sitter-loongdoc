@@ -150,3 +150,11 @@
 
 (image_macro
   (id) @markup.link.label)
+
+(pass_macro
+  "pass" @keyword
+  ":" @punctuation.delimiter
+  "[" @punctuation.bracket
+  "]" @punctuation.bracket)
+
+(pass_value) @markup.raw

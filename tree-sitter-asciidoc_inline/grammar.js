@@ -36,6 +36,7 @@ module.exports = grammar({
           $.ltalic,
           $.monospace,
           $.highlight,
+          $.pass_macro,
         ),
       ),
     replacement: $ =>
@@ -174,6 +175,7 @@ module.exports = grammar({
       create_text_formatting('_', $.emphasis, $.monospace, $.highlight),
     monospace: $ => create_text_formatting('`'),
     highlight: $ => create_text_formatting('#'),
+    pass_macro: $ => seq('pass', ':', '[', alias(/[^\]]*/, $.pass_value), ']'),
   },
 })
 

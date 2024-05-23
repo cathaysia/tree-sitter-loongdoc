@@ -77,6 +77,10 @@
           {
             "type": "SYMBOL",
             "name": "highlight"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "pass_macro"
           }
         ]
       }
@@ -1433,6 +1437,36 @@
               "value": "##"
             }
           ]
+        }
+      ]
+    },
+    "pass_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "pass"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^\\]]*"
+          },
+          "named": true,
+          "value": "pass_value"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     }
