@@ -7,17 +7,13 @@ this is kbd:[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[
 -----
 
 (inline
-  (kbd_macro
-    (key))
-  (kbd_macro
-    (key)
-    (key)
-    (key))
-  (kbd_macro
-    (key)
-    (key))
-  (kbd_macro
-    (key)
-    (key))
-  (kbd_macro
-    (key)))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr)))

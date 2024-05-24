@@ -19,6 +19,11 @@
     }
   },
   {
+    "type": "attr",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "auto_link",
     "named": true,
     "fields": {},
@@ -61,25 +66,6 @@
     }
   },
   {
-    "type": "footnote_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "reftext",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "highlight",
     "named": true,
     "fields": {}
@@ -88,25 +74,6 @@
     "type": "id",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "image_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "link_url",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "inline",
@@ -133,23 +100,11 @@
           "named": true
         },
         {
-          "type": "footnote_macro",
-          "named": true
-        },
-        {
           "type": "highlight",
           "named": true
         },
         {
-          "type": "image_macro",
-          "named": true
-        },
-        {
-          "type": "kbd_macro",
-          "named": true
-        },
-        {
-          "type": "link_macro",
+          "type": "inline_macro",
           "named": true
         },
         {
@@ -157,19 +112,7 @@
           "named": true
         },
         {
-          "type": "math_macro",
-          "named": true
-        },
-        {
-          "type": "menu_macro",
-          "named": true
-        },
-        {
           "type": "monospace",
-          "named": true
-        },
-        {
-          "type": "pass_macro",
           "named": true
         },
         {
@@ -188,24 +131,23 @@
     }
   },
   {
-    "type": "kbd_macro",
+    "type": "inline_macro",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "key",
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "target",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "key",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "link_label",
@@ -217,25 +159,6 @@
       "types": [
         {
           "type": "replacement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "link_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "link",
-          "named": true
-        },
-        {
-          "type": "link_label",
           "named": true
         }
       ]
@@ -270,98 +193,9 @@
     }
   },
   {
-    "type": "math_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "math",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "menu_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "keys",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "monospace",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "pass_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "pass_macro_attr",
-          "named": true
-        },
-        {
-          "type": "pass_value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "pass_macro_attr",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "pass_value",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "emphasis",
-          "named": true
-        },
-        {
-          "type": "highlight",
-          "named": true
-        },
-        {
-          "type": "ltalic",
-          "named": true
-        },
-        {
-          "type": "monospace",
-          "named": true
-        },
-        {
-          "type": "replacement",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "passthrough",
@@ -387,6 +221,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "target",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "xref",
@@ -628,10 +467,6 @@
     "named": false
   },
   {
-    "type": "a",
-    "named": false
-  },
-  {
     "type": "anchor",
     "named": false
   },
@@ -641,10 +476,6 @@
   },
   {
     "type": "btn",
-    "named": false
-  },
-  {
-    "type": "c",
     "named": false
   },
   {
@@ -696,10 +527,6 @@
     "named": false
   },
   {
-    "type": "keys",
-    "named": true
-  },
-  {
     "type": "latexmath",
     "named": false
   },
@@ -708,55 +535,15 @@
     "named": false
   },
   {
-    "type": "link",
-    "named": true
-  },
-  {
-    "type": "m",
-    "named": false
-  },
-  {
     "type": "mailto",
     "named": false
-  },
-  {
-    "type": "math",
-    "named": true
   },
   {
     "type": "menu",
     "named": false
   },
   {
-    "type": "n",
-    "named": false
-  },
-  {
-    "type": "p",
-    "named": false
-  },
-  {
     "type": "pass",
-    "named": false
-  },
-  {
-    "type": "q",
-    "named": false
-  },
-  {
-    "type": "quotes",
-    "named": false
-  },
-  {
-    "type": "r",
-    "named": false
-  },
-  {
-    "type": "stem",
-    "named": false
-  },
-  {
-    "type": "v",
     "named": false
   },
   {

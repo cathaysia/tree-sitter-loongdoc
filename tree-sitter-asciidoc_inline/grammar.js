@@ -22,13 +22,7 @@ module.exports = grammar({
           $._word,
           $.anchor,
           $.email,
-          $.footnote_macro,
-          $.image_macro,
-          $.kbd_macro,
           $.auto_link,
-          $.link_macro,
-          $.math_macro,
-          $.menu_macro,
           $.passthrough,
           $._punctuation,
           $.xref,
@@ -36,8 +30,30 @@ module.exports = grammar({
           $.ltalic,
           $.monospace,
           $.highlight,
-          $.pass_macro,
+          $.inline_macro,
         ),
+      ),
+    inline_macro: $ =>
+      seq(
+        choice(
+          'kbd',
+          'btn',
+          'image',
+          'icon',
+          'pass',
+          'link',
+          'mailto',
+          'menu',
+          'latexmath',
+          'asciimath',
+          'footnote',
+          'footnoteref',
+        ),
+        token.immediate(':'),
+        alias(repeat(choice(/[^\[]/, '\\[')), $.target),
+        '[',
+        alias(repeat(choice(/[^\]]/, '\\]')), $.attr),
+        ']',
       ),
     replacement: $ =>
       seq(
@@ -76,38 +92,6 @@ module.exports = grammar({
     // https://stackoverflow.com/a/201378
     email: $ =>
       /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
-    footnote_macro: $ =>
-      seq(
-        choice('footnote', 'footnoteref'),
-        ':',
-        optional(alias(/\w+/, $.id)),
-        '[',
-        choice(
-          seq(
-            alias(/[\w]+/, $.id),
-            optional(seq(',', alias(/[^\]]+/, $.reftext))),
-          ),
-          alias(/[^\]]*/, $.reftext),
-        ),
-        ']',
-      ),
-    image_macro: $ =>
-      seq(
-        choice('image', 'icon'),
-        ':',
-        alias(/[^\[]+/, $.link_url),
-        '[',
-        repeat(alias(choice(/[^\]]/, '\\[', '\\]'), $.id)),
-        ']',
-      ),
-    kbd_macro: $ =>
-      seq(
-        choice('kbd', 'btn'),
-        ':',
-        '[',
-        choice(anySep1($.key, '+'), anySep1($.key, ',')),
-        ']',
-      ),
     key: $ => choice(/[\w\d]+/, '\\]'),
     auto_link: $ =>
       prec.left(
@@ -130,25 +114,6 @@ module.exports = grammar({
         prec.right(anySep1($._link_component, '.')),
       ),
     _link_component: $ => /[^\.\s\[>]+/,
-    link_macro: $ =>
-      seq(
-        choice('link', 'mailto'),
-        ':',
-        alias(/[^\s\[]+/, $.link),
-        '[',
-        optional($.link_label),
-        ']',
-      ),
-    math_macro: $ =>
-      seq(
-        choice('stem', 'latexmath', 'asciimath'),
-        ':',
-        '[',
-        alias(/[^\]]*/, $.math),
-        ']',
-      ),
-    menu_macro: $ =>
-      seq('menu', ':', alias(/\w+/, $.id), '[', alias(/[^\]]*/, $.keys), ']'),
     passthrough: $ =>
       choice(
         seq('+', /\w+/, '+'),
@@ -179,29 +144,6 @@ module.exports = grammar({
       create_text_formatting('_', $.emphasis, $.monospace, $.highlight),
     monospace: $ => create_text_formatting('`'),
     highlight: $ => create_text_formatting('#'),
-    pass_macro: $ =>
-      seq(
-        'pass',
-        ':',
-        commaSep($.pass_macro_attr),
-        '[',
-        alias(optional($._macro_rule), $.pass_value),
-        ']',
-      ),
-    pass_macro_attr: $ =>
-      choice('c', 'a', 'r', 'm', 'p', 'n', 'v', 'quotes', 'q'),
-    _macro_rule: $ =>
-      repeat1(
-        choice(
-          /[^\]]/,
-          '\\]',
-          $.replacement,
-          $.emphasis,
-          $.ltalic,
-          $.monospace,
-          $.highlight,
-        ),
-      ),
   },
 })
 

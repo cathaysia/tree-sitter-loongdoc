@@ -14,8 +14,8 @@ this is https://github.com or https://github.com[GitHub] or <https://github.com>
     (link_label))
   (auto_link
     (link_url))
-  (link_macro
-    (link))
+  (inline_macro
+    (target))
   (auto_link
     (link_url))
   (auto_link
