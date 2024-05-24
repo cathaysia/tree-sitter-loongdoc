@@ -145,10 +145,25 @@ module.exports = grammar({
 
     table_block: $ =>
       seq($.table_block_marker, repeat($.table_cell), $.table_block_marker),
-    table_cell: $ => seq(optional($.table_cell_attr), '|', /[^|\r\n]*/),
+    table_cell: $ =>
+      seq(
+        optional($.table_cell_attr),
+        token.immediate('|'),
+        alias(repeat(choice(/[^|\r\n]/, '\\|')), $.table_cell_content),
+      ),
     table_cell_attr: $ =>
       repeat1(
-        choice(/\w/, '<', '>', '^', '.^', '~', /\d+\+/, /\.\d+\+/, /\d+\.\d+/),
+        choice(
+          /\w/,
+          '<',
+          '>',
+          '^',
+          '.^',
+          '~',
+          /\d+\+/,
+          /\.\d+\+/,
+          /\d+\.\d+\+/,
+        ),
       ),
 
     delimited_block: $ =>

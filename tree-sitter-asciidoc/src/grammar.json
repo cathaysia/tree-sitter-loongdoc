@@ -747,12 +747,32 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "|"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "|"
+          }
         },
         {
-          "type": "PATTERN",
-          "value": "[^|\\r\\n]*"
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^|\\r\\n]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\|"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "table_cell_content"
         }
       ]
     },
@@ -795,7 +815,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "\\d+\\.\\d+"
+            "value": "\\d+\\.\\d+\\+"
           }
         ]
       }

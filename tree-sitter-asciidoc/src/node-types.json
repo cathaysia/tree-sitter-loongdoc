@@ -496,11 +496,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "table_cell_attr",
+          "named": true
+        },
+        {
+          "type": "table_cell_content",
           "named": true
         }
       ]
@@ -508,6 +512,11 @@
   },
   {
     "type": "table_cell_attr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "table_cell_content",
     "named": true,
     "fields": {}
   },
@@ -738,6 +747,10 @@
   },
   {
     "type": "\\]",
+    "named": false
+  },
+  {
+    "type": "\\|",
     "named": false
   },
   {
