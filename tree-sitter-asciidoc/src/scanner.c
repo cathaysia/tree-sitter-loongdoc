@@ -26,6 +26,12 @@ typedef enum TokenType {
     TOKEN_ANNO_LIST_MARKER,
     TOKEN_LINE_COMMENT_MARKER,
     TOKEN_BLOCK_COMMENT_MARKER,
+
+    TOKEN_ADMONITION_NOTE,
+    TOKEN_ADMONITION_TIP,
+    TOKEN_ADMONITION_IMPORTANT,
+    TOKEN_ADMONITION_CAUTION,
+    TOKEN_ADMONITION_WARNING,
 } TokenType;
 
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
@@ -66,14 +72,37 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     }
 
     if(lexer->get_column(lexer) == 0) {
-        bool is_alpha = is_ascii_alpha_lower(lexer->lookahead);
+        if(valid_symbols[TOKEN_ADMONITION_NOTE]) {
+            do {
+                if(parse_sequence(lexer, "NOTE")) {
+                    lexer->result_symbol = TOKEN_ADMONITION_NOTE;
+                } else if(parse_sequence(lexer, "TIP")) {
+                    lexer->result_symbol = TOKEN_ADMONITION_TIP;
+                } else if(parse_sequence(lexer, "IMPORTANT")) {
+                    lexer->result_symbol = TOKEN_ADMONITION_IMPORTANT;
+                } else if(parse_sequence(lexer, "CAUTION")) {
+                    lexer->result_symbol = TOKEN_ADMONITION_CAUTION;
+                } else if(parse_sequence(lexer, "WARNING")) {
+                    lexer->result_symbol = TOKEN_ADMONITION_WARNING;
+                } else {
+                    break;
+                }
+
+                lexer->mark_end(lexer);
+                if(lexer->lookahead == ':') {
+                    return true;
+                }
+            } while(0);
+        }
+
+        bool is_alpha_lower = is_ascii_alpha_lower(lexer->lookahead);
         if(valid_symbols[TOKEN_LIST_MARKER_ALPHA]) {
             if(parse_ordered_marker(lexer, valid_symbols)) {
                 return true;
             }
         }
 
-        if(is_alpha) {
+        if(is_alpha_lower) {
             if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
                 while(is_ascii_alpha_lower(lexer->lookahead)) {
                     lexer->advance(lexer, false);

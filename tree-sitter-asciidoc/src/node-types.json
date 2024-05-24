@@ -1,5 +1,40 @@
 [
   {
+    "type": "admonition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "admonition_caution",
+          "named": true
+        },
+        {
+          "type": "admonition_important",
+          "named": true
+        },
+        {
+          "type": "admonition_note",
+          "named": true
+        },
+        {
+          "type": "admonition_tip",
+          "named": true
+        },
+        {
+          "type": "admonition_warning",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "anno_list",
     "named": true,
     "fields": {},
@@ -202,6 +237,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "admonition",
+          "named": true
+        },
         {
           "type": "block_macro",
           "named": true
@@ -718,6 +757,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": "::",
     "named": false
   },
@@ -760,6 +803,26 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "admonition_caution",
+    "named": true
+  },
+  {
+    "type": "admonition_important",
+    "named": true
+  },
+  {
+    "type": "admonition_note",
+    "named": true
+  },
+  {
+    "type": "admonition_tip",
+    "named": true
+  },
+  {
+    "type": "admonition_warning",
+    "named": true
   },
   {
     "type": "anno_list_marker",

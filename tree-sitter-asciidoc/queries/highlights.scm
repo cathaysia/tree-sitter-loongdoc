@@ -67,3 +67,24 @@
   (name) @attribute
   "=" @punctuation.delimiter
   (value) @variable.parameter)
+
+
+(admonition
+  (admonition_important)
+  ":") @comment.error
+
+(admonition
+  (admonition_warning)
+  ":") @comment.warning
+
+(admonition
+  (admonition_caution)
+  ":") @comment.warning
+
+(admonition
+  (admonition_note)
+  ":") @comment.note
+
+(admonition
+  (admonition_tip)
+  ":") @comment.note

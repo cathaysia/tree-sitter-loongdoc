@@ -1,0 +1,29 @@
+===========
+admonition
+===========
+
+
+NOTE: aaaa
+TIP: aaaa
+IMPORTANT: aaaa
+CAUTION: aaaa
+WARNING: aaaa
+
+-----
+
+(document
+  (admonition
+    (admonition_note)
+    (line))
+  (admonition
+    (admonition_tip)
+    (line))
+  (admonition
+    (admonition_important)
+    (line))
+  (admonition
+    (admonition_caution)
+    (line))
+  (admonition
+    (admonition_warning)
+    (line)))

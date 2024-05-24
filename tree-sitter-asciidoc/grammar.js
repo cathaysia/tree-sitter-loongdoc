@@ -29,6 +29,11 @@ module.exports = grammar({
     $.anno_list_marker,
     $.line_comment_marker,
     $.block_comment_marker,
+    $.admonition_note,
+    $.admonition_tip,
+    $.admonition_important,
+    $.admonition_caution,
+    $.admonition_warning,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -62,6 +67,7 @@ module.exports = grammar({
           $.raw_block,
           $.breaks,
           $.paragraph,
+          $.admonition,
         ),
       ),
     title0: $ =>
@@ -79,6 +85,19 @@ module.exports = grammar({
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
     breaks: $ => seq($.breaks_marker, $._block_end),
 
+    admonition: $ =>
+      seq(
+        choice(
+          $.admonition_note,
+          $.admonition_tip,
+          $.admonition_important,
+          $.admonition_caution,
+          $.admonition_warning,
+        ),
+        ':',
+        token.immediate(' '),
+        $.line,
+      ),
     block_macro: $ =>
       seq(
         $.block_macro_name,

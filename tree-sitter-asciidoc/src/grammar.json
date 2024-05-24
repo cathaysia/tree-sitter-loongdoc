@@ -102,6 +102,10 @@
             {
               "type": "SYMBOL",
               "name": "paragraph"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "admonition"
             }
           ]
         }
@@ -239,6 +243,51 @@
         {
           "type": "SYMBOL",
           "name": "_block_end"
+        }
+      ]
+    },
+    "admonition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "admonition_note"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "admonition_tip"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "admonition_important"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "admonition_caution"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "admonition_warning"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": " "
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line"
         }
       ]
     },
@@ -1144,6 +1193,26 @@
     {
       "type": "SYMBOL",
       "name": "block_comment_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "admonition_note"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "admonition_tip"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "admonition_important"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "admonition_caution"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "admonition_warning"
     }
   ],
   "inline": [],
