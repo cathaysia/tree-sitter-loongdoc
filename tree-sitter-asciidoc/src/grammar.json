@@ -820,33 +820,74 @@
           "name": "raw_block_marker"
         },
         {
-          "type": "REPEAT",
+          "type": "ALIAS",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "PATTERN",
-                    "value": "[^\\r\\n]+"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_block_end"
-                  }
-                ]
-              },
-              {
-                "type": "SYMBOL",
-                "name": "block_macro"
-              }
-            ]
-          }
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[^\\r\\n]+"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_block_end"
+                    }
+                  ]
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "block_macro"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "raw_block_body"
         },
         {
           "type": "SYMBOL",
           "name": "raw_block_marker"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "anno_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "anno_list": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "anno_list_item"
+      }
+    },
+    "anno_list_item": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "anno_list_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_WHITE_SPACE"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "line"
         }
       ]
     },
@@ -1032,6 +1073,10 @@
     {
       "type": "SYMBOL",
       "name": "block_macro_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "anno_list_marker"
     }
   ],
   "inline": [],

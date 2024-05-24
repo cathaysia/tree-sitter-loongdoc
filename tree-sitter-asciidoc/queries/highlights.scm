@@ -45,7 +45,9 @@
 (block_title
   (block_title_marker) @punctuation.special) @attribute
 
-(raw_block) @markup.raw.block
+(raw_block_body) @markup.raw.block
+
+(anno_list_marker) @punctuation.special
 
 (delimited_block) @punctuation.bracket
 

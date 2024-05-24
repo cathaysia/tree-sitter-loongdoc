@@ -26,6 +26,7 @@ module.exports = grammar({
     $.delimited_block_marker,
     $.raw_block_marker,
     $.block_macro_name,
+    $.anno_list_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -151,9 +152,16 @@ module.exports = grammar({
     raw_block: $ =>
       seq(
         $.raw_block_marker,
-        repeat(choice(seq(/[^\r\n]+/, $._block_end), $.block_macro)),
+        alias(
+          repeat(choice(seq(/[^\r\n]+/, $._block_end), $.block_macro)),
+          $.raw_block_body,
+        ),
         $.raw_block_marker,
+        optional($.anno_list),
       ),
+
+    anno_list: $ => repeat1($.anno_list_item),
+    anno_list_item: $ => seq($.anno_list_marker, $._WHITE_SPACE, $.line),
 
     line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),

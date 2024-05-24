@@ -9,6 +9,26 @@ raw_block
 line
 ----
 
+[, js]
+----
+function createElement(node) {
+    if (typeof node == "string") { <.>
+        return document.createTextNode(node)
+    }
+
+    const $el = document.createElement(node.type) <.>
+
+    node.children <.>
+        .map(createElement)
+        .forEach($el.appendChild.bind($el));
+
+    return $el;
+}
+----
+<.> createTextNode
+<.> 😄createElement
+<.> 🐸createElement
+
 -------------------
 
 (document
@@ -17,4 +37,23 @@ line
     (raw_block_marker))
   (raw_block
     (raw_block_marker)
-    (raw_block_marker)))
+    (raw_block_body)
+    (raw_block_marker))
+  (element_attr
+    (element_attr_marker)
+    (attr_value)
+    (element_attr_marker))
+  (raw_block
+    (raw_block_marker)
+    (raw_block_body)
+    (raw_block_marker)
+    (anno_list
+      (anno_list_item
+        (anno_list_marker)
+        (line))
+      (anno_list_item
+        (anno_list_marker)
+        (line))
+      (anno_list_item
+        (anno_list_marker)
+        (line)))))

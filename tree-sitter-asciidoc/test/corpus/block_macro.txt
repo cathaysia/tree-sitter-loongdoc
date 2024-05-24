@@ -75,9 +75,10 @@ image::sunset.jpg[Sunset]
     (element_attr_marker))
   (raw_block
     (raw_block_marker)
-    (block_macro
-      (block_macro_name)
-      (target))
+    (raw_block_body
+      (block_macro
+        (block_macro_name)
+        (target)))
     (raw_block_marker))
   (block_macro
     (block_macro_name)

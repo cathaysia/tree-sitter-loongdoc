@@ -1,5 +1,39 @@
 [
   {
+    "type": "anno_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_list_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "anno_list_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_list_marker",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_macro",
     "named": true,
     "fields": {},
@@ -367,11 +401,30 @@
       "required": true,
       "types": [
         {
-          "type": "block_macro",
+          "type": "anno_list",
+          "named": true
+        },
+        {
+          "type": "raw_block_body",
           "named": true
         },
         {
           "type": "raw_block_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "raw_block_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "block_macro",
           "named": true
         }
       ]
@@ -656,6 +709,10 @@
   {
     "type": "^",
     "named": false
+  },
+  {
+    "type": "anno_list_marker",
+    "named": true
   },
   {
     "type": "attr_name",
