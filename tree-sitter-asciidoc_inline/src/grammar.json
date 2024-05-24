@@ -163,6 +163,10 @@
                 {
                   "type": "STRING",
                   "value": "\\]"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "inline_macro"
                 }
               ]
             }

@@ -52,7 +52,7 @@ module.exports = grammar({
         token.immediate(':'),
         alias(repeat(choice(/[^\[]/, '\\[')), $.target),
         '[',
-        alias(repeat(choice(/[^\]]/, '\\]')), $.attr),
+        alias(repeat(choice(/[^\]]/, '\\]', $.inline_macro)), $.attr),
         ']',
       ),
     replacement: $ =>

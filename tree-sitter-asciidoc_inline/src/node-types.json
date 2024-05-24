@@ -21,7 +21,17 @@
   {
     "type": "attr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "inline_macro",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "auto_link",
