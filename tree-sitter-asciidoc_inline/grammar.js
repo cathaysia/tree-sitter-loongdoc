@@ -50,7 +50,7 @@ module.exports = grammar({
           'footnoteref',
         ),
         token.immediate(':'),
-        alias(repeat(choice(/[^\[]/, '\\[')), $.target),
+        alias(repeat(choice(/[^\[]/, '\\[', $.replacement)), $.target),
         '[',
         alias(repeat(choice(/[^\]]/, '\\]', $.inline_macro)), $.attr),
         ']',

@@ -235,7 +235,17 @@
   {
     "type": "target",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "replacement",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "xref",

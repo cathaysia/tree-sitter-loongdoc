@@ -4,6 +4,7 @@ inline_macro
 
 kbd:[Ctrl+Shift+T kbd:[Ctrl+Shift+T]]
 this is kbd:[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[Save].
+this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[Save].
 
 -----
 
@@ -13,6 +14,19 @@ this is kbd:[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[
       (inline_macro
         (attr))))
   (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (target
+      (replacement
+        (intrinsic_attributes)))
     (attr))
   (inline_macro
     (attr))

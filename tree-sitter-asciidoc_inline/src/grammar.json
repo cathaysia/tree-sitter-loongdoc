@@ -138,6 +138,10 @@
                 {
                   "type": "STRING",
                   "value": "\\["
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "replacement"
                 }
               ]
             }
