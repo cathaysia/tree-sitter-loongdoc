@@ -1,5 +1,5 @@
 ===========
-includes
+block_macro
 ===========
 
 = Document Title
@@ -20,17 +20,19 @@ include::{includedir}/fragment1.adoc[]
 include::{sourcedir}/org/asciidoctor/Asciidoctor.java[]
 ----
 
+image::sunset.jpg[Sunset]
+
 -----
 
 (document
   (title0
     (title_h0_marker)
     (line)
-    (includes
-      (include_token)
+    (block_macro
+      (block_macro_name)
       (target))
-    (includes
-      (include_token)
+    (block_macro
+      (block_macro_name)
       (target))
     (document_attr
       (document_attr_marker)
@@ -40,32 +42,32 @@ include::{sourcedir}/org/asciidoctor/Asciidoctor.java[]
       (comment)))
   (paragraph
     (line))
-  (includes
-    (include_token)
+  (block_macro
+    (block_macro_name)
     (target))
-  (includes
-    (include_token)
+  (block_macro
+    (block_macro_name)
     (target)
-    (include_attr
+    (block_macro_attr
       (name)
       (value))
-    (include_attr
+    (block_macro_attr
       (name)
       (value))
-    (include_attr
+    (block_macro_attr
       (name)
       (value))
-    (include_attr
+    (block_macro_attr
       (name)
       (value))
-    (include_attr
+    (block_macro_attr
       (name)
       (value))
-    (include_attr
+    (block_macro_attr
       (name)
       (value)))
-  (includes
-    (include_token)
+  (block_macro
+    (block_macro_name)
     (target))
   (element_attr
     (element_attr_marker)
@@ -73,7 +75,12 @@ include::{sourcedir}/org/asciidoctor/Asciidoctor.java[]
     (element_attr_marker))
   (raw_block
     (raw_block_marker)
-    (includes
-      (include_token)
+    (block_macro
+      (block_macro_name)
       (target))
-    (raw_block_marker)))
+    (raw_block_marker))
+  (block_macro
+    (block_macro_name)
+    (target)
+    (block_macro_attr
+      (name))))

@@ -25,7 +25,7 @@ module.exports = grammar({
     $.table_block_marker,
     $.delimited_block_marker,
     $.raw_block_marker,
-    $.include_token,
+    $.block_macro_name,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -41,7 +41,7 @@ module.exports = grammar({
           $.title4,
           $.title5,
           $._section_block,
-          $.includes,
+          $.block_macro,
         ),
       ),
 
@@ -64,7 +64,7 @@ module.exports = grammar({
         $.title_h0_marker,
         $._WHITE_SPACE,
         $.line,
-        repeat(choice($.document_attr, $.includes)),
+        repeat(choice($.document_attr, $.block_macro)),
         $._block_end,
       ),
     title1: $ => seq($.title_h1_marker, $._WHITE_SPACE, $.line),
@@ -74,17 +74,17 @@ module.exports = grammar({
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
     breaks: $ => seq($.breaks_marker, $._block_end),
 
-    includes: $ =>
+    block_macro: $ =>
       seq(
-        $.include_token,
+        $.block_macro_name,
         '::',
         alias(repeat(choice(/[^\[]/, '\\[')), $.target),
         '[',
-        commaSep($.include_attr),
+        commaSep($.block_macro_attr),
         ']',
         $._block_end,
       ),
-    include_attr: $ =>
+    block_macro_attr: $ =>
       seq(
         alias(repeat1(choice(/[^=]/, '\\=')), $.name),
         optional(seq('=', alias(repeat1(choice(/[^\]]/, '\\]')), $.value))),
@@ -151,7 +151,7 @@ module.exports = grammar({
     raw_block: $ =>
       seq(
         $.raw_block_marker,
-        repeat(choice(seq(/[^\r\n]+/, $._block_end), $.includes)),
+        repeat(choice(seq(/[^\r\n]+/, $._block_end), $.block_macro)),
         $.raw_block_marker,
       ),
 

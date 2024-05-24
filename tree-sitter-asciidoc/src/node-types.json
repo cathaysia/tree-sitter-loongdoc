@@ -1,5 +1,47 @@
 [
   {
+    "type": "block_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_macro_attr",
+          "named": true
+        },
+        {
+          "type": "block_macro_name",
+          "named": true
+        },
+        {
+          "type": "target",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "block_macro_attr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_title",
     "named": true,
     "fields": {},
@@ -108,6 +150,10 @@
       "required": false,
       "types": [
         {
+          "type": "block_macro",
+          "named": true
+        },
+        {
           "type": "block_title",
           "named": true
         },
@@ -125,10 +171,6 @@
         },
         {
           "type": "element_attr",
-          "named": true
-        },
-        {
-          "type": "includes",
           "named": true
         },
         {
@@ -215,48 +257,6 @@
         },
         {
           "type": "element_attr_marker",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "include_attr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "includes",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "include_attr",
-          "named": true
-        },
-        {
-          "type": "include_token",
-          "named": true
-        },
-        {
-          "type": "target",
           "named": true
         }
       ]
@@ -367,7 +367,7 @@
       "required": true,
       "types": [
         {
-          "type": "includes",
+          "type": "block_macro",
           "named": true
         },
         {
@@ -430,11 +430,11 @@
       "required": true,
       "types": [
         {
-          "type": "document_attr",
+          "type": "block_macro",
           "named": true
         },
         {
-          "type": "includes",
+          "type": "document_attr",
           "named": true
         },
         {
@@ -666,6 +666,10 @@
     "named": true
   },
   {
+    "type": "block_macro_name",
+    "named": true
+  },
+  {
     "type": "block_title_marker",
     "named": true
   },
@@ -687,10 +691,6 @@
   },
   {
     "type": "hard_wrap",
-    "named": true
-  },
-  {
-    "type": "include_token",
     "named": true
   },
   {

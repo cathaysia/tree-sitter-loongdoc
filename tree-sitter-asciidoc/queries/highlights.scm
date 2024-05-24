@@ -50,15 +50,15 @@
 (delimited_block) @punctuation.bracket
 
 
-(includes
-  (include_token) @keyword
+(block_macro
+  (block_macro_name) @keyword
   "::" @punctuation.delimiter
   (target) @markup.link
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
 
-(include_attr
+(block_macro_attr
   (name) @attribute
   "=" @punctuation.delimiter
   (value) @variable.parameter)

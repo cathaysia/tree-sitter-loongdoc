@@ -22,7 +22,7 @@ typedef enum TokenType {
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_RAW_BLOCK_MARKER,
-    TOKEN_INCLUDE_TOKEN
+    TOKEN_BLOCK_MACRO_NAME
 } TokenType;
 
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
@@ -63,16 +63,19 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     }
 
     if(lexer->get_column(lexer) == 0) {
-        bool is_i = lexer->lookahead == 'i';
+        bool is_alpha = is_ascii_alpha_lower(lexer->lookahead);
         if(parse_ordered_marker(lexer, valid_symbols)) {
             return true;
         }
 
-        if(is_i) {
-            if(valid_symbols[TOKEN_INCLUDE_TOKEN]) {
-                if(parse_sequence(lexer, "nclude")) {
-                    lexer->result_symbol = TOKEN_INCLUDE_TOKEN;
-                    lexer->mark_end(lexer);
+        if(is_alpha) {
+            if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
+                while(is_ascii_alpha_lower(lexer->lookahead)) {
+                    lexer->advance(lexer, false);
+                }
+                lexer->mark_end(lexer);
+                if(parse_sequence(lexer, "::")) {
+                    lexer->result_symbol = TOKEN_BLOCK_MACRO_NAME;
                     return true;
                 }
             }
