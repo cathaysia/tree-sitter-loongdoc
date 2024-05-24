@@ -44,8 +44,10 @@
   "]" @punctuation.bracket)
 
 (xref
-  (id) @markup.link.label
   (reftext) @markup.link)
+
+(xref
+  (id) @markup.link.label)
 
 (anchor
   "[" @punctuation.bracket

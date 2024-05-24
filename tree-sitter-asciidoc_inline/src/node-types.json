@@ -85,6 +85,11 @@
     "fields": {}
   },
   {
+    "type": "id",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "image_macro",
     "named": true,
     "fields": {},
@@ -364,6 +369,11 @@
     "fields": {}
   },
   {
+    "type": "reftext",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "replacement",
     "named": true,
     "fields": {},
@@ -384,7 +394,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "id",
@@ -558,6 +568,18 @@
     "named": false
   },
   {
+    "type": "\\,",
+    "named": false
+  },
+  {
+    "type": "\\>",
+    "named": false
+  },
+  {
+    "type": "\\[",
+    "named": false
+  },
+  {
     "type": "\\]",
     "named": false
   },
@@ -658,10 +680,6 @@
     "named": false
   },
   {
-    "type": "id",
-    "named": true
-  },
-  {
     "type": "image",
     "named": false
   },
@@ -732,10 +750,6 @@
   {
     "type": "r",
     "named": false
-  },
-  {
-    "type": "reftext",
-    "named": true
   },
   {
     "type": "stem",

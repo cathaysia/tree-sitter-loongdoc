@@ -5,6 +5,10 @@ xref
 <<id,reftext>>
 xref:id[reftext]
 
+<<aaa\,\>,bbb\>>>
+
+<<aaa\,\>>>
+
 -----
 
 (inline
@@ -13,4 +17,9 @@ xref:id[reftext]
     (reftext))
   (xref
     (id)
-    (reftext)))
+    (reftext))
+  (xref
+    (id)
+    (reftext))
+  (xref
+    (id)))

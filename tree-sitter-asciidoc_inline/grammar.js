@@ -157,13 +157,18 @@ module.exports = grammar({
       ),
     xref: $ =>
       choice(
-        seq('<<', alias(/\w+/, $.id), alias(/[^>]*/, $.reftext), '>>'),
+        seq(
+          '<<',
+          alias(repeat1(choice(/[^,>]/, '\\,', '\\>')), $.id),
+          optional(seq(',', alias(repeat1(choice(/[^>]/, '\\>')), $.reftext))),
+          '>>',
+        ),
         seq(
           'xref',
           ':',
-          alias(/[^\[]*/, $.id),
+          alias(repeat(choice(/[^\[]/, '\\[')), $.id),
           '[',
-          alias(/[^\]]*/, $.reftext),
+          alias(repeat(choice(/[^\]]/, '\\]')), $.reftext),
           ']',
         ),
       ),
