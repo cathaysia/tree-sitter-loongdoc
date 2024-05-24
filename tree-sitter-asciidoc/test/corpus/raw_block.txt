@@ -29,6 +29,11 @@ function createElement(node) {
 <.> 😄createElement
 <.> 🐸createElement
 
+..rawblock
+....
+rawblock
+....
+
 -------------------
 
 (document
@@ -56,4 +61,9 @@ function createElement(node) {
         (line))
       (anno_list_item
         (anno_list_marker)
-        (line)))))
+        (line))))
+  (paragraph
+    (line)
+    (line)
+    (line)
+    (line)))

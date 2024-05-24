@@ -150,21 +150,36 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 return is_unordered_marker;
             }
             case '.': {
-                lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
-                if(parse_block_title_marker(lexer, valid_symbols)) {
-                    return true;
+                lexer->advance(lexer, false);
+                lexer->mark_end(lexer);
+                if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                    if(parse_sequence(lexer, "...")) {
+                        if(is_newline(lexer->lookahead)) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                            return true;
+                        }
+                    }
                 }
-                lexer->result_symbol = TOKEN_LIST_MARKER_DOT;
-                if(lexer->get_column(lexer) != 1) {
-                    return false;
+
+                if(valid_symbols[TOKEN_LIST_MARKER_DOT]) {
+                    consume('.', lexer, false, NULL, USIZE_MAX);
+                    if(is_white_space(lexer->lookahead)) {
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_LIST_MARKER_DOT;
+                        return true;
+                    }
                 }
-                while(lexer->lookahead == '.') {
-                    lexer->advance(lexer, false);
+
+                if(valid_symbols[TOKEN_BLOCK_TITLE_MARKER]) {
+                    if(lexer->get_column(lexer) == 1) {
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
+                        return true;
+                    }
                 }
-                if(is_white_space(lexer->lookahead)) {
-                    lexer->mark_end(lexer);
-                    return true;
-                }
+
+                break;
             }
             case ':': {
                 if(valid_symbols[TOKEN_DOCUMENT_ATTR_MARKER]) {
