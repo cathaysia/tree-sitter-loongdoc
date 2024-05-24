@@ -37,6 +37,14 @@
           {
             "type": "SYMBOL",
             "name": "block_macro"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "line_comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "comment_block"
           }
         ]
       }
@@ -924,23 +932,58 @@
         ]
       }
     },
-    "comment": {
+    "line_comment": {
       "type": "SEQ",
       "members": [
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "//"
-            }
-          }
+          "type": "SYMBOL",
+          "name": "line_comment_marker"
         },
         {
           "type": "PATTERN",
-          "value": "(\\\\+(.|\\r?\\n)|[^\\\\\\n])*"
+          "value": "[^\\r\\n]*"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_block_end"
+        }
+      ]
+    },
+    "comment_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "block_comment_marker"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]+"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_block_end"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "comment_block_body"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block_comment_marker"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_block_end"
         }
       ]
     },
@@ -970,10 +1013,6 @@
     {
       "type": "SYMBOL",
       "name": "_NEWLINE"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "comment"
     }
   ],
   "conflicts": [],
@@ -1077,6 +1116,14 @@
     {
       "type": "SYMBOL",
       "name": "anno_list_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "line_comment_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "block_comment_marker"
     }
   ],
   "inline": [],

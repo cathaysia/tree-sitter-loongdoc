@@ -38,8 +38,7 @@ image::sunset.jpg[Sunset]
       (document_attr_marker)
       (attr_name)
       (document_attr_marker)
-      (line)
-      (comment)))
+      (line)))
   (paragraph
     (line))
   (block_macro

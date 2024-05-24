@@ -40,8 +40,7 @@ more value
       (document_attr_marker)
       (attr_name)
       (document_attr_marker)
-      (line)
-      (comment))
+      (line))
     (document_attr
       (document_attr_marker)
       (attr_name)

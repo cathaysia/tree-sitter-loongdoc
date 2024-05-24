@@ -23,7 +23,9 @@ typedef enum TokenType {
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_RAW_BLOCK_MARKER,
     TOKEN_BLOCK_MACRO_NAME,
-    TOKEN_ANNO_LIST_MARKER
+    TOKEN_ANNO_LIST_MARKER,
+    TOKEN_LINE_COMMENT_MARKER,
+    TOKEN_BLOCK_COMMENT_MARKER,
 } TokenType;
 
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
@@ -226,6 +228,25 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     lexer->mark_end(lexer);
                     lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
                     return true;
+                }
+                break;
+            }
+            case '/': {
+                if(valid_symbols[TOKEN_LINE_COMMENT_MARKER]) {
+                    if(parse_sequence(lexer, "//")) {
+                        lexer->mark_end(lexer);
+                        if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
+                            if(parse_sequence(lexer, "//")) {
+                                if(is_newline(lexer->lookahead)) {
+                                    lexer->result_symbol = TOKEN_BLOCK_COMMENT_MARKER;
+                                    lexer->mark_end(lexer);
+                                    return true;
+                                }
+                            }
+                        }
+                        lexer->result_symbol = TOKEN_LINE_COMMENT_MARKER;
+                        return true;
+                    }
                 }
                 break;
             }

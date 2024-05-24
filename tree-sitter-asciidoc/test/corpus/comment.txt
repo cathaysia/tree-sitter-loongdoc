@@ -6,8 +6,17 @@ comment
 
 //
 
+////
+block comment
+////
+
 -----
 
 (document
-  (comment)
-  (comment))
+  (line_comment
+    (line_comment_marker))
+  (line_comment
+    (line_comment_marker))
+  (paragraph
+    (line)
+    (line)))

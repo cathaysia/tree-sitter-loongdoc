@@ -28,7 +28,10 @@
   (list_marker_alpha)
 ] @markup.list
 
-(comment) @comment
+[
+  (line_comment)
+  (comment_block)
+] @comment
 
 [
  (document_attr_marker)

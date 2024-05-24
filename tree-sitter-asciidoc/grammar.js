@@ -3,7 +3,7 @@ const { commaSep } = require('../common/common.js')
 module.exports = grammar({
   name: 'asciidoc',
 
-  extras: $ => [$._NEWLINE, $.comment],
+  extras: $ => [$._NEWLINE],
   externals: $ => [
     $._eof,
     $.title_h0_marker,
@@ -27,6 +27,8 @@ module.exports = grammar({
     $.raw_block_marker,
     $.block_macro_name,
     $.anno_list_marker,
+    $.line_comment_marker,
+    $.block_comment_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -43,6 +45,8 @@ module.exports = grammar({
           $.title5,
           $._section_block,
           $.block_macro,
+          $.line_comment,
+          $.comment_block,
         ),
       ),
 
@@ -166,7 +170,14 @@ module.exports = grammar({
     line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),
 
-    comment: $ => seq(token(prec(1, '//')), /(\\+(.|\r?\n)|[^\\\n])*/),
+    line_comment: $ => seq($.line_comment_marker, /[^\r\n]*/, $._block_end),
+    comment_block: $ =>
+      seq(
+        $.block_comment_marker,
+        alias(repeat(seq(/[^\r\n]+/, $._block_end)), $.comment_block_body),
+        $.block_comment_marker,
+        $._block_end,
+      ),
 
     _block_end: $ => choice($._NEWLINE, $._eof),
     _NEWLINE: _ => /\r?\n/,
