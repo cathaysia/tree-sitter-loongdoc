@@ -67,8 +67,10 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
 
     if(lexer->get_column(lexer) == 0) {
         bool is_alpha = is_ascii_alpha_lower(lexer->lookahead);
-        if(parse_ordered_marker(lexer, valid_symbols)) {
-            return true;
+        if(valid_symbols[TOKEN_LIST_MARKER_ALPHA]) {
+            if(parse_ordered_marker(lexer, valid_symbols)) {
+                return true;
+            }
         }
 
         if(is_alpha) {
@@ -88,68 +90,87 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             case '=': {
                 consume('=', lexer, false, NULL, USIZE_MAX);
                 lexer->mark_end(lexer);
-                if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                    lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
-                    return true;
+                if(valid_symbols[TOKEN_DELIMITED_BLOCK_MARKER]) {
+                    if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
+                        return true;
+                    }
                 }
 
-                usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
-                if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
-                    lexer->result_symbol = level;
-                    return true;
+                if(valid_symbols[TOKEN_TITLE_H0_MARKER]) {
+                    usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
+                    if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
+                        lexer->result_symbol = level;
+                        return true;
+                    }
                 }
                 return false;
             }
             case '*': {
-                lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
                 usize counter = 0;
                 consume('*', lexer, false, &counter, USIZE_MAX);
                 lexer->mark_end(lexer);
                 bool is_unordered_marker = is_white_space(lexer->lookahead);
-                skip_white_space(lexer);
-                while(lexer->lookahead == '*') {
-                    lexer->advance(lexer, false);
+
+                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
                     skip_white_space(lexer);
-                    ++counter;
-                    if(counter > 3) {
-                        break;
+                    while(lexer->lookahead == '*') {
+                        lexer->advance(lexer, false);
+                        skip_white_space(lexer);
+                        ++counter;
+                        if(counter > 3) {
+                            break;
+                        }
+                    }
+                    if(counter == 3 && is_newline(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                        lexer->mark_end(lexer);
+                        return true;
                     }
                 }
-                if(counter == 3 && is_newline(lexer->lookahead)) {
-                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                    lexer->mark_end(lexer);
-                    return true;
+
+                if(valid_symbols[TOKEN_LIST_MARKER_STAR]) {
+                    lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
+                    return is_unordered_marker;
                 }
 
-                return is_unordered_marker;
+                break;
             }
             case '-': {
-                lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
                 usize counter = 0;
                 consume('-', lexer, false, &counter, USIZE_MAX);
                 lexer->mark_end(lexer);
                 bool is_unordered_marker = is_white_space(lexer->lookahead);
-                if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                    lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
-                    return true;
-                }
 
-                skip_white_space(lexer);
-                while(lexer->lookahead == '-') {
-                    lexer->advance(lexer, false);
-                    skip_white_space(lexer);
-                    ++counter;
-                    if(counter > 3) {
-                        break;
+                if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                    if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                        return true;
                     }
                 }
-                if(counter == 3 && is_newline(lexer->lookahead)) {
-                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                    lexer->mark_end(lexer);
-                    return true;
+
+                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                    skip_white_space(lexer);
+                    while(lexer->lookahead == '-') {
+                        lexer->advance(lexer, false);
+                        skip_white_space(lexer);
+                        ++counter;
+                        if(counter > 3) {
+                            break;
+                        }
+                    }
+                    if(counter == 3 && is_newline(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                        lexer->mark_end(lexer);
+                        return true;
+                    }
                 }
 
-                return is_unordered_marker;
+                if(valid_symbols[TOKEN_LIST_MARKER_HYPHEN]) {
+                    lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
+                    return is_unordered_marker;
+                }
+                break;
             }
             case '.': {
                 lexer->advance(lexer, false);
@@ -193,22 +214,29 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 break;
             }
             case '[': {
-                lexer->advance(lexer, false);
-                lexer->mark_end(lexer);
-                lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
-                return true;
-            }
-            case '\'': {
-                if(parse_breaks('\'', lexer, valid_symbols)) {
-                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                if(valid_symbols[TOKEN_ELEMENT_ATTR_MARKER]) {
+                    lexer->advance(lexer, false);
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
                     return true;
                 }
                 break;
             }
+            case '\'': {
+                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                    if(parse_breaks('\'', lexer, valid_symbols)) {
+                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                        return true;
+                    }
+                }
+                break;
+            }
             case '<': {
-                if(parse_breaks('<', lexer, valid_symbols)) {
-                    lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                    return true;
+                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                    if(parse_breaks('<', lexer, valid_symbols)) {
+                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                        return true;
+                    }
                 }
                 if(valid_symbols[TOKEN_ANNO_LIST_MARKER]) {
                     if(lexer->get_column(lexer) == 1) {
@@ -222,12 +250,14 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 break;
             }
             case '|': {
-                lexer->advance(lexer, false);
-                consume('=', lexer, false, NULL, USIZE_MAX);
-                if(is_newline(lexer->lookahead)) {
-                    lexer->mark_end(lexer);
-                    lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
-                    return true;
+                if(valid_symbols[TOKEN_TABLE_BLOCK_MARKER]) {
+                    lexer->advance(lexer, false);
+                    consume('=', lexer, false, NULL, USIZE_MAX);
+                    if(is_newline(lexer->lookahead)) {
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                        return true;
+                    }
                 }
                 break;
             }
@@ -304,9 +334,6 @@ static bool is_geek_lower(i32 ch) {
 }
 
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols) {
-    if(!valid_symbols[TOKEN_BLOCK_TITLE_MARKER]) {
-        return false;
-    }
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
@@ -321,9 +348,6 @@ static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols) 
 }
 
 static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) {
-    if(!valid_symbols[TOKEN_BREAKS_MARKS]) {
-        return false;
-    }
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
