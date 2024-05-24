@@ -48,3 +48,17 @@
 (raw_block) @markup.raw.block
 
 (delimited_block) @punctuation.bracket
+
+
+(includes
+  (include_token) @keyword
+  "::" @punctuation.delimiter
+  (target) @markup.link
+  "[" @punctuation.bracket
+  "]" @punctuation.bracket)
+
+
+(include_attr
+  (name) @attribute
+  "=" @punctuation.delimiter
+  (value) @variable.parameter)

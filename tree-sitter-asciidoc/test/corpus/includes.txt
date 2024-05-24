@@ -1,0 +1,79 @@
+===========
+includes
+===========
+
+= Document Title
+include::attributes-settings.adoc[]
+include::attributes-urls.adoc[]
+:url-example: https://example.org
+
+Document body.
+
+include::partial.adoc[]
+
+include::target[leveloffset=offset,lines=ranges,tag(s)=name(s),indent=depth,encoding=encoding,opts=optional]
+
+include::{includedir}/fragment1.adoc[]
+
+[source,java]
+----
+include::{sourcedir}/org/asciidoctor/Asciidoctor.java[]
+----
+
+-----
+
+(document
+  (title0
+    (title_h0_marker)
+    (line)
+    (includes
+      (include_token)
+      (target))
+    (includes
+      (include_token)
+      (target))
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line)
+      (comment)))
+  (paragraph
+    (line))
+  (includes
+    (include_token)
+    (target))
+  (includes
+    (include_token)
+    (target)
+    (include_attr
+      (name)
+      (value))
+    (include_attr
+      (name)
+      (value))
+    (include_attr
+      (name)
+      (value))
+    (include_attr
+      (name)
+      (value))
+    (include_attr
+      (name)
+      (value))
+    (include_attr
+      (name)
+      (value)))
+  (includes
+    (include_token)
+    (target))
+  (element_attr
+    (element_attr_marker)
+    (attr_value)
+    (element_attr_marker))
+  (raw_block
+    (raw_block_marker)
+    (includes
+      (include_token)
+      (target))
+    (raw_block_marker)))

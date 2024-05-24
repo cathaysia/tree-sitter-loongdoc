@@ -22,8 +22,10 @@ typedef enum TokenType {
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_RAW_BLOCK_MARKER,
+    TOKEN_INCLUDE_TOKEN
 } TokenType;
 
+static bool parse_sequence(TSLexer *lexer, char const *sequence);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols);
@@ -61,9 +63,21 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     }
 
     if(lexer->get_column(lexer) == 0) {
+        bool is_i = lexer->lookahead == 'i';
         if(parse_ordered_marker(lexer, valid_symbols)) {
             return true;
         }
+
+        if(is_i) {
+            if(valid_symbols[TOKEN_INCLUDE_TOKEN]) {
+                if(parse_sequence(lexer, "nclude")) {
+                    lexer->result_symbol = TOKEN_INCLUDE_TOKEN;
+                    lexer->mark_end(lexer);
+                    return true;
+                }
+            }
+        }
+
         switch(lexer->lookahead) {
             case '=': {
                 consume('=', lexer, false, NULL, USIZE_MAX);
@@ -198,24 +212,21 @@ bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols) {
         return false;
     }
 
-    typedef bool (*FnJudge)(i32);
-    FnJudge is_order_marker;
     if(is_ascii_digit(lexer->lookahead)) {
-        is_order_marker = is_ascii_digit;
+        while(is_ascii_digit(lexer->lookahead)) {
+            lexer->advance(lexer, false);
+        }
         lexer->result_symbol = TOKEN_LIST_MARKER_DIGIT;
     } else if(is_ascii_alpha_lower(lexer->lookahead)) {
-        is_order_marker = is_ascii_alpha_lower;
         lexer->result_symbol = TOKEN_LIST_MARKER_ALPHA;
+        lexer->advance(lexer, false);
     } else if(is_geek_lower(lexer->lookahead)) {
-        is_order_marker = is_geek_lower;
         lexer->result_symbol = TOKEN_LIST_MARKER_GEEK;
+        lexer->advance(lexer, false);
     } else {
         return false;
     }
 
-    while(is_order_marker(lexer->lookahead)) {
-        lexer->advance(lexer, false);
-    }
     if(lexer->lookahead != '.') {
         return false;
     }
@@ -324,4 +335,29 @@ static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usi
 
     lexer->mark_end(lexer);
     return has_space;
+}
+
+static usize ts_str_len(char const *str) {
+    usize len = 0;
+    while(str[len] != 0) {
+        ++len;
+    }
+
+    return len;
+}
+
+static bool parse_sequence(TSLexer *lexer, char const *sequence) {
+    usize len = ts_str_len(sequence);
+    usize pos = 0;
+
+    while(pos < len) {
+        if(lexer->lookahead != sequence[pos]) {
+            return false;
+        }
+
+        lexer->advance(lexer, false);
+        ++pos;
+    }
+
+    return true;
 }

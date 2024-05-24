@@ -1,3 +1,5 @@
+const { commaSep } = require('../common/common.js')
+
 module.exports = grammar({
   name: 'asciidoc',
 
@@ -23,6 +25,7 @@ module.exports = grammar({
     $.table_block_marker,
     $.delimited_block_marker,
     $.raw_block_marker,
+    $.include_token,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -38,6 +41,7 @@ module.exports = grammar({
           $.title4,
           $.title5,
           $._section_block,
+          $.includes,
         ),
       ),
 
@@ -60,7 +64,7 @@ module.exports = grammar({
         $.title_h0_marker,
         $._WHITE_SPACE,
         $.line,
-        repeat($.document_attr),
+        repeat(choice($.document_attr, $.includes)),
         $._block_end,
       ),
     title1: $ => seq($.title_h1_marker, $._WHITE_SPACE, $.line),
@@ -70,12 +74,28 @@ module.exports = grammar({
     title5: $ => seq($.title_h5_marker, $._WHITE_SPACE, $.line),
     breaks: $ => seq($.breaks_marker, $._block_end),
 
+    includes: $ =>
+      seq(
+        $.include_token,
+        '::',
+        alias(repeat(choice(/[^\[]/, '\\[')), $.target),
+        '[',
+        commaSep($.include_attr),
+        ']',
+        $._block_end,
+      ),
+    include_attr: $ =>
+      seq(
+        alias(repeat1(choice(/[^=]/, '\\=')), $.name),
+        optional(seq('=', alias(repeat1(choice(/[^\]]/, '\\]')), $.value))),
+      ),
+
     document_attr: $ =>
       seq(
         $.document_attr_marker,
         alias(/[\w\d_][\w\d-]*/, $.attr_name),
-        alias(': ', $.document_attr_marker),
-        optional(alias($.escaped_line, $.line)),
+        alias(':', $.document_attr_marker),
+        optional(seq(token.immediate(' '), alias($.escaped_line, $.line))),
         $._block_end,
       ),
     escaped_line: $ =>
@@ -131,7 +151,7 @@ module.exports = grammar({
     raw_block: $ =>
       seq(
         $.raw_block_marker,
-        repeat(seq(/[^\r\n]+/, $._block_end)),
+        repeat(choice(seq(/[^\r\n]+/, $._block_end), $.includes)),
         $.raw_block_marker,
       ),
 
