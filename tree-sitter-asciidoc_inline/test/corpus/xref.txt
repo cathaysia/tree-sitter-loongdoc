@@ -15,9 +15,9 @@ xref:id[reftext]
   (xref
     (id)
     (reftext))
-  (xref
-    (id)
-    (reftext))
+  (inline_macro
+    (target)
+    (attr))
   (xref
     (id)
     (reftext))

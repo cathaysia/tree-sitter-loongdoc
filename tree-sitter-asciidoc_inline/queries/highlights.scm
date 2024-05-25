@@ -21,15 +21,8 @@
   "}" @punctuation.bracket)
 
 (xref
-  "xref" @keyword)
-
-(xref
   "<<" @punctuation.bracket
   ">>" @punctuation.bracket)
-
-(xref
-  "[" @punctuation.bracket
-  "]" @punctuation.bracket)
 
 (xref
   (reftext) @markup.link)
@@ -38,21 +31,11 @@
   (id) @markup.link.label)
 
 (anchor
-  "[" @punctuation.bracket
-  "]" @punctuation.bracket)
-
-(anchor
   "[[" @punctuation.bracket
   "]]" @punctuation.bracket)
 
 (anchor
-  ":" @punctuation.delimiter)
-
-(anchor
   "," @punctuation.delimiter)
-
-(anchor
-  "anchor" @keyword)
 
 (anchor
   (id) @markup.link.label)

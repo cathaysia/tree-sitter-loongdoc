@@ -48,6 +48,8 @@ module.exports = grammar({
           'asciimath',
           'footnote',
           'footnoteref',
+          'anchor',
+          'xref',
         ),
         token.immediate(':'),
         alias(repeat(choice(/[^\[]/, '\\[', $.replacement)), $.target),
@@ -73,21 +75,11 @@ module.exports = grammar({
     _digits: $ => /[0-9][0-9_]*/,
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     anchor: $ =>
-      choice(
-        seq(
-          '[[',
-          alias(/\w+/, $.id),
-          optional(seq(',', alias(/[\w\s ]+/, $.reftext))),
-          ']]',
-        ),
-        seq(
-          'anchor',
-          ':',
-          alias(/\w+/, $.id),
-          '[',
-          alias(/[^\]]*/, $.reftext),
-          ']',
-        ),
+      seq(
+        '[[',
+        alias(/\w+/, $.id),
+        optional(seq(',', alias(/[\w\s ]+/, $.reftext))),
+        ']]',
       ),
     // https://stackoverflow.com/a/201378
     email: $ =>
@@ -121,21 +113,11 @@ module.exports = grammar({
         seq('$$', /\w+/, '$$'),
       ),
     xref: $ =>
-      choice(
-        seq(
-          '<<',
-          alias(repeat1(choice(/[^,>]/, '\\,', '\\>')), $.id),
-          optional(seq(',', alias(repeat1(choice(/[^>]/, '\\>')), $.reftext))),
-          '>>',
-        ),
-        seq(
-          'xref',
-          ':',
-          alias(repeat(choice(/[^\[]/, '\\[')), $.id),
-          '[',
-          alias(repeat(choice(/[^\]]/, '\\]')), $.reftext),
-          ']',
-        ),
+      seq(
+        '<<',
+        alias(repeat1(choice(/[^,>]/, '\\,', '\\>')), $.id),
+        optional(seq(',', alias(repeat1(choice(/[^>]/, '\\>')), $.reftext))),
+        '>>',
       ),
 
     emphasis: $ =>

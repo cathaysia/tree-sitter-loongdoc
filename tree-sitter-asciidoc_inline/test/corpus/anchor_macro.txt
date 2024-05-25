@@ -12,9 +12,8 @@ this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:i
   (anchor
     (id)
     (reftext))
-  (anchor
-    (id)
-    (reftext))
-  (anchor
-    (id)
-    (reftext)))
+  (inline_macro
+    (target))
+  (inline_macro
+    (target)
+    (attr)))
