@@ -22,6 +22,11 @@ block_body: $ =>
     $.paragraph,
     $.table,
     $.admonition,
+    $.raw_block,
+    $.delimited_block,
+    $.pass_block,
+    $.breaks,
+    $.description_list,
   )
 block_title: $ => seq(/^\./, token.immediate($.line))
 block_attr: $ => seq(/^\[/, $.line, ']')
@@ -39,6 +44,7 @@ document_title: $ =>
     repeat(choice($.attr, $.block_macro)),
   )
 attr: $ => seq(':', $.attr_name, ':', ' ', $.escaped_line)
+attr_name: $ => /!?[\w\d]+!?/
 ```
 
 An escaped_line can in this form:
@@ -71,7 +77,14 @@ paragraph: $ => repeat1($.line)
 ## List
 
 ```js
-list: $ => repeat1($.list_marker, token.immediate(' '), $.paragraph)
+list: $ => repeat1(req(
+  $.list_marker,
+  token.immediate(' '),
+  choice(
+    $.paragraph
+    $.description_list,
+  )
+))
 
 list_marker: $ =>
   choice($.unordered_list_marker, $.ordered_marker, $.checked_list_marker)
@@ -130,3 +143,68 @@ table_cell: $ => seq($.cell_attr, '|', $.cell_content)
 !!! note
 
     complete inside table
+
+## Raw block
+
+The contents of the raw block are always interpreted as plaintext.
+
+```js
+raw_block: $ => seq(
+  $.raw_block_delimiter,
+  repeat($.line),
+  $.raw_block_delimiter
+  repeat($.callout)
+)
+
+raw_block_delimiter: $=>
+  repeat_min(4, choice(
+    "-",
+    ".",
+    "`"
+))
+callout: $ => seq(
+  "<.>",
+  " ",
+  $.line
+)
+```
+
+## Delimited Blocks
+
+Delimited Blocks caontains other block inside self.
+
+```js
+delimited_block: $ =>
+  seq(
+    $.delimited_block_delimiter,
+    repeat($.document),
+    $.delimited_block_delimiter,
+  )
+delimited_block_delimiter: $ => repeat_min(4, choice('=', '*', '_'))
+```
+
+## Pass block
+
+The content in the pass block is always output as is when output.
+
+```js
+pass_block: $ =>
+  seq($.pass_block_delimiter, repeat($.line), $.pass_block_delimiter)
+pass_block_delimiter: $ => repeat_min(4, choice('+'))
+```
+
+## breaks
+
+```js
+breaks: $ => repeat3(choice('-', '*', '<'))
+```
+
+the first char must not be whitespace, then any whitespace are allowed between these chars.
+
+## description list
+
+```js
+description_list: $ =>
+  seq(/\w+/, '::', choice($.line, $.list, $.inner_description_list))
+inner_description_list: $ => seq(/\w+/, ':::', choice($.line, $.list))
+```
