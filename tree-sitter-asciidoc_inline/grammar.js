@@ -39,6 +39,8 @@ module.exports = grammar({
           'kbd',
           'btn',
           'image',
+          'audio',
+          'video',
           'icon',
           'pass',
           'link',

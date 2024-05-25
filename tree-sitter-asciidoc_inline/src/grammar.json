@@ -81,6 +81,14 @@
             },
             {
               "type": "STRING",
+              "value": "audio"
+            },
+            {
+              "type": "STRING",
+              "value": "video"
+            },
+            {
+              "type": "STRING",
               "value": "icon"
             },
             {
