@@ -1,0 +1,8 @@
+site_name: tree-sitter-asciidoc
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
