@@ -130,6 +130,22 @@
             {
               "type": "STRING",
               "value": "xref"
+            },
+            {
+              "type": "STRING",
+              "value": "ifdef"
+            },
+            {
+              "type": "STRING",
+              "value": "ifndef"
+            },
+            {
+              "type": "STRING",
+              "value": "ifeval"
+            },
+            {
+              "type": "STRING",
+              "value": "endif"
             }
           ]
         },

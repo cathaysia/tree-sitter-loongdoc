@@ -1,0 +1,15 @@
+====================
+directive
+====================
+
+ifdef::env-github[]
+This content is for GitHub only.
+endif::[]
+
+-----
+
+(inline
+  (inline_macro
+    (target))
+  (inline_macro
+    (target)))

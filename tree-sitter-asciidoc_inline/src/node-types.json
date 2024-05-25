@@ -507,6 +507,10 @@
     "named": true
   },
   {
+    "type": "endif",
+    "named": false
+  },
+  {
     "type": "file",
     "named": false
   },
@@ -532,6 +536,18 @@
   },
   {
     "type": "icon",
+    "named": false
+  },
+  {
+    "type": "ifdef",
+    "named": false
+  },
+  {
+    "type": "ifeval",
+    "named": false
+  },
+  {
+    "type": "ifndef",
     "named": false
   },
   {
