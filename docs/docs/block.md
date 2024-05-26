@@ -28,6 +28,7 @@ block_body: $ =>
     $.breaks,
     $.description_list,
     $.document_attr
+    $.quotes_block
   )
 block_title: $ => seq(/^\./, token.immediate($.line))
 block_attr: $ => seq(/^\[/, $.line, ']')
@@ -74,7 +75,8 @@ block_macro: $ => seq($.name, '::', $.target, '[', $.inline, ']')
 ## Paragraph
 
 ```js
-paragraph: $ => repeat1($.line)
+paragraph: $ => repeat1($.line, optional($.quoted_line))
+quoted_line: $ => seq("--", $.line)
 ```
 
 ## List
@@ -210,4 +212,23 @@ the first char must not be whitespace, then any whitespace are allowed between t
 description_list: $ =>
   seq(/\w+/, '::', choice($.line, $.list, $.inner_description_list))
 inner_description_list: $ => seq(/\w+/, ':::', choice($.line, $.list))
+```
+
+## block quote
+
+```js
+quotes_block: $ => choice(
+    seq(
+        "____",
+        repeat($.line),
+        "____"
+    ),
+    repeat1(
+        $.quoted_line
+    )
+)
+quoted_line: $ => seq(
+    spaceSep1(">"),
+    $.line
+)
 ```
