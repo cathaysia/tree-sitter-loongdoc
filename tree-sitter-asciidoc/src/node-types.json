@@ -286,6 +286,14 @@
           "named": true
         },
         {
+          "type": "quoted_block",
+          "named": true
+        },
+        {
+          "type": "quoted_md_block",
+          "named": true
+        },
+        {
           "type": "raw_block",
           "named": true
         },
@@ -472,6 +480,67 @@
       "types": [
         {
           "type": "line",
+          "named": true
+        },
+        {
+          "type": "quoted_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quoted_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "quoted_block_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quoted_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "quoted_paragraph_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "quoted_md_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "quoted_block_md_marker",
           "named": true
         }
       ]
@@ -898,6 +967,18 @@
   },
   {
     "type": "list_marker_star",
+    "named": true
+  },
+  {
+    "type": "quoted_block_marker",
+    "named": true
+  },
+  {
+    "type": "quoted_block_md_marker",
+    "named": true
+  },
+  {
+    "type": "quoted_paragraph_marker",
     "named": true
   },
   {

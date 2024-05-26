@@ -25,6 +25,9 @@ module.exports = grammar({
     $.table_block_marker,
     $.delimited_block_marker,
     $.raw_block_marker,
+    $.quoted_block_marker,
+    $.quoted_block_md_marker,
+    $.quoted_paragraph_marker,
     $.block_macro_name,
     $.anno_list_marker,
     $.line_comment_marker,
@@ -69,6 +72,8 @@ module.exports = grammar({
           $.paragraph,
           $.admonition,
           $.document_attr,
+          $.quoted_block,
+          $.quoted_md_block,
         ),
       ),
     title0: $ =>
@@ -203,7 +208,10 @@ module.exports = grammar({
     anno_list_item: $ => seq($.anno_list_marker, $._WHITE_SPACE, $.line),
 
     line: $ => seq(/[^\r\n]+/, $._block_end),
-    paragraph: $ => prec(-1, seq(repeat1($.line), $._block_end)),
+    paragraph: $ =>
+      prec(-1, seq(repeat1($.line), optional($.quoted_line), $._block_end)),
+    quoted_line: $ =>
+      seq($.quoted_paragraph_marker, token.immediate(' '), $.line),
 
     line_comment: $ => seq($.line_comment_marker, /[^\r\n]*/, $._block_end),
     comment_block: $ =>
@@ -212,6 +220,18 @@ module.exports = grammar({
         alias(repeat(seq(/[^\r\n]+/, $._block_end)), $.comment_block_body),
         $.block_comment_marker,
         $._block_end,
+      ),
+
+    quoted_block: $ =>
+      choice(seq($.quoted_block_marker, repeat($.line), $.quoted_block_marker)),
+    quoted_md_block: $ =>
+      prec.right(
+        repeat1(
+          choice(
+            seq($.quoted_block_md_marker, $._NEWLINE),
+            seq($.quoted_block_md_marker, token.immediate(' '), $.line),
+          ),
+        ),
       ),
 
     _block_end: $ => choice($._NEWLINE, $._eof),

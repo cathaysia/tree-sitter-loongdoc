@@ -33,7 +33,7 @@ function anySep1(rule, sep) {
 
 /**
  * @param {Rule} rule
- * @param {string} sep
+ * @param {Rule} sep
  * @return {ChoiceRule}
  */
 function anySep(rule, sep) {

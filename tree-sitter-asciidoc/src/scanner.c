@@ -22,6 +22,9 @@ typedef enum TokenType {
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_RAW_BLOCK_MARKER,
+    TOKEN_QUOTED_BLOCK_MARKER,
+    TOKEN_QUOTED_BLOCK_MD_MARKER,
+    TOKEN_QUOTED_PARAGRAPH_MARKER,
     TOKEN_BLOCK_MACRO_NAME,
     TOKEN_ANNO_LIST_MARKER,
     TOKEN_LINE_COMMENT_MARKER,
@@ -46,6 +49,7 @@ static bool is_ascii_digit(i32 ch);
 static bool is_ascii_alpha_lower(i32 ch);
 static bool is_geek_lower(i32 ch);
 static bool is_newline(i32 ch);
+static bool is_eof(TSLexer *lexer);
 
 void *tree_sitter_asciidoc_external_scanner_create() {
     return NULL;
@@ -170,6 +174,13 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 consume('-', lexer, false, &counter, USIZE_MAX);
                 lexer->mark_end(lexer);
                 bool is_unordered_marker = is_white_space(lexer->lookahead);
+
+                if(valid_symbols[TOKEN_QUOTED_PARAGRAPH_MARKER]) {
+                    if(lexer->get_column(lexer) == 2 && is_white_space(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_QUOTED_PARAGRAPH_MARKER;
+                        return true;
+                    }
+                }
 
                 if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
                     if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
@@ -309,6 +320,24 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
                 break;
             }
+            case '_': {
+                if(valid_symbols[TOKEN_QUOTED_BLOCK_MARKER]) {
+                    if(parse_sequence(lexer, "____")) {
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_QUOTED_BLOCK_MARKER;
+                        return is_newline(lexer->lookahead) || is_eof(lexer);
+                    }
+                }
+                break;
+            }
+            case '>': {
+                if(valid_symbols[TOKEN_QUOTED_BLOCK_MD_MARKER]) {
+                    lexer->advance(lexer, false);
+                    lexer->mark_end(lexer);
+                    lexer->result_symbol = TOKEN_QUOTED_BLOCK_MD_MARKER;
+                    return is_white_space(lexer->lookahead) || is_eof(lexer) || is_newline(lexer->lookahead);
+                }
+            }
         }
     }
 
@@ -409,6 +438,10 @@ static bool skip_white_space(TSLexer *lexer) {
 
 static bool is_newline(i32 ch) {
     return ch == '\r' || ch == '\n';
+}
+
+static bool is_eof(TSLexer *lexer) {
+    return lexer->eof(lexer);
 }
 
 static bool is_new_line(i32 ch) {

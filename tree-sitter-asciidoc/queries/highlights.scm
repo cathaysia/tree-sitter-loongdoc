@@ -11,8 +11,10 @@
   "|" @punctuation.special)
 
 [
- (breaks)
- (hard_wrap)
+  (breaks)
+  (hard_wrap)
+  (quoted_block_md_marker)
+  (quoted_paragraph_marker)
 ] @punctuation.special
 
 (task_list_marker_unchecked) @markup.list.unchecked
@@ -34,9 +36,10 @@
 ] @comment
 
 [
- (document_attr_marker)
- (element_attr_marker)
- (raw_block_marker)
+  (document_attr_marker)
+  (element_attr_marker)
+  (raw_block_marker)
+  (quoted_block_marker)
 ] @punctuation.delimiter
 
 (document_attr
