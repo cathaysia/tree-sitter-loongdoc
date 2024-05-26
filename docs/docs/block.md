@@ -27,9 +27,14 @@ block_body: $ =>
     $.pass_block,
     $.breaks,
     $.description_list,
+    $.document_attr
   )
 block_title: $ => seq(/^\./, token.immediate($.line))
 block_attr: $ => seq(/^\[/, $.line, ']')
+
+document_attr: $ => repeat(choice($.attr, $.block_macro))
+attr: $ => seq(':', $.attr_name, ':', ' ', $.escaped_line)
+attr_name: $ => /!?[\w\d]+!?/
 ```
 
 ## Document Title
@@ -41,10 +46,8 @@ document_title: $ =>
   seq(
     seq('#', ' ', $.line),
     optional($.author),
-    repeat(choice($.attr, $.block_macro)),
+    $.document_attr,
   )
-attr: $ => seq(':', $.attr_name, ':', ' ', $.escaped_line)
-attr_name: $ => /!?[\w\d]+!?/
 ```
 
 An escaped_line can in this form:

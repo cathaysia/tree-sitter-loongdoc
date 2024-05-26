@@ -68,6 +68,7 @@ module.exports = grammar({
           $.breaks,
           $.paragraph,
           $.admonition,
+          $.document_attr,
         ),
       ),
     title0: $ =>

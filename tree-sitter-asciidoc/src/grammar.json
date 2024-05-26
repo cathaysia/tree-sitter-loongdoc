@@ -106,6 +106,10 @@
             {
               "type": "SYMBOL",
               "name": "admonition"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "document_attr"
             }
           ]
         }
