@@ -52,14 +52,14 @@ module.exports = grammar({
           $.title3,
           $.title4,
           $.title5,
-          $._section_block,
+          $.section_block,
           $.block_macro,
           $.line_comment,
           $.comment_block,
         ),
       ),
 
-    _section_block: $ =>
+    section_block: $ =>
       seq(
         repeat(choice($.element_attr, $.block_title)),
         choice(

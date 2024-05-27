@@ -39,8 +39,9 @@ image::sunset.jpg[Sunset]
       (attr_name)
       (document_attr_marker)
       (line)))
-  (paragraph
-    (line))
+  (section_block
+    (paragraph
+      (line)))
   (block_macro
     (block_macro_name)
     (target))
@@ -68,17 +69,18 @@ image::sunset.jpg[Sunset]
   (block_macro
     (block_macro_name)
     (target))
-  (element_attr
-    (element_attr_marker)
-    (attr_value)
-    (element_attr_marker))
-  (raw_block
-    (raw_block_marker)
-    (raw_block_body
-      (block_macro
-        (block_macro_name)
-        (target)))
-    (raw_block_marker))
+  (section_block
+    (element_attr
+      (element_attr_marker)
+      (attr_value)
+      (element_attr_marker))
+    (raw_block
+      (raw_block_marker)
+      (raw_block_body
+        (block_macro
+          (block_macro_name)
+          (target)))
+      (raw_block_marker)))
   (block_macro
     (block_macro_name)
     (target)

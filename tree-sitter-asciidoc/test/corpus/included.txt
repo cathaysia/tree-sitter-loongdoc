@@ -20,11 +20,12 @@ include::chapter03.adoc[]
   (title0
     (title_h0_marker)
     (line))
-  (document_attr
-    (document_attr_marker)
-    (attr_name)
-    (document_attr_marker)
-    (line))
+  (section_block
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line)))
   (block_macro
     (block_macro_name)
     (target))
@@ -34,8 +35,9 @@ include::chapter03.adoc[]
   (block_macro
     (block_macro_name)
     (target))
-  (document_attr
-    (document_attr_marker)
-    (attr_name)
-    (document_attr_marker)
-    (line)))
+  (section_block
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line))))

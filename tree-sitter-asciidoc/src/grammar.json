@@ -32,7 +32,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_section_block"
+            "name": "section_block"
           },
           {
             "type": "SYMBOL",
@@ -49,7 +49,7 @@
         ]
       }
     },
-    "_section_block": {
+    "section_block": {
       "type": "SEQ",
       "members": [
         {

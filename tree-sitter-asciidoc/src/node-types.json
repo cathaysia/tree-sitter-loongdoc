@@ -238,23 +238,7 @@
       "required": false,
       "types": [
         {
-          "type": "admonition",
-          "named": true
-        },
-        {
           "type": "block_macro",
-          "named": true
-        },
-        {
-          "type": "block_title",
-          "named": true
-        },
-        {
-          "type": "breaks",
-          "named": true
-        },
-        {
-          "type": "checked_list",
           "named": true
         },
         {
@@ -262,47 +246,11 @@
           "named": true
         },
         {
-          "type": "delimited_block",
-          "named": true
-        },
-        {
-          "type": "document_attr",
-          "named": true
-        },
-        {
-          "type": "element_attr",
-          "named": true
-        },
-        {
           "type": "line_comment",
           "named": true
         },
         {
-          "type": "open_block",
-          "named": true
-        },
-        {
-          "type": "ordered_list",
-          "named": true
-        },
-        {
-          "type": "paragraph",
-          "named": true
-        },
-        {
-          "type": "quoted_block",
-          "named": true
-        },
-        {
-          "type": "quoted_md_block",
-          "named": true
-        },
-        {
-          "type": "raw_block",
-          "named": true
-        },
-        {
-          "type": "table_block",
+          "type": "section_block",
           "named": true
         },
         {
@@ -327,10 +275,6 @@
         },
         {
           "type": "title5",
-          "named": true
-        },
-        {
-          "type": "unordered_list",
           "named": true
         }
       ]
@@ -602,6 +546,77 @@
       "types": [
         {
           "type": "block_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "section_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_title",
+          "named": true
+        },
+        {
+          "type": "breaks",
+          "named": true
+        },
+        {
+          "type": "checked_list",
+          "named": true
+        },
+        {
+          "type": "delimited_block",
+          "named": true
+        },
+        {
+          "type": "document_attr",
+          "named": true
+        },
+        {
+          "type": "element_attr",
+          "named": true
+        },
+        {
+          "type": "open_block",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "paragraph",
+          "named": true
+        },
+        {
+          "type": "quoted_block",
+          "named": true
+        },
+        {
+          "type": "quoted_md_block",
+          "named": true
+        },
+        {
+          "type": "raw_block",
+          "named": true
+        },
+        {
+          "type": "table_block",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
