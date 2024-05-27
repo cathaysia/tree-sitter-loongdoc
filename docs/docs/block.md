@@ -141,15 +141,28 @@ admonition_type: $ => choice(
 ## Table
 
 ```js
-table: $ => seq('|===', repeat($.table_row), '|===')
+table: $ => seq(
+    '|===',
+    repeat(
+        choice(
+            $.table_row,
+            $.nesting_table
+        )
+    ),
+    '|==='
+)
 table_row: $ => repeat1($.table_cell)
 table_cell: $ => seq($.cell_attr, '|', $.cell_content)
+
+nesting_table: $ => seq(
+    "!===",
+    repeat($.ntable_row)
+    "!==="
+)
+ntable_row: $ => repeat1($.ntable_cell)
+ntable_cell: $ => seq($.cell_attr, '!', $.cell_content)
+
 ```
-
-!!! note
-
-    complete inside table
-
 ## Raw block
 
 The contents of the raw block are always interpreted as plaintext.
