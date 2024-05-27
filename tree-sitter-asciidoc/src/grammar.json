@@ -1012,8 +1012,20 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "PATTERN",
-                      "value": "[^\\r\\n]+"
+                      "type": "REPEAT1",
+                      "content": {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "PATTERN",
+                            "value": "[^\\r\\n]"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "anno_marker"
+                          }
+                        ]
+                      }
                     },
                     {
                       "type": "SYMBOL",
@@ -1408,6 +1420,10 @@
     {
       "type": "SYMBOL",
       "name": "block_macro_name"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "anno_marker"
     },
     {
       "type": "SYMBOL",

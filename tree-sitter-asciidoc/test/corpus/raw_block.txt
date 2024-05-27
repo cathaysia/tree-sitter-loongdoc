@@ -12,7 +12,7 @@ line
 [, js]
 ----
 function createElement(node) {
-    if (typeof node == "string") { <.>
+    if (typeof node == "string") { <0>
         return document.createTextNode(node)
     }
 
@@ -34,6 +34,17 @@ function createElement(node) {
 rawblock
 ....
 
+----
+line of code // <1>
+line of code # <2>
+line of code ;; <3>
+line of code <!--4-->
+----
+<1> A callout behind a line comment for C-style languages.
+<2> A callout behind a line comment for Ruby, Python, Perl, etc.
+<3> A callout behind a line comment for Clojure.
+<4> A callout behind a line comment for XML or SGML languages like HTML.
+
 -------------------
 
 (document
@@ -53,7 +64,10 @@ rawblock
       (element_attr_marker))
     (raw_block
       (raw_block_marker)
-      (raw_block_body)
+      (raw_block_body
+        (anno_marker)
+        (anno_marker)
+        (anno_marker))
       (raw_block_marker)
       (anno_list
         (anno_list_item
@@ -65,6 +79,21 @@ rawblock
         (anno_list_item
           (anno_list_marker)
           (line)))))
+  (section_block
+    (paragraph
+      (line)
+      (line)
+      (line)
+      (line)))
+  (section_block
+    (raw_block
+      (raw_block_marker)
+      (raw_block_body
+        (anno_marker)
+        (anno_marker)
+        (anno_marker)
+        (anno_marker))
+      (raw_block_marker)))
   (section_block
     (paragraph
       (line)

@@ -31,6 +31,7 @@ module.exports = grammar({
     $.quoted_paragraph_marker,
     $.open_block_marker,
     $.block_macro_name,
+    $.anno_marker,
     $.anno_list_marker,
     $.line_comment_marker,
     $.block_comment_marker,
@@ -219,7 +220,12 @@ module.exports = grammar({
       seq(
         $.raw_block_marker,
         alias(
-          repeat(choice(seq(/[^\r\n]+/, $._block_end), $.block_macro)),
+          repeat(
+            choice(
+              seq(repeat1(choice(/[^\r\n]/, $.anno_marker)), $._block_end),
+              $.block_macro,
+            ),
+          ),
           $.raw_block_body,
         ),
         $.raw_block_marker,

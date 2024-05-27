@@ -583,6 +583,10 @@
       "required": false,
       "types": [
         {
+          "type": "anno_marker",
+          "named": true
+        },
+        {
           "type": "block_macro",
           "named": true
         }
@@ -987,6 +991,10 @@
   },
   {
     "type": "anno_list_marker",
+    "named": true
+  },
+  {
+    "type": "anno_marker",
     "named": true
   },
   {

@@ -19,6 +19,7 @@
   (raw_block_marker)
   (quoted_block_marker)
   (ntable_block_marker)
+  (anno_marker)
 ] @punctuation.special
 
 (ntable_cell

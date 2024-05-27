@@ -29,6 +29,7 @@ typedef enum TokenType {
     TOKEN_QUOTED_PARAGRAPH_MARKER,
     TOKEN_OPEN_BLOCK_MARKER,
     TOKEN_BLOCK_MACRO_NAME,
+    TOKEN_ANNO_MARKER,
     TOKEN_ANNO_LIST_MARKER,
     TOKEN_LINE_COMMENT_MARKER,
     TOKEN_BLOCK_COMMENT_MARKER,
@@ -40,6 +41,7 @@ typedef enum TokenType {
     TOKEN_ADMONITION_WARNING,
 } TokenType;
 
+static bool parse_number(TSLexer *lexer);
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
 static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
 static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
@@ -369,6 +371,44 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
     }
 
+    if(valid_symbols[TOKEN_ANNO_MARKER]) {
+        parse_sequence(lexer, "#");
+        parse_sequence(lexer, "//");
+        parse_sequence(lexer, ";;");
+        skip_white_space(lexer);
+
+        if(parse_sequence(lexer, "<.>")) {
+            lexer->mark_end(lexer);
+            if(is_newline(lexer->lookahead)) {
+                lexer->result_symbol = TOKEN_ANNO_MARKER;
+                return true;
+            }
+        }
+
+        if(parse_number(lexer)) {
+            if(lexer->lookahead == '>') {
+                lexer->advance(lexer, false);
+                lexer->mark_end(lexer);
+                if(is_newline(lexer->lookahead)) {
+                    lexer->result_symbol = TOKEN_ANNO_MARKER;
+                    return true;
+                }
+            }
+        }
+
+        if(parse_sequence(lexer, "!--")) {
+            if(lexer->lookahead == '.' || parse_number(lexer)) {
+                if(parse_sequence(lexer, "-->")) {
+                    lexer->mark_end(lexer);
+                    if(is_new_line(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_ANNO_MARKER;
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
     return false;
 }
 
@@ -523,4 +563,13 @@ static bool parse_sequence(TSLexer *lexer, char const *sequence) {
     }
 
     return true;
+}
+
+static bool parse_number(TSLexer *lexer) {
+    bool has_number = false;
+    while(is_ascii_digit(lexer->lookahead)) {
+        lexer->advance(lexer, false);
+        has_number = true;
+    }
+    return has_number;
 }
