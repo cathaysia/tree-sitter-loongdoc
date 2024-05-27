@@ -36,12 +36,6 @@ unordered
       (ul_item
         (unordered_list_marker
           (list_marker_star))
-        (line))))
-  (section_block
-    (unordered_list
-      (ul_item
-        (unordered_list_marker
-          (list_marker_hyphen))
         (line))
       (ul_item
         (unordered_list_marker
@@ -50,9 +44,11 @@ unordered
       (ul_item
         (unordered_list_marker
           (list_marker_hyphen))
-        (line))))
-  (section_block
-    (unordered_list
+        (line))
+      (ul_item
+        (unordered_list_marker
+          (list_marker_hyphen))
+        (line))
       (ul_item
         (unordered_list_marker
           (list_marker_star))
@@ -64,9 +60,7 @@ unordered
       (ul_item
         (unordered_list_marker
           (list_marker_star))
-        (line))))
-  (section_block
-    (unordered_list
+        (line))
       (ul_item
         (unordered_list_marker
           (list_marker_star))

@@ -11,20 +11,17 @@ complex_table
 
 - [x] aaa
 - [x] bbb
-
 <e|info 6 2.2+a|info 7
 !===
 !sub 1 .2+!sub 2
 !sub 3 a!
 . number 1
 . number 2
-
 !===
 a|info 8
 
 . number 1
 . number 2
-
 2+^s|info 9 <m|info 10
 |===
 
@@ -54,17 +51,14 @@ a|info 8
         (ul_item
           (unordered_list_marker
             (list_marker_star))
-          (line)))
-      (checked_list
-        (ck_item
-          (unordered_list_marker
-            (list_marker_hyphen))
-          (task_list_marker_checked)
           (line))
-        (ck_item
+        (ul_item
           (unordered_list_marker
             (list_marker_hyphen))
-          (task_list_marker_checked)
+          (line))
+        (ul_item
+          (unordered_list_marker
+            (list_marker_hyphen))
           (line)))
       (table_cell
         (table_cell_attr)

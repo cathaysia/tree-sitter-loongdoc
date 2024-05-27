@@ -37,9 +37,7 @@ ordered
       (ol_item
         (ordered_list_marker
           (list_marker_digit))
-        (line))))
-  (section_block
-    (ordered_list
+        (line))
       (ol_item
         (ordered_list_marker
           (list_marker_dot))

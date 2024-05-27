@@ -603,20 +603,15 @@
       ]
     },
     "checked_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "ck_item"
-          }
-        },
-        {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "SYMBOL",
-          "name": "_block_end"
+          "name": "ck_item"
         }
-      ]
+      }
     },
     "ck_item": {
       "type": "SEQ",
@@ -677,20 +672,15 @@
       ]
     },
     "unordered_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "ul_item"
-          }
-        },
-        {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "SYMBOL",
-          "name": "_block_end"
+          "name": "ul_item"
         }
-      ]
+      }
     },
     "ul_item": {
       "type": "SEQ",
@@ -723,20 +713,15 @@
       ]
     },
     "ordered_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SYMBOL",
-            "name": "ol_item"
-          }
-        },
-        {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
           "type": "SYMBOL",
-          "name": "_block_end"
+          "name": "ol_item"
         }
-      ]
+      }
     },
     "ol_item": {
       "type": "SEQ",

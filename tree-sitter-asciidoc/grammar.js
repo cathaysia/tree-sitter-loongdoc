@@ -144,7 +144,7 @@ module.exports = grammar({
       ),
     block_title: $ => seq($.block_title_marker, $.line),
 
-    checked_list: $ => seq(repeat1($.ck_item), $._block_end),
+    checked_list: $ => prec.left(repeat1($.ck_item)),
     ck_item: $ =>
       seq(
         $.unordered_list_marker,
@@ -157,12 +157,12 @@ module.exports = grammar({
         $.line,
       ),
 
-    unordered_list: $ => seq(repeat1($.ul_item), $._block_end),
+    unordered_list: $ => prec.right(repeat1($.ul_item)),
     ul_item: $ => seq($.unordered_list_marker, $._WHITE_SPACE, $.line),
     unordered_list_marker: $ =>
       choice($.list_marker_star, $.list_marker_hyphen),
 
-    ordered_list: $ => seq(repeat1($.ol_item), $._block_end),
+    ordered_list: $ => prec.right(repeat1($.ol_item)),
     ol_item: $ => seq($.ordered_list_marker, $._WHITE_SPACE, $.line),
     ordered_list_marker: $ =>
       choice(
