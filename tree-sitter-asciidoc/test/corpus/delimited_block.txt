@@ -1,8 +1,23 @@
+================|||
+delimited_block
+================|||
+
 ====
+====
+
 ====
 line
 ====
 
 -------------------
 
-(document)
+(document
+  (section_block
+    (delimited_block
+      (delimited_block_marker)
+      (delimited_block_marker)))
+  (section_block
+    (delimited_block
+      (delimited_block_marker)
+      (line)
+      (delimited_block_marker))))
