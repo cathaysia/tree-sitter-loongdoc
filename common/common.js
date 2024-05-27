@@ -40,7 +40,32 @@ function anySep(rule, sep) {
   return optional(anySep1(rule, sep))
 }
 
+function escaped_ch(ch, exclude_newline, ...args) {
+  let mapped = ch.split('').map(v => {
+    if (v == ']') {
+      return '\\]'
+    }
+    if (v == '[') {
+      return '\\['
+    }
+    return '\\' + v
+  })
+
+  if (ch == ']') {
+    ch = '\\]'
+  }
+  if (ch == '[') {
+    ch = '\\['
+  }
+  if (exclude_newline) {
+    ch += '\r\n'
+  }
+
+  return choice(new RegExp('[^' + ch + ']'), ...mapped, ...args)
+}
+
 exports.commaSep1 = commaSep1
 exports.commaSep = commaSep
 exports.anySep1 = anySep1
 exports.anySep = anySep
+exports.escaped_ch = escaped_ch

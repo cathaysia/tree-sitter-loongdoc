@@ -1,4 +1,4 @@
-const { commaSep } = require('../common/common.js')
+const { commaSep, escaped_ch } = require('../common/common.js')
 
 module.exports = grammar({
   name: 'asciidoc',
@@ -112,7 +112,7 @@ module.exports = grammar({
       seq(
         $.block_macro_name,
         '::',
-        alias(repeat(choice(/[^\[]/, '\\[')), $.target),
+        alias(repeat(escaped_ch('[')), $.target),
         '[',
         commaSep($.block_macro_attr),
         ']',
@@ -120,8 +120,8 @@ module.exports = grammar({
       ),
     block_macro_attr: $ =>
       seq(
-        alias(repeat1(choice(/[^=]/, '\\=')), $.name),
-        optional(seq('=', alias(repeat1(choice(/[^\]]/, '\\]')), $.value))),
+        alias(repeat1(escaped_ch('=')), $.name),
+        optional(seq('=', alias(repeat1(escaped_ch(']')), $.value))),
       ),
 
     document_attr: $ =>
@@ -138,7 +138,7 @@ module.exports = grammar({
     element_attr: $ =>
       seq(
         $.element_attr_marker,
-        alias(token(repeat(choice(/[^\]\r\n]/, '\\]'))), $.attr_value),
+        alias(token(repeat(escaped_ch(']', true))), $.attr_value),
         alias(']', $.element_attr_marker),
         $._NEWLINE,
       ),
@@ -190,7 +190,7 @@ module.exports = grammar({
       seq(
         optional($.table_cell_attr),
         token.immediate('|'),
-        alias(repeat(choice(/[^|\r\n]/, '\\|')), $.table_cell_content),
+        alias(repeat(escaped_ch('|', true)), $.table_cell_content),
       ),
     table_cell_attr: $ =>
       repeat1(
@@ -224,7 +224,7 @@ module.exports = grammar({
     ntable_cell: $ =>
       seq(
         token.immediate('!'),
-        alias(repeat(choice(/[^!\r\n]/, '\\!')), $.table_cell_content),
+        alias(repeat(escaped_ch('!', true)), $.table_cell_content),
       ),
 
     delimited_block: $ =>

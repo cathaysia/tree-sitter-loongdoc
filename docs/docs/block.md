@@ -45,11 +45,7 @@ Document Title has the following structure:
 
 ```js
 document_title: $ =>
-  seq(
-    seq('#', ' ', $.line),
-    optional($.author),
-    $.document_attr,
-  )
+  seq(seq('#', ' ', $.line), optional($.author), $.document_attr)
 ```
 
 An escaped_line can in this form:
@@ -77,7 +73,7 @@ block_macro: $ => seq($.name, '::', $.target, '[', $.inline, ']')
 
 ```js
 paragraph: $ => repeat1($.line, optional($.quoted_line))
-quoted_line: $ => seq("--", $.line)
+quoted_line: $ => seq('--', $.line)
 ```
 
 ## List
@@ -163,6 +159,7 @@ ntable_row: $ => repeat1($.ntable_cell)
 ntable_cell: $ => seq($.cell_attr, '!', $.cell_content)
 
 ```
+
 ## Raw block
 
 The contents of the raw block are always interpreted as plaintext.
@@ -231,28 +228,13 @@ inner_description_list: $ => seq(/\w+/, ':::', choice($.line, $.list))
 ## block quote
 
 ```js
-quotes_block: $ => choice(
-    seq(
-        "____",
-        repeat($.line),
-        "____"
-    ),
-    repeat1(
-        $.quoted_line
-    )
-)
-quoted_line: $ => seq(
-    spaceSep1(">"),
-    $.line
-)
+quotes_block: $ =>
+  choice(seq('____', repeat($.line), '____'), repeat1($.quoted_line))
+quoted_line: $ => seq(spaceSep1('>'), $.line)
 ```
 
 ## open block
 
 ```js
-open_block : $ => seq(
-    "--",
-    $.document,
-    "--"
-)
+open_block: $ => seq('--', $.document, '--')
 ```

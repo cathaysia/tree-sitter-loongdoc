@@ -234,7 +234,7 @@
                 "members": [
                   {
                     "type": "PATTERN",
-                    "value": "[^\\}]"
+                    "value": "[^}]"
                   },
                   {
                     "type": "STRING",
@@ -583,6 +583,10 @@
             "value": "[^\\]]"
           },
           {
+            "type": "STRING",
+            "value": "\\]"
+          },
+          {
             "type": "SYMBOL",
             "name": "replacement"
           }
@@ -667,8 +671,20 @@
               "value": "+"
             },
             {
-              "type": "PATTERN",
-              "value": "\\w+"
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^+\\r\\n]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\+"
+                  }
+                ]
+              }
             },
             {
               "type": "STRING",
@@ -684,8 +700,24 @@
               "value": "+++"
             },
             {
-              "type": "PATTERN",
-              "value": "\\w+"
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^+\\r\\n]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\+"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\+++"
+                  }
+                ]
+              }
             },
             {
               "type": "STRING",
@@ -701,8 +733,24 @@
               "value": "$$"
             },
             {
-              "type": "PATTERN",
-              "value": "\\w+"
+              "type": "REPEAT1",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[^$\\r\\n]"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\$"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "\\$$"
+                  }
+                ]
+              }
             },
             {
               "type": "STRING",

@@ -1,4 +1,4 @@
-const { anySep1, commaSep } = require('../common/common.js')
+const { anySep1, commaSep, escaped_ch } = require('../common/common.js')
 
 const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
@@ -59,15 +59,15 @@ module.exports = grammar({
           'endif',
         ),
         token.immediate(':'),
-        alias(repeat(choice(/[^\[]/, '\\[', $.replacement)), $.target),
+        alias(repeat(escaped_ch('[', false, $.replacement)), $.target),
         '[',
-        alias(repeat(choice(/[^\]]/, '\\]', $.inline_macro)), $.attr),
+        alias(repeat(escaped_ch(']', false, $.inline_macro)), $.attr),
         ']',
       ),
     replacement: $ =>
       seq(
         '{',
-        alias(token(repeat1(choice(/[^\}]/, '\\}'))), $.intrinsic_attributes),
+        alias(token(repeat1(escaped_ch('}'))), $.intrinsic_attributes),
         '}',
       ),
     _word: $ => choice($._word_no_digit, $._digits),
@@ -105,7 +105,7 @@ module.exports = grammar({
           ),
         ),
       ),
-    link_label: $ => repeat1(choice(/[^\]]/, $.replacement)),
+    link_label: $ => repeat1(escaped_ch(']', false, $.replacement)),
     link_url: $ =>
       seq(
         choice('http', 'https', 'file', 'ftp', 'irc'),
@@ -115,15 +115,15 @@ module.exports = grammar({
     _link_component: $ => /[^\.\s\[>]+/,
     passthrough: $ =>
       choice(
-        seq('+', /\w+/, '+'),
-        seq('+++', /\w+/, '+++'),
-        seq('$$', /\w+/, '$$'),
+        seq('+', repeat1(escaped_ch('+', true)), '+'),
+        seq('+++', repeat1(escaped_ch('+', true, '\\+++')), '+++'),
+        seq('$$', repeat1(escaped_ch('$', true, '\\$$')), '$$'),
       ),
     xref: $ =>
       seq(
         '<<',
-        alias(repeat1(choice(/[^,>]/, '\\,', '\\>')), $.id),
-        optional(seq(',', alias(repeat1(choice(/[^>]/, '\\>')), $.reftext))),
+        alias(repeat1(escaped_ch(',>')), $.id),
+        optional(seq(',', alias(repeat1(escaped_ch('>')), $.reftext))),
         '>>',
       ),
 
@@ -140,13 +140,9 @@ function create_text_formatting(ch, ...args) {
   return choice(
     seq(
       token(prec(1, ' ' + ch)),
-      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch, ...args)),
+      repeat(escaped_ch(ch, true, ...args)),
       ch + ' ',
     ),
-    seq(
-      ch + ch,
-      repeat(choice(new RegExp('[^' + ch + '\r\n]'), '\\' + ch, ...args)),
-      ch + ch,
-    ),
+    seq(ch + ch, repeat(escaped_ch(ch, true, ...args)), ch + ch),
   )
 }
