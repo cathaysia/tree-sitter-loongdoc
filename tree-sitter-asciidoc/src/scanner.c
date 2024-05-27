@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "include/base_types.h"
 #include "tree_sitter/parser.h"
 
@@ -296,6 +295,16 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                             lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
                             if(is_white_space(lexer->lookahead)) {
                                 return true;
+                            }
+                        }
+                        if(parse_number(lexer)) {
+                            if(lexer->lookahead == '>') {
+                                lexer->advance(lexer, false);
+                                lexer->mark_end(lexer);
+                                if(is_white_space(lexer->lookahead)) {
+                                    lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
+                                    return true;
+                                }
                             }
                         }
                     }

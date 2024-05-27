@@ -93,10 +93,17 @@ line of code <!--4-->
         (anno_marker)
         (anno_marker)
         (anno_marker))
-      (raw_block_marker)))
-  (section_block
-    (paragraph
-      (line)
-      (line)
-      (line)
-      (line))))
+      (raw_block_marker)
+      (anno_list
+        (anno_list_item
+          (anno_list_marker)
+          (line))
+        (anno_list_item
+          (anno_list_marker)
+          (line))
+        (anno_list_item
+          (anno_list_marker)
+          (line))
+        (anno_list_item
+          (anno_list_marker)
+          (line))))))
