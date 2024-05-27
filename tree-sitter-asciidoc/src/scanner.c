@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "include/base_types.h"
 #include "tree_sitter/parser.h"
 
@@ -25,6 +26,7 @@ typedef enum TokenType {
     TOKEN_QUOTED_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MD_MARKER,
     TOKEN_QUOTED_PARAGRAPH_MARKER,
+    TOKEN_OPEN_BLOCK_MARKER,
     TOKEN_BLOCK_MACRO_NAME,
     TOKEN_ANNO_LIST_MARKER,
     TOKEN_LINE_COMMENT_MARKER,
@@ -174,6 +176,12 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 consume('-', lexer, false, &counter, USIZE_MAX);
                 lexer->mark_end(lexer);
                 bool is_unordered_marker = is_white_space(lexer->lookahead);
+                if(valid_symbols[TOKEN_OPEN_BLOCK_MARKER]) {
+                    if(lexer->get_column(lexer) == 2 && is_newline(lexer->lookahead)) {
+                        lexer->result_symbol = TOKEN_OPEN_BLOCK_MARKER;
+                        return true;
+                    }
+                }
 
                 if(valid_symbols[TOKEN_QUOTED_PARAGRAPH_MARKER]) {
                     if(lexer->get_column(lexer) == 2 && is_white_space(lexer->lookahead)) {

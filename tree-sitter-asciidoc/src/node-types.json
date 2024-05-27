@@ -278,6 +278,10 @@
           "named": true
         },
         {
+          "type": "open_block",
+          "named": true
+        },
+        {
           "type": "ordered_list",
           "named": true
         },
@@ -423,6 +427,25 @@
         },
         {
           "type": "ordered_list_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "open_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "open_block_marker",
           "named": true
         }
       ]
@@ -967,6 +990,10 @@
   },
   {
     "type": "list_marker_star",
+    "named": true
+  },
+  {
+    "type": "open_block_marker",
     "named": true
   },
   {

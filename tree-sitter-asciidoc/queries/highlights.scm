@@ -15,6 +15,9 @@
   (hard_wrap)
   (quoted_block_md_marker)
   (quoted_paragraph_marker)
+  (open_block_marker)
+  (raw_block_marker)
+  (quoted_block_marker)
 ] @punctuation.special
 
 (task_list_marker_unchecked) @markup.list.unchecked
@@ -38,8 +41,6 @@
 [
   (document_attr_marker)
   (element_attr_marker)
-  (raw_block_marker)
-  (quoted_block_marker)
 ] @punctuation.delimiter
 
 (document_attr

@@ -1,0 +1,59 @@
+================
+open_block
+================
+
+--
+--
+
+.title
+--
+line
+--
+
+[, js]
+--
+function createElement(node) {
+    if (typeof node == "string") { <.>
+        return document.createTextNode(node)
+    }
+
+    const $el = document.createElement(node.type) <.>
+
+    node.children <.>
+        .map(createElement)
+        .forEach($el.appendChild.bind($el));
+
+    return $el;
+}
+--
+
+-------------------
+
+(document
+  (open_block
+    (open_block_marker)
+    (open_block_marker))
+  (block_title
+    (block_title_marker)
+    (line))
+  (open_block
+    (open_block_marker)
+    (line)
+    (open_block_marker))
+  (element_attr
+    (element_attr_marker)
+    (attr_value)
+    (element_attr_marker))
+  (open_block
+    (open_block_marker)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (line)
+    (open_block_marker)))

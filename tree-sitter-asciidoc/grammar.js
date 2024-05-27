@@ -28,6 +28,7 @@ module.exports = grammar({
     $.quoted_block_marker,
     $.quoted_block_md_marker,
     $.quoted_paragraph_marker,
+    $.open_block_marker,
     $.block_macro_name,
     $.anno_list_marker,
     $.line_comment_marker,
@@ -68,6 +69,7 @@ module.exports = grammar({
           $.table_block,
           $.delimited_block,
           $.raw_block,
+          $.open_block,
           $.breaks,
           $.paragraph,
           $.admonition,
@@ -193,6 +195,8 @@ module.exports = grammar({
 
     delimited_block: $ =>
       seq($.delimited_block_marker, repeat($.line), $.delimited_block_marker),
+    open_block: $ =>
+      seq($.open_block_marker, repeat($.line), $.open_block_marker),
     raw_block: $ =>
       seq(
         $.raw_block_marker,

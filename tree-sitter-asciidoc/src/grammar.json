@@ -97,6 +97,10 @@
             },
             {
               "type": "SYMBOL",
+              "name": "open_block"
+            },
+            {
+              "type": "SYMBOL",
               "name": "breaks"
             },
             {
@@ -901,6 +905,26 @@
         }
       ]
     },
+    "open_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "open_block_marker"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "line"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "open_block_marker"
+        }
+      ]
+    },
     "raw_block": {
       "type": "SEQ",
       "members": [
@@ -1303,6 +1327,10 @@
     {
       "type": "SYMBOL",
       "name": "quoted_paragraph_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "open_block_marker"
     },
     {
       "type": "SYMBOL",
