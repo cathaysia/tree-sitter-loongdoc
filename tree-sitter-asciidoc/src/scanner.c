@@ -137,7 +137,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         return true;
                     }
                 }
-                return false;
+                break;
             }
             case '*': {
                 usize counter = 0;
@@ -206,9 +206,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     }
                 }
 
-                if(valid_symbols[TOKEN_LIST_MARKER_HYPHEN]) {
+                if(valid_symbols[TOKEN_LIST_MARKER_HYPHEN] && is_unordered_marker) {
                     lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
-                    return is_unordered_marker;
+                    return true;
                 }
                 break;
             }
@@ -283,7 +283,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         if(parse_sequence(lexer, ".>")) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
-                            return is_white_space(lexer->lookahead);
+                            if(is_white_space(lexer->lookahead)) {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -325,7 +327,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     if(parse_sequence(lexer, "____")) {
                         lexer->mark_end(lexer);
                         lexer->result_symbol = TOKEN_QUOTED_BLOCK_MARKER;
-                        return is_newline(lexer->lookahead) || is_eof(lexer);
+                        if(is_newline(lexer->lookahead) || is_eof(lexer)) {
+                            return true;
+                        }
                     }
                 }
                 break;
@@ -335,8 +339,11 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     lexer->advance(lexer, false);
                     lexer->mark_end(lexer);
                     lexer->result_symbol = TOKEN_QUOTED_BLOCK_MD_MARKER;
-                    return is_white_space(lexer->lookahead) || is_eof(lexer) || is_newline(lexer->lookahead);
+                    if(is_white_space(lexer->lookahead) || is_eof(lexer) || is_newline(lexer->lookahead)) {
+                        return true;
+                    }
                 }
+                break;
             }
         }
     }
