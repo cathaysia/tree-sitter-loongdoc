@@ -175,7 +175,15 @@ module.exports = grammar({
     table_block: $ =>
       seq(
         $.table_block_marker,
-        repeat(choice($.table_cell, $.ntable_block)),
+        repeat(
+          choice(
+            $.table_cell,
+            $.ntable_block,
+            $.unordered_list,
+            $.ordered_list,
+            $.checked_list,
+          ),
+        ),
         $.table_block_marker,
       ),
     table_cell: $ =>
@@ -203,7 +211,14 @@ module.exports = grammar({
       seq(
         repeat($.element_attr),
         $.ntable_block_marker,
-        repeat($.ntable_cell),
+        repeat(
+          choice(
+            $.ntable_cell,
+            $.unordered_list,
+            $.ordered_list,
+            $.checked_list,
+          ),
+        ),
         $.ntable_block_marker,
       ),
     ntable_cell: $ =>

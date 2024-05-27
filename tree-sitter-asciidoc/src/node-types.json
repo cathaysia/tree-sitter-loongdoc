@@ -370,6 +370,10 @@
       "required": true,
       "types": [
         {
+          "type": "checked_list",
+          "named": true
+        },
+        {
           "type": "element_attr",
           "named": true
         },
@@ -379,6 +383,14 @@
         },
         {
           "type": "ntable_cell",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
@@ -689,7 +701,15 @@
       "required": true,
       "types": [
         {
+          "type": "checked_list",
+          "named": true
+        },
+        {
           "type": "ntable_block",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
           "named": true
         },
         {
@@ -698,6 +718,10 @@
         },
         {
           "type": "table_cell",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
