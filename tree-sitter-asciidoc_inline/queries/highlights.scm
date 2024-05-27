@@ -43,6 +43,7 @@
 (anchor
   (reftext) @markup.link)
 
+(inline_macro "xref" @keyword)
 (inline_macro "kbd" @keyword)
 (inline_macro "btn" @keyword)
 (inline_macro "image" @keyword)
