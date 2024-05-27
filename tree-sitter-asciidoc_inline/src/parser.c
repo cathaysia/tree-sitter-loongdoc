@@ -15,10 +15,10 @@
 #define LANGUAGE_VERSION 14
 #define STATE_COUNT 157
 #define LARGE_STATE_COUNT 35
-#define SYMBOL_COUNT 127
+#define SYMBOL_COUNT 128
 #define ALIAS_COUNT 3
-#define TOKEN_COUNT 101
-#define EXTERNAL_TOKEN_COUNT 0
+#define TOKEN_COUNT 102
+#define EXTERNAL_TOKEN_COUNT 1
 #define FIELD_COUNT 0
 #define MAX_ALIAS_SEQUENCE_LENGTH 6
 #define PRODUCTION_ID_COUNT 6
@@ -124,35 +124,36 @@ enum ts_symbol_identifiers {
     anon_sym_BSLASH_POUND = 98,
     anon_sym_POUND3 = 99,
     anon_sym_POUND_POUND = 100,
-    sym_inline = 101,
-    sym_inline_macro = 102,
-    sym_replacement = 103,
-    sym__word = 104,
-    sym__punctuation = 105,
-    sym_anchor = 106,
-    sym_auto_link = 107,
-    sym_link_label = 108,
-    sym_link_url = 109,
-    sym_passthrough = 110,
-    sym_xref = 111,
-    sym_emphasis = 112,
-    sym_ltalic = 113,
-    sym_monospace = 114,
-    sym_highlight = 115,
-    aux_sym_inline_repeat1 = 116,
-    aux_sym_inline_macro_repeat1 = 117,
-    aux_sym_inline_macro_repeat2 = 118,
-    aux_sym_link_label_repeat1 = 119,
-    aux_sym_link_url_repeat1 = 120,
-    aux_sym_xref_repeat1 = 121,
-    aux_sym_xref_repeat2 = 122,
-    aux_sym_emphasis_repeat1 = 123,
-    aux_sym_ltalic_repeat1 = 124,
-    aux_sym_monospace_repeat1 = 125,
-    aux_sym_highlight_repeat1 = 126,
-    alias_sym_attr = 127,
-    alias_sym_id = 128,
-    alias_sym_target = 129,
+    sym__eof = 101,
+    sym_inline = 102,
+    sym_inline_macro = 103,
+    sym_replacement = 104,
+    sym__word = 105,
+    sym__punctuation = 106,
+    sym_anchor = 107,
+    sym_auto_link = 108,
+    sym_link_label = 109,
+    sym_link_url = 110,
+    sym_passthrough = 111,
+    sym_xref = 112,
+    sym_emphasis = 113,
+    sym_ltalic = 114,
+    sym_monospace = 115,
+    sym_highlight = 116,
+    aux_sym_inline_repeat1 = 117,
+    aux_sym_inline_macro_repeat1 = 118,
+    aux_sym_inline_macro_repeat2 = 119,
+    aux_sym_link_label_repeat1 = 120,
+    aux_sym_link_url_repeat1 = 121,
+    aux_sym_xref_repeat1 = 122,
+    aux_sym_xref_repeat2 = 123,
+    aux_sym_emphasis_repeat1 = 124,
+    aux_sym_ltalic_repeat1 = 125,
+    aux_sym_monospace_repeat1 = 126,
+    aux_sym_highlight_repeat1 = 127,
+    alias_sym_attr = 128,
+    alias_sym_id = 129,
+    alias_sym_target = 130,
 };
 
 static const char *const ts_symbol_names[] = {
@@ -257,6 +258,7 @@ static const char *const ts_symbol_names[] = {
     [anon_sym_BSLASH_POUND] = "\\#",
     [anon_sym_POUND3] = "# ",
     [anon_sym_POUND_POUND] = "##",
+    [sym__eof] = "_eof",
     [sym_inline] = "inline",
     [sym_inline_macro] = "inline_macro",
     [sym_replacement] = "replacement",
@@ -390,6 +392,7 @@ static const TSSymbol ts_symbol_map[] = {
     [anon_sym_BSLASH_POUND] = anon_sym_BSLASH_POUND,
     [anon_sym_POUND3] = anon_sym_POUND3,
     [anon_sym_POUND_POUND] = anon_sym_POUND_POUND,
+    [sym__eof] = sym__eof,
     [sym_inline] = sym_inline,
     [sym_inline_macro] = sym_inline_macro,
     [sym_replacement] = sym_replacement,
@@ -825,6 +828,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     [anon_sym_POUND_POUND] = {
         .visible = true,
         .named = false,
+    },
+    [sym__eof] = {
+        .visible = false,
+        .named = true,
     },
     [sym_inline] = {
         .visible = true,
@@ -15717,7 +15724,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
 }
 
 static const TSLexMode ts_lex_modes[STATE_COUNT] = {
-    [0] = { .lex_state = 0 },
+    [0] = { .lex_state = 0, .external_lex_state = 1 },
     [1] = { .lex_state = 137 },
     [2] = { .lex_state = 137 },
     [3] = { .lex_state = 137 },
@@ -15953,6 +15960,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BQUOTE_BQUOTE] = ACTIONS(1),
         [anon_sym_POUND2] = ACTIONS(1),
         [anon_sym_POUND_POUND] = ACTIONS(1),
+        [sym__eof] = ACTIONS(1),
     },
     [1] = {
         [sym_inline] = STATE(133),
@@ -21111,9 +21119,29 @@ static const TSParseActionEntry ts_parse_actions[] = {
     SHIFT(87),
 };
 
+enum ts_external_scanner_symbol_identifiers {
+    ts_external_token__eof = 0,
+};
+
+static const TSSymbol ts_external_scanner_symbol_map[EXTERNAL_TOKEN_COUNT] = {
+    [ts_external_token__eof] = sym__eof,
+};
+
+static const bool ts_external_scanner_states[2][EXTERNAL_TOKEN_COUNT] = {
+    [1] = {
+        [ts_external_token__eof] = true,
+    },
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+void *tree_sitter_asciidoc_inline_external_scanner_create(void);
+void tree_sitter_asciidoc_inline_external_scanner_destroy(void *);
+bool tree_sitter_asciidoc_inline_external_scanner_scan(void *, TSLexer *, const bool *);
+unsigned tree_sitter_asciidoc_inline_external_scanner_serialize(void *, char *);
+void tree_sitter_asciidoc_inline_external_scanner_deserialize(void *, const char *, unsigned);
+
 #ifdef TREE_SITTER_HIDE_SYMBOLS
 #define TS_PUBLIC
 #elif defined(_WIN32)
@@ -21145,6 +21173,15 @@ TS_PUBLIC const TSLanguage *tree_sitter_asciidoc_inline(void) {
         .alias_sequences = &ts_alias_sequences[0][0],
         .lex_modes = ts_lex_modes,
         .lex_fn = ts_lex,
+        .external_scanner = {
+            &ts_external_scanner_states[0][0],
+            ts_external_scanner_symbol_map,
+            tree_sitter_asciidoc_inline_external_scanner_create,
+            tree_sitter_asciidoc_inline_external_scanner_destroy,
+            tree_sitter_asciidoc_inline_external_scanner_scan,
+            tree_sitter_asciidoc_inline_external_scanner_serialize,
+            tree_sitter_asciidoc_inline_external_scanner_deserialize,
+        },
         .primary_state_ids = ts_primary_state_ids,
     };
     return &language;

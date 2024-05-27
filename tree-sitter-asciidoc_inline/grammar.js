@@ -9,6 +9,7 @@ const PUNCTUATION_CHARACTERS_ARRAY = [
 
 module.exports = grammar({
   name: 'asciidoc_inline',
+  externals: $ => [$._eof],
   precedences: $ => [
     [$.auto_link, $._punctuation],
     [$.passthrough, $._punctuation],
