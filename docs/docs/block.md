@@ -29,6 +29,7 @@ block_body: $ =>
     $.description_list,
     $.document_attr
     $.quotes_block
+    $.open_block
   )
 block_title: $ => seq(/^\./, token.immediate($.line))
 block_attr: $ => seq(/^\[/, $.line, ']')
@@ -230,5 +231,15 @@ quotes_block: $ => choice(
 quoted_line: $ => seq(
     spaceSep1(">"),
     $.line
+)
+```
+
+## open block
+
+```js
+open_block : $ => seq(
+    "--",
+    $.document,
+    "--"
 )
 ```
