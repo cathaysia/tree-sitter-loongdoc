@@ -1158,8 +1158,16 @@
           "name": "line_comment_marker"
         },
         {
-          "type": "PATTERN",
-          "value": "[^\\r\\n]*"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[^\\r\\n]+"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1187,7 +1195,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "_block_end"
+                  "name": "_NEWLINE"
                 }
               ]
             }
@@ -1198,10 +1206,6 @@
         {
           "type": "SYMBOL",
           "name": "block_comment_marker"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_block_end"
         }
       ]
     },

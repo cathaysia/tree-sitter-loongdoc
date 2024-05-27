@@ -336,7 +336,8 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 break;
             }
             case '/': {
-                if(valid_symbols[TOKEN_LINE_COMMENT_MARKER]) {
+                if(valid_symbols[TOKEN_LINE_COMMENT_MARKER] ||
+                   valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
                     if(parse_sequence(lexer, "//")) {
                         lexer->mark_end(lexer);
                         if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {

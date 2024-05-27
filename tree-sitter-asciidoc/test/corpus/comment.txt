@@ -17,7 +17,7 @@ block comment
     (line_comment_marker))
   (line_comment
     (line_comment_marker))
-  (section_block
-    (paragraph
-      (line)
-      (line))))
+  (comment_block
+    (block_comment_marker)
+    (comment_block_body)
+    (block_comment_marker)))

@@ -241,13 +241,13 @@ module.exports = grammar({
     quoted_line: $ =>
       seq($.quoted_paragraph_marker, token.immediate(' '), $.line),
 
-    line_comment: $ => seq($.line_comment_marker, /[^\r\n]*/, $._block_end),
+    line_comment: $ =>
+      seq($.line_comment_marker, optional(/[^\r\n]+/), $._block_end),
     comment_block: $ =>
       seq(
         $.block_comment_marker,
-        alias(repeat(seq(/[^\r\n]+/, $._block_end)), $.comment_block_body),
+        alias(repeat(seq(/[^\r\n]+/, $._NEWLINE)), $.comment_block_body),
         $.block_comment_marker,
-        $._block_end,
       ),
 
     quoted_block: $ =>
