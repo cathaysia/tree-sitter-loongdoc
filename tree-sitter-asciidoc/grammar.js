@@ -213,7 +213,19 @@ module.exports = grammar({
       ),
 
     delimited_block: $ =>
-      seq($.delimited_block_marker, repeat($.line), $.delimited_block_marker),
+      seq(
+        $.delimited_block_marker,
+        repeat(
+          choice(
+            $.line,
+            alias(
+              seq(repeat(choice($.element_attr, $.block_title)), $.raw_block),
+              $.section_block,
+            ),
+          ),
+        ),
+        $.delimited_block_marker,
+      ),
     open_block: $ =>
       seq($.open_block_marker, repeat($.line), $.open_block_marker),
     raw_block: $ =>

@@ -9,7 +9,20 @@ delimited_block
 line
 ====
 
--------------------
+====
+Here's a sample AsciiDoc document:
+
+----
+= Document Title
+Author Name
+
+Content goes here.
+----
+
+The document header is useful, but not required.
+====
+
+-------------------|||
 
 (document
   (section_block
@@ -19,5 +32,15 @@ line
   (section_block
     (delimited_block
       (delimited_block_marker)
+      (line)
+      (delimited_block_marker)))
+  (section_block
+    (delimited_block
+      (delimited_block_marker)
+      (line)
+      (section_block
+        (raw_block_marker)
+        (raw_block_body)
+        (raw_block_marker))
       (line)
       (delimited_block_marker))))
