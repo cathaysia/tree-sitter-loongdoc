@@ -786,8 +786,17 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "table_cell"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "table_cell"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "ntable_block"
+              }
+            ]
           }
         },
         {
@@ -884,6 +893,66 @@
           }
         ]
       }
+    },
+    "ntable_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "element_attr"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ntable_block_marker"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "ntable_cell"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ntable_block_marker"
+        }
+      ]
+    },
+    "ntable_cell": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "!"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^!\\r\\n]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\!"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "table_cell_content"
+        }
+      ]
     },
     "delimited_block": {
       "type": "SEQ",
@@ -1307,6 +1376,10 @@
     {
       "type": "SYMBOL",
       "name": "table_block_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ntable_block_marker"
     },
     {
       "type": "SYMBOL",

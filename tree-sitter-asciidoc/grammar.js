@@ -23,6 +23,7 @@ module.exports = grammar({
     $.block_title_marker,
     $.breaks_marker,
     $.table_block_marker,
+    $.ntable_block_marker,
     $.delimited_block_marker,
     $.raw_block_marker,
     $.quoted_block_marker,
@@ -171,7 +172,11 @@ module.exports = grammar({
       ),
 
     table_block: $ =>
-      seq($.table_block_marker, repeat($.table_cell), $.table_block_marker),
+      seq(
+        $.table_block_marker,
+        repeat(choice($.table_cell, $.ntable_block)),
+        $.table_block_marker,
+      ),
     table_cell: $ =>
       seq(
         optional($.table_cell_attr),
@@ -191,6 +196,19 @@ module.exports = grammar({
           /\.\d+\+/,
           /\d+\.\d+\+/,
         ),
+      ),
+
+    ntable_block: $ =>
+      seq(
+        repeat($.element_attr),
+        $.ntable_block_marker,
+        repeat($.ntable_cell),
+        $.ntable_block_marker,
+      ),
+    ntable_cell: $ =>
+      seq(
+        token.immediate('!'),
+        alias(repeat(choice(/[^!\r\n]/, '\\!')), $.table_cell_content),
       ),
 
     delimited_block: $ =>

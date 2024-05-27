@@ -21,6 +21,7 @@ typedef enum TokenType {
     TOKEN_BLOCK_TITLE_MARKER,
     TOKEN_BREAKS_MARKS,
     TOKEN_TABLE_BLOCK_MARKER,
+    TOKEN_NTABLE_BLOCK_MARKER,
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_RAW_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MARKER,
@@ -299,13 +300,25 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
                 break;
             }
-            case '|': {
+            case '|': {  // Table
                 if(valid_symbols[TOKEN_TABLE_BLOCK_MARKER]) {
                     lexer->advance(lexer, false);
                     consume('=', lexer, false, NULL, USIZE_MAX);
                     if(is_newline(lexer->lookahead)) {
                         lexer->mark_end(lexer);
                         lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                        return true;
+                    }
+                }
+                break;
+            }
+            case '!': {  // NTable
+                if(valid_symbols[TOKEN_NTABLE_BLOCK_MARKER]) {
+                    lexer->advance(lexer, false);
+                    consume('=', lexer, false, NULL, USIZE_MAX);
+                    if(is_newline(lexer->lookahead)) {
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_NTABLE_BLOCK_MARKER;
                         return true;
                     }
                 }

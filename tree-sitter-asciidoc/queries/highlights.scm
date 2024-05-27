@@ -18,7 +18,11 @@
   (open_block_marker)
   (raw_block_marker)
   (quoted_block_marker)
+  (ntable_block_marker)
 ] @punctuation.special
+
+(ntable_cell
+  "!" @punctuation.special)
 
 (task_list_marker_unchecked) @markup.list.unchecked
 
