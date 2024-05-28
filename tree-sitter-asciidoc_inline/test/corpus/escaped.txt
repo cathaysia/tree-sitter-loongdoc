@@ -1,0 +1,26 @@
+====================
+escaped
+====================
+
+this is a \*emphasis\* or in this form**em\*phasis**.
+this is a \`ltalic\` or in this form``lta\`lic``is ok.
+this is a \#ltalic\# or in this form\##lta\#lic\##is ok.
+
+this is a \_`monospace` inside ltalic\_ code.
+
+-----
+
+(inline
+  (escaped_ch)
+  (escaped_ch)
+  (emphasis)
+  (escaped_ch)
+  (escaped_ch)
+  (monospace)
+  (escaped_ch)
+  (escaped_ch)
+  (escaped_ch)
+  (escaped_ch)
+  (escaped_ch)
+  (escaped_ch)
+  (escaped_ch))

@@ -73,7 +73,7 @@ module.exports = grammar({
         alias(token(repeat1(escaped_ch('}'))), $.intrinsic_attributes),
         '}',
       ),
-    _word: $ => choice($._word_no_digit, $._digits),
+    _word: $ => choice($._word_no_digit, $._digits, $.escaped_ch),
     _word_no_digit: $ =>
       new RegExp(
         '[^' +
@@ -83,6 +83,45 @@ module.exports = grammar({
           ' \\t\\n\\r0-9]+)*',
       ),
     _digits: $ => /[0-9][0-9_]*/,
+    escaped_ch: $ =>
+      choice(
+        echar('+++'),
+        echar('+'),
+        echar('`'),
+        echar('``'),
+        echar('*'),
+        echar('**'),
+        echar('$'),
+        echar('$$'),
+        echar('#'),
+        echar('##'),
+        echar('_'),
+        echar('__'),
+        echar('<<'),
+        echar('[['),
+        echar('['),
+
+        echar('kbd'),
+        echar('btn'),
+        echar('image'),
+        echar('audio'),
+        echar('video'),
+        echar('icon'),
+        echar('pass'),
+        echar('link'),
+        echar('mailto'),
+        echar('menu'),
+        echar('latexmath'),
+        echar('asciimath'),
+        echar('footnote'),
+        echar('footnoteref'),
+        echar('anchor'),
+        echar('xref'),
+        echar('ifdef'),
+        echar('ifndef'),
+        echar('ifeval'),
+        echar('endif'),
+      ),
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     anchor: $ =>
       seq(
@@ -148,4 +187,8 @@ function create_text_formatting(ch, ...args) {
     ),
     seq(ch + ch, repeat(escaped_ch(ch, true, ...args)), ch + ch),
   )
+}
+
+function echar(ch) {
+  return token(prec(1, '\\' + ch))
 }

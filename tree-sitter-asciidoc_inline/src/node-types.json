@@ -80,6 +80,11 @@
     }
   },
   {
+    "type": "escaped_ch",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "highlight",
     "named": true,
     "fields": {}
@@ -111,6 +116,10 @@
         },
         {
           "type": "emphasis",
+          "named": true
+        },
+        {
+          "type": "escaped_ch",
           "named": true
         },
         {
@@ -427,6 +436,10 @@
     "named": false
   },
   {
+    "type": "\\##",
+    "named": false
+  },
+  {
     "type": "\\$",
     "named": false
   },
@@ -436,6 +449,10 @@
   },
   {
     "type": "\\*",
+    "named": false
+  },
+  {
+    "type": "\\**",
     "named": false
   },
   {
@@ -451,11 +468,19 @@
     "named": false
   },
   {
+    "type": "\\<<",
+    "named": false
+  },
+  {
     "type": "\\>",
     "named": false
   },
   {
     "type": "\\[",
+    "named": false
+  },
+  {
+    "type": "\\[[",
     "named": false
   },
   {
@@ -467,7 +492,95 @@
     "named": false
   },
   {
+    "type": "\\__",
+    "named": false
+  },
+  {
     "type": "\\`",
+    "named": false
+  },
+  {
+    "type": "\\``",
+    "named": false
+  },
+  {
+    "type": "\\anchor",
+    "named": false
+  },
+  {
+    "type": "\\asciimath",
+    "named": false
+  },
+  {
+    "type": "\\audio",
+    "named": false
+  },
+  {
+    "type": "\\btn",
+    "named": false
+  },
+  {
+    "type": "\\endif",
+    "named": false
+  },
+  {
+    "type": "\\footnote",
+    "named": false
+  },
+  {
+    "type": "\\footnoteref",
+    "named": false
+  },
+  {
+    "type": "\\icon",
+    "named": false
+  },
+  {
+    "type": "\\ifdef",
+    "named": false
+  },
+  {
+    "type": "\\ifeval",
+    "named": false
+  },
+  {
+    "type": "\\ifndef",
+    "named": false
+  },
+  {
+    "type": "\\image",
+    "named": false
+  },
+  {
+    "type": "\\kbd",
+    "named": false
+  },
+  {
+    "type": "\\latexmath",
+    "named": false
+  },
+  {
+    "type": "\\link",
+    "named": false
+  },
+  {
+    "type": "\\mailto",
+    "named": false
+  },
+  {
+    "type": "\\menu",
+    "named": false
+  },
+  {
+    "type": "\\pass",
+    "named": false
+  },
+  {
+    "type": "\\video",
+    "named": false
+  },
+  {
+    "type": "\\xref",
     "named": false
   },
   {

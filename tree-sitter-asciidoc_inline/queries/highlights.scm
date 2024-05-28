@@ -1,4 +1,7 @@
-(monospace) @markup.raw
+[
+  (monospace)
+  (passthrough)
+] @markup.raw
 
 (emphasis) @markup.strong
 (ltalic) @markup.italic
@@ -14,7 +17,7 @@
   "["* @punctuation.bracket
   "]"* @punctuation.bracket)
 
-(intrinsic_attributes) @attribute
+(intrinsic_attributes) @string.special
 
 (replacement
   "{" @punctuation.bracket
@@ -65,3 +68,5 @@
 
 (inline_macro
   (attr) @attribute)
+
+(escaped_ch) @string.escape
