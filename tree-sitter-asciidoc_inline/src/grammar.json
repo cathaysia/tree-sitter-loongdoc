@@ -203,6 +203,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "inline_macro"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "replacement"
                 }
               ]
             }

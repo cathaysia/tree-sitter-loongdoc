@@ -29,6 +29,10 @@
         {
           "type": "inline_macro",
           "named": true
+        },
+        {
+          "type": "replacement",
+          "named": true
         }
       ]
     }

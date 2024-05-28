@@ -10,4 +10,6 @@ this is a stem:[x != 0] or asciimath:[x != 0] or latexmath:[\sqrt{4} = 2]
   (inline_macro
     (attr))
   (inline_macro
-    (attr)))
+    (attr
+      (replacement
+        (intrinsic_attributes)))))
