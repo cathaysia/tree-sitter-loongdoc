@@ -223,10 +223,6 @@
           "named": true
         },
         {
-          "type": "line",
-          "named": true
-        },
-        {
           "type": "section_block",
           "named": true
         }

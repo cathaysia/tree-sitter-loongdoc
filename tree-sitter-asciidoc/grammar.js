@@ -228,16 +228,12 @@ module.exports = grammar({
       ),
 
     delimited_block: $ =>
-      seq(
-        $.delimited_block_marker,
-        repeat(
-          choice(
-            $.line,
-            alias($._inna_raw_block, $.section_block),
-            alias($._inna_list, $.section_block),
-          ),
+      prec.left(
+        seq(
+          $.delimited_block_marker,
+          repeat($.section_block),
+          $.delimited_block_marker,
         ),
-        $.delimited_block_marker,
       ),
     _inna_raw_block: $ =>
       seq(repeat(choice($.element_attr, $.block_title)), $.raw_block),
