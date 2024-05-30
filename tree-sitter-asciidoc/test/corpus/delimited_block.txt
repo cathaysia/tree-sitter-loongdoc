@@ -34,18 +34,20 @@ The document header is useful, but not required.
       (delimited_block_marker)
       (section_block
         (paragraph
-          (line)
           (line)))
       (delimited_block_marker)))
   (section_block
-    (paragraph
-      (line)))
-  (section_block
-    (raw_block
-      (raw_block_marker)
-      (raw_block_body)
-      (raw_block_marker)))
-  (section_block
-    (paragraph
-      (line)
-      (line))))
+    (delimited_block
+      (delimited_block_marker)
+      (section_block
+        (paragraph
+          (line)))
+      (section_block
+        (raw_block
+          (raw_block_marker)
+          (raw_block_body)
+          (raw_block_marker)))
+      (section_block
+        (paragraph
+          (line)))
+      (delimited_block_marker))))

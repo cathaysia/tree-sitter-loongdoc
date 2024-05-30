@@ -81,10 +81,12 @@ line of code <!--4-->
           (line)))))
   (section_block
     (paragraph
-      (line)
-      (line)
-      (line)
       (line)))
+  (section_block
+    (raw_block
+      (raw_block_marker)
+      (raw_block_body)
+      (raw_block_marker)))
   (section_block
     (raw_block
       (raw_block_marker)
