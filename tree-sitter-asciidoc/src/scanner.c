@@ -55,23 +55,39 @@ static bool is_geek_lower(i32 ch);
 static bool is_newline(i32 ch);
 static bool is_eof(TSLexer *lexer);
 
+typedef struct Scanner {
+    bool is_matching_raw_block;
+} Scanner;
+
 void *tree_sitter_asciidoc_external_scanner_create() {
-    return NULL;
+    Scanner *s = (Scanner *)malloc(sizeof(Scanner));
+    s->is_matching_raw_block = false;
+    return s;
 }
 
 void tree_sitter_asciidoc_external_scanner_destroy(void *payload) {
-    // ...
+    // free(payload);
 }
 
 unsigned tree_sitter_asciidoc_external_scanner_serialize(void *payload, char *buffer) {
-    return 0;
+    Scanner *s = (Scanner *)payload;
+    usize size = 0;
+
+    buffer[size++] = (char)s->is_matching_raw_block;
+
+    return size;
 }
 
 void tree_sitter_asciidoc_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
-    // ...
+    if(buffer) {
+        Scanner *s = (Scanner *)payload;
+        s->is_matching_raw_block = (bool)buffer[0];
+    }
 }
 
 bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    Scanner *s = (Scanner *)payload;
+
     if(lexer->eof(lexer)) {
         if(valid_symbols[TOKEN_TYPE_EOF]) {
             lexer->result_symbol = TOKEN_TYPE_EOF;
@@ -110,7 +126,19 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
         }
 
-        if(is_alpha_lower) {
+        if(is_alpha_lower && s->is_matching_raw_block) {
+            if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
+                if(parse_sequence(lexer, "include")) {
+                    lexer->mark_end(lexer);
+                    if(parse_sequence(lexer, "::")) {
+                        lexer->result_symbol = TOKEN_BLOCK_MACRO_NAME;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if(is_alpha_lower && !s->is_matching_raw_block) {
             if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
                 while(is_ascii_alpha_lower(lexer->lookahead)) {
                     lexer->advance(lexer, false);
@@ -195,6 +223,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
                     if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
                         lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                        s->is_matching_raw_block = !s->is_matching_raw_block;
                         return true;
                     }
                 }
@@ -230,6 +259,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         if(is_newline(lexer->lookahead)) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                            s->is_matching_raw_block = !s->is_matching_raw_block;
                             return true;
                         }
                     }
