@@ -10,6 +10,8 @@ comment
 block comment
 ////
 
+https://www.abcdefg.com
+
 -----
 
 (document
@@ -20,4 +22,7 @@ block comment
   (comment_block
     (block_comment_marker)
     (comment_block_body)
-    (block_comment_marker)))
+    (block_comment_marker))
+  (section_block
+    (paragraph
+      (line))))

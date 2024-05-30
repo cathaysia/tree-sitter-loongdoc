@@ -368,19 +368,21 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             case '/': {
                 if(valid_symbols[TOKEN_LINE_COMMENT_MARKER] ||
                    valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
-                    if(parse_sequence(lexer, "//")) {
-                        lexer->mark_end(lexer);
-                        if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
-                            if(parse_sequence(lexer, "//")) {
-                                if(is_newline(lexer->lookahead)) {
-                                    lexer->result_symbol = TOKEN_BLOCK_COMMENT_MARKER;
-                                    lexer->mark_end(lexer);
-                                    return true;
+                    if(lexer->get_column(lexer) == 0) {
+                        if(parse_sequence(lexer, "//")) {
+                            lexer->mark_end(lexer);
+                            if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
+                                if(parse_sequence(lexer, "//")) {
+                                    if(is_newline(lexer->lookahead)) {
+                                        lexer->result_symbol = TOKEN_BLOCK_COMMENT_MARKER;
+                                        lexer->mark_end(lexer);
+                                        return true;
+                                    }
                                 }
                             }
+                            lexer->result_symbol = TOKEN_LINE_COMMENT_MARKER;
+                            return true;
                         }
-                        lexer->result_symbol = TOKEN_LINE_COMMENT_MARKER;
-                        return true;
                     }
                 }
                 break;
