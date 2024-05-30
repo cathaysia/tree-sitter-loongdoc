@@ -66,7 +66,7 @@ void *tree_sitter_asciidoc_external_scanner_create() {
 }
 
 void tree_sitter_asciidoc_external_scanner_destroy(void *payload) {
-    // free(payload);
+    free(payload);
 }
 
 unsigned tree_sitter_asciidoc_external_scanner_serialize(void *payload, char *buffer) {
