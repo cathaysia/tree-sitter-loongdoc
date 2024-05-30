@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "common/*"
+      - "*/grammar.js"
+      - "*/src/**"
+      - "*/test/**"
+  pull_request:
+    paths:
+      - "common/*"
+      - "*/grammar.js"
+      - "*/src/**"
+      - "*/test/**"
+
+jobs:
+  fuzz:
+    name: Fuzz parsers
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        parser: [tree-sitter-asciidoc, tree-sitter-asciidoc_inline]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Fuzz ${{matrix.parser}} parser
+        uses: tree-sitter/fuzz-action@v4
+        with:
+          directory: ${{matrix.parser}}
