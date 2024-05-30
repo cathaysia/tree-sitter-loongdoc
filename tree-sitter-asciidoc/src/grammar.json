@@ -992,6 +992,15 @@
                 },
                 "named": true,
                 "value": "section_block"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_inna_list"
+                },
+                "named": true,
+                "value": "section_block"
               }
             ]
           }
@@ -1024,6 +1033,44 @@
         {
           "type": "SYMBOL",
           "name": "raw_block"
+        }
+      ]
+    },
+    "_inna_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "element_attr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "block_title"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "unordered_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ordered_list"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "checked_list"
+            }
+          ]
         }
       ]
     },
