@@ -620,6 +620,10 @@
     "named": false
   },
   {
+    "type": "a2s",
+    "named": false
+  },
+  {
     "type": "anchor",
     "named": false
   },
@@ -632,7 +636,43 @@
     "named": false
   },
   {
+    "type": "barcode",
+    "named": false
+  },
+  {
+    "type": "blockdiag",
+    "named": false
+  },
+  {
+    "type": "bpmn",
+    "named": false
+  },
+  {
     "type": "btn",
+    "named": false
+  },
+  {
+    "type": "bytefield",
+    "named": false
+  },
+  {
+    "type": "d2",
+    "named": false
+  },
+  {
+    "type": "dbml",
+    "named": false
+  },
+  {
+    "type": "diagrams",
+    "named": false
+  },
+  {
+    "type": "ditaa",
+    "named": false
+  },
+  {
+    "type": "dpic",
     "named": false
   },
   {
@@ -641,6 +681,10 @@
   },
   {
     "type": "endif",
+    "named": false
+  },
+  {
+    "type": "erd",
     "named": false
   },
   {
@@ -657,6 +701,14 @@
   },
   {
     "type": "ftp",
+    "named": false
+  },
+  {
+    "type": "gnuplot",
+    "named": false
+  },
+  {
+    "type": "graphviz",
     "named": false
   },
   {
@@ -704,6 +756,10 @@
     "named": false
   },
   {
+    "type": "lilypond",
+    "named": false
+  },
+  {
     "type": "link",
     "named": false
   },
@@ -712,7 +768,23 @@
     "named": false
   },
   {
+    "type": "meme",
+    "named": false
+  },
+  {
     "type": "menu",
+    "named": false
+  },
+  {
+    "type": "mermaid",
+    "named": false
+  },
+  {
+    "type": "msc",
+    "named": false
+  },
+  {
+    "type": "nomnoml",
     "named": false
   },
   {
@@ -720,7 +792,55 @@
     "named": false
   },
   {
+    "type": "pikchr",
+    "named": false
+  },
+  {
+    "type": "plantuml",
+    "named": false
+  },
+  {
+    "type": "shaape",
+    "named": false
+  },
+  {
+    "type": "smcat",
+    "named": false
+  },
+  {
+    "type": "structurizr",
+    "named": false
+  },
+  {
+    "type": "svgbob",
+    "named": false
+  },
+  {
+    "type": "symbolator",
+    "named": false
+  },
+  {
+    "type": "syntrax",
+    "named": false
+  },
+  {
+    "type": "tikz",
+    "named": false
+  },
+  {
+    "type": "umlet",
+    "named": false
+  },
+  {
+    "type": "vega",
+    "named": false
+  },
+  {
     "type": "video",
+    "named": false
+  },
+  {
+    "type": "wavedrom",
     "named": false
   },
   {

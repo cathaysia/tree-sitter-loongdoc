@@ -146,6 +146,130 @@
             {
               "type": "STRING",
               "value": "endif"
+            },
+            {
+              "type": "STRING",
+              "value": "a2s"
+            },
+            {
+              "type": "STRING",
+              "value": "barcode"
+            },
+            {
+              "type": "STRING",
+              "value": "blockdiag"
+            },
+            {
+              "type": "STRING",
+              "value": "bpmn"
+            },
+            {
+              "type": "STRING",
+              "value": "bytefield"
+            },
+            {
+              "type": "STRING",
+              "value": "d2"
+            },
+            {
+              "type": "STRING",
+              "value": "dbml"
+            },
+            {
+              "type": "STRING",
+              "value": "diagrams"
+            },
+            {
+              "type": "STRING",
+              "value": "ditaa"
+            },
+            {
+              "type": "STRING",
+              "value": "dpic"
+            },
+            {
+              "type": "STRING",
+              "value": "erd"
+            },
+            {
+              "type": "STRING",
+              "value": "gnuplot"
+            },
+            {
+              "type": "STRING",
+              "value": "graphviz"
+            },
+            {
+              "type": "STRING",
+              "value": "graphviz"
+            },
+            {
+              "type": "STRING",
+              "value": "lilypond"
+            },
+            {
+              "type": "STRING",
+              "value": "meme"
+            },
+            {
+              "type": "STRING",
+              "value": "mermaid"
+            },
+            {
+              "type": "STRING",
+              "value": "msc"
+            },
+            {
+              "type": "STRING",
+              "value": "nomnoml"
+            },
+            {
+              "type": "STRING",
+              "value": "pikchr"
+            },
+            {
+              "type": "STRING",
+              "value": "plantuml"
+            },
+            {
+              "type": "STRING",
+              "value": "shaape"
+            },
+            {
+              "type": "STRING",
+              "value": "smcat"
+            },
+            {
+              "type": "STRING",
+              "value": "structurizr"
+            },
+            {
+              "type": "STRING",
+              "value": "svgbob"
+            },
+            {
+              "type": "STRING",
+              "value": "symbolator"
+            },
+            {
+              "type": "STRING",
+              "value": "syntrax"
+            },
+            {
+              "type": "STRING",
+              "value": "tikz"
+            },
+            {
+              "type": "STRING",
+              "value": "umlet"
+            },
+            {
+              "type": "STRING",
+              "value": "vega"
+            },
+            {
+              "type": "STRING",
+              "value": "wavedrom"
             }
           ]
         },
