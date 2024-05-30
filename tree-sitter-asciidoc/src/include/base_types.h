@@ -23,3 +23,5 @@ const usize USIZE_MAX = UINTPTR_MAX;
 #ifndef ISIZE_MAX
 const isize ISIZE_MAX = INTPTR_MAX;
 #endif
+
+#define ADOC_UNUSED(x) ((void)x)

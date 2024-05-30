@@ -42,9 +42,8 @@ typedef enum TokenType {
 
 static bool parse_number(TSLexer *lexer);
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
-static bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols);
-static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols);
-static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols);
+static bool parse_ordered_marker(TSLexer *lexer);
+static bool parse_breaks(char start, TSLexer *lexer);
 static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
 static bool skip_white_space(TSLexer *lexer);
 static bool is_white_space(i32 ch);
@@ -79,6 +78,8 @@ unsigned tree_sitter_asciidoc_external_scanner_serialize(void *payload, char *bu
 }
 
 void tree_sitter_asciidoc_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+    ADOC_UNUSED(length);
+
     if(buffer) {
         Scanner *s = (Scanner *)payload;
         s->is_matching_raw_block = (bool)buffer[0];
@@ -121,7 +122,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
 
         bool is_alpha_lower = is_ascii_alpha_lower(lexer->lookahead);
         if(valid_symbols[TOKEN_LIST_MARKER_ALPHA]) {
-            if(parse_ordered_marker(lexer, valid_symbols)) {
+            if(parse_ordered_marker(lexer)) {
                 return true;
             }
         }
@@ -304,7 +305,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
             case '\'': {
                 if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    if(parse_breaks('\'', lexer, valid_symbols)) {
+                    if(parse_breaks('\'', lexer)) {
                         lexer->result_symbol = TOKEN_BREAKS_MARKS;
                         return true;
                     }
@@ -313,7 +314,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
             case '<': {
                 if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    if(parse_breaks('<', lexer, valid_symbols)) {
+                    if(parse_breaks('<', lexer)) {
                         lexer->result_symbol = TOKEN_BREAKS_MARKS;
                         return true;
                     }
@@ -454,7 +455,7 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     return false;
 }
 
-bool parse_ordered_marker(TSLexer *lexer, const bool *valid_symbols) {
+bool parse_ordered_marker(TSLexer *lexer) {
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
@@ -501,21 +502,7 @@ static bool is_geek_lower(i32 ch) {
     return ch >= 945 && ch <= 969;
 }
 
-static bool parse_block_title_marker(TSLexer *lexer, const bool *valid_symbols) {
-    if(lexer->get_column(lexer) != 0) {
-        return false;
-    }
-
-    lexer->advance(lexer, false);
-    if(is_white_space(lexer->lookahead)) {
-        return false;
-    }
-
-    lexer->mark_end(lexer);
-    return true;
-}
-
-static bool parse_breaks(char start, TSLexer *lexer, const bool *valid_symbols) {
+static bool parse_breaks(char start, TSLexer *lexer) {
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
