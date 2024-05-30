@@ -622,10 +622,6 @@
           "named": true
         },
         {
-          "type": "anno_list",
-          "named": true
-        },
-        {
           "type": "block_title",
           "named": true
         },
@@ -671,14 +667,6 @@
         },
         {
           "type": "raw_block",
-          "named": true
-        },
-        {
-          "type": "raw_block_body",
-          "named": true
-        },
-        {
-          "type": "raw_block_marker",
           "named": true
         },
         {
