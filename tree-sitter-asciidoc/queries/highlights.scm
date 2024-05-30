@@ -97,3 +97,36 @@
 (admonition
   (admonition_tip)
   ":") @comment.note
+
+((section_block
+  (element_attr
+    (element_attr_marker) @comment.note
+    (attr_value) @attribute @comment.note
+    (element_attr_marker) @comment.note)
+  (delimited_block
+    (delimited_block_marker) @comment.note
+    (delimited_block_marker) @comment.note))
+  (#vim-match? @attribute "NOTE\|TIP")
+)
+
+((section_block
+  (element_attr
+    (element_attr_marker) @comment.warning
+    (attr_value) @attribute @comment.warning
+    (element_attr_marker) @comment.warning)
+  (delimited_block
+    (delimited_block_marker) @comment.warning
+    (delimited_block_marker) @comment.warning))
+  (#vim-match? @attribute "CAUTION\|WARNING")
+)
+
+((section_block
+  (element_attr
+    (element_attr_marker) @comment.error
+    (attr_value) @attribute @comment.error
+    (element_attr_marker) @comment.error)
+  (delimited_block
+    (delimited_block_marker) @comment.error
+    (delimited_block_marker) @comment.error))
+  (#vim-match? @attribute "IMPORTANT")
+)
