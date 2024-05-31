@@ -27,10 +27,6 @@
       "required": false,
       "types": [
         {
-          "type": "inline_macro",
-          "named": true
-        },
-        {
           "type": "replacement",
           "named": true
         }

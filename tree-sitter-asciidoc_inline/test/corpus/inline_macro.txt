@@ -10,9 +10,7 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
 
 (inline
   (inline_macro
-    (attr
-      (inline_macro
-        (attr))))
+    (attr))
   (inline_macro
     (attr))
   (inline_macro

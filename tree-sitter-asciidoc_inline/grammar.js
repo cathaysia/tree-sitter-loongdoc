@@ -94,10 +94,7 @@ module.exports = grammar({
         token.immediate(':'),
         alias(repeat(escaped_ch('[', false, $.replacement)), $.target),
         '[',
-        alias(
-          repeat(escaped_ch(']', false, $.inline_macro, $.replacement)),
-          $.attr,
-        ),
+        alias(repeat(escaped_ch(']', false, $.replacement)), $.attr),
         ']',
       ),
     replacement: $ =>
