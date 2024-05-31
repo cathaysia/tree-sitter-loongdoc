@@ -152,224 +152,224 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
         }
 
-        switch(lexer->lookahead) {
-            case '=': {
-                consume('=', lexer, false, NULL, USIZE_MAX);
-                lexer->mark_end(lexer);
-                if(!s->is_matching_raw_block) {
-                    if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
-                        return true;
-                    }
-                }
-
-                if(!s->is_matching_raw_block) {
-                    usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
-                    if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
-                        lexer->result_symbol = level;
-                        return true;
-                    }
-                }
-                break;
-            }
-            case '*': {
-                usize counter = 0;
-                consume('*', lexer, false, &counter, USIZE_MAX);
-                lexer->mark_end(lexer);
-                bool is_unordered_marker = is_white_space(lexer->lookahead);
-
-                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    skip_white_space(lexer);
-                    while(lexer->lookahead == '*') {
-                        lexer->advance(lexer, false);
-                        skip_white_space(lexer);
-                        ++counter;
-                        if(counter > 3) {
-                            break;
+        if(lexer->get_column(lexer) == 0) {
+            switch(lexer->lookahead) {
+                case '=': {
+                    consume('=', lexer, false, NULL, USIZE_MAX);
+                    lexer->mark_end(lexer);
+                    if(!s->is_matching_raw_block) {
+                        if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
+                            lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
+                            return true;
                         }
                     }
-                    if(counter == 3 && is_newline(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                        lexer->mark_end(lexer);
-                        return true;
-                    }
-                }
 
-                if(valid_symbols[TOKEN_LIST_MARKER_STAR]) {
-                    lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
-                    return is_unordered_marker;
-                }
-
-                break;
-            }
-            case '-': {
-                usize counter = 0;
-                consume('-', lexer, false, &counter, USIZE_MAX);
-                lexer->mark_end(lexer);
-                bool is_unordered_marker = is_white_space(lexer->lookahead);
-                if(valid_symbols[TOKEN_OPEN_BLOCK_MARKER]) {
-                    if(lexer->get_column(lexer) == 2 && is_newline(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_OPEN_BLOCK_MARKER;
-                        return true;
-                    }
-                }
-
-                if(valid_symbols[TOKEN_QUOTED_PARAGRAPH_MARKER]) {
-                    if(lexer->get_column(lexer) == 2 && is_white_space(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_QUOTED_PARAGRAPH_MARKER;
-                        return true;
-                    }
-                }
-
-                if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
-                    if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
-                        s->is_matching_raw_block = !s->is_matching_raw_block;
-                        return true;
-                    }
-                }
-
-                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    skip_white_space(lexer);
-                    while(lexer->lookahead == '-') {
-                        lexer->advance(lexer, false);
-                        skip_white_space(lexer);
-                        ++counter;
-                        if(counter > 3) {
-                            break;
+                    if(!s->is_matching_raw_block) {
+                        usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
+                        if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
+                            lexer->result_symbol = level;
+                            return true;
                         }
                     }
-                    if(counter == 3 && is_newline(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                        lexer->mark_end(lexer);
-                        return true;
-                    }
+                    break;
                 }
+                case '*': {
+                    usize counter = 0;
+                    consume('*', lexer, false, &counter, USIZE_MAX);
+                    lexer->mark_end(lexer);
+                    bool is_unordered_marker = is_white_space(lexer->lookahead);
 
-                if(valid_symbols[TOKEN_LIST_MARKER_HYPHEN] && is_unordered_marker) {
-                    lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
-                    return true;
-                }
-                break;
-            }
-            case '.': {
-                lexer->advance(lexer, false);
-                lexer->mark_end(lexer);
-                if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
-                    if(parse_sequence(lexer, "...")) {
-                        if(is_newline(lexer->lookahead)) {
+                    if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                        skip_white_space(lexer);
+                        while(lexer->lookahead == '*') {
+                            lexer->advance(lexer, false);
+                            skip_white_space(lexer);
+                            ++counter;
+                            if(counter > 3) {
+                                break;
+                            }
+                        }
+                        if(counter == 3 && is_newline(lexer->lookahead)) {
+                            lexer->result_symbol = TOKEN_BREAKS_MARKS;
                             lexer->mark_end(lexer);
+                            return true;
+                        }
+                    }
+
+                    if(valid_symbols[TOKEN_LIST_MARKER_STAR]) {
+                        lexer->result_symbol = TOKEN_LIST_MARKER_STAR;
+                        return is_unordered_marker;
+                    }
+
+                    break;
+                }
+                case '-': {
+                    usize counter = 0;
+                    consume('-', lexer, false, &counter, USIZE_MAX);
+                    lexer->mark_end(lexer);
+                    bool is_unordered_marker = is_white_space(lexer->lookahead);
+                    if(valid_symbols[TOKEN_OPEN_BLOCK_MARKER]) {
+                        if(lexer->get_column(lexer) == 2 && is_newline(lexer->lookahead)) {
+                            lexer->result_symbol = TOKEN_OPEN_BLOCK_MARKER;
+                            return true;
+                        }
+                    }
+
+                    if(valid_symbols[TOKEN_QUOTED_PARAGRAPH_MARKER]) {
+                        if(lexer->get_column(lexer) == 2 && is_white_space(lexer->lookahead)) {
+                            lexer->result_symbol = TOKEN_QUOTED_PARAGRAPH_MARKER;
+                            return true;
+                        }
+                    }
+
+                    if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                        if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
                             lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
                             s->is_matching_raw_block = !s->is_matching_raw_block;
                             return true;
                         }
                     }
-                }
 
-                if(valid_symbols[TOKEN_LIST_MARKER_DOT]) {
-                    consume('.', lexer, false, NULL, USIZE_MAX);
-                    if(is_white_space(lexer->lookahead)) {
-                        lexer->mark_end(lexer);
-                        lexer->result_symbol = TOKEN_LIST_MARKER_DOT;
-                        return true;
-                    }
-                }
-
-                if(valid_symbols[TOKEN_BLOCK_TITLE_MARKER]) {
-                    if(lexer->get_column(lexer) == 1) {
-                        lexer->mark_end(lexer);
-                        lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
-                        return true;
-                    }
-                }
-
-                break;
-            }
-            case ':': {
-                if(valid_symbols[TOKEN_DOCUMENT_ATTR_MARKER]) {
-                    lexer->advance(lexer, false);
-                    lexer->mark_end(lexer);
-                    lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
-                    return true;
-                }
-                break;
-            }
-            case '[': {
-                if(valid_symbols[TOKEN_ELEMENT_ATTR_MARKER]) {
-                    lexer->advance(lexer, false);
-                    lexer->mark_end(lexer);
-                    lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
-                    return true;
-                }
-                break;
-            }
-            case '\'': {
-                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    if(parse_breaks('\'', lexer)) {
-                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                        return true;
-                    }
-                }
-                break;
-            }
-            case '<': {
-                if(valid_symbols[TOKEN_BREAKS_MARKS]) {
-                    if(parse_breaks('<', lexer)) {
-                        lexer->result_symbol = TOKEN_BREAKS_MARKS;
-                        return true;
-                    }
-                }
-                if(valid_symbols[TOKEN_ANNO_LIST_MARKER]) {
-                    if(lexer->get_column(lexer) == 1) {
-                        if(parse_sequence(lexer, ".>")) {
+                    if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                        skip_white_space(lexer);
+                        while(lexer->lookahead == '-') {
+                            lexer->advance(lexer, false);
+                            skip_white_space(lexer);
+                            ++counter;
+                            if(counter > 3) {
+                                break;
+                            }
+                        }
+                        if(counter == 3 && is_newline(lexer->lookahead)) {
+                            lexer->result_symbol = TOKEN_BREAKS_MARKS;
                             lexer->mark_end(lexer);
-                            lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
-                            if(is_white_space(lexer->lookahead)) {
+                            return true;
+                        }
+                    }
+
+                    if(valid_symbols[TOKEN_LIST_MARKER_HYPHEN] && is_unordered_marker) {
+                        lexer->result_symbol = TOKEN_LIST_MARKER_HYPHEN;
+                        return true;
+                    }
+                    break;
+                }
+                case '.': {
+                    lexer->advance(lexer, false);
+                    lexer->mark_end(lexer);
+                    if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                        if(parse_sequence(lexer, "...")) {
+                            if(is_newline(lexer->lookahead)) {
+                                lexer->mark_end(lexer);
+                                lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                                s->is_matching_raw_block = !s->is_matching_raw_block;
                                 return true;
                             }
                         }
-                        if(parse_number(lexer)) {
-                            if(lexer->lookahead == '>') {
-                                lexer->advance(lexer, false);
+                    }
+
+                    if(valid_symbols[TOKEN_LIST_MARKER_DOT]) {
+                        consume('.', lexer, false, NULL, USIZE_MAX);
+                        if(is_white_space(lexer->lookahead)) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_LIST_MARKER_DOT;
+                            return true;
+                        }
+                    }
+
+                    if(valid_symbols[TOKEN_BLOCK_TITLE_MARKER]) {
+                        if(lexer->get_column(lexer) == 1) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
+                            return true;
+                        }
+                    }
+
+                    break;
+                }
+                case ':': {
+                    if(valid_symbols[TOKEN_DOCUMENT_ATTR_MARKER]) {
+                        lexer->advance(lexer, false);
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_DOCUMENT_ATTR_MARKER;
+                        return true;
+                    }
+                    break;
+                }
+                case '[': {
+                    if(valid_symbols[TOKEN_ELEMENT_ATTR_MARKER]) {
+                        lexer->advance(lexer, false);
+                        lexer->mark_end(lexer);
+                        lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
+                        return true;
+                    }
+                    break;
+                }
+                case '\'': {
+                    if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                        if(parse_breaks('\'', lexer)) {
+                            lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                            return true;
+                        }
+                    }
+                    break;
+                }
+                case '<': {
+                    if(valid_symbols[TOKEN_BREAKS_MARKS]) {
+                        if(parse_breaks('<', lexer)) {
+                            lexer->result_symbol = TOKEN_BREAKS_MARKS;
+                            return true;
+                        }
+                    }
+                    if(valid_symbols[TOKEN_ANNO_LIST_MARKER]) {
+                        if(lexer->get_column(lexer) == 1) {
+                            if(parse_sequence(lexer, ".>")) {
                                 lexer->mark_end(lexer);
+                                lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
                                 if(is_white_space(lexer->lookahead)) {
-                                    lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
                                     return true;
+                                }
+                            }
+                            if(parse_number(lexer)) {
+                                if(lexer->lookahead == '>') {
+                                    lexer->advance(lexer, false);
+                                    lexer->mark_end(lexer);
+                                    if(is_white_space(lexer->lookahead)) {
+                                        lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
+                                        return true;
+                                    }
                                 }
                             }
                         }
                     }
+                    break;
                 }
-                break;
-            }
-            case '|': {  // Table
-                if(valid_symbols[TOKEN_TABLE_BLOCK_MARKER]) {
-                    lexer->advance(lexer, false);
-                    consume('=', lexer, false, NULL, USIZE_MAX);
-                    if(is_newline(lexer->lookahead)) {
-                        lexer->mark_end(lexer);
-                        lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
-                        return true;
+                case '|': {  // Table
+                    if(valid_symbols[TOKEN_TABLE_BLOCK_MARKER]) {
+                        lexer->advance(lexer, false);
+                        consume('=', lexer, false, NULL, USIZE_MAX);
+                        if(is_newline(lexer->lookahead)) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                            return true;
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case '!': {  // NTable
-                if(valid_symbols[TOKEN_NTABLE_BLOCK_MARKER]) {
-                    lexer->advance(lexer, false);
-                    consume('=', lexer, false, NULL, USIZE_MAX);
-                    if(is_newline(lexer->lookahead)) {
-                        lexer->mark_end(lexer);
-                        lexer->result_symbol = TOKEN_NTABLE_BLOCK_MARKER;
-                        return true;
+                case '!': {  // NTable
+                    if(valid_symbols[TOKEN_NTABLE_BLOCK_MARKER]) {
+                        lexer->advance(lexer, false);
+                        consume('=', lexer, false, NULL, USIZE_MAX);
+                        if(is_newline(lexer->lookahead)) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_NTABLE_BLOCK_MARKER;
+                            return true;
+                        }
                     }
+                    break;
                 }
-                break;
-            }
-            case '/': {
-                if(valid_symbols[TOKEN_LINE_COMMENT_MARKER] ||
-                   valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
-                    if(lexer->get_column(lexer) == 0) {
+                case '/': {
+                    if(valid_symbols[TOKEN_LINE_COMMENT_MARKER] ||
+                       valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
                         if(parse_sequence(lexer, "//")) {
                             lexer->mark_end(lexer);
                             if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
@@ -385,31 +385,31 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                             return true;
                         }
                     }
+                    break;
                 }
-                break;
-            }
-            case '_': {
-                if(valid_symbols[TOKEN_QUOTED_BLOCK_MARKER]) {
-                    if(parse_sequence(lexer, "____")) {
+                case '_': {
+                    if(valid_symbols[TOKEN_QUOTED_BLOCK_MARKER]) {
+                        if(parse_sequence(lexer, "____")) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_QUOTED_BLOCK_MARKER;
+                            if(is_newline(lexer->lookahead) || is_eof(lexer)) {
+                                return true;
+                            }
+                        }
+                    }
+                    break;
+                }
+                case '>': {
+                    if(valid_symbols[TOKEN_QUOTED_BLOCK_MD_MARKER]) {
+                        lexer->advance(lexer, false);
                         lexer->mark_end(lexer);
-                        lexer->result_symbol = TOKEN_QUOTED_BLOCK_MARKER;
-                        if(is_newline(lexer->lookahead) || is_eof(lexer)) {
+                        lexer->result_symbol = TOKEN_QUOTED_BLOCK_MD_MARKER;
+                        if(is_white_space(lexer->lookahead) || is_eof(lexer) || is_newline(lexer->lookahead)) {
                             return true;
                         }
                     }
+                    break;
                 }
-                break;
-            }
-            case '>': {
-                if(valid_symbols[TOKEN_QUOTED_BLOCK_MD_MARKER]) {
-                    lexer->advance(lexer, false);
-                    lexer->mark_end(lexer);
-                    lexer->result_symbol = TOKEN_QUOTED_BLOCK_MD_MARKER;
-                    if(is_white_space(lexer->lookahead) || is_eof(lexer) || is_newline(lexer->lookahead)) {
-                        return true;
-                    }
-                }
-                break;
             }
         }
     }
