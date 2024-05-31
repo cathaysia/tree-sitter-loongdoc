@@ -30,6 +30,7 @@ module.exports = grammar({
     $.quoted_block_md_marker,
     $.quoted_paragraph_marker,
     $.open_block_marker,
+    $.passthrough_block_marker,
     $.block_macro_name,
     $.anno_marker,
     $.anno_list_marker,
@@ -79,6 +80,7 @@ module.exports = grammar({
           $.quoted_block,
           $.quoted_md_block,
           $.ntable_block,
+          $.passthrough_block,
         ),
       ),
     title0: $ =>
@@ -233,6 +235,12 @@ module.exports = grammar({
       ),
     open_block: $ =>
       seq($.open_block_marker, repeat($.line), $.open_block_marker),
+    passthrough_block: $ =>
+      seq(
+        $.passthrough_block_marker,
+        alias(repeat(seq(/[^\r\n]*/, $._NEWLINE)), $.raw_block_body),
+        $.passthrough_block_marker,
+      ),
     raw_block: $ =>
       seq(
         $.raw_block_marker,

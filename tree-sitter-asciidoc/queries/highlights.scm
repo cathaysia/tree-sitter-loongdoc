@@ -17,6 +17,7 @@
   (quoted_paragraph_marker)
   (open_block_marker)
   (raw_block_marker)
+  (passthrough_block_marker)
   (quoted_block_marker)
   (ntable_block_marker)
   (anno_marker)

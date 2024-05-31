@@ -27,6 +27,7 @@ typedef enum TokenType {
     TOKEN_QUOTED_BLOCK_MD_MARKER,
     TOKEN_QUOTED_PARAGRAPH_MARKER,
     TOKEN_OPEN_BLOCK_MARKER,
+    TOKEN_PASSTHROUGH_BLOCK_MARKER,
     TOKEN_BLOCK_MACRO_NAME,
     TOKEN_ANNO_MARKER,
     TOKEN_ANNO_LIST_MARKER,
@@ -409,6 +410,17 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
                     break;
+                }
+                case '+': {
+                    if(valid_symbols[TOKEN_PASSTHROUGH_BLOCK_MARKER]) {
+                        if(parse_sequence(lexer, "++++")) {
+                            lexer->mark_end(lexer);
+                            lexer->result_symbol = TOKEN_PASSTHROUGH_BLOCK_MARKER;
+                            if(is_new_line(lexer->lookahead) || is_eof(lexer)) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }

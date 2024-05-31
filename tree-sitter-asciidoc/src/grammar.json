@@ -126,6 +126,10 @@
             {
               "type": "SYMBOL",
               "name": "ntable_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "passthrough_block"
             }
           ]
         }
@@ -1060,6 +1064,40 @@
         }
       ]
     },
+    "passthrough_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "passthrough_block_marker"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\r\\n]*"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_NEWLINE"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "raw_block_body"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "passthrough_block_marker"
+        }
+      ]
+    },
     "raw_block": {
       "type": "SEQ",
       "members": [
@@ -1482,6 +1520,10 @@
     {
       "type": "SYMBOL",
       "name": "open_block_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "passthrough_block_marker"
     },
     {
       "type": "SYMBOL",
