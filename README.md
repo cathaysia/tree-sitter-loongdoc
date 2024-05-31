@@ -6,6 +6,6 @@ https://docs.asciidoctor.org/asciidoc/latest
 
 As far as I know, the parse cannot:
 
-- Unable to parse table_cell correctly.
-- Unable to handle correctly for `^[`*=]` and etc.
-- Unable to parse delimited blocks in delimted blocks.
+- block: Unable to parse table_cell correctly.
+- block: Unable to parse delimited blocks in delimted blocks.
+- inline: Unable to handle correctly for `^[*=]` or `[*=]$` and etc.
