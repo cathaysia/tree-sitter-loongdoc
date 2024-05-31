@@ -11,11 +11,12 @@
  (link_url)
  (email)
 ] @markup.link.url @markup.link
+
 (link_label) @markup.link.label
 
 (auto_link
-  "["* @punctuation.bracket
-  "]"* @punctuation.bracket)
+  "["? @punctuation.bracket
+  "]"? @punctuation.bracket)
 
 (intrinsic_attributes) @string.special
 
@@ -28,7 +29,7 @@
   ">>" @punctuation.bracket)
 
 (xref
-  (reftext) @markup.link)
+  (reftext) @markup.link @markup.link.url)
 
 (xref
   (id) @markup.link.label)
@@ -46,19 +47,62 @@
 (anchor
   (reftext) @markup.link)
 
-(inline_macro "xref" @keyword)
-(inline_macro "kbd" @keyword)
-(inline_macro "btn" @keyword)
-(inline_macro "image" @keyword)
-(inline_macro "icon" @keyword)
-(inline_macro "pass" @keyword)
-(inline_macro "link" @keyword)
-(inline_macro "mailto" @keyword)
-(inline_macro "menu" @keyword)
-(inline_macro "latexmath" @keyword)
-(inline_macro "asciimath" @keyword)
-(inline_macro "footnote" @keyword)
-(inline_macro "footnoteref" @keyword)
+(inline_macro
+  [
+    "kbd"
+    "btn"
+    "image"
+    "audio"
+    "video"
+    "icon"
+    "pass"
+    "link"
+    "mailto"
+    "menu"
+    "stem"
+    "latexmath"
+    "asciimath"
+    "footnote"
+    "footnoteref"
+    "anchor"
+    "xref"
+    "ifdef"
+    "ifndef"
+    "ifeval"
+    "endif"
+    "a2s"
+    "barcode"
+    "blockdiag"
+    "bpmn"
+    "bytefield"
+    "d2"
+    "dbml"
+    "diagrams"
+    "ditaa"
+    "dpic"
+    "erd"
+    "gnuplot"
+    "graphviz"
+    "graphviz"
+    "lilypond"
+    "meme"
+    "mermaid"
+    "msc"
+    "nomnoml"
+    "pikchr"
+    "plantuml"
+    "shaape"
+    "smcat"
+    "structurizr"
+    "svgbob"
+    "symbolator"
+    "syntrax"
+    "tikz"
+    "umlet"
+    "vega"
+    "wavedrom"
+  ] @keyword)
+
 (inline_macro ":" @punctuation.delimiter)
 (inline_macro "[" @punctuation.bracket)
 (inline_macro "]" @punctuation.bracket)
@@ -70,3 +114,27 @@
   (attr) @attribute)
 
 (escaped_ch) @string.escape
+
+(inline_macro
+  [
+    "image"
+    "audio"
+    "video"
+    "icon"
+    "link"
+    "mailto"
+    "footnote"
+    "footnoteref"
+    "xref"
+  ]
+  (target)? @markup.link @markup.link.url
+  (attr)? @markup.label)
+
+(inline_macro
+  [
+    "stem"
+    "latexmath"
+    "asciimath"
+  ]
+  (target)?
+  (attr)? @markup.raw)
