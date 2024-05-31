@@ -80,24 +80,24 @@
 
 
 (admonition
-  (admonition_important)
-  ":") @comment.error
+  (admonition_important) @comment.error
+  ":" @comment.error)
 
 (admonition
-  (admonition_warning)
-  ":") @comment.warning
+  (admonition_warning) @comment.warning
+  ":" @comment.warning)
 
 (admonition
-  (admonition_caution)
-  ":") @comment.warning
+  (admonition_caution) @comment.warning
+  ":" @comment.warning)
 
 (admonition
-  (admonition_note)
-  ":") @comment.note
+  (admonition_note) @comment.note
+  ":" @comment.note)
 
 (admonition
-  (admonition_tip)
-  ":") @comment.note
+  (admonition_tip) @comment.note
+  ":" @comment.note)
 
 ((section_block
   (element_attr
