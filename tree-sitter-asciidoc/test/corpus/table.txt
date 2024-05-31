@@ -53,18 +53,14 @@ table
       (element_attr_marker))
     (table_block
       (table_block_marker)
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
+      (section_block
+        (paragraph
+          (line)
+          (line)
+          (line)
+          (line)
+          (line)
+          (line)))
       (table_block_marker)))
   (section_block
     (block_title
@@ -76,14 +72,11 @@ table
       (element_attr_marker))
     (table_block
       (table_block_marker)
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
+      (section_block
+        (paragraph
+          (line)
+          (line)
+          (line)))
       (table_block_marker)))
   (section_block
     (element_attr
@@ -92,36 +85,22 @@ table
       (element_attr_marker))
     (table_block
       (table_block_marker)
-      (table_cell
-        (table_cell_attr)
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
+      (section_block
+        (paragraph
+          (line)
+          (line)))
       (table_block_marker)))
   (section_block
     (table_block
       (table_block_marker)
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_attr)
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_attr)
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_attr)
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
+      (section_block
+        (paragraph
+          (line)))
+      (section_block
+        (block_title
+          (block_title_marker)
+          (line))
+        (paragraph
+          (line)
+          (line)))
       (table_block_marker))))

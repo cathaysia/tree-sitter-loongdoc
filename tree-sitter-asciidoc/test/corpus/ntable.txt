@@ -33,31 +33,24 @@ Nesting Tables
       (element_attr_marker))
     (table_block
       (table_block_marker)
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (table_cell
-        (table_cell_content))
-      (ntable_block
+      (section_block
+        (paragraph
+          (line)
+          (line)
+          (line)
+          (line)
+          (line)))
+      (section_block
         (element_attr
           (element_attr_marker)
           (attr_value)
           (element_attr_marker))
-        (ntable_block_marker)
-        (ntable_cell
-          (table_cell_content))
-        (ntable_cell
-          (table_cell_content))
-        (ntable_cell
-          (table_cell_content))
-        (ntable_cell
-          (table_cell_content))
-        (ntable_block_marker))
+        (ntable_block
+          (ntable_block_marker)
+          (section_block
+            (paragraph
+              (line)
+              (line)
+              (line)))
+          (ntable_block_marker)))
       (table_block_marker))))

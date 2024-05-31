@@ -78,6 +78,7 @@ module.exports = grammar({
           $.document_attr,
           $.quoted_block,
           $.quoted_md_block,
+          $.ntable_block,
         ),
       ),
     title0: $ =>
@@ -173,18 +174,12 @@ module.exports = grammar({
       ),
 
     table_block: $ =>
-      seq(
-        $.table_block_marker,
-        repeat(
-          choice(
-            $.table_cell,
-            $.ntable_block,
-            $.unordered_list,
-            $.ordered_list,
-            $.checked_list,
-          ),
+      prec.left(
+        seq(
+          $.table_block_marker,
+          repeat(choice($.table_cell, $.section_block)),
+          $.table_block_marker,
         ),
-        $.table_block_marker,
       ),
     table_cell: $ =>
       seq(
@@ -208,18 +203,12 @@ module.exports = grammar({
       ),
 
     ntable_block: $ =>
-      seq(
-        repeat($.element_attr),
-        $.ntable_block_marker,
-        repeat(
-          choice(
-            $.ntable_cell,
-            $.unordered_list,
-            $.ordered_list,
-            $.checked_list,
-          ),
+      prec.left(
+        seq(
+          $.ntable_block_marker,
+          repeat(choice($.ntable_cell, $.section_block)),
+          $.ntable_block_marker,
         ),
-        $.ntable_block_marker,
       ),
     ntable_cell: $ =>
       seq(

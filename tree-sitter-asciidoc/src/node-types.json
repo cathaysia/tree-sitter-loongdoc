@@ -366,14 +366,6 @@
       "required": true,
       "types": [
         {
-          "type": "checked_list",
-          "named": true
-        },
-        {
-          "type": "element_attr",
-          "named": true
-        },
-        {
           "type": "ntable_block_marker",
           "named": true
         },
@@ -382,11 +374,7 @@
           "named": true
         },
         {
-          "type": "ordered_list",
-          "named": true
-        },
-        {
-          "type": "unordered_list",
+          "type": "section_block",
           "named": true
         }
       ]
@@ -642,6 +630,10 @@
           "named": true
         },
         {
+          "type": "ntable_block",
+          "named": true
+        },
+        {
           "type": "open_block",
           "named": true
         },
@@ -685,15 +677,7 @@
       "required": true,
       "types": [
         {
-          "type": "checked_list",
-          "named": true
-        },
-        {
-          "type": "ntable_block",
-          "named": true
-        },
-        {
-          "type": "ordered_list",
+          "type": "section_block",
           "named": true
         },
         {
@@ -702,10 +686,6 @@
         },
         {
           "type": "table_cell",
-          "named": true
-        },
-        {
-          "type": "unordered_list",
           "named": true
         }
       ]
