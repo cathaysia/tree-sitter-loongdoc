@@ -576,6 +576,10 @@
     "named": false
   },
   {
+    "type": "\\stem",
+    "named": false
+  },
+  {
     "type": "\\video",
     "named": false
   },
@@ -805,6 +809,10 @@
   },
   {
     "type": "smcat",
+    "named": false
+  },
+  {
+    "type": "stem",
     "named": false
   },
   {

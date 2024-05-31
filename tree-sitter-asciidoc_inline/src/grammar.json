@@ -109,6 +109,10 @@
             },
             {
               "type": "STRING",
+              "value": "stem"
+            },
+            {
+              "type": "STRING",
               "value": "latexmath"
             },
             {
@@ -681,6 +685,17 @@
             "content": {
               "type": "STRING",
               "value": "\\menu"
+            }
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "\\stem"
             }
           }
         },
