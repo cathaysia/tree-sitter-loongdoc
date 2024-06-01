@@ -32,65 +32,32 @@ a|info 8
   (section_block
     (table_block
       (table_block_marker)
-      (section_block
-        (paragraph
-          (line)))
-      (section_block
-        (block_title
-          (block_title_marker)
-          (line))
-        (unordered_list
-          (ul_item
-            (unordered_list_marker
-              (list_marker_star))
-            (line))
-          (ul_item
-            (unordered_list_marker
-              (list_marker_star))
-            (line))
-          (ul_item
-            (unordered_list_marker
-              (list_marker_hyphen))
-            (line))
-          (ul_item
-            (unordered_list_marker
-              (list_marker_hyphen))
+      (table_cell
+        (section_block
+          (paragraph
+            (line)
+            (line)
+            (line)
+            (line)
+            (line)
+            (line)
             (line))))
-      (section_block
-        (paragraph
-          (line)))
-      (section_block
-        (ntable_block
-          (ntable_block_marker)
+      (ntable_block
+        (ntable_block_marker)
+        (ntable_cell
           (section_block
             (paragraph
               (line)
-              (line)))
-          (section_block
-            (ordered_list
-              (ol_item
-                (ordered_list_marker
-                  (list_marker_dot))
-                (line))
-              (ol_item
-                (ordered_list_marker
-                  (list_marker_dot))
-                (line))))
-          (ntable_block_marker)))
-      (section_block
-        (paragraph
-          (line)))
-      (section_block
-        (ordered_list
-          (ol_item
-            (ordered_list_marker
-              (list_marker_dot))
-            (line))
-          (ol_item
-            (ordered_list_marker
-              (list_marker_dot))
+              (line)
+              (line)
+              (line))))
+        (ntable_block_marker))
+      (table_cell
+        (table_cell_attr)
+        (section_block
+          (paragraph
+            (line)
+            (line)
+            (line)
             (line))))
-      (section_block
-        (paragraph
-          (line)))
       (table_block_marker))))

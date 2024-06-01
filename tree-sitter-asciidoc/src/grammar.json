@@ -125,10 +125,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "ntable_block"
-            },
-            {
-              "type": "SYMBOL",
               "name": "passthrough_block"
             }
           ]
@@ -790,7 +786,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "section_block"
+                  "name": "ntable_block"
                 }
               ]
             }
@@ -820,30 +816,17 @@
         {
           "type": "IMMEDIATE_TOKEN",
           "content": {
-            "type": "STRING",
-            "value": "|"
+            "type": "PREC",
+            "value": 2,
+            "content": {
+              "type": "STRING",
+              "value": "|"
+            }
           }
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^|\\r\\n]"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\\|"
-                }
-              ]
-            }
-          },
-          "named": true,
-          "value": "table_cell_content"
+          "type": "SYMBOL",
+          "name": "section_block"
         }
       ]
     },
@@ -898,23 +881,26 @@
         "type": "SEQ",
         "members": [
           {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "element_attr"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
             "type": "SYMBOL",
             "name": "ntable_block_marker"
           },
           {
             "type": "REPEAT",
             "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "ntable_cell"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "section_block"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "ntable_cell"
             }
           },
           {
@@ -935,25 +921,8 @@
           }
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "REPEAT",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^!\\r\\n]"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\\!"
-                }
-              ]
-            }
-          },
-          "named": true,
-          "value": "table_cell_content"
+          "type": "SYMBOL",
+          "name": "section_block"
         }
       ]
     },

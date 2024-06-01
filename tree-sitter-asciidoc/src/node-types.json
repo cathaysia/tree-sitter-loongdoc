@@ -366,15 +366,15 @@
       "required": true,
       "types": [
         {
+          "type": "element_attr",
+          "named": true
+        },
+        {
           "type": "ntable_block_marker",
           "named": true
         },
         {
           "type": "ntable_cell",
-          "named": true
-        },
-        {
-          "type": "section_block",
           "named": true
         }
       ]
@@ -386,10 +386,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "table_cell_content",
+          "type": "section_block",
           "named": true
         }
       ]
@@ -649,10 +649,6 @@
           "named": true
         },
         {
-          "type": "ntable_block",
-          "named": true
-        },
-        {
           "type": "open_block",
           "named": true
         },
@@ -700,7 +696,7 @@
       "required": true,
       "types": [
         {
-          "type": "section_block",
+          "type": "ntable_block",
           "named": true
         },
         {
@@ -720,14 +716,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "table_cell_attr",
+          "type": "section_block",
           "named": true
         },
         {
-          "type": "table_cell_content",
+          "type": "table_cell_attr",
           "named": true
         }
       ]
@@ -735,11 +731,6 @@
   },
   {
     "type": "table_cell_attr",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "table_cell_content",
     "named": true,
     "fields": {}
   },
@@ -969,10 +960,6 @@
     "named": false
   },
   {
-    "type": "\\!",
-    "named": false
-  },
-  {
     "type": "\\=",
     "named": false
   },
@@ -982,10 +969,6 @@
   },
   {
     "type": "\\]",
-    "named": false
-  },
-  {
-    "type": "\\|",
     "named": false
   },
   {

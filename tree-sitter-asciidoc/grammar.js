@@ -79,7 +79,6 @@ module.exports = grammar({
           $.document_attr,
           $.quoted_block,
           $.quoted_md_block,
-          $.ntable_block,
           $.passthrough_block,
         ),
       ),
@@ -179,15 +178,15 @@ module.exports = grammar({
       prec.left(
         seq(
           $.table_block_marker,
-          repeat(choice($.table_cell, $.section_block)),
+          repeat(choice($.table_cell, $.ntable_block)),
           $.table_block_marker,
         ),
       ),
     table_cell: $ =>
       seq(
         optional($.table_cell_attr),
-        token.immediate('|'),
-        alias(repeat(escaped_ch('|', true)), $.table_cell_content),
+        token.immediate(prec(2, '|')),
+        $.section_block,
       ),
     table_cell_attr: $ =>
       repeat1(
@@ -207,16 +206,13 @@ module.exports = grammar({
     ntable_block: $ =>
       prec.left(
         seq(
+          optional($.element_attr),
           $.ntable_block_marker,
-          repeat(choice($.ntable_cell, $.section_block)),
+          repeat($.ntable_cell),
           $.ntable_block_marker,
         ),
       ),
-    ntable_cell: $ =>
-      seq(
-        token.immediate('!'),
-        alias(repeat(escaped_ch('!', true)), $.table_cell_content),
-      ),
+    ntable_cell: $ => seq(token.immediate('!'), $.section_block),
 
     delimited_block: $ =>
       prec.left(
