@@ -4,16 +4,16 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "common/*"
-      - "*/grammar.js"
-      - "*/src/**"
-      - "*/test/**"
+      - 'common/*'
+      - '*/grammar.js'
+      - '*/src/**'
+      - '*/test/**'
   pull_request:
     paths:
-      - "common/*"
-      - "*/grammar.js"
-      - "*/src/**"
-      - "*/test/**"
+      - 'common/*'
+      - '*/grammar.js'
+      - '*/src/**'
+      - '*/test/**'
 
 jobs:
   fuzz:

@@ -5,6 +5,19 @@
 (title4) @markup.heading.5
 (title5) @markup.heading.6
 
+[
+ (email)
+] @markup.link.url @markup.link
+
+(author_line
+  ";" @punctuation.delimiter)
+
+[
+  (firstname)
+  (middlename)
+  (lastname)
+] @attribute
+
 (table_block_marker) @punctuation.special
 (table_cell_attr) @attribute
 (table_cell

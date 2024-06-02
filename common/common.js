@@ -24,7 +24,7 @@ function commaSep(rule) {
 
 /**
  * @param {Rule} rule
- * @param {string} sep
+ * @param {Rule|string} sep
  * @return {SeqRule}
  */
 function anySep1(rule, sep) {
