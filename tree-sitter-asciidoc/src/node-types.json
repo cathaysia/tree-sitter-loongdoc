@@ -69,6 +69,11 @@
     }
   },
   {
+    "type": "attr_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "author",
     "named": true,
     "fields": {},
@@ -670,6 +675,44 @@
     }
   },
   {
+    "type": "revdate",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "revision_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "revdate",
+          "named": true
+        },
+        {
+          "type": "revnumber",
+          "named": true
+        },
+        {
+          "type": "revremark",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "revnumber",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "revremark",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "section_block",
     "named": true,
     "fields": {},
@@ -818,6 +861,10 @@
         },
         {
           "type": "line",
+          "named": true
+        },
+        {
+          "type": "revision_line",
           "named": true
         },
         {
@@ -1029,6 +1076,14 @@
     "named": false
   },
   {
+    "type": "\\,",
+    "named": false
+  },
+  {
+    "type": "\\:",
+    "named": false
+  },
+  {
     "type": "\\;",
     "named": false
   },
@@ -1078,10 +1133,6 @@
   },
   {
     "type": "anno_marker",
-    "named": true
-  },
-  {
-    "type": "attr_name",
     "named": true
   },
   {

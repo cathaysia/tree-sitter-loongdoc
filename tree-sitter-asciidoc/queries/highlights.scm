@@ -12,11 +12,20 @@
 (author_line
   ";" @punctuation.delimiter)
 
+(revision_line
+  "," @punctuation.delimiter
+  ":" @punctuation.delimiter)
+
 [
   (firstname)
   (middlename)
   (lastname)
 ] @attribute
+
+(revnumber) @number
+(revdate) @string.special
+(revremark) @string
+
 
 (table_block_marker) @punctuation.special
 (table_cell_attr) @attribute
