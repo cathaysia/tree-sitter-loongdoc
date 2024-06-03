@@ -214,11 +214,7 @@ module.exports = grammar({
 
 function create_text_formatting(ch, ...args) {
   return choice(
-    seq(
-      token(prec(1, ' ' + ch)),
-      repeat(escaped_ch(ch, true, ...args)),
-      ch + ' ',
-    ),
+    seq(token(prec(1, ch)), repeat(escaped_ch(ch, true, ...args)), ch),
     seq(ch + ch, repeat(escaped_ch(ch, true, ...args)), ch + ch),
   )
 }

@@ -1386,7 +1386,7 @@
                 "value": 1,
                 "content": {
                   "type": "STRING",
-                  "value": " *"
+                  "value": "*"
                 }
               }
             },
@@ -1420,7 +1420,7 @@
             },
             {
               "type": "STRING",
-              "value": "* "
+              "value": "*"
             }
           ]
         },
@@ -1480,7 +1480,7 @@
                 "value": 1,
                 "content": {
                   "type": "STRING",
-                  "value": " _"
+                  "value": "_"
                 }
               }
             },
@@ -1514,7 +1514,7 @@
             },
             {
               "type": "STRING",
-              "value": "_ "
+              "value": "_"
             }
           ]
         },
@@ -1574,7 +1574,7 @@
                 "value": 1,
                 "content": {
                   "type": "STRING",
-                  "value": " `"
+                  "value": "`"
                 }
               }
             },
@@ -1596,7 +1596,7 @@
             },
             {
               "type": "STRING",
-              "value": "` "
+              "value": "`"
             }
           ]
         },
@@ -1644,7 +1644,7 @@
                 "value": 1,
                 "content": {
                   "type": "STRING",
-                  "value": " #"
+                  "value": "#"
                 }
               }
             },
@@ -1666,7 +1666,7 @@
             },
             {
               "type": "STRING",
-              "value": "# "
+              "value": "#"
             }
           ]
         },
