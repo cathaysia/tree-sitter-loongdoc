@@ -27,6 +27,10 @@
       "required": false,
       "types": [
         {
+          "type": "auto_link",
+          "named": true
+        },
+        {
           "type": "replacement",
           "named": true
         }

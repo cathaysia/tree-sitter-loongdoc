@@ -331,6 +331,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "replacement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "auto_link"
                 }
               ]
             }
