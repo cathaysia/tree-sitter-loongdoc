@@ -26,15 +26,18 @@ include::chapter03.adoc[]
       (attr_name)
       (document_attr_marker)
       (line)))
-  (block_macro
-    (block_macro_name)
-    (target))
-  (block_macro
-    (block_macro_name)
-    (target))
-  (block_macro
-    (block_macro_name)
-    (target))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)))
   (section_block
     (document_attr
       (document_attr_marker)

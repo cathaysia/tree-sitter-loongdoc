@@ -42,33 +42,36 @@ image::sunset.jpg[Sunset]
   (section_block
     (paragraph
       (line)))
-  (block_macro
-    (block_macro_name)
-    (target))
-  (block_macro
-    (block_macro_name)
-    (target)
-    (block_macro_attr
-      (name)
-      (value))
-    (block_macro_attr
-      (name)
-      (value))
-    (block_macro_attr
-      (name)
-      (value))
-    (block_macro_attr
-      (name)
-      (value))
-    (block_macro_attr
-      (name)
-      (value))
-    (block_macro_attr
-      (name)
-      (value)))
-  (block_macro
-    (block_macro_name)
-    (target))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)
+      (block_macro_attr
+        (name)
+        (value))
+      (block_macro_attr
+        (name)
+        (value))
+      (block_macro_attr
+        (name)
+        (value))
+      (block_macro_attr
+        (name)
+        (value))
+      (block_macro_attr
+        (name)
+        (value))
+      (block_macro_attr
+        (name)
+        (value))))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)))
   (section_block
     (element_attr
       (element_attr_marker)
@@ -81,8 +84,9 @@ image::sunset.jpg[Sunset]
           (block_macro_name)
           (target)))
       (raw_block_marker)))
-  (block_macro
-    (block_macro_name)
-    (target)
-    (block_macro_attr
-      (name))))
+  (section_block
+    (block_macro
+      (block_macro_name)
+      (target)
+      (block_macro_attr
+        (name)))))

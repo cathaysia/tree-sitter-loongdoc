@@ -285,10 +285,6 @@
       "required": false,
       "types": [
         {
-          "type": "block_macro",
-          "named": true
-        },
-        {
           "type": "comment_block",
           "named": true
         },
@@ -722,6 +718,10 @@
       "types": [
         {
           "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_macro",
           "named": true
         },
         {

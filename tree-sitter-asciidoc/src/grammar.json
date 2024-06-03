@@ -36,10 +36,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "block_macro"
-          },
-          {
-            "type": "SYMBOL",
             "name": "line_comment"
           },
           {
@@ -126,6 +122,10 @@
             {
               "type": "SYMBOL",
               "name": "passthrough_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "block_macro"
             }
           ]
         }

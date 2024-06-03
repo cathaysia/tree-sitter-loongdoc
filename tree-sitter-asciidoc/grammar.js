@@ -56,7 +56,6 @@ module.exports = grammar({
           $.title4,
           $.title5,
           $.section_block,
-          $.block_macro,
           $.line_comment,
           $.comment_block,
         ),
@@ -80,6 +79,7 @@ module.exports = grammar({
           $.quoted_block,
           $.quoted_md_block,
           $.passthrough_block,
+          $.block_macro,
         ),
       ),
     title0: $ =>
