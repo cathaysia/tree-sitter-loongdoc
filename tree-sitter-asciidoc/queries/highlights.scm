@@ -95,7 +95,7 @@
 (block_macro
   (block_macro_name) @keyword
   "::" @punctuation.delimiter
-  (target) @markup.link
+  (target)? @markup.link
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
