@@ -4,33 +4,37 @@ Blocks are the basic elements of asciidoc documents. The entire asciidoc documen
 Blocks are either parallel or nested.
 
 ```js
-document: $ => choice($.document_title, $.section_block)
+document: $ => repeat(choice($.document_title, $.section_block))
 ```
 
 ## Section block
 
 ```js
-section_block: $ =>
-  seq(max_repeat(2, choice($.block_title, $.block_attr)), $.block_body)
+section_block: $ => seq(
+    max_repeat(2,
+        choice($.block_title, $.block_attr)
+    ),
+    $.block_body
+)
 block_body: $ =>
-  choice(
-    $.section_title,
-    $.block_macro,
-    $.line_comment,
-    $.block_comment,
-    $.list,
-    $.paragraph,
-    $.table,
-    $.admonition,
-    $.raw_block,
-    $.delimited_block,
-    $.pass_block,
-    $.breaks,
-    $.description_list,
-    $.document_attr
-    $.quotes_block
-    $.open_block
-  )
+    choice(
+        $.section_title,
+        $.block_macro,
+        $.line_comment,
+        $.block_comment,
+        $.list,
+        $.paragraph,
+        $.table,
+        $.admonition,
+        $.raw_block,
+        $.delimited_block,
+        $.pass_block,
+        $.breaks,
+        $.description_list,
+        $.document_attr
+        $.quotes_block
+        $.open_block
+    )
 block_title: $ => seq(/^\./, token.immediate($.line))
 block_attr: $ => seq(/^\[/, $.line, ']')
 
@@ -45,7 +49,11 @@ Document Title has the following structure:
 
 ```js
 document_title: $ =>
-  seq(seq('#', ' ', $.line), optional($.author), $.document_attr)
+  seq(
+    seq('#', ' ', $.line),
+    optional(seq($.author_line, $.reversion_line)),
+    repeat($.document_attr),
+  )
 ```
 
 An escaped_line can in this form:
@@ -80,35 +88,35 @@ quoted_line: $ => seq('--', $.line)
 
 ```js
 list: $ => repeat1(req(
-  $.list_marker,
-  token.immediate(' '),
-  choice(
-    $.paragraph
-    $.description_list,
-  )
+    $.list_marker,
+    token.immediate(' '),
+    choice(
+        $.paragraph
+        $.description_list,
+    )
 ))
 
 list_marker: $ =>
-  choice($.unordered_list_marker, $.ordered_marker, $.checked_list_marker)
+    choice($.unordered_list_marker, $.ordered_marker, $.checked_list_marker)
 
 unordered_list_marker: $ => repeat1(choice('-', ''))
 
 ordered_marker: $ =>
-  choice(
-    '.',
-    /\d+/,
-    /\w/,
-    /[\x{3b1} - \x{3c9}]/, // α - ω
-  )
+    choice(
+        '.',
+        /\d+/,
+        /\w/,
+        /[\x{3b1} - \x{3c9}]/, // α - ω
+    )
 
 checked_list_marker: $ =>
-  seq(
-    $.unordered_list_marker,
-    token.immediate(' '),
-    '[',
-    choice('x', '*', ' '),
-    ']',
-  )
+    seq(
+        $.unordered_list_marker,
+        token.immediate(' '),
+        '[',
+        choice('x', '*', ' '),
+        ']',
+    )
 ```
 
 ## comment
@@ -166,22 +174,22 @@ The contents of the raw block are always interpreted as plaintext.
 
 ```js
 raw_block: $ => seq(
-  $.raw_block_delimiter,
-  repeat($.line),
-  $.raw_block_delimiter
-  repeat($.callout)
+    $.raw_block_delimiter,
+    repeat($.line),
+    $.raw_block_delimiter
+        repeat($.callout)
 )
 
 raw_block_delimiter: $=>
-  repeat_min(4, choice(
-    "-",
-    ".",
-    "`"
-))
+    repeat_min(4, choice(
+        "-",
+        ".",
+        "`"
+    ))
 callout: $ => seq(
-  "<.>",
-  " ",
-  $.line
+    "<.>",
+    " ",
+    $.line
 )
 ```
 

@@ -69,7 +69,7 @@ labled_url: $ => seq(
 )
 ```
 
-## formatted_text
+## formatted text
 
 ```js
 formatted_text: $ =>
@@ -77,14 +77,7 @@ formatted_text: $ =>
 formatter: $ => choice('*', '`', '+', '#', "'", '^', '~', '**', '##', '+++')
 ```
 
-A single formatter(except ~, ^) must be preceded and followed by valid whitespace or english punctuation, and there is no restriction on a formatter composed of two symbols.
+!!! warning "diff with asciidoctor"
 
-example:
+    Here asciidoctor requires that the formatted_text surrounded by single characters must be ascii characters. This restriction is removed here
 
-```
-this is a *foo*.
-         ^ good. here is whitespace or english punctuation
-this is not a*foo*
-            ^ bad. here is no whitespace or english punctuation
-
-```
