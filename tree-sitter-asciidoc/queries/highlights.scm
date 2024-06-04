@@ -101,7 +101,7 @@
 
 (block_macro_attr
   (name) @attribute
-  "=" @punctuation.delimiter
+  "=" @operator
   (value) @variable.parameter)
 
 (admonition
