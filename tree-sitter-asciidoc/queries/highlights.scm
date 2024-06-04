@@ -1,13 +1,16 @@
 (title0) @markup.heading.1
+
 (title1) @markup.heading.2
+
 (title2) @markup.heading.3
+
 (title3) @markup.heading.4
+
 (title4) @markup.heading.5
+
 (title5) @markup.heading.6
 
-[
- (email)
-] @markup.link.url @markup.link
+(email) @markup.link.url @markup.link
 
 (author_line
   ";" @punctuation.delimiter)
@@ -23,12 +26,15 @@
 ] @attribute
 
 (revnumber) @number
+
 (revdate) @string.special
+
 (revremark) @string
 
-
 (table_block_marker) @punctuation.special
+
 (table_cell_attr) @attribute
+
 (table_cell
   "|" @punctuation.special)
 
@@ -64,7 +70,7 @@
 [
   (line_comment)
   (comment_block)
-] @comment
+] @comment @spell
 
 [
   (document_attr_marker)
@@ -86,7 +92,6 @@
 
 (delimited_block) @punctuation.bracket
 
-
 (block_macro
   (block_macro_name) @keyword
   "::" @punctuation.delimiter
@@ -94,12 +99,10 @@
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
-
 (block_macro_attr
   (name) @attribute
   "=" @punctuation.delimiter
   (value) @variable.parameter)
-
 
 (admonition
   (admonition_important) @comment.error
@@ -129,8 +132,7 @@
   (delimited_block
     (delimited_block_marker) @comment.note
     (delimited_block_marker) @comment.note))
-  (#vim-match? @attribute "NOTE\|TIP")
-)
+  (#any-of? @attribute "NOTE" "TIP"))
 
 ((section_block
   (element_attr
@@ -140,8 +142,7 @@
   (delimited_block
     (delimited_block_marker) @comment.warning
     (delimited_block_marker) @comment.warning))
-  (#vim-match? @attribute "CAUTION\|WARNING")
-)
+  (#any-of? @attribute "CAUTION" "WARNING"))
 
 ((section_block
   (element_attr
@@ -151,5 +152,4 @@
   (delimited_block
     (delimited_block_marker) @comment.error
     (delimited_block_marker) @comment.error))
-  (#vim-match? @attribute "IMPORTANT")
-)
+  (#eq? @attribute "IMPORTANT"))

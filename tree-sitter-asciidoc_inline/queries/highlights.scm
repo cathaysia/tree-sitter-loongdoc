@@ -4,12 +4,14 @@
 ] @markup.raw
 
 (emphasis) @markup.strong
+
 (ltalic) @markup.italic
+
 (highlight) @markup.italic
 
 [
- (link_url)
- (email)
+  (link_url)
+  (email)
 ] @markup.link.url @markup.link
 
 (link_label) @markup.link.label
@@ -103,9 +105,14 @@
     "wavedrom"
   ] @keyword)
 
-(inline_macro ":" @punctuation.delimiter)
-(inline_macro "[" @punctuation.bracket)
-(inline_macro "]" @punctuation.bracket)
+(inline_macro
+  ":" @punctuation.delimiter)
+
+(inline_macro
+  "[" @punctuation.bracket)
+
+(inline_macro
+  "]" @punctuation.bracket)
 
 (inline_macro
   (target) @label)
@@ -128,7 +135,7 @@
     "xref"
   ]
   (target)? @markup.link @markup.link.url
-  (attr)? @markup.label)
+  (attr)? @label)
 
 (inline_macro
   [

@@ -15,8 +15,7 @@
     (raw_block_marker)
     (raw_block_body) @injection.content
     (raw_block_marker)))
-  (#gsub! @injection.language "%s*,%s*(%w+)%s*" "%1")
-  (#vim-match? @injection.language "\\s*,\\s*.*\\s*"))
+  (#gsub! @injection.language "%s*,%s*(%w+)" "%1"))
 
 ((section_block
   (element_attr
@@ -39,4 +38,7 @@
     (raw_block_marker)
     (raw_block_body) @injection.content
     (raw_block_marker)))
-  (#vim-match? @injection.language "a2s\|barcode\|blockdiag\|bpmn\|bytefield\|d2\|dbml\|diagrams\|ditaa\|dpic\|erd\|gnuplot\|graphviz\|graphviz\|lilypond\|meme\|mermaid\|msc\|nomnoml\|pikchr\|plantuml\|shaape\|smcat\|structurizr\|svgbob\|symbolator\|syntrax\|tikz\|umlet\|vega\|wavedrom"))
+  (#any-of? @injection.language
+    "a2s" "barcode" "blockdiag" "bpmn" "bytefield" "d2" "dbml" "diagrams" "ditaa" "dpic" "erd"
+    "gnuplot" "graphviz" "graphviz" "lilypond" "meme" "mermaid" "msc" "nomnoml" "pikchr" "plantuml"
+    "shaape" "smcat" "structurizr" "svgbob" "symbolator" "syntrax" "tikz" "umlet" "vega" "wavedrom"))
