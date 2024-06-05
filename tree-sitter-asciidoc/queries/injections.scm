@@ -15,19 +15,8 @@
     (raw_block_marker)
     (raw_block_body) @injection.content
     (raw_block_marker)))
-  (#gsub! @injection.language "%s*,%s*(%w+)" "%1"))
-
-((section_block
-  (element_attr
-    (element_attr_marker)
-    (attr_value) @injection.language
-    (element_attr_marker))
-  (raw_block
-    (raw_block_marker)
-    (raw_block_body) @injection.content
-    (raw_block_marker)))
-  (#gsub! @injection.language "%s*source%s*,%s*(%w+)%s*" "%1")
-  (#vim-match? @injection.language "\\s*source\\s*,\\s*.*\\s*"))
+  (#gsub! @injection.language "^[^,]*,%s*(%w+)" "%1")
+  (#lua-match? @injection.language "^[^,]*,%s*%w+"))
 
 ((section_block
   (element_attr
