@@ -15,7 +15,7 @@ Blocks are either parallel or nested.
 | `{}`      | repeat zero or more |
 | `[]`      | optional            |
 | `/regex/` | regex               |
-| `\|`      | choice              |
+| `|`       | choice              |
 
 ## Block in BNF
 
