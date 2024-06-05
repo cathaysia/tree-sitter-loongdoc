@@ -45,21 +45,6 @@ element_attr :== element_attr_char { element_attr_char }
 element_attr_char :== /[^\]]/ | "\]"
 ```
 
-
-```js
-inline: $ =>
-  seq(
-    choice(
-      $.inline_macro,
-      $.replacement,
-      $.anchor,
-      $.xref,
-      $.autolink,
-      $.formatted_text,
-    ),
-  )
-```
-
 ## formatted text
 
 ```bnf
@@ -116,4 +101,4 @@ dhighlight :== "==" dhighlight_text "=="
 dhighlight_text :== dhighlight_word | ltalic | highlight | highlight
 dhighlight_word :== dhighlight_char { dhighlight_char }
 dhighlight_char :== /[^\=]/ | "\=" | "\=="
-===
+```
