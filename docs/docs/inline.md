@@ -58,48 +58,48 @@ formatted_element :== emphasis
                     | monospace
                     | highlight
 
-emphasis :== semphasis | demphasis
-ltalic :== sltalic | dltalic
-monospace :== smonospace | dmonospace
-highlight :== shighlight | dhighlight
+emphasis :== monostar | bistar
+ltalic :== monoltalic | biltalic
+monospace :== monomonospace | bimonospace
+highlight :== monohighlight | bihighlight
 
-semphasis :== "*" semphasis_text "*"
-semphasis_text :== semphasis_word | ltalic | monospace | highlight
-semphasis_word :== semphasis_char { semphasis_char }
-semphasis_char :== /[^\*]/ | "\*"
+monostar :== "*" monostar_text "*"
+monostar_text :== monostar_word | ltalic | monospace | highlight
+monostar_word :== monostar_char { monostar_char }
+monostar_char :== /[^\*]/ | "\*"
 
-demphasis :== "**" demphasis_text "**"
-demphasis_text :== demphasis_word | ltalic | monospace | highlight
-demphasis_word :== demphasis_char { demphasis_char }
-demphasis_char :== /[^\*]/ | "\*" | "\**"
+bistar :== "**" bistar_text "**"
+bistar_text :== bistar_word | ltalic | monospace | highlight
+bistar_word :== bistar_char { bistar_char }
+bistar_char :== /[^\*]/ | "\*" | "\**"
 
-sltalic :== "_" sltalic_text "_"
-sltalic_text :== sltalic_word | emphasis | monospace | highlight
-sltalic_word :== sltalic_char { sltalic_char }
-sltalic_char :== /[^\_]/ | "\_"
+monoltalic :== "_" monoltalic_text "_"
+monoltalic_text :== monoltalic_word | emphasis | monospace | highlight
+monoltalic_word :== monoltalic_char { monoltalic_char }
+monoltalic_char :== /[^\_]/ | "\_"
 
-dltalic :== "__" dltalic_text "__"
-dltalic_text :== dltalic_word | emphasis | monospace | highlight
-dltalic_word :== dltalic_char { dltalic_char }
-dltalic_char :== /[^\_]/ | "\_" | "\__"
+biltalic :== "__" biltalic_text "__"
+biltalic_text :== biltalic_word | emphasis | monospace | highlight
+biltalic_word :== biltalic_char { biltalic_char }
+biltalic_char :== /[^\_]/ | "\_" | "\__"
 
-smonospace :== "`" smonospace_text "`"
-smonospace_text :== smonospace_word
-smonospace_word :== smonospace_char { smonospace_char }
-smonospace_char :== /[^\`]/ | "\`"
+monomonospace :== "`" monomonospace_text "`"
+monomonospace_text :== monomonospace_word
+monomonospace_word :== monomonospace_char { monomonospace_char }
+monomonospace_char :== /[^\`]/ | "\`"
 
-dmonospace :== "``" dmonospace_text "``"
-dmonospace_text :== dmonospace_word
-dmonospace_word :== dmonospace_char { dmonospace_char }
-dmonospace_char :== /[^\`]/ | "\`" | "\``"
+bimonospace :== "``" bimonospace_text "``"
+bimonospace_text :== bimonospace_word
+bimonospace_word :== bimonospace_char { bimonospace_char }
+bimonospace_char :== /[^\`]/ | "\`" | "\``"
 
-shighlight :== "=" shighlight_text "="
-shighlight_text :== shighlight_word | ltalic | monospace | emphasis
-shighlight_word :== shighlight_char { shighlight_char }
-shighlight_char :== /[^\=]/ | "\="
+monohighlight :== "=" monohighlight_text "="
+monohighlight_text :== monohighlight_word | ltalic | monospace | emphasis
+monohighlight_word :== monohighlight_char { monohighlight_char }
+monohighlight_char :== /[^\=]/ | "\="
 
-dhighlight :== "==" dhighlight_text "=="
-dhighlight_text :== dhighlight_word | ltalic | monospace | emphasis
-dhighlight_word :== dhighlight_char { dhighlight_char }
-dhighlight_char :== /[^\=]/ | "\=" | "\=="
+bihighlight :== "==" bihighlight_text "=="
+bihighlight_text :== bihighlight_word | ltalic | monospace | emphasis
+bihighlight_word :== bihighlight_char { bihighlight_char }
+bihighlight_char :== /[^\=]/ | "\=" | "\=="
 ```
