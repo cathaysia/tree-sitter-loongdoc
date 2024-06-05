@@ -3,246 +3,159 @@
 Blocks are the basic elements of asciidoc documents. The entire asciidoc document can be viewed as a stacked block.
 Blocks are either parallel or nested.
 
-```js
-document: $ => repeat(choice($.document_title, $.section_block))
+## asciidoc bnf
+
+| Symbol    | Meaning             |
+|-----------|---------------------|
+| `::=`     | define a rule       |
+| `::+`     | extend a rule       |
+| `<rule>`  | rule                |
+| `"text"`  | string literal      |
+| `text`    | rule                |
+| `{}`      | repeat zero or more |
+| `[]`      | optional            |
+| `/regex/` | regex               |
+| `\|`      | choice              |
+
+## Block in BNF
+
+
+```bnf
+document :== { block }
+
+block :== section_block
+
+section_block :== {[block_title, block_attr]} block_body
+block_title :== /^./+line
+block_attr :== /^\[/ {/[^\]]/, '\]'} ']'
+
+block_body :== document_attr
+                | admonition
+                | raw_block
+                | open_block
+                | pass_block
+                | quotes_block
+                | paragraph
+
+admonition :== admonition_type ":" /\s+/ line
+admonition_type :== "NOTE" | "TIP" | "IMPORTANT" | "CAUTION" | "WARNING"
+
+raw_block :== raw_block_marker { line } raw_block_marker
+raw_block_marker :== /^\-\-\-\-/
+
+open_block :== open_block_marker { line } open_block_marker
+open_block_marker :== /^\-\-/
+
+pass_block :== pass_block_marker { line } pass_block_marker
+pass_block_marker := /^\+\+\+\+/
+
+quotes_block :== quotes_block_marker { line } quotes_block_marker
+quotes_block_marker := /^____/
+
+paragraph :== line { line }
 ```
 
-## Section block
+## document title
 
-```js
-section_block: $ => seq(
-    max_repeat(2,
-        choice($.block_title, $.block_attr)
-    ),
-    $.block_body
-)
-block_body: $ =>
-    choice(
-        $.section_title,
-        $.block_macro,
-        $.line_comment,
-        $.block_comment,
-        $.list,
-        $.paragraph,
-        $.table,
-        $.admonition,
-        $.raw_block,
-        $.delimited_block,
-        $.pass_block,
-        $.breaks,
-        $.description_list,
-        $.document_attr
-        $.quotes_block
-        $.open_block
-    )
-block_title: $ => seq(/^\./, token.immediate($.line))
-block_attr: $ => seq(/^\[/, $.line, ']')
+```bnf
+document ::+ document_title
 
-document_attr: $ => repeat(choice($.attr, $.block_macro))
-attr: $ => seq(':', $.attr_name, ':', ' ', $.escaped_line)
-attr_name: $ => /!?[\w\d]+!?/
+document_title :== title0 [(author_line reversion_line)] { document_attr }
+title0 :== /^#/ line
+
+author_line :== author { ";" author }
+author :== first_name [middle_name] [last_name]
+
+reversion_line :==  revnumber "," revdate ":" revremark
+revnumber :== _revnumber { _revnumber }
+_revnumber :== /[^,]/ | "\,"
+revdate :== _revdate { _revdate }
+_revdate :== /^:/ | "\:"
+revremark :== /[^\r\n]+/
+
+document_attr :== attr { attr }
+attr :== /^:/ identifier ':' /\s*/ line
 ```
 
-## Document Title
+## block macro
 
-Document Title has the following structure:
+```bnf
+block_body ::+ block_macro
 
-```js
-document_title: $ =>
-  seq(
-    seq('#', ' ', $.line),
-    optional(seq($.author_line, $.reversion_line)),
-    repeat($.document_attr),
-  )
-```
-
-An escaped_line can in this form:
+block_macro :== /^<identifier>/ '::' [macro_target] '[' [macro_attr] ']'
+macro_target :== _macro_target { _macro_target }
+_macro_target :== /[^\[]/ | "\["
+macro_attr :== _macro_attr { _macro_attr }
+_macro_attr :== /[^\]]/ | "\\]"
 
 ```
-one line \
-continue line
+
+## table
+
+```bnf
+block_body ::+ table
+
+table :== table_marker { table_cell | ntable } table_marker
+table_marker :== /^|===/
+table_cell :== table_cell_attr+"|" table_cell_content
+table_cell_attr :== table_cell_attr_char { table_cell_attr_char }
+table_cell_attr_char :== "^" | "_" | /\d+/ | /\w/ | "<" | ">" | "." | "~"
+
+ntable :== ntable_marker { ntable_cell } ntable_marker
+ntable_marker :== "!==="
+ntable_cell :== table_cell_attr+"!" table_cell_content
 ```
 
-## Section Title
+## list
 
-```js
-section_title: $ => seq(/^={1,6}/, ' ', $.line)
-```
+```bnf
+block_body ::+ list
 
-## Bock macro
-
-block macro occupies one line:
-
-```js
-block_macro: $ => seq($.name, '::', $.target, '[', $.inline, ']')
-```
-
-## Paragraph
-
-```js
-paragraph: $ => repeat1($.line, optional($.quoted_line))
-quoted_line: $ => seq('--', $.line)
-```
-
-## List
-
-```js
-list: $ => repeat1(req(
-    $.list_marker,
-    token.immediate(' '),
-    choice(
-        $.paragraph
-        $.description_list,
-    )
-))
-
-list_marker: $ =>
-    choice($.unordered_list_marker, $.ordered_marker, $.checked_list_marker)
-
-unordered_list_marker: $ => repeat1(choice('-', ''))
-
-ordered_marker: $ =>
-    choice(
-        '.',
-        /\d+/,
-        /\w/,
-        /[\x{3b1} - \x{3c9}]/, // α - ω
-    )
-
-checked_list_marker: $ =>
-    seq(
-        $.unordered_list_marker,
-        token.immediate(' '),
-        '[',
-        choice('x', '*', ' '),
-        ']',
-    )
+list :== list_marker /\s/ line
+list_marker :== ordered_list_marker
+                | unordered_list_marker
+                | checked_list_marker
+ordered_list_marker :== "." | /\d+/ | /[a-z]+/
+unordered_list_marker :== "*" | "-"
+checked_list_marker :== unordered_list_marker "[" checked_list_status "]"
+checked_list_status :== " " | "x" | "*"
 ```
 
 ## comment
 
-```js
-line_comment: $ => seq('//', $.line)
-block_comment: $ => seq('////', repeat($.line), '////')
+```bnf
+block_body ::+ line_comment
+                | block_comment
+
+line_comment :== /^\/\// line
+block_comment :== block_comment_marker { line } block_comment_marker
+block_comment_marker :== /^\/\/\/\//
 ```
 
-## Admonition
+## delimited_block
 
-```js
-admonition: $ => seq(
-    $.admonition_type,
-    $.paragraph
-)
-admonition_type: $ => choice(
-    "NOTE",
-    "TIP",
-    "IMPORTANT",
-    "CAUTION"
-    "WARNING",
-)
-```
+```bnf
+block_body ::+ delimited_block
 
-## Table
-
-```js
-table: $ => seq(
-    '|===',
-    repeat(
-        choice(
-            $.table_row,
-            $.nesting_table
-        )
-    ),
-    '|==='
-)
-table_row: $ => repeat1($.table_cell)
-table_cell: $ => seq($.cell_attr, '|', $.cell_content)
-
-nesting_table: $ => seq(
-    "!===",
-    repeat($.ntable_row)
-    "!==="
-)
-ntable_row: $ => repeat1($.ntable_cell)
-ntable_cell: $ => seq($.cell_attr, '!', $.cell_content)
-
-```
-
-## Raw block
-
-The contents of the raw block are always interpreted as plaintext.
-
-```js
-raw_block: $ => seq(
-    $.raw_block_delimiter,
-    repeat($.line),
-    $.raw_block_delimiter
-        repeat($.callout)
-)
-
-raw_block_delimiter: $=>
-    repeat_min(4, choice(
-        "-",
-        ".",
-        "`"
-    ))
-callout: $ => seq(
-    "<.>",
-    " ",
-    $.line
-)
-```
-
-## Delimited Blocks
-
-Delimited Blocks caontains other block inside self.
-
-```js
-delimited_block: $ =>
-  seq(
-    $.delimited_block_delimiter,
-    repeat($.document),
-    $.delimited_block_delimiter,
-  )
-delimited_block_delimiter: $ => repeat_min(4, choice('=', '*', '_'))
-```
-
-## Pass block
-
-The content in the pass block is always output as is when output.
-
-```js
-pass_block: $ =>
-  seq($.pass_block_delimiter, repeat($.line), $.pass_block_delimiter)
-pass_block_delimiter: $ => repeat_min(4, choice('+'))
+delimited_block :== delimited_block_marker { delimited_block_body } delimited_block_marker
+delimited_block_marker :== /^====/
+delimited_block_body :== section_block
 ```
 
 ## breaks
 
-```js
-breaks: $ => repeat3(choice('-', '*', '<'))
+```bnf
+block_body ::+ breaks
+
+breaks :== breaks_star
+            | breaks_dash
+            | breaks_quote
+            | breaks_angle
+
+breaks_star :== /^*/ "*" "*" "*"
+breaks_dash :== /^-/ "-" "-" "-"
+breaks_quote :== /^'/ "'" "'" "'"
+breaks_angle :== /^</ "<" "<" "<"
 ```
 
-the first char must not be whitespace, then any whitespace are allowed between these chars.
-
-## description list
-
-```js
-description_list: $ =>
-  seq(/\w+/, '::', choice($.line, $.list, $.inner_description_list))
-inner_description_list: $ => seq(/\w+/, ':::', choice($.line, $.list))
-```
-
-## block quote
-
-```js
-quotes_block: $ =>
-  choice(seq('____', repeat($.line), '____'), repeat1($.quoted_line))
-quoted_line: $ => seq(spaceSep1('>'), $.line)
-```
-
-## open block
-
-```js
-open_block: $ => seq('--', $.document, '--')
-```
+## description_list
