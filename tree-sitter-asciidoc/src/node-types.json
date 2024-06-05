@@ -406,6 +406,48 @@
     }
   },
   {
+    "type": "listing_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_list",
+          "named": true
+        },
+        {
+          "type": "listing_block_body",
+          "named": true
+        },
+        {
+          "type": "listing_block_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "listing_block_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anno_marker",
+          "named": true
+        },
+        {
+          "type": "block_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "middlename",
     "named": true,
     "fields": {}
@@ -561,11 +603,11 @@
       "required": true,
       "types": [
         {
-          "type": "passthrough_block_marker",
+          "type": "listing_block_body",
           "named": true
         },
         {
-          "type": "raw_block_body",
+          "type": "passthrough_block_marker",
           "named": true
         }
       ]
@@ -623,48 +665,6 @@
         },
         {
           "type": "quoted_block_md_marker",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "raw_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "anno_list",
-          "named": true
-        },
-        {
-          "type": "raw_block_body",
-          "named": true
-        },
-        {
-          "type": "raw_block_marker",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "raw_block_body",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "anno_marker",
-          "named": true
-        },
-        {
-          "type": "block_macro",
           "named": true
         }
       ]
@@ -749,6 +749,10 @@
           "named": true
         },
         {
+          "type": "listing_block",
+          "named": true
+        },
+        {
           "type": "open_block",
           "named": true
         },
@@ -770,10 +774,6 @@
         },
         {
           "type": "quoted_md_block",
-          "named": true
-        },
-        {
-          "type": "raw_block",
           "named": true
         },
         {
@@ -1204,6 +1204,10 @@
     "named": true
   },
   {
+    "type": "listing_block_marker",
+    "named": true
+  },
+  {
     "type": "ntable_block_marker",
     "named": true
   },
@@ -1225,10 +1229,6 @@
   },
   {
     "type": "quoted_paragraph_marker",
-    "named": true
-  },
-  {
-    "type": "raw_block_marker",
     "named": true
   },
   {

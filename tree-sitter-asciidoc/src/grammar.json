@@ -89,7 +89,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "raw_block"
+              "name": "listing_block"
             },
             {
               "type": "SYMBOL",
@@ -1217,7 +1217,7 @@
         ]
       }
     },
-    "_inna_raw_block": {
+    "_inna_listing_block": {
       "type": "SEQ",
       "members": [
         {
@@ -1238,7 +1238,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "raw_block"
+          "name": "listing_block"
         }
       ]
     },
@@ -1326,7 +1326,7 @@
             }
           },
           "named": true,
-          "value": "raw_block_body"
+          "value": "listing_block_body"
         },
         {
           "type": "SYMBOL",
@@ -1334,12 +1334,12 @@
         }
       ]
     },
-    "raw_block": {
+    "listing_block": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "raw_block_marker"
+          "name": "listing_block_marker"
         },
         {
           "type": "ALIAS",
@@ -1381,11 +1381,11 @@
             }
           },
           "named": true,
-          "value": "raw_block_body"
+          "value": "listing_block_body"
         },
         {
           "type": "SYMBOL",
-          "name": "raw_block_marker"
+          "name": "listing_block_marker"
         },
         {
           "type": "CHOICE",
@@ -1739,7 +1739,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "raw_block_marker"
+      "name": "listing_block_marker"
     },
     {
       "type": "SYMBOL",

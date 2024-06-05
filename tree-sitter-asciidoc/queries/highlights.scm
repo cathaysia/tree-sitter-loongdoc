@@ -44,7 +44,7 @@
   (quoted_block_md_marker)
   (quoted_paragraph_marker)
   (open_block_marker)
-  (raw_block_marker)
+  (listing_block_marker)
   (passthrough_block_marker)
   (quoted_block_marker)
   (ntable_block_marker)
@@ -86,7 +86,7 @@
 (block_title
   (block_title_marker) @punctuation.special) @attribute
 
-(raw_block_body) @markup.raw.block
+(listing_block_body) @markup.raw.block
 
 (anno_list_marker) @punctuation.special
 

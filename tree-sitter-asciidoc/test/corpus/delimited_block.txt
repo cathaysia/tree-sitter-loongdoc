@@ -1,6 +1,6 @@
-================|||
+================
 delimited_block
-================|||
+================
 
 ====
 ====
@@ -22,7 +22,7 @@ Content goes here.
 The document header is useful, but not required.
 ====
 
--------------------|||
+-------------------
 
 (document
   (section_block
@@ -43,10 +43,10 @@ The document header is useful, but not required.
         (paragraph
           (line)))
       (section_block
-        (raw_block
-          (raw_block_marker)
-          (raw_block_body)
-          (raw_block_marker)))
+        (listing_block
+          (listing_block_marker)
+          (listing_block_body)
+          (listing_block_marker)))
       (section_block
         (paragraph
           (line)))

@@ -25,7 +25,7 @@ module.exports = grammar({
     $.table_block_marker,
     $.ntable_block_marker,
     $.delimited_block_marker,
-    $.raw_block_marker,
+    $.listing_block_marker,
     $.quoted_block_marker,
     $.quoted_block_md_marker,
     $.quoted_paragraph_marker,
@@ -70,7 +70,7 @@ module.exports = grammar({
           $.checked_list,
           $.table_block,
           $.delimited_block,
-          $.raw_block,
+          $.listing_block,
           $.open_block,
           $.breaks,
           $.paragraph,
@@ -251,8 +251,8 @@ module.exports = grammar({
           $.delimited_block_marker,
         ),
       ),
-    _inna_raw_block: $ =>
-      seq(repeat(choice($.element_attr, $.block_title)), $.raw_block),
+    _inna_listing_block: $ =>
+      seq(repeat(choice($.element_attr, $.block_title)), $.listing_block),
     _inna_list: $ =>
       seq(
         repeat(choice($.element_attr, $.block_title)),
@@ -263,12 +263,12 @@ module.exports = grammar({
     passthrough_block: $ =>
       seq(
         $.passthrough_block_marker,
-        alias(repeat(seq(/[^\r\n]*/, $._NEWLINE)), $.raw_block_body),
+        alias(repeat(seq(/[^\r\n]*/, $._NEWLINE)), $.listing_block_body),
         $.passthrough_block_marker,
       ),
-    raw_block: $ =>
+    listing_block: $ =>
       seq(
-        $.raw_block_marker,
+        $.listing_block_marker,
         alias(
           repeat(
             choice(
@@ -276,9 +276,9 @@ module.exports = grammar({
               $.block_macro,
             ),
           ),
-          $.raw_block_body,
+          $.listing_block_body,
         ),
-        $.raw_block_marker,
+        $.listing_block_marker,
         optional($.anno_list),
       ),
 
