@@ -161,7 +161,7 @@ block_body ::+ listing_block
 listing_block :== listing_block_marker { line | anno_marker } listing_block_marker [ anno_list ]
 listing_block_marker :== /^\-\-\-\-/
 anno_marker :== [ anno_marker_prefix ] /\s+/ anno_marker_body [ "-->" ]
-anno_marker_prefix :== "//" | "#" | "<!--"
+anno_marker_prefix :== "//" | "#" | "<!--" | ";;"
 anno_marker_body :== "<.>"
                     | "<" /\d+/ ">"
 
