@@ -349,8 +349,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 case '|': {  // Table
                     if(valid_symbols[TOKEN_TABLE_BLOCK_MARKER]) {
                         lexer->advance(lexer, false);
-                        consume('=', lexer, false, NULL, USIZE_MAX);
-                        if(is_newline(lexer->lookahead)) {
+                        usize counter = 0;
+                        consume('=', lexer, false, &counter, USIZE_MAX);
+                        if(counter == 3 && is_newline(lexer->lookahead)) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
                             return true;
