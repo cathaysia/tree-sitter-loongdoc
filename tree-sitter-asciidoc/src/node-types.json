@@ -371,6 +371,44 @@
     "fields": {}
   },
   {
+    "type": "ident_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_list",
+          "named": true
+        },
+        {
+          "type": "ident_block_line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ident_block_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_marker",
+          "named": true
+        },
+        {
+          "type": "ident_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "lastname",
     "named": true,
     "fields": {}
@@ -430,6 +468,48 @@
   },
   {
     "type": "listing_block_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "anno_marker",
+          "named": true
+        },
+        {
+          "type": "block_macro",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "anno_list",
+          "named": true
+        },
+        {
+          "type": "literal_block_body",
+          "named": true
+        },
+        {
+          "type": "literal_block_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal_block_body",
     "named": true,
     "fields": {},
     "children": {
@@ -749,7 +829,15 @@
           "named": true
         },
         {
+          "type": "ident_block",
+          "named": true
+        },
+        {
           "type": "listing_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
           "named": true
         },
         {
@@ -1176,6 +1264,10 @@
     "named": true
   },
   {
+    "type": "ident_marker",
+    "named": true
+  },
+  {
     "type": "line_comment_marker",
     "named": true
   },
@@ -1205,6 +1297,10 @@
   },
   {
     "type": "listing_block_marker",
+    "named": true
+  },
+  {
+    "type": "literal_block_marker",
     "named": true
   },
   {

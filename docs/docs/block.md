@@ -170,4 +170,13 @@ anno_list_item :== anno_list_marker /\s+/ line
 anno_list_marker :== "<.>"
 ```
 
+## literal block
+
+```bnf
+block_body ::+ literal_block
+            | ident_block
+literal_block :== literal_block_marker { line | anno_marker } literal_block_marker [ anno_list ]
+literal_block_marker :== /^\.\.\.\./
+```
+
 ## description_list

@@ -52,3 +52,29 @@ require 'sinatra'
 ```
 
 In this case, if you want a `list_block`, you need set `listing` attribute.
+
+## literal block
+
+- A `paragraph` with _literal_ attribute will be a literal block.
+- A `liter_block` is literal block.
+
+```adoc
+[literal]
+error: 1954 Forbidden search
+absolutely fatal: operation lost in the dodecahedron of doom
+Would you like to try again? y/n
+```
+
+```adoc
+....
+Kismet: Where is the *defensive operations manual*?
+
+Computer: Calculating ...
+Can not locate object.
+You are not authorized to know it exists.
+
+Kismet: Did the werewolves tell you to say that?
+
+Computer: Calculating ...
+....
+```

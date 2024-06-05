@@ -22,7 +22,8 @@ typedef enum TokenType {
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_NTABLE_BLOCK_MARKER,
     TOKEN_DELIMITED_BLOCK_MARKER,
-    TOKEN_RAW_BLOCK_MARKER,
+    TOKEN_LISTING_BLOCK_MARKER,
+    TOKEN_LITERAL_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MD_MARKER,
     TOKEN_QUOTED_PARAGRAPH_MARKER,
@@ -39,6 +40,7 @@ typedef enum TokenType {
     TOKEN_ADMONITION_IMPORTANT,
     TOKEN_ADMONITION_CAUTION,
     TOKEN_ADMONITION_WARNING,
+    TOKEN_IDENT_MARKER
 } TokenType;
 
 static bool parse_number(TSLexer *lexer);
@@ -223,9 +225,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
 
-                    if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                    if(valid_symbols[TOKEN_LISTING_BLOCK_MARKER]) {
                         if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                            lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                            lexer->result_symbol = TOKEN_LISTING_BLOCK_MARKER;
                             s->is_matching_raw_block = !s->is_matching_raw_block;
                             return true;
                         }
@@ -257,11 +259,11 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 case '.': {
                     lexer->advance(lexer, false);
                     lexer->mark_end(lexer);
-                    if(valid_symbols[TOKEN_RAW_BLOCK_MARKER]) {
+                    if(valid_symbols[TOKEN_LITERAL_BLOCK_MARKER]) {
                         if(parse_sequence(lexer, "...")) {
                             if(is_newline(lexer->lookahead)) {
                                 lexer->mark_end(lexer);
-                                lexer->result_symbol = TOKEN_RAW_BLOCK_MARKER;
+                                lexer->result_symbol = TOKEN_LITERAL_BLOCK_MARKER;
                                 s->is_matching_raw_block = !s->is_matching_raw_block;
                                 return true;
                             }
@@ -422,6 +424,17 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
                 }
+            }
+        }
+
+        if(
+            lexer->get_column(lexer) == 0 && valid_symbols[TOKEN_IDENT_MARKER] && is_white_space(lexer->lookahead)
+        ) {
+            skip_white_space(lexer);
+            if(!is_new_line(lexer->lookahead) && !is_eof(lexer)) {
+                lexer->mark_end(lexer);
+                lexer->result_symbol = TOKEN_IDENT_MARKER;
+                return true;
             }
         }
     }

@@ -26,6 +26,7 @@ module.exports = grammar({
     $.ntable_block_marker,
     $.delimited_block_marker,
     $.listing_block_marker,
+    $.literal_block_marker,
     $.quoted_block_marker,
     $.quoted_block_md_marker,
     $.quoted_paragraph_marker,
@@ -41,6 +42,7 @@ module.exports = grammar({
     $.admonition_important,
     $.admonition_caution,
     $.admonition_warning,
+    $.ident_marker,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -71,6 +73,8 @@ module.exports = grammar({
           $.table_block,
           $.delimited_block,
           $.listing_block,
+          $.literal_block,
+          $.ident_block,
           $.open_block,
           $.breaks,
           $.paragraph,
@@ -280,6 +284,29 @@ module.exports = grammar({
         ),
         $.listing_block_marker,
         optional($.anno_list),
+      ),
+    literal_block: $ =>
+      seq(
+        $.literal_block_marker,
+        alias(
+          repeat(
+            choice(
+              seq(repeat1(choice(/[^\r\n]/, $.anno_marker)), $._block_end),
+              $.block_macro,
+            ),
+          ),
+          $.literal_block_body,
+        ),
+        $.literal_block_marker,
+        optional($.anno_list),
+      ),
+    ident_block: $ =>
+      prec.left(seq(repeat1($.ident_block_line), optional($.anno_list))),
+    ident_block_line: $ =>
+      seq(
+        $.ident_marker,
+        repeat1(choice(/[^\r\n]/, $.anno_marker)),
+        $._block_end,
       ),
 
     anno_list: $ => repeat1($.anno_list_item),
