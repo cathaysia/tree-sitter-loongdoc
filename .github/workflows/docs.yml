@@ -1,11 +1,12 @@
 name: docs
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
     paths:
-      - 'docs/*'
+      - 'docs/**'
 permissions:
   contents: write
 jobs:
