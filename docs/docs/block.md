@@ -6,7 +6,7 @@ Blocks are either parallel or nested.
 ## asciidoc bnf
 
 | Symbol    | Meaning             |
-|-----------|---------------------|
+| --------- | ------------------- |
 | `::=`     | define a rule       |
 | `::+`     | extend a rule       |
 | `<rule>`  | rule                |
@@ -19,7 +19,6 @@ Blocks are either parallel or nested.
 
 ## Block in BNF
 
-
 ```bnf
 document :== { block }
 
@@ -31,7 +30,6 @@ block_attr :== /^\[/ {/[^\]]/, '\]'} ']'
 
 block_body :== document_attr
                 | admonition
-                | raw_block
                 | open_block
                 | pass_block
                 | quotes_block
@@ -39,9 +37,6 @@ block_body :== document_attr
 
 admonition :== admonition_type ":" /\s+/ line
 admonition_type :== "NOTE" | "TIP" | "IMPORTANT" | "CAUTION" | "WARNING"
-
-raw_block :== raw_block_marker { line } raw_block_marker
-raw_block_marker :== /^\-\-\-\-/
 
 open_block :== open_block_marker { line } open_block_marker
 open_block_marker :== /^\-\-/
@@ -58,7 +53,7 @@ paragraph :== line { line }
 ## document title
 
 ```bnf
-document ::+ document_title
+block ::+ document_title
 
 document_title :== title0 [(author_line reversion_line)] { document_attr }
 title0 :== /^#/ line
@@ -156,6 +151,23 @@ breaks_star :== /^*/ "*" "*" "*"
 breaks_dash :== /^-/ "-" "-" "-"
 breaks_quote :== /^'/ "'" "'" "'"
 breaks_angle :== /^</ "<" "<" "<"
+```
+
+## listing block
+
+```bnf
+block_body ::+ listing_block
+
+listing_block :== listing_block_marker { line | anno_marker } listing_block_marker [ anno_list ]
+listing_block_marker :== /^\-\-\-\-/
+anno_marker :== [ anno_marker_prefix ] /\s+/ anno_marker_body [ "-->" ]
+anno_marker_prefix :== "//" | "#" | "<!--"
+anno_marker_body :== "<.>"
+                    | "<" /\d+/ ">"
+
+anno_list :== { anno_list_item }
+anno_list_item :== anno_list_marker /\s+/ line
+anno_list_marker :== "<.>"
 ```
 
 ## description_list
