@@ -1,0 +1,20 @@
+[package]
+name = "tree-sitter-asciidoc-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+tree-sitter = "0.22.6"
+tree-sitter-asciidoc = { path = ".." }
+
+[[bin]]
+name = "parse"
+path = "fuzz_targets/parse.rs"
+test = false
+doc = false
+bench = false

@@ -26,7 +26,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Fuzz ${{matrix.parser}} parser
-        uses: tree-sitter/fuzz-action@v4
+      - uses: actions-rs/toolchain@v1
         with:
-          directory: ${{matrix.parser}}
+          toolchain: nightly
+      - name: Install cargo-fuzz
+        run: |
+          cargo install cargo-fuzz
+      - name: Fuzz ${{matrix.parser}} parser
+        run: |
+          cd ${{matrix.parser}}
+          cargo +nightly fuzz run parse -- -max_total_time=300
