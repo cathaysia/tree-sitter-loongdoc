@@ -24,6 +24,7 @@ module.exports = grammar({
     $.breaks_marker,
     $.table_block_marker,
     $.ntable_block_marker,
+    $.table_cell_attr,
     $.delimited_block_marker,
     $.listing_block_marker,
     $.literal_block_marker,
@@ -223,37 +224,6 @@ module.exports = grammar({
         '|',
         choice($._section_block, repeat1(escaped_ch('|'))),
       ),
-    table_cell_attr: $ =>
-      repeat1(
-        choice(
-          $.table_cell_attr_align_left,
-          $.table_cell_attr_align_right,
-          $.table_cell_attr_align_middle,
-          $.table_cell_attr_style_none,
-          $.table_cell_attr_style_strong,
-          $.table_cell_attr_style_emphasis,
-          $.table_cell_attr_style_monospaced,
-          $.table_cell_attr_style_header,
-          $.table_cell_attr_style_literal,
-          $.table_cell_attr_style_asciidoc,
-          $.table_cell_span_width,
-          $.table_cell_span_vertical,
-          $.table_cell_span_vw,
-        ),
-      ),
-    table_cell_attr_align_left: $ => token(prec(1, '<')),
-    table_cell_attr_align_right: $ => token(prec(1, '>')),
-    table_cell_attr_align_middle: $ => token(prec(1, '^')),
-    table_cell_attr_style_none: $ => token(prec(1, 'd')),
-    table_cell_attr_style_strong: $ => token(prec(1, 's')),
-    table_cell_attr_style_emphasis: $ => token(prec(1, 'e')),
-    table_cell_attr_style_monospaced: $ => token(prec(1, 'm')),
-    table_cell_attr_style_header: $ => token(prec(1, 'h')),
-    table_cell_attr_style_literal: $ => token(prec(1, 'l')),
-    table_cell_attr_style_asciidoc: $ => token(prec(1, 'a')),
-    table_cell_span_width: $ => token(prec(1, /\d+\+/)),
-    table_cell_span_vertical: $ => token(prec(1, /\.\d+\+/)),
-    table_cell_span_vw: $ => token(prec(1, /\d+\.\d+\+/)),
 
     ntable_block: $ =>
       prec.left(
@@ -266,6 +236,7 @@ module.exports = grammar({
       ),
     ntable_cell: $ =>
       seq(
+        optional($.table_cell_attr),
         token.immediate('!'),
         choice($._section_block, $.ntable_cell_content),
         optional($._NEWLINE),

@@ -32,53 +32,33 @@ a|info 8
   (section_block
     (table_block
       (table_block_marker)
+      (table_cell)
+      (table_cell)
+      (table_cell)
+      (table_cell)
       (table_cell
-        (section_block
-          (paragraph
-            (line))))
+        (table_cell_attr))
       (table_cell
-        (table_cell_attr
-          (table_cell_span_vertical)
-          (table_cell_attr_style_asciidoc))
-        (section_block
-          (paragraph
-            (line)
-            (line)
-            (line)
-            (line)
-            (line))))
+        (table_cell_attr))
       (table_cell
-        (table_cell_attr
-          (table_cell_attr_align_left)
-          (table_cell_attr_style_emphasis))
-        (section_block
-          (paragraph
-            (line))))
+        (table_cell_attr))
       (ntable_block
         (ntable_block_marker)
         (ntable_cell
           (ntable_cell_content))
         (ntable_cell
+          (table_cell_attr)
           (ntable_cell_content))
         (ntable_cell
           (ntable_cell_content))
         (ntable_cell
+          (table_cell_attr)
           (ntable_cell_content))
         (ntable_block_marker))
       (table_cell
-        (table_cell_attr
-          (table_cell_attr_style_asciidoc))
-        (section_block
-          (paragraph
-            (line)
-            (line)
-            (line))))
+        (table_cell_attr))
       (table_cell
-        (table_cell_attr
-          (table_cell_span_width)
-          (table_cell_attr_align_middle)
-          (table_cell_attr_style_strong))
-        (section_block
-          (paragraph
-            (line))))
+        (table_cell_attr))
+      (table_cell
+        (table_cell_attr))
       (table_block_marker))))

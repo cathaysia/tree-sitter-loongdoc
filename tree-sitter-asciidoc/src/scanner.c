@@ -21,6 +21,7 @@ typedef enum TokenType {
     TOKEN_BREAKS_MARKS,
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_NTABLE_BLOCK_MARKER,
+    TOKEN_CELL_ATTR,
     TOKEN_DELIMITED_BLOCK_MARKER,
     TOKEN_LISTING_BLOCK_MARKER,
     TOKEN_LITERAL_BLOCK_MARKER,
@@ -43,6 +44,7 @@ typedef enum TokenType {
     TOKEN_IDENT_MARKER
 } TokenType;
 
+static bool parse_table_attr(TSLexer *lexer);
 static bool parse_number(TSLexer *lexer);
 static bool parse_sequence(TSLexer *lexer, char const *sequence);
 static bool parse_ordered_marker(TSLexer *lexer);
@@ -478,6 +480,21 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
     }
 
+    if(valid_symbols[TOKEN_CELL_ATTR]) {
+        bool has_token = false;
+        while(parse_table_attr(lexer)) {
+            has_token = true;
+        }
+
+        if(has_token) {
+            if(lexer->lookahead == '|' || lexer->lookahead == '!') {
+                lexer->result_symbol = TOKEN_CELL_ATTR;
+                lexer->mark_end(lexer);
+                return true;
+            }
+        }
+    }
+
     return false;
 }
 
@@ -627,4 +644,52 @@ static bool parse_number(TSLexer *lexer) {
         has_number = true;
     }
     return has_number;
+}
+
+char table_cell_attr_align_left = '<';
+char table_cell_attr_align_right = '>';
+char table_cell_attr_align_middle = '^';
+char table_cell_attr_style_none = 'd';
+char table_cell_attr_style_strong = 's';
+char table_cell_attr_style_emphasis = 'e';
+char table_cell_attr_style_monospaced = 'm';
+char table_cell_attr_style_header = 'h';
+char table_cell_attr_style_literal = 'l';
+char table_cell_attr_style_asciidoc = 'a';
+
+static bool parse_table_attr(TSLexer *lexer) {
+    if(lexer->lookahead == table_cell_attr_align_left ||
+       lexer->lookahead == table_cell_attr_align_right ||
+       lexer->lookahead == table_cell_attr_align_middle ||
+       lexer->lookahead == table_cell_attr_style_none ||
+       lexer->lookahead == table_cell_attr_style_strong ||
+       lexer->lookahead == table_cell_attr_style_emphasis ||
+       lexer->lookahead == table_cell_attr_style_monospaced ||
+       lexer->lookahead == table_cell_attr_style_header ||
+       lexer->lookahead == table_cell_attr_style_literal ||
+       lexer->lookahead == table_cell_attr_style_asciidoc) {
+        lexer->advance(lexer, false);
+        return true;
+    }
+    // table_cell_span_vertical = /\.\d+\+/;
+    if(lexer->lookahead == '.') {
+        lexer->advance(lexer, false);
+        return parse_number(lexer);
+    }
+    // table_cell_span_width = /\d+\+/;
+    // table_cell_span_vw = /\d+\.\d+\+/;
+    if(parse_number(lexer)) {
+        if(lexer->lookahead == '.') {
+            lexer->advance(lexer, false);
+            if(!parse_number(lexer)) {
+                return false;
+            }
+        }
+        if(lexer->lookahead == '+') {
+            lexer->advance(lexer, false);
+            return true;
+        }
+    }
+
+    return false;
 }
