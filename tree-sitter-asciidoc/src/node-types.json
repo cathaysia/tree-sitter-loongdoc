@@ -981,14 +981,82 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "section_block",
+          "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_macro",
+          "named": true
+        },
+        {
+          "type": "block_title",
+          "named": true
+        },
+        {
+          "type": "breaks",
+          "named": true
+        },
+        {
+          "type": "checked_list",
+          "named": true
+        },
+        {
+          "type": "delimited_block",
+          "named": true
+        },
+        {
+          "type": "document_attr",
+          "named": true
+        },
+        {
+          "type": "element_attr",
+          "named": true
+        },
+        {
+          "type": "ident_block",
+          "named": true
+        },
+        {
+          "type": "listing_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "open_block",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "passthrough_block",
+          "named": true
+        },
+        {
+          "type": "quoted_block",
+          "named": true
+        },
+        {
+          "type": "quoted_md_block",
+          "named": true
+        },
+        {
+          "type": "table_block",
           "named": true
         },
         {
           "type": "table_cell_attr",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
@@ -1320,6 +1388,10 @@
   },
   {
     "type": "\\]",
+    "named": false
+  },
+  {
+    "type": "\\|",
     "named": false
   },
   {
