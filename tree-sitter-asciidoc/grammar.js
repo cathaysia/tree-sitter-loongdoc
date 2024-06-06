@@ -185,24 +185,44 @@ module.exports = grammar({
 
     checked_list: $ => prec.left(repeat1($.ck_item)),
     ck_item: $ =>
-      seq(
-        $.unordered_list_marker,
-        $._WHITE_SPACE,
-        choice(
-          alias(token(prec(1, /\[[*x]\]/)), $.task_list_marker_checked),
-          alias(token(prec(1, '[ ]')), $.task_list_marker_unchecked),
+      prec.left(
+        seq(
+          $.unordered_list_marker,
+          $._WHITE_SPACE,
+          choice(
+            alias(token(prec(1, /\[[*x]\]/)), $.task_list_marker_checked),
+            alias(token(prec(1, '[ ]')), $.task_list_marker_unchecked),
+          ),
+          $._WHITE_SPACE,
+          $.line,
+          repeat($._append_block),
         ),
-        $._WHITE_SPACE,
-        $.line,
       ),
 
     unordered_list: $ => prec.right(repeat1($.ul_item)),
-    ul_item: $ => seq($.unordered_list_marker, $._WHITE_SPACE, $.line),
+    ul_item: $ =>
+      prec.left(
+        seq(
+          $.unordered_list_marker,
+          $._WHITE_SPACE,
+          $.line,
+          repeat($._append_block),
+        ),
+      ),
+    _append_block: $ => seq($.list_continuation, $.section_block),
     unordered_list_marker: $ =>
       choice($.list_marker_star, $.list_marker_hyphen),
 
     ordered_list: $ => prec.right(repeat1($.ol_item)),
-    ol_item: $ => seq($.ordered_list_marker, $._WHITE_SPACE, $.line),
+    ol_item: $ =>
+      prec.left(
+        seq(
+          $.ordered_list_marker,
+          $._WHITE_SPACE,
+          $.line,
+          repeat($._append_block),
+        ),
+      ),
     ordered_list_marker: $ =>
       choice(
         $.list_marker_digit,
@@ -266,7 +286,9 @@ module.exports = grammar({
         ),
       ),
     open_block: $ =>
-      seq($.open_block_marker, repeat($.line), $.open_block_marker),
+      prec.left(
+        seq($.open_block_marker, repeat($.section_block), $.open_block_marker),
+      ),
     passthrough_block: $ =>
       seq(
         $.passthrough_block_marker,

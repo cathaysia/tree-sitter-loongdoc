@@ -40,7 +40,9 @@ function createElement(node) {
       (line))
     (open_block
       (open_block_marker)
-      (line)
+      (section_block
+        (paragraph
+          (line)))
       (open_block_marker)))
   (section_block
     (element_attr
@@ -49,14 +51,45 @@ function createElement(node) {
       (element_attr_marker))
     (open_block
       (open_block_marker)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
-      (line)
+      (section_block
+        (paragraph
+          (line)))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker)
+            (anno_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker)
+            (anno_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker)
+            (anno_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker))))
+      (section_block
+        (ident_block
+          (ident_block_line
+            (ident_marker))))
+      (section_block
+        (paragraph
+          (line)))
       (open_block_marker))))

@@ -927,62 +927,73 @@
       }
     },
     "ck_item": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "unordered_list_marker"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_WHITE_SPACE"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "TOKEN",
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "unordered_list_marker"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_WHITE_SPACE"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "ALIAS",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
+                  "type": "TOKEN",
                   "content": {
-                    "type": "PATTERN",
-                    "value": "\\[[*x]\\]"
+                    "type": "PREC",
+                    "value": 1,
+                    "content": {
+                      "type": "PATTERN",
+                      "value": "\\[[*x]\\]"
+                    }
                   }
-                }
+                },
+                "named": true,
+                "value": "task_list_marker_checked"
               },
-              "named": true,
-              "value": "task_list_marker_checked"
-            },
-            {
-              "type": "ALIAS",
-              "content": {
-                "type": "TOKEN",
+              {
+                "type": "ALIAS",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
+                  "type": "TOKEN",
                   "content": {
-                    "type": "STRING",
-                    "value": "[ ]"
+                    "type": "PREC",
+                    "value": 1,
+                    "content": {
+                      "type": "STRING",
+                      "value": "[ ]"
+                    }
                   }
-                }
-              },
-              "named": true,
-              "value": "task_list_marker_unchecked"
+                },
+                "named": true,
+                "value": "task_list_marker_unchecked"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_WHITE_SPACE"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "line"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_append_block"
             }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_WHITE_SPACE"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "line"
-        }
-      ]
+          }
+        ]
+      }
     },
     "unordered_list": {
       "type": "PREC_RIGHT",
@@ -996,19 +1007,43 @@
       }
     },
     "ul_item": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "unordered_list_marker"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_WHITE_SPACE"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "line"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_append_block"
+            }
+          }
+        ]
+      }
+    },
+    "_append_block": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "unordered_list_marker"
+          "name": "list_continuation"
         },
         {
           "type": "SYMBOL",
-          "name": "_WHITE_SPACE"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "line"
+          "name": "section_block"
         }
       ]
     },
@@ -1037,21 +1072,32 @@
       }
     },
     "ol_item": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "ordered_list_marker"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_WHITE_SPACE"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "line"
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "ordered_list_marker"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_WHITE_SPACE"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "line"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_append_block"
+            }
+          }
+        ]
+      }
     },
     "ordered_list_marker": {
       "type": "CHOICE",
@@ -1338,24 +1384,28 @@
       }
     },
     "open_block": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "open_block_marker"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
             "type": "SYMBOL",
-            "name": "line"
+            "name": "open_block_marker"
+          },
+          {
+            "type": "REPEAT",
+            "content": {
+              "type": "SYMBOL",
+              "name": "section_block"
+            }
+          },
+          {
+            "type": "SYMBOL",
+            "name": "open_block_marker"
           }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "open_block_marker"
-        }
-      ]
+        ]
+      }
     },
     "passthrough_block": {
       "type": "SEQ",

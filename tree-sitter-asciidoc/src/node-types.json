@@ -219,6 +219,14 @@
           "named": true
         },
         {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
           "type": "task_list_marker_checked",
           "named": true
         },
@@ -592,7 +600,15 @@
           "named": true
         },
         {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
           "type": "ordered_list_marker",
+          "named": true
+        },
+        {
+          "type": "section_block",
           "named": true
         }
       ]
@@ -607,11 +623,11 @@
       "required": true,
       "types": [
         {
-          "type": "line",
+          "type": "open_block_marker",
           "named": true
         },
         {
-          "type": "open_block_marker",
+          "type": "section_block",
           "named": true
         }
       ]
@@ -1070,6 +1086,14 @@
       "types": [
         {
           "type": "line",
+          "named": true
+        },
+        {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
+          "type": "section_block",
           "named": true
         },
         {
