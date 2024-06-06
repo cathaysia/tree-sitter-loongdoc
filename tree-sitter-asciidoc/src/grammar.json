@@ -1145,46 +1145,201 @@
         "type": "CHOICE",
         "members": [
           {
-            "type": "PATTERN",
-            "value": "\\w"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_align_left"
           },
           {
-            "type": "STRING",
-            "value": "<"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_align_right"
           },
           {
-            "type": "STRING",
-            "value": ">"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_align_middle"
           },
           {
-            "type": "STRING",
-            "value": "^"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_none"
           },
           {
-            "type": "STRING",
-            "value": ".^"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_strong"
           },
           {
-            "type": "STRING",
-            "value": "~"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_emphasis"
           },
           {
-            "type": "STRING",
-            "value": "+"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_monospaced"
           },
           {
-            "type": "PATTERN",
-            "value": "\\d+\\+"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_header"
           },
           {
-            "type": "PATTERN",
-            "value": "\\.\\d+\\+"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_literal"
           },
           {
-            "type": "PATTERN",
-            "value": "\\d+\\.\\d+\\+"
+            "type": "SYMBOL",
+            "name": "table_cell_attr_style_asciidoc"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "table_cell_span_width"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "table_cell_span_vertical"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "table_cell_span_vw"
           }
         ]
+      }
+    },
+    "table_cell_attr_align_left": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "<"
+        }
+      }
+    },
+    "table_cell_attr_align_right": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": ">"
+        }
+      }
+    },
+    "table_cell_attr_align_middle": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "^"
+        }
+      }
+    },
+    "table_cell_attr_style_none": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "d"
+        }
+      }
+    },
+    "table_cell_attr_style_strong": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "s"
+        }
+      }
+    },
+    "table_cell_attr_style_emphasis": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "e"
+        }
+      }
+    },
+    "table_cell_attr_style_monospaced": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "m"
+        }
+      }
+    },
+    "table_cell_attr_style_header": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "h"
+        }
+      }
+    },
+    "table_cell_attr_style_literal": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "l"
+        }
+      }
+    },
+    "table_cell_attr_style_asciidoc": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "STRING",
+          "value": "a"
+        }
+      }
+    },
+    "table_cell_span_width": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "\\d+\\+"
+        }
+      }
+    },
+    "table_cell_span_vertical": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "\\.\\d+\\+"
+        }
+      }
+    },
+    "table_cell_span_vw": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 1,
+        "content": {
+          "type": "PATTERN",
+          "value": "\\d+\\.\\d+\\+"
+        }
       }
     },
     "ntable_block": {
