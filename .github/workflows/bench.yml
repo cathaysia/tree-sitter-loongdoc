@@ -37,6 +37,10 @@ jobs:
       - name: paper environment
         run: |
           git clone https://github.com/asciidoctor/asciidoctor.git
+          dd if=/dev/random of=1mb.data count=1024 bs=1024
+          dd if=/dev/random of=8mb.data count=8192 bs=1024
+          dd if=/dev/random of=64mb.data count=65536 bs=1024
+          dd if=/dev/random of=128mb.data count=131072 bs=1024
       - name: bench parser
         run: |
           cargo bench

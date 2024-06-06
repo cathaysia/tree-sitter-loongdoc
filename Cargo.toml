@@ -17,3 +17,7 @@ tree-sitter = "0.22.6"
 [[bench]]
 name = "bench_parse"
 harness = false
+
+[[bench]]
+name = "bench_big_file"
+harness = false
