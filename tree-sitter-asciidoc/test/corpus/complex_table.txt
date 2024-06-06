@@ -45,12 +45,13 @@ a|info 8
       (ntable_block
         (ntable_block_marker)
         (ntable_cell
-          (section_block
-            (paragraph
-              (line)
-              (line)
-              (line)
-              (line))))
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
         (ntable_block_marker))
       (table_cell
         (table_cell_attr)

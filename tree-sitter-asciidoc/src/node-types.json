@@ -565,15 +565,92 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "section_block",
+          "type": "admonition",
+          "named": true
+        },
+        {
+          "type": "block_macro",
+          "named": true
+        },
+        {
+          "type": "block_title",
+          "named": true
+        },
+        {
+          "type": "breaks",
+          "named": true
+        },
+        {
+          "type": "checked_list",
+          "named": true
+        },
+        {
+          "type": "delimited_block",
+          "named": true
+        },
+        {
+          "type": "document_attr",
+          "named": true
+        },
+        {
+          "type": "element_attr",
+          "named": true
+        },
+        {
+          "type": "ident_block",
+          "named": true
+        },
+        {
+          "type": "listing_block",
+          "named": true
+        },
+        {
+          "type": "literal_block",
+          "named": true
+        },
+        {
+          "type": "ntable_cell_content",
+          "named": true
+        },
+        {
+          "type": "open_block",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "passthrough_block",
+          "named": true
+        },
+        {
+          "type": "quoted_block",
+          "named": true
+        },
+        {
+          "type": "quoted_md_block",
+          "named": true
+        },
+        {
+          "type": "table_block",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "ntable_cell_content",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "ol_item",
@@ -1165,6 +1242,10 @@
   },
   {
     "type": "\\ ",
+    "named": false
+  },
+  {
+    "type": "\\!",
     "named": false
   },
   {

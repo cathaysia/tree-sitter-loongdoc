@@ -63,7 +63,10 @@ module.exports = grammar({
         ),
       ),
 
-    section_block: $ =>
+    section_block: $ => choice($._section_block_para, $._section_block),
+    _section_block_para: $ =>
+      seq(repeat(choice($.element_attr, $.block_title)), $.paragraph),
+    _section_block: $ =>
       seq(
         repeat(choice($.element_attr, $.block_title)),
         choice(
@@ -77,7 +80,6 @@ module.exports = grammar({
           $.ident_block,
           $.open_block,
           $.breaks,
-          $.paragraph,
           $.admonition,
           $.document_attr,
           $.quoted_block,
@@ -246,7 +248,13 @@ module.exports = grammar({
           $.ntable_block_marker,
         ),
       ),
-    ntable_cell: $ => seq(token.immediate('!'), $.section_block),
+    ntable_cell: $ =>
+      seq(
+        token.immediate('!'),
+        choice($._section_block, $.ntable_cell_content),
+        optional($._NEWLINE),
+      ),
+    ntable_cell_content: $ => repeat1(escaped_ch('!')),
 
     delimited_block: $ =>
       prec.left(

@@ -60,10 +60,12 @@ Nesting Tables
           (element_attr_marker))
         (ntable_block_marker)
         (ntable_cell
-          (section_block
-            (paragraph
-              (line)
-              (line)
-              (line))))
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
+        (ntable_cell
+          (ntable_cell_content))
         (ntable_block_marker))
       (table_block_marker))))

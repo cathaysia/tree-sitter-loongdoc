@@ -46,6 +46,44 @@
       }
     },
     "section_block": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_section_block_para"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_section_block"
+        }
+      ]
+    },
+    "_section_block_para": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "element_attr"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "block_title"
+              }
+            ]
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "paragraph"
+        }
+      ]
+    },
+    "_section_block": {
       "type": "SEQ",
       "members": [
         {
@@ -106,10 +144,6 @@
             {
               "type": "SYMBOL",
               "name": "breaks"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "paragraph"
             },
             {
               "type": "SYMBOL",
@@ -1200,10 +1234,47 @@
           }
         },
         {
-          "type": "SYMBOL",
-          "name": "section_block"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_section_block"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "ntable_cell_content"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_NEWLINE"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
+    },
+    "ntable_cell_content": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^!]"
+          },
+          {
+            "type": "STRING",
+            "value": "\\!"
+          }
+        ]
+      }
     },
     "delimited_block": {
       "type": "PREC_LEFT",
