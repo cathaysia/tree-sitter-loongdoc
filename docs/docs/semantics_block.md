@@ -37,22 +37,6 @@ A console language will starts with `$` or `#`, then following with command:
 [source,console]
 $ asciidoctor -v
 ```
-
-### promot all raw block
-
-If set `source-language` attribute for document, then all raw block will be promote as source block.
-
-```adoc
-= Document Title
-:source-highlighter: pygments
-:source-language: java
-
-[,ruby]
-require 'sinatra'
-```
-
-In this case, if you want a `list_block`, you need set `listing` attribute.
-
 ## literal block
 
 - A `paragraph` with _literal_ attribute will be a literal block.
