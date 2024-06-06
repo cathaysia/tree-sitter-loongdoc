@@ -44,6 +44,7 @@ module.exports = grammar({
     $.admonition_caution,
     $.admonition_warning,
     $.ident_marker,
+    $.block_continue,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],

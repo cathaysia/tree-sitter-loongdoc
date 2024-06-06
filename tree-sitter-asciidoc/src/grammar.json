@@ -2030,6 +2030,10 @@
     {
       "type": "SYMBOL",
       "name": "ident_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "block_continue"
     }
   ],
   "inline": [],
