@@ -38,3 +38,8 @@ dist/
 *.o
 
 docs/site
+
+
+# Added by cargo
+
+/target

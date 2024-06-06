@@ -19,5 +19,4 @@ If the grammar.js description specification is too complex, it will be marked in
 
 ## benchs
 
-- [asciidoc](./bench_tree-sitter-asciidoc/report)
-- [asciidoc_inline](./bench_tree-sitter-asciidoc_inline/report)
+[benchmark](./benchmark/report)

@@ -22,10 +22,6 @@ jobs:
   fuzz:
     name: bench parsers
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        parser: [tree-sitter-asciidoc, tree-sitter-asciidoc_inline]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,18 +29,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ${{matrix.parser}}/target/criterion/
-          key: bench-${{matrix.parser}}-${{ runner.os }}
+            target/criterion/
+          key: bench-${{ runner.os }}
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-      - name: oaper environment
+      - name: paper environment
         run: |
-          cd ${{matrix.parser}}
           git clone https://github.com/asciidoctor/asciidoctor.git
-      - name: bench ${{matrix.parser}} parser
+      - name: bench parser
         run: |
-          cd ${{matrix.parser}}
           cargo bench
       - name: publish bench result
         uses: Wandalen/wretry.action@master
@@ -52,5 +46,5 @@ jobs:
           action: peaceiris/actions-gh-pages@v4
           with: |
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ${{ matrix.parser }}/target/criterion
-            destination_dir: bench_${{ matrix.parser }}
+            publish_dir: target/criterion
+            destination_dir: benchmark

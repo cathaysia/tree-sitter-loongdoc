@@ -17,11 +17,11 @@ typedef intptr_t isize;
 #endif
 
 #ifndef USIZE_MAX
-const usize USIZE_MAX = UINTPTR_MAX;
+static const usize USIZE_MAX = UINTPTR_MAX;
 #endif
 
 #ifndef ISIZE_MAX
-const isize ISIZE_MAX = INTPTR_MAX;
+static const isize ISIZE_MAX = INTPTR_MAX;
 #endif
 
 #define ADOC_UNUSED(x) ((void)x)

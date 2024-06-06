@@ -2,10 +2,21 @@ use criterion::{criterion_group, criterion_main, Criterion};
 use glob::glob;
 use tree_sitter::Parser;
 
-fn parse_data(contents: &[String]) {
+fn bench_asciidoc(contents: &[String]) {
     let mut parser = Parser::new();
     parser
         .set_language(&tree_sitter_asciidoc::language())
+        .unwrap();
+
+    for text in contents {
+        parser.parse(text, None).unwrap();
+    }
+}
+
+fn bench_asciidoc_inline(contents: &[String]) {
+    let mut parser = Parser::new();
+    parser
+        .set_language(&tree_sitter_asciidoc_inline::language())
         .unwrap();
 
     for text in contents {
@@ -29,9 +40,15 @@ fn criterion_benchmark(c: &mut Criterion) {
     });
     println!("total {} files need be parsed.", datas.len());
 
-    c.bench_function("parse adocs", |b| {
+    c.bench_function("bench asciidoc", |b| {
         b.iter(|| {
-            parse_data(&datas);
+            bench_asciidoc(&datas);
+        })
+    });
+
+    c.bench_function("bench asciidoc_inline", |b| {
+        b.iter(|| {
+            bench_asciidoc_inline(&datas);
         })
     });
 }
