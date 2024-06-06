@@ -39,6 +39,14 @@ table
 2+|info 9 |info 10
 |===
 
+|===
+a|
+[, rust]
+----
+let a = 10;
+----
+|===
+
 -----
 
 (document
@@ -102,4 +110,18 @@ table
       (table_cell
         (table_cell_attr))
       (table_cell)
+      (table_block_marker)))
+  (section_block
+    (table_block
+      (table_block_marker)
+      (table_cell
+        (table_cell_attr)
+        (element_attr
+          (element_attr_marker)
+          (attr_value)
+          (element_attr_marker))
+        (listing_block
+          (listing_block_marker)
+          (listing_block_body)
+          (listing_block_marker)))
       (table_block_marker))))

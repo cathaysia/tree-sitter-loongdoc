@@ -221,8 +221,10 @@ module.exports = grammar({
     table_cell: $ =>
       seq(
         optional($.table_cell_attr),
-        '|',
-        choice($._section_block, repeat1(escaped_ch('|'))),
+        choice(
+          seq('|', token.immediate(/\r?\n/), $._section_block),
+          seq('|', repeat1(escaped_ch('|'))),
+        ),
       ),
 
     ntable_block: $ =>
