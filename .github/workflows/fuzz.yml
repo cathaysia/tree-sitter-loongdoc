@@ -1,4 +1,4 @@
-name: CI
+name: fuzz
 
 on:
   workflow_dispatch:

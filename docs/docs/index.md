@@ -16,3 +16,8 @@ All specification descriptions in this document use the tree-sitter grammar.js s
 The parts mentioned in the specification do not represent the parts currently implemented by tree-sitter-asciidoc. The implementation is more of a subset of the specification.
 
 If the grammar.js description specification is too complex, it will be marked in the form of annotations.
+
+## benchs
+
+- [asciidoc](./bench_tree-sitter-asciidoc/report)
+- [asciidoc_inline](./bench_tree-sitter-asciidoc_inline/report)

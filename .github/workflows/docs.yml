@@ -28,5 +28,14 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material
-      - run: cd docs && mkdocs gh-deploy --force
+      - name: Build
+        run: |
+          pip install mkdocs-material
+          cd docs && mkdocs build
+
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/site
+          keep_files: true
