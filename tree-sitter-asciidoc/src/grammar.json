@@ -1140,13 +1140,39 @@
                   }
                 },
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "_section_block"
-                  },
-                  "named": true,
-                  "value": "section_block"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "_section_block"
+                      },
+                      "named": true,
+                      "value": "section_block"
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "list_continuation"
+                          },
+                          {
+                            "type": "ALIAS",
+                            "content": {
+                              "type": "SYMBOL",
+                              "name": "_section_block"
+                            },
+                            "named": true,
+                            "value": "section_block"
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -1970,7 +1996,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "block_continue"
+      "name": "list_continuation"
     }
   ],
   "inline": [],

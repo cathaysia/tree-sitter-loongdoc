@@ -42,7 +42,7 @@ typedef enum TokenType {
     TOKEN_ADMONITION_CAUTION,
     TOKEN_ADMONITION_WARNING,
     TOKEN_IDENT_MARKER,
-    TOKEN_BLOCK_CONTINUE
+    TOKEN_LIST_CONTINUATION
 } TokenType;
 
 static bool parse_table_attr(TSLexer *lexer);
@@ -420,9 +420,9 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
                 case '+': {
                     lexer->advance(lexer, false);
-                    if(valid_symbols[TOKEN_BLOCK_CONTINUE]) {
+                    if(valid_symbols[TOKEN_LIST_CONTINUATION]) {
                         if(is_newline(lexer->lookahead)) {
-                            lexer->result_symbol = TOKEN_BLOCK_CONTINUE;
+                            lexer->result_symbol = TOKEN_LIST_CONTINUATION;
                             lexer->mark_end(lexer);
                             return true;
                         }

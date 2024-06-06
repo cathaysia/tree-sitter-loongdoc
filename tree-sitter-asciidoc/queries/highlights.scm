@@ -19,6 +19,8 @@
   "," @punctuation.delimiter
   ":" @punctuation.delimiter)
 
+(list_continuation) @constant
+
 [
   (firstname)
   (middlename)

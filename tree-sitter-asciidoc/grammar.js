@@ -1,4 +1,4 @@
-const { commaSep, escaped_ch, anySep1 } = require('../common/common.js')
+const { commaSep, escaped_ch, anySep1, anySep } = require('../common/common.js')
 
 module.exports = grammar({
   name: 'asciidoc',
@@ -44,7 +44,7 @@ module.exports = grammar({
     $.admonition_caution,
     $.admonition_warning,
     $.ident_marker,
-    $.block_continue,
+    $.list_continuation,
   ],
 
   precedences: $ => [[$.checked_list, $.unordered_list]],
@@ -226,7 +226,10 @@ module.exports = grammar({
           seq(
             '|',
             token.immediate(/\r?\n/),
-            alias($._section_block, $.section_block),
+            anySep1(
+              alias($._section_block, $.section_block),
+              $.list_continuation,
+            ),
           ),
           seq('|', repeat1(escaped_ch('|'))),
         ),

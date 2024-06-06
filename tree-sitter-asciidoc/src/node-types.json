@@ -911,6 +911,10 @@
       "required": false,
       "types": [
         {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
           "type": "section_block",
           "named": true
         },
@@ -1268,6 +1272,10 @@
   },
   {
     "type": "line_comment_marker",
+    "named": true
+  },
+  {
+    "type": "list_continuation",
     "named": true
   },
   {
