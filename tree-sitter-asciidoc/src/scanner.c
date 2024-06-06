@@ -92,6 +92,7 @@ void tree_sitter_asciidoc_external_scanner_deserialize(void *payload, const char
 }
 
 bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    usize start_pos = lexer->get_column(lexer);
     Scanner *s = (Scanner *)payload;
 
     if(lexer->eof(lexer)) {
@@ -480,7 +481,10 @@ bool tree_sitter_asciidoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
     }
 
-    if(valid_symbols[TOKEN_CELL_ATTR]) {
+    if(
+        start_pos == lexer->get_column(lexer) &&
+        valid_symbols[TOKEN_CELL_ATTR]
+    ) {
         bool has_token = false;
         while(parse_table_attr(lexer)) {
             has_token = true;

@@ -44,16 +44,22 @@ a|info 8
         (table_cell_attr))
       (ntable_block
         (ntable_block_marker)
+        (ntable_cell)
         (ntable_cell
-          (ntable_cell_content))
-        (ntable_cell
-          (table_cell_attr)
-          (ntable_cell_content))
-        (ntable_cell
-          (ntable_cell_content))
+          (table_cell_attr))
+        (ntable_cell)
         (ntable_cell
           (table_cell_attr)
-          (ntable_cell_content))
+          (section_block
+            (ordered_list
+              (ol_item
+                (ordered_list_marker
+                  (list_marker_dot))
+                (line))
+              (ol_item
+                (ordered_list_marker
+                  (list_marker_dot))
+                (line)))))
         (ntable_block_marker))
       (table_cell
         (table_cell_attr))

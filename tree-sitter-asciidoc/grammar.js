@@ -222,7 +222,11 @@ module.exports = grammar({
       seq(
         optional($.table_cell_attr),
         choice(
-          seq('|', token.immediate(/\r?\n/), $._section_block),
+          seq(
+            '|',
+            token.immediate(/\r?\n/),
+            alias($._section_block, $.section_block),
+          ),
           seq('|', repeat1(escaped_ch('|'))),
         ),
       ),
@@ -239,11 +243,15 @@ module.exports = grammar({
     ntable_cell: $ =>
       seq(
         optional($.table_cell_attr),
-        token.immediate('!'),
-        choice($._section_block, $.ntable_cell_content),
-        optional($._NEWLINE),
+        choice(
+          seq(
+            '!',
+            token.immediate(/\r?\n/),
+            alias($._section_block, $.section_block),
+          ),
+          seq('!', repeat1(escaped_ch('!'))),
+        ),
       ),
-    ntable_cell_content: $ => repeat1(escaped_ch('!')),
 
     delimited_block: $ =>
       prec.left(

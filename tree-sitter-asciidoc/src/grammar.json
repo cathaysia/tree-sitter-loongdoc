@@ -1140,8 +1140,13 @@
                   }
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "_section_block"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_section_block"
+                  },
+                  "named": true,
+                  "value": "section_block"
                 }
               ]
             },
@@ -1226,54 +1231,61 @@
           ]
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "!"
-          }
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "_section_block"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "!"
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "\\r?\\n"
+                  }
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_section_block"
+                  },
+                  "named": true,
+                  "value": "section_block"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "ntable_cell_content"
-            }
-          ]
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "_NEWLINE"
-            },
-            {
-              "type": "BLANK"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "!"
+                },
+                {
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "PATTERN",
+                        "value": "[^!]"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": "\\!"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         }
       ]
-    },
-    "ntable_cell_content": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[^!]"
-          },
-          {
-            "type": "STRING",
-            "value": "\\!"
-          }
-        ]
-      }
     },
     "delimited_block": {
       "type": "PREC_LEFT",
