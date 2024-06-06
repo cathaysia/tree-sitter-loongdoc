@@ -1311,69 +1311,6 @@
         ]
       }
     },
-    "_inna_listing_block": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "element_attr"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "block_title"
-              }
-            ]
-          }
-        },
-        {
-          "type": "SYMBOL",
-          "name": "listing_block"
-        }
-      ]
-    },
-    "_inna_list": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "element_attr"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "block_title"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "unordered_list"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "ordered_list"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "checked_list"
-            }
-          ]
-        }
-      ]
-    },
     "open_block": {
       "type": "SEQ",
       "members": [

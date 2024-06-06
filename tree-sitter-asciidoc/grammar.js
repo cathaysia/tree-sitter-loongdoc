@@ -262,13 +262,6 @@ module.exports = grammar({
           $.delimited_block_marker,
         ),
       ),
-    _inna_listing_block: $ =>
-      seq(repeat(choice($.element_attr, $.block_title)), $.listing_block),
-    _inna_list: $ =>
-      seq(
-        repeat(choice($.element_attr, $.block_title)),
-        choice($.unordered_list, $.ordered_list, $.checked_list),
-      ),
     open_block: $ =>
       seq($.open_block_marker, repeat($.line), $.open_block_marker),
     passthrough_block: $ =>
