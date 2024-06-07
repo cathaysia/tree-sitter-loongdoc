@@ -1137,34 +1137,53 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "http"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "http"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "https"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "file"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "ftp"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "irc"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "://"
+                }
+              ]
             },
             {
-              "type": "STRING",
-              "value": "https"
-            },
-            {
-              "type": "STRING",
-              "value": "file"
-            },
-            {
-              "type": "STRING",
-              "value": "ftp"
-            },
-            {
-              "type": "STRING",
-              "value": "irc"
-            },
-            {
-              "type": "STRING",
-              "value": "www"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "www"
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
             }
           ]
-        },
-        {
-          "type": "STRING",
-          "value": "://"
         },
         {
           "type": "PREC_RIGHT",

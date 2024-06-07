@@ -184,8 +184,10 @@ module.exports = grammar({
     link_label: $ => repeat1(escaped_ch(']', false, $.replacement)),
     link_url: $ =>
       seq(
-        choice('http', 'https', 'file', 'ftp', 'irc', 'www'),
-        '://',
+        choice(
+          seq(choice('http', 'https', 'file', 'ftp', 'irc'), '://'),
+          seq('www', '.'),
+        ),
         prec.right(anySep1($._link_component, '.')),
       ),
     _link_component: $ => /[^\.\s\[>]+/,

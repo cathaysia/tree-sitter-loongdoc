@@ -4,6 +4,8 @@ autolink
 
 this is https://github.com or https://github.com[GitHub] or <https://github.com> or link:https://github.com[] or "https://github.com[]" or (https://github.com)
 
+www.google.com is also a autolink.
+
 -----
 
 (inline
@@ -16,6 +18,8 @@ this is https://github.com or https://github.com[GitHub] or <https://github.com>
     (link_url))
   (inline_macro
     (target))
+  (auto_link
+    (link_url))
   (auto_link
     (link_url))
   (auto_link
