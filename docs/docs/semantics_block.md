@@ -35,7 +35,7 @@ A console language will starts with `$` or `#`, then following with command:
 
 ```adoc
 [source,console]
-$ asciidoctor -v
+$ loongdoctor -v
 ```
 ## literal block
 

@@ -1,8 +1,8 @@
 # Block
 
-Blocks are the basic elements of asciidoc documents. The entire asciidoc document can be viewed as a stacked block.
+Blocks are the basic elements of loongdoc documents. The entire loongdoc document can be viewed as a stacked block.
 
-## asciidoc grammar rules
+## loongdoc grammar rules
 
 | Symbol    | Meaning             |
 | --------- | ------------------- |

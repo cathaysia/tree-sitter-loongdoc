@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        parser: [asciidoc, asciidoc_inline]
+        parser: [loongdoc, loongdoc_inline]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

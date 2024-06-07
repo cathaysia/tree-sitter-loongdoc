@@ -1,0 +1,155 @@
+===========
+author_line
+===========
+
+= Document Title
+firstname middlename lastname <email@xxx.com>
+
+= The Intrepid Chronicles
+Kismet R. Lee <kismet@loongdoctor.org>
+
+= The Intrepid Chronicles
+Kismet R. Lee <kismet@loongdoctor.org>; B. Steppenwolf; Pax Draeke <pax@loongdoctor.org>
+
+= The Intrepid Chronicles
+:author: Kismet R. Lee
+:email: kismet@loongdoctor.org
+
+= The Intrepid Chronicles
+Kismet R. Lee <kismet@loongdoctor.org>; B. Steppenwolf; Pax Draeke <pax@loongdoctor.org>
+
+.About {author_2}
+Mr. {lastname_2} lives in the Rocky Mountains.
+
+.About {author_3}
+{firstname_3}, also known as {authorinitials_3}, loves to surf.
+
+.About {author}
+You can contact {firstname} at {email}.
+
+= Drum and Bass Breakbeats
+Ann_Marie Jenson; Tomás López_del_Toro
+
+The first author's first name is {firstname}.
+
+The second author's last name is {lastname_2}.
+
+= Quantum Networks
+:author: Mara_Moss Wirribi
+
+== About {author}
+
+{firstname} lives on the Bellarine Peninsula near Geelong, Australia.
+
+-----
+
+(document
+  (title0
+    (title_h0_marker)
+    (line)
+    (author_line
+      (author
+        (firstname)
+        (middlename)
+        (lastname)
+        (email))))
+  (title0
+    (title_h0_marker)
+    (line)
+    (author_line
+      (author
+        (firstname)
+        (middlename)
+        (lastname)
+        (email))))
+  (title0
+    (title_h0_marker)
+    (line)
+    (author_line
+      (author
+        (firstname)
+        (middlename)
+        (lastname)
+        (email))
+      (author
+        (firstname)
+        (lastname))
+      (author
+        (firstname)
+        (lastname)
+        (email))))
+  (title0
+    (title_h0_marker)
+    (line)
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line))
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line)))
+  (title0
+    (title_h0_marker)
+    (line)
+    (author_line
+      (author
+        (firstname)
+        (middlename)
+        (lastname)
+        (email))
+      (author
+        (firstname)
+        (lastname))
+      (author
+        (firstname)
+        (lastname)
+        (email))))
+  (section_block
+    (block_title
+      (block_title_marker)
+      (line))
+    (paragraph
+      (line)))
+  (section_block
+    (block_title
+      (block_title_marker)
+      (line))
+    (paragraph
+      (line)))
+  (section_block
+    (block_title
+      (block_title_marker)
+      (line))
+    (paragraph
+      (line)))
+  (title0
+    (title_h0_marker)
+    (line)
+    (author_line
+      (author
+        (firstname)
+        (lastname))
+      (author
+        (firstname)
+        (lastname))))
+  (section_block
+    (paragraph
+      (line)
+      (line)))
+  (title0
+    (title_h0_marker)
+    (line)
+    (document_attr
+      (document_attr_marker)
+      (attr_name)
+      (document_attr_marker)
+      (line)))
+  (title1
+    (title_h1_marker)
+    (line))
+  (section_block
+    (paragraph
+      (line))))

@@ -2,10 +2,10 @@ use criterion::{criterion_group, criterion_main, Criterion};
 use glob::glob;
 use tree_sitter::Parser;
 
-fn bench_asciidoc(contents: &[String]) {
+fn bench_loongdoc(contents: &[String]) {
     let mut parser = Parser::new();
     parser
-        .set_language(&tree_sitter_asciidoc::language())
+        .set_language(&tree_sitter_loongdoc::language())
         .unwrap();
 
     for text in contents {
@@ -13,10 +13,10 @@ fn bench_asciidoc(contents: &[String]) {
     }
 }
 
-fn bench_asciidoc_inline(contents: &[String]) {
+fn bench_loongdoc_inline(contents: &[String]) {
     let mut parser = Parser::new();
     parser
-        .set_language(&tree_sitter_asciidoc_inline::language())
+        .set_language(&tree_sitter_loongdoc_inline::language())
         .unwrap();
 
     for text in contents {
@@ -40,15 +40,15 @@ fn criterion_benchmark(c: &mut Criterion) {
     });
     println!("total {} files need be parsed.", datas.len());
 
-    c.bench_function("bench asciidoc", |b| {
+    c.bench_function("bench loongdoc", |b| {
         b.iter(|| {
-            bench_asciidoc(&datas);
+            bench_loongdoc(&datas);
         })
     });
 
-    c.bench_function("bench asciidoc_inline", |b| {
+    c.bench_function("bench loongdoc_inline", |b| {
         b.iter(|| {
-            bench_asciidoc_inline(&datas);
+            bench_loongdoc_inline(&datas);
         })
     });
 }

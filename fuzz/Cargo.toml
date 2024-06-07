@@ -1,5 +1,5 @@
 [package]
-name = "asciidoc-fuzz"
+name = "loongdoc-fuzz"
 version = "0.0.0"
 publish = false
 edition = "2021"
@@ -9,21 +9,21 @@ cargo-fuzz = true
 
 [dependencies]
 libfuzzer-sys = "0.4"
-tree-sitter-asciidoc = { path = "../tree-sitter-asciidoc/" }
-tree-sitter-asciidoc-inline = { path = "../tree-sitter-asciidoc_inline/" }
+tree-sitter-loongdoc = { path = "../tree-sitter-loongdoc/" }
+tree-sitter-loongdoc-inline = { path = "../tree-sitter-loongdoc_inline/" }
 tree-sitter = "0.22.6"
 
 
 [[bin]]
-name = "asciidoc"
-path = "fuzz_targets/asciidoc.rs"
+name = "loongdoc"
+path = "fuzz_targets/loongdoc.rs"
 test = false
 doc = false
 bench = false
 
 [[bin]]
-name = "asciidoc_inline"
-path = "fuzz_targets/asciidoc_inline.rs"
+name = "loongdoc_inline"
+path = "fuzz_targets/loongdoc_inline.rs"
 test = false
 doc = false
 bench = false

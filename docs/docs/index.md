@@ -1,18 +1,18 @@
 # LoongDoc
 
-LoongDoc is normalized asciidoc.
+LoongDoc is normalized loongdoc.
 
-## What's asciidoc
+## What's loongdoc
 
-asciidoc is a markup language. There is currently no specification, it is defined by the implementation and user [documentation](https://docs.asciidoctor.org/).
+loongdoc is a markup language. There is currently no specification, it is defined by the implementation and user [documentation](https://docs.loongdoctor.org/).
 
 ## Why LoongDoc
 
 LoongDoc has two purposes:
 
 - Avoid trademark disputes.
-- Define a strongly defined specification of asciidoc.
-- Make best effort to maintain compatibility with asciidoc.
+- Define a strongly defined specification of loongdoc.
+- Make best effort to maintain compatibility with loongdoc.
 
 ## Current Implementation
 

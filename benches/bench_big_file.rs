@@ -6,7 +6,7 @@ use tree_sitter::Parser;
 fn bench_content(text: &[u8]) {
     let mut parser = Parser::new();
     parser
-        .set_language(&tree_sitter_asciidoc_inline::language())
+        .set_language(&tree_sitter_loongdoc_inline::language())
         .unwrap();
 
     parser.parse(text, None).unwrap();
