@@ -28,8 +28,10 @@ labled_url :== url "[" $.link_label "]"
 link_label :== link_label_char { link_label_char }
 link_label_char :== /[^\]]/ | "\]"
 
-url :== url_head "://" url_body
-url_head :== "http" | "https" | "file" | "ftp" | "irc"
+url :== url_head url_body
+url_head :== url_protocol | "www."
+url_protocol :== url_protocol_header "://"
+url_protocol_header :== "http" | "https" | "file" | "ftp" | "irc"
 url_body :== /[^\.\s\[>]+/
 ```
 
