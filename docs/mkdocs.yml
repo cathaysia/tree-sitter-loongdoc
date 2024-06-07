@@ -1,4 +1,4 @@
-site_name: tree-sitter-asciidoc
+site_name: tree-sitter-loongdoc
 theme:
   name: material
 

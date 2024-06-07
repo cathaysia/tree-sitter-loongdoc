@@ -1,9 +1,8 @@
 # Block
 
 Blocks are the basic elements of asciidoc documents. The entire asciidoc document can be viewed as a stacked block.
-Blocks are either parallel or nested.
 
-## asciidoc bnf
+## asciidoc grammar rules
 
 | Symbol    | Meaning             |
 | --------- | ------------------- |
@@ -17,7 +16,7 @@ Blocks are either parallel or nested.
 | `/regex/` | regex               |
 | `|`       | choice              |
 
-## Block in BNF
+## Block
 
 ```bnf
 document :== { block }
