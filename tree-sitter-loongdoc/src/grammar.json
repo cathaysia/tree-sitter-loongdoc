@@ -24,7 +24,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "comment_block"
+            "name": "block_comment"
           }
         ]
       }
@@ -1728,8 +1728,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "[^\\r\\n]+"
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "[^\\r\\n]+"
+              },
+              "named": true,
+              "value": "body"
             },
             {
               "type": "BLANK"
@@ -1742,7 +1747,7 @@
         }
       ]
     },
-    "comment_block": {
+    "block_comment": {
       "type": "SEQ",
       "members": [
         {
@@ -1768,7 +1773,7 @@
             }
           },
           "named": true,
-          "value": "comment_block_body"
+          "value": "body"
         },
         {
           "type": "SYMBOL",

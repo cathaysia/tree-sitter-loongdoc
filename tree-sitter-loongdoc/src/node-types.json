@@ -116,6 +116,25 @@
     }
   },
   {
+    "type": "block_comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment_marker",
+          "named": true
+        },
+        {
+          "type": "body",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_macro",
     "named": true,
     "fields": {},
@@ -175,6 +194,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "body",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "breaks",
@@ -242,30 +266,6 @@
     }
   },
   {
-    "type": "comment_block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "block_comment_marker",
-          "named": true
-        },
-        {
-          "type": "comment_block_body",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "comment_block_body",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "delimited_block",
     "named": true,
     "fields": {},
@@ -293,7 +293,7 @@
       "required": false,
       "types": [
         {
-          "type": "comment_block",
+          "type": "block_comment",
           "named": true
         },
         {
@@ -425,9 +425,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "body",
+          "named": true
+        },
         {
           "type": "line_comment_marker",
           "named": true

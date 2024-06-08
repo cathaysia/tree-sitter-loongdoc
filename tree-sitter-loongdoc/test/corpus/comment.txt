@@ -16,12 +16,13 @@ https://www.abcdefg.com
 
 (document
   (line_comment
-    (line_comment_marker))
+    (line_comment_marker)
+    (body))
   (line_comment
     (line_comment_marker))
-  (comment_block
+  (block_comment
     (block_comment_marker)
-    (comment_block_body)
+    (body)
     (block_comment_marker))
   (section_block
     (paragraph
