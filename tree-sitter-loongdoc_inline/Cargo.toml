@@ -4,9 +4,9 @@ description = "loongdocInline grammar for tree-sitter"
 version = "0.0.1"
 license = "Apache-2.0"
 readme = "../README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "loongdoc-inline"]
+keywords = ["incremental", "parsing", "tree-sitter", "asciidoc", "adoc"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-loongdoc-inline"
+repository = "https://github.com/cathaysia/tree-sitter-loongdoc"
 edition = "2021"
 autoexamples = false
 
