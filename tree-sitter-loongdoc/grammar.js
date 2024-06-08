@@ -54,11 +54,7 @@ module.exports = grammar({
       repeat(
         choice(
           $.title0,
-          $.title1,
-          $.title2,
-          $.title3,
-          $.title4,
-          $.title5,
+          $.document_attr,
           $.section_block,
           $.line_comment,
           $.comment_block,
@@ -72,6 +68,11 @@ module.exports = grammar({
       seq(
         repeat(choice($.element_attr, $.block_title)),
         choice(
+          $.title1,
+          $.title2,
+          $.title3,
+          $.title4,
+          $.title5,
           $.unordered_list,
           $.ordered_list,
           $.checked_list,
@@ -83,7 +84,6 @@ module.exports = grammar({
           $.open_block,
           $.breaks,
           $.admonition,
-          $.document_attr,
           $.quoted_block,
           $.quoted_md_block,
           $.passthrough_block,

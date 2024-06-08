@@ -60,33 +60,41 @@ more value
       (attr_name)
       (document_attr_marker)
       (line)))
-  (title1
-    (title_h1_marker)
-    (line))
-  (title2
-    (title_h2_marker)
-    (line))
-  (title3
-    (title_h3_marker)
-    (line))
-  (title4
-    (title_h4_marker)
-    (line))
-  (title5
-    (title_h5_marker)
-    (line))
-  (title1
-    (title_h1_marker)
-    (line))
+  (section_block
+    (title1
+      (title_h1_marker)
+      (line)))
+  (section_block
+    (title2
+      (title_h2_marker)
+      (line)))
+  (section_block
+    (title3
+      (title_h3_marker)
+      (line)))
+  (section_block
+    (title4
+      (title_h4_marker)
+      (line)))
+  (section_block
+    (title5
+      (title_h5_marker)
+      (line)))
+  (section_block
+    (title1
+      (title_h1_marker)
+      (line)))
   (title0
     (title_h0_marker)
     (line))
   (title0
     (title_h0_marker)
     (line))
-  (title1
-    (title_h1_marker)
-    (line))
-  (title3
-    (title_h3_marker)
-    (line)))
+  (section_block
+    (title1
+      (title_h1_marker)
+      (line)))
+  (section_block
+    (title3
+      (title_h3_marker)
+      (line))))
