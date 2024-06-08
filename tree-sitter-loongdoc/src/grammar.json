@@ -12,23 +12,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "title1"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "title2"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "title3"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "title4"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "title5"
+            "name": "document_attr"
           },
           {
             "type": "SYMBOL",
@@ -107,6 +91,26 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "title1"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "title2"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "title3"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "title4"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "title5"
+            },
+            {
+              "type": "SYMBOL",
               "name": "unordered_list"
             },
             {
@@ -148,10 +152,6 @@
             {
               "type": "SYMBOL",
               "name": "admonition"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "document_attr"
             },
             {
               "type": "SYMBOL",
