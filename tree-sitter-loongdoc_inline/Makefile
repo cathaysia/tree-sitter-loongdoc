@@ -1,4 +1,4 @@
-VERSION := 0.0.2
+VERSION := 0.0.3
 
 LANGUAGE_NAME := tree-sitter-loongdoc_inline
 
