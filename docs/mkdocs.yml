@@ -1,4 +1,6 @@
 site_name: tree-sitter-loongdoc
+repo_name: tree-sitter-loongdoc
+repo_url: https://github.com/cathaysia/tree-sitter-loongdoc
 theme:
   name: material
 

@@ -1,5 +1,7 @@
 # tree-sitter-loongdoc
 
+LoongDoc is normalized asciidoc. LoongDocs make **BEST EFFORT** to keep compatibility with asciidoc.
+
 https://cathaysia.github.io/tree-sitter-loongdoc/
 
 ## Usage

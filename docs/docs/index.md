@@ -8,11 +8,11 @@ asciidoc is a markup language. There is currently no specification, it is define
 
 ## Why LoongDoc
 
-LoongDoc has two purposes:
+LoongDoc has the following purposes:
 
 - Avoid trademark disputes.
-- Define a strongly defined specification of asciidoc.
-- Make best effort to maintain compatibility with asciidoc.
+- Standardize the asciidoc.
+- Make **BEST EFFORT** to keep compatibility with asciidoc.
 
 ## Current Implementation
 
