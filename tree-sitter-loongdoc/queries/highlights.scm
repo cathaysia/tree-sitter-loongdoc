@@ -72,7 +72,7 @@
 
 [
   (line_comment)
-  (comment_block)
+  (block_comment)
 ] @comment @spell
 
 [

@@ -57,7 +57,7 @@ module.exports = grammar({
           $.document_attr,
           $.section_block,
           $.line_comment,
-          $.comment_block,
+          $.block_comment,
         ),
       ),
 
@@ -343,11 +343,15 @@ module.exports = grammar({
       seq($.quoted_paragraph_marker, token.immediate(' '), $.line),
 
     line_comment: $ =>
-      seq($.line_comment_marker, optional(/[^\r\n]+/), $._block_end),
-    comment_block: $ =>
+      seq(
+        $.line_comment_marker,
+        optional(alias(/[^\r\n]+/, $.body)),
+        $._block_end,
+      ),
+    block_comment: $ =>
       seq(
         $.block_comment_marker,
-        alias(repeat(seq(/[^\r\n]+/, $._NEWLINE)), $.comment_block_body),
+        alias(repeat(seq(/[^\r\n]+/, $._NEWLINE)), $.body),
         $.block_comment_marker,
       ),
 
