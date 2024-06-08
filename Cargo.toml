@@ -8,6 +8,12 @@ edition = "2021"
 [dependencies]
 tree-sitter-loongdoc = { path = "./tree-sitter-loongdoc" }
 tree-sitter-loongdoc-inline = { path = "./tree-sitter-loongdoc_inline" }
+thiserror = "1.0.61"
+anyhow = "1.0.86"
+tree-sitter = "0.22.6"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+clap = { version = "4.5.6", features = ["derive"] }
 
 [dev-dependencies]
 criterion = { version = "0.5.1", features = ["html_reports"] }
