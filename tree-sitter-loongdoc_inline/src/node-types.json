@@ -27,7 +27,7 @@
       "required": false,
       "types": [
         {
-          "type": "auto_link",
+          "type": "autolink",
           "named": true
         },
         {
@@ -38,19 +38,19 @@
     }
   },
   {
-    "type": "auto_link",
+    "type": "autolink",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "link_label",
+          "type": "labled_uri",
           "named": true
         },
         {
-          "type": "link_url",
+          "type": "uri",
           "named": true
         }
       ]
@@ -107,11 +107,7 @@
           "named": true
         },
         {
-          "type": "auto_link",
-          "named": true
-        },
-        {
-          "type": "email",
+          "type": "autolink",
           "named": true
         },
         {
@@ -173,15 +169,19 @@
     }
   },
   {
-    "type": "link_label",
+    "type": "labled_uri",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "replacement",
+          "type": "uri",
+          "named": true
+        },
+        {
+          "type": "uri_label",
           "named": true
         }
       ]
@@ -247,6 +247,40 @@
   },
   {
     "type": "target",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "replacement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "uri",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "email",
+          "named": true
+        },
+        {
+          "type": "link_url",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "uri_label",
     "named": true,
     "fields": {},
     "children": {
@@ -357,10 +391,6 @@
   },
   {
     "type": ":",
-    "named": false
-  },
-  {
-    "type": "://",
     "named": false
   },
   {
@@ -660,10 +690,6 @@
     "named": false
   },
   {
-    "type": "file",
-    "named": false
-  },
-  {
     "type": "footnote",
     "named": false
   },
@@ -672,23 +698,11 @@
     "named": false
   },
   {
-    "type": "ftp",
-    "named": false
-  },
-  {
     "type": "gnuplot",
     "named": false
   },
   {
     "type": "graphviz",
-    "named": false
-  },
-  {
-    "type": "http",
-    "named": false
-  },
-  {
-    "type": "https",
     "named": false
   },
   {
@@ -714,10 +728,6 @@
   {
     "type": "intrinsic_attributes",
     "named": true
-  },
-  {
-    "type": "irc",
-    "named": false
   },
   {
     "type": "kbd",
@@ -817,10 +827,6 @@
   },
   {
     "type": "wavedrom",
-    "named": false
-  },
-  {
-    "type": "www",
     "named": false
   },
   {

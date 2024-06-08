@@ -2,25 +2,100 @@
 autolink
 ====================
 
-this is https://github.com or https://github.com[GitHub] or <https://github.com> or link:https://github.com[] or "https://github.com[]" or (https://github.com)
+www.commonmark.org
+www.commonmark.org/help
 
-www.google.com is also a autolink.
+http://www.commonmark.org
+http://www.commonmark.org/help
+https://www.commonmark.org
+https://www.commonmark.org/help
+irc://www.commonmark.org
+HTTPS://www.commonmark.org/help
+
+www.google.com/search?q=Markup+(business)
+www.google.com/search?q=(business))+ok
+www.google.com/search?q=commonmark&hl=en
+
+foo@bar.baz
+hello+xyz@mail.example
+a.b-c_d@a.b
+
+"www.google.com/search?q=Markup+(business)"
+www.google.com/search?q=Markup+(business)[aaaa]
+"www.google.com/search?q=Markup+(business)[aaaa]"
+
+"a.b-c_d@a.b"
+a.b-c_d@a.b[aaa]
+"a.b-c_d@a.b[aaa]"
 
 -----
 
 (inline
-  (auto_link
-    (link_url))
-  (auto_link
-    (link_url)
-    (link_label))
-  (auto_link
-    (link_url))
-  (inline_macro
-    (target))
-  (auto_link
-    (link_url))
-  (auto_link
-    (link_url))
-  (auto_link
-    (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (uri
+      (email)))
+  (autolink
+    (uri
+      (email)))
+  (autolink
+    (uri
+      (email)))
+  (autolink
+    (uri
+      (link_url)))
+  (autolink
+    (labled_uri
+      (uri
+        (link_url))
+      (uri_label)))
+  (autolink
+    (labled_uri
+      (uri
+        (link_url))
+      (uri_label)))
+  (autolink
+    (uri
+      (email)))
+  (autolink
+    (labled_uri
+      (uri
+        (email))
+      (uri_label)))
+  (autolink
+    (labled_uri
+      (uri
+        (email))
+      (uri_label))))

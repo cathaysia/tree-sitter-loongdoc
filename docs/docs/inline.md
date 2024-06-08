@@ -5,7 +5,6 @@ inline :== inline_element { inline_element }
 inline_element :== replacement
                     | anchor
                     | xref
-                    | autolink
 
 replacement :== "{" identifier "}"
 
@@ -21,18 +20,6 @@ xref_id_char :== /[^,>]/ | "\," | "\>" | "\>>"
 xref_reftext :== xref_reftext_char { xref_reftext_char }
 xref_reftext_char :== /[^\>]/ | "\>" | "\>>"
 
-autolink :== url
-            | labled_url
-            | "\"" labled_url "\""
-labled_url :== url "[" $.link_label "]"
-link_label :== link_label_char { link_label_char }
-link_label_char :== /[^\]]/ | "\]"
-
-url :== url_head url_body
-url_head :== url_protocol | "www."
-url_protocol :== url_protocol_header "://"
-url_protocol_header :== "http" | "https" | "file" | "ftp" | "irc"
-url_body :== /[^\.\s\[>]+/
 ```
 
 ## inline macro
@@ -104,4 +91,29 @@ bihighlight :== "==" bihighlight_text "=="
 bihighlight_text :== bihighlight_word | ltalic | monospace | emphasis
 bihighlight_word :== bihighlight_char { bihighlight_char }
 bihighlight_char :== /[^\=]/ | "\=" | "\=="
+```
+
+## autolink
+
+```bnf
+inline_element ::+ autolink
+
+autolink :== uri
+            | labled_uri
+            | "\"" uri "\""
+            | "\"" labled_url "\""
+
+uri :== url | email
+
+url :== url_protocol url_body
+url_protocol :== /\w[\w\d+\.\-][\w\d+\.\-]*:\/\//
+            | /www\./i
+url_body :== url_segment "." { url_segment "." }
+url_segment :== /[^\.\s\[\"]+/
+
+email :== /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+
+labled_uri :== uri "[" uri_label "]"
+uri_label :== { uri_label_ch }
+uri_label_ch :== /[^\\]]/ | replacement
 ```

@@ -7,4 +7,6 @@ this is a email: doc.writer@example.com
 -----
 
 (inline
-  (email))
+  (autolink
+    (uri
+      (email))))

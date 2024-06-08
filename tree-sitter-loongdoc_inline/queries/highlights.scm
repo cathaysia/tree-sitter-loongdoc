@@ -14,9 +14,9 @@
   (email)
 ] @markup.link.url @markup.link
 
-(link_label) @markup.link.label
+(uri_label) @markup.link.label
 
-(auto_link
+(labled_uri
   "["? @punctuation.bracket
   "]"? @punctuation.bracket)
 

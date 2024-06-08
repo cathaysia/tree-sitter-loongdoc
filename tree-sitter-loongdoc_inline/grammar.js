@@ -1,4 +1,5 @@
 const { anySep1, commaSep, escaped_ch } = require('../common/common.js')
+const autolink = require('./common/autolink.js')
 
 const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
@@ -11,7 +12,7 @@ module.exports = grammar({
   name: 'loongdoc_inline',
   externals: $ => [$._eof],
   precedences: $ => [
-    [$.auto_link, $._punctuation],
+    [$.autolink, $._punctuation],
     [$.passthrough, $._punctuation],
   ],
 
@@ -22,8 +23,7 @@ module.exports = grammar({
           $.replacement,
           $._word,
           $.anchor,
-          $.email,
-          $.auto_link,
+          $.autolink,
           $.passthrough,
           $._punctuation,
           $.xref,
@@ -34,6 +34,7 @@ module.exports = grammar({
           $.inline_macro,
         ),
       ),
+    ...autolink.rules,
     inline_macro: $ =>
       seq(
         choice(
@@ -95,7 +96,7 @@ module.exports = grammar({
         alias(repeat(escaped_ch('[', false, $.replacement)), $.target),
         '[',
         alias(
-          repeat(escaped_ch(']', false, $.replacement, $.auto_link)),
+          repeat(escaped_ch(']', false, $.replacement, $.autolink)),
           $.attr,
         ),
         ']',
@@ -165,32 +166,7 @@ module.exports = grammar({
         ']]',
       ),
     // https://stackoverflow.com/a/201378
-    email: $ =>
-      /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
     key: $ => choice(/[\w\d]+/, '\\]'),
-    auto_link: $ =>
-      prec.left(
-        choice(
-          $.link_url,
-          prec(1, seq($.link_url, seq('[', optional($.link_label), ']'))),
-          seq(
-            '"',
-            $.link_url,
-            optional(seq('[', optional($.link_label), ']')),
-            '"',
-          ),
-        ),
-      ),
-    link_label: $ => repeat1(escaped_ch(']', false, $.replacement)),
-    link_url: $ =>
-      seq(
-        choice(
-          seq(choice('http', 'https', 'file', 'ftp', 'irc'), '://'),
-          seq('www', '.'),
-        ),
-        prec.right(anySep1($._link_component, '.')),
-      ),
-    _link_component: $ => /[^\.\s\[>]+/,
     passthrough: $ =>
       choice(
         seq('+', repeat1(escaped_ch('+', true)), '+'),
