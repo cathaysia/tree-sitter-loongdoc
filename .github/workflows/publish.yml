@@ -1,0 +1,27 @@
+name: Publish packages
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['*']
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  crates:
+    name: publish crates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}
+        run: |
+          bash -c "cd tree-sitter-loongdoc && cargo publish"
+          bash -c "cd tree-sitter-loongdoc_inline && cargo publish"
