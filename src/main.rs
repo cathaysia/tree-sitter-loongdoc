@@ -1,23 +1,28 @@
+#[cfg(feature = "wasm")]
+fn main() {}
+
 use clap::Parser;
 use loongdoc::parse_loongdoc;
-use tracing::debug;
 
 #[derive(Debug, clap::Parser)]
 struct Args {
     file_name: String,
 }
 
+#[cfg(not(feature = "wasm"))]
 fn main() {
     setup_log();
 
     let args = Args::parse();
+    println!("{args:?}");
     let source = std::fs::read_to_string(args.file_name).unwrap();
 
     let node = parse_loongdoc(source.as_bytes()).unwrap();
 
-    debug!("{node:#?}");
+    println!("{node:#?}");
 }
 
+#[cfg(not(feature = "wasm"))]
 fn setup_log() {
     use tracing_subscriber::{fmt, layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 
