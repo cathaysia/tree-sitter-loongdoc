@@ -1,5 +1,7 @@
 #![allow(unused_imports)]
 
+use serde_with::skip_serializing_none;
+
 use core::panic;
 use std::{
     ffi::{c_char, CStr, CString},
@@ -78,6 +80,7 @@ impl Default for Node {
     }
 }
 
+#[skip_serializing_none]
 #[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
 pub struct SectionBlock {
     pub title: Option<String>,
