@@ -18,8 +18,7 @@ fn main() {
     let source = std::fs::read_to_string(args.file_name).unwrap();
 
     let node = parse_loongdoc(source.as_bytes()).unwrap();
-
-    println!("{node:#?}");
+    println!("{}", serde_json::to_string_pretty(&node).unwrap());
 }
 
 #[cfg(not(feature = "wasm"))]
