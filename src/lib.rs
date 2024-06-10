@@ -69,8 +69,10 @@ pub enum Node {
     SectionBlock(Box<SectionBlock>),
     Paragraph(Paragraph),
     List(List),
+    CheckedList(CheckedList),
     Admonition(Admonition),
     Breaks,
+    DeLimitedBlock(DeLimitedBlock),
     Error,
 }
 
@@ -83,8 +85,8 @@ impl Default for Node {
 #[skip_serializing_none]
 #[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
 pub struct SectionBlock {
-    pub title: Option<String>,
-    pub attr: Option<String>,
+    pub title: Option<BlockTitle>,
+    pub attr: Option<ElementAttr>,
     pub body: Node,
 }
 
@@ -143,6 +145,7 @@ pub enum ListType {
     Unordered,
     Ordered,
 }
+
 #[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
 pub struct List {
     pub r#type: ListType,
@@ -150,7 +153,23 @@ pub struct List {
 }
 
 #[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct CheckedList {
+    pub items: Vec<CheckedItem>,
+}
+
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct CheckedItem {
+    pub checked: bool,
+    pub line: Line,
+}
+
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
 pub struct ListItem {
+    pub line: Line,
+}
+
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct BlockTitle {
     pub line: Line,
 }
 
@@ -168,6 +187,98 @@ pub enum AdmonitionType {
 pub struct Admonition {
     pub r#type: AdmonitionType,
     pub line: Line,
+}
+
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct ElementAttr {
+    pub attrs: Option<String>,
+}
+
+#[derive(Debug, Default, serde::Serialize, serde::Deserialize)]
+pub struct DeLimitedBlock {
+    pub blocks: Vec<SectionBlock>,
+}
+
+impl TSParser for DeLimitedBlock {
+    fn parse(root: TSNode<'_>, source: &[u8]) -> ParseResult<Self>
+    where
+        Self: Sized,
+    {
+        assert_eq!(root.kind(), "delimited_block");
+
+        let mut res = Self::default();
+
+        for node in root.children(&mut root.walk()) {
+            if let "section_block" = node.kind() {
+                res.blocks.push(TSParser::parse(node, source)?);
+            }
+        }
+
+        Ok(res)
+    }
+}
+
+impl TSParser for ElementAttr {
+    fn parse(root: TSNode<'_>, source: &[u8]) -> ParseResult<Self>
+    where
+        Self: Sized,
+    {
+        assert_eq!(root.kind(), "element_attr");
+
+        let mut res = Self::default();
+
+        for node in root.children(&mut root.walk()) {
+            if let "attr_value" = node.kind() {
+                res.attrs = Some(utf8_text(node, source)?.to_string());
+            }
+        }
+
+        Ok(res)
+    }
+}
+
+impl TSParser for CheckedList {
+    fn parse(root: TSNode<'_>, source: &[u8]) -> ParseResult<Self>
+    where
+        Self: Sized,
+    {
+        assert_eq!(root.kind(), "checked_list");
+
+        let mut res = Self::default();
+
+        for node in root.children(&mut root.walk()) {
+            if let "ck_item" = node.kind() {
+                res.items.push(TSParser::parse(node, source)?);
+            }
+        }
+
+        Ok(res)
+    }
+}
+
+impl TSParser for CheckedItem {
+    fn parse(root: TSNode<'_>, source: &[u8]) -> ParseResult<Self>
+    where
+        Self: Sized,
+    {
+        assert_eq!(root.kind(), "ck_item");
+
+        let mut res = Self::default();
+
+        for node in root.children(&mut root.walk()) {
+            match node.kind() {
+                "task_list_marker_checked" => {
+                    res.checked = true;
+                }
+                "line" => {
+                    res.line = TSParser::parse(node, source)?;
+                }
+                _ => {}
+            }
+        }
+
+        Ok(res)
+    }
 }
 
 impl TSParser for Admonition {
@@ -229,6 +340,25 @@ impl TSParser for ListItem {
         Self: Sized,
     {
         assert!(matches!(root.kind(), "ul_item" | "ol_item"));
+
+        let mut res = Self::default();
+
+        for node in root.children(&mut root.walk()) {
+            if let "line" = node.kind() {
+                res.line = TSParser::parse(node, source)?;
+            }
+        }
+
+        Ok(res)
+    }
+}
+
+impl TSParser for BlockTitle {
+    fn parse(root: TSNode<'_>, source: &[u8]) -> ParseResult<Self>
+    where
+        Self: Sized,
+    {
+        assert!(matches!(root.kind(), "block_title"));
 
         let mut res = Self::default();
 
@@ -408,6 +538,18 @@ impl TSParser for SectionBlock {
                 }
                 "breaks" => {
                     res.body = Node::Breaks;
+                }
+                "block_title" => {
+                    res.title = Some(TSParser::parse(node, source)?);
+                }
+                "element_attr" => {
+                    res.attr = Some(TSParser::parse(node, source)?);
+                }
+                "checked_list" => {
+                    res.body = Node::CheckedList(TSParser::parse(node, source)?);
+                }
+                "delimited_block" => {
+                    res.body = Node::DeLimitedBlock(TSParser::parse(node, source)?);
                 }
                 var => panic!("not yet implemented: {var}"),
             }
