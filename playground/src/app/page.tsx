@@ -27,7 +27,6 @@ export default function Home() {
         value={value}
         onValueChanged={value => {
           setValue(value)
-          console.log(value)
         }}
       />
       <LoongDoc className="h-full w-1/2 overflow-auto bg-white" text={value} />
