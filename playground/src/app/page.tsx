@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import { LoongDoc } from './loong_doc'
 import Editor from './editor'
@@ -14,7 +15,6 @@ const EXAMPLE = `
 NOTE: aaaa
 
 IMPORTANT: bbbb
-
 `
 
 export default function Home() {

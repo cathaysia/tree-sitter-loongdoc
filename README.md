@@ -2,7 +2,16 @@
 
 LoongDoc is normalized asciidoc. LoongDocs make **BEST EFFORT** to keep compatibility with asciidoc.
 
-https://cathaysia.github.io/tree-sitter-loongdoc/
+This repo contains:
+
+- tree-sitter-loongdoc for parse blocks.
+- tree-sitter-loongdoc_inline for parse inline grammar.
+- loongdoc: a wrapper to provide a rust ast. \[WIP]
+
+There two website for this repo:
+
+- <https://cathaysia.github.io/tree-sitter-loongdoc/> current loongdoc spec.
+- <https://tree-sitter-loongdoc.vercel.app/> a playground for loongdoc.
 
 ## Usage
 

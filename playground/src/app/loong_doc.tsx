@@ -45,7 +45,6 @@ export const LoongDoc = function (props: LoongDocProps) {
         src="loongdoc.js"
         onLoad={() => {
           Module.onRuntimeInitialized = function () {
-            var story = '= One apon a time'
             var parser = Module.cwrap('js_parse_loongdoc', 'string', ['string'])
             setParseLoongdoc(() => parser)
           }
