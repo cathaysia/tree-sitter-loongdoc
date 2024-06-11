@@ -30,7 +30,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Cache bench result
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             target/criterion
