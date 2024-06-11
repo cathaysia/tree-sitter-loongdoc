@@ -34,7 +34,7 @@ jobs:
           CC: emcc
         run: |
           make wasm
-          cp ./target/wasm32-unknown-emscripten/debug/loongdoc.* playground/public/
+          cp ./target/wasm32-unknown-emscripten/release/loongdoc.* playground/public/
       - name: build playground
         run: |
           cd playground
