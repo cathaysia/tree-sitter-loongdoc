@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: '17'
       - uses: mymindstorm/setup-emsdk@v14
       - uses: pnpm/action-setup@v2
         with:
@@ -27,14 +31,14 @@ jobs:
           node-version: v20.12.2
       - uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
-          target: wasm32-unknown-emscripten
+          toolchain: nightly
+          target: wasm32-unknown-unknown
       - name: build wasm
-        env:
-          CC: emcc
         run: |
-          make wasm
-          cp ./target/wasm32-unknown-emscripten/release/loongdoc.* playground/public/
+          export RUSTFLAGS="--cfg=web_sys_unstable_apis --Z wasm_c_abi=spec"
+          export CFLAGS="--sysroot=${EMSDK}/share/emscripten/cache/sysroot -emit-llvm -fuse-ld=wasm-ld"
+          cargo +nightly build --target=wasm32-unknown-unknown
+          cp ./target/wasm32-unknown-unknown/release/loongdoc.* playground/public/
       - name: build playground
         run: |
           cd playground
