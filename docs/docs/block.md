@@ -179,3 +179,12 @@ literal_block_marker :== /^\.\.\.\./
 ```
 
 ## description_list
+
+```bnf
+block_body ::+ description_list
+description_list :== description_item { description_item }
+description_item :== description_term description_marker description_sep { line }
+description_term :== /[^:;]+/
+description_marker :== "::" | ":::" | "::::" | ";;"
+description_sep :== " " | /\r?\n/
+```
