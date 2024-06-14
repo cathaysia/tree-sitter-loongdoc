@@ -68,6 +68,7 @@ typedef enum BlockKind {
     BLOCK_KIND_DELIMITED,
     BLOCK_KIND_TITLE,
     BLOCK_KIND_ATTR,
+    BLOCK_KIND_TABLE,
 } BlockKind;
 
 typedef struct Node {
@@ -105,6 +106,18 @@ static bool scanner_is_expect_block_start(Scanner const *self) {
     }
 
     return self->top->kind == BLOCK_KIND_ATTR || self->top->kind == BLOCK_KIND_TITLE;
+}
+
+static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usize counter) {
+    if(!self->top) {
+        return false;
+    }
+
+    if(!counter) {
+        return self->top->kind == kind;
+    }
+
+    return self->top->kind == kind && self->top->kind == counter;
 }
 static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
@@ -510,10 +523,20 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         lexer->advance(lexer, false);
                         usize counter = 0;
                         consume('=', lexer, false, &counter, USIZE_MAX);
-                        if(counter == 3 && is_newline(lexer->lookahead)) {
-                            lexer->mark_end(lexer);
-                            lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
-                            return true;
+                        if(counter >= 3 && is_newline(lexer->lookahead)) {
+                            if(scanner_is_matching(s, BLOCK_KIND_TABLE, 0)) {
+                                if(scanner_is_matching(s, BLOCK_KIND_TABLE, counter)) {
+                                    lexer->mark_end(lexer);
+                                    lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                                    scanner_pop(s);
+                                    return true;
+                                }
+                            } else {
+                                lexer->mark_end(lexer);
+                                lexer->result_symbol = TOKEN_TABLE_BLOCK_MARKER;
+                                scanner_push(s, BLOCK_KIND_TABLE, counter);
+                                return true;
+                            }
                         }
                     }
                     break;
