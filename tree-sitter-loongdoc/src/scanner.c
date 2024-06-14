@@ -1,4 +1,7 @@
+#include <assert.h>
 #include "include/base_types.h"
+#include "include/quick_buffer.h"
+#include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
 
 typedef enum TokenType {
@@ -22,7 +25,8 @@ typedef enum TokenType {
     TOKEN_TABLE_BLOCK_MARKER,
     TOKEN_NTABLE_BLOCK_MARKER,
     TOKEN_CELL_ATTR,
-    TOKEN_DELIMITED_BLOCK_MARKER,
+    TOKEN_DELIMITED_BLOCK_START_MARKER,
+    TOKEN_DELIMITED_BLOCK_END_MARKER,
     TOKEN_LISTING_BLOCK_MARKER,
     TOKEN_LITERAL_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MARKER,
@@ -60,36 +64,147 @@ static bool is_geek_lower(i32 ch);
 static bool is_newline(i32 ch);
 static bool is_eof(TSLexer *lexer);
 
+typedef enum BlockKind {
+    BLOCK_KIND_DELIMITED
+} BlockKind;
+
+typedef struct Node {
+    BlockKind kind;
+    usize counter;
+    struct Node *next;
+} Node;
+
+static Result node_serialize(Node const *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+
+    ret &= quick_buffer_write_u32(qb, self->kind);
+    ret &= quick_buffer_write_usize(qb, self->counter);
+
+    return ret;
+}
+
+static Result node_deserialize(Node *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+    bzero(self, sizeof(Node));
+    ret &= quick_buffer_read_u32(qb, &self->kind);
+    ret &= quick_buffer_read_usize(qb, &self->counter);
+    return ret;
+}
+
 typedef struct Scanner {
     bool is_matching_raw_block;
+    usize counter;
+    Node *top;
 } Scanner;
+
+static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+
+    ret &= quick_buffer_write_bool(qb, self->is_matching_raw_block);
+    ret &= quick_buffer_write_usize(qb, self->counter);
+
+    Node *head = self->top;
+    while(head) {
+        ret &= node_serialize(head, qb);
+        head = head->next;
+    }
+
+    return ret;
+}
+
+static Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+
+    bzero(self, sizeof(Scanner));
+
+    ret &= quick_buffer_read_bool(qb, &self->is_matching_raw_block);
+    ret &= quick_buffer_read_usize(qb, &self->counter);
+
+    for(usize i = 0; i < self->counter; ++i) {
+        Node *node = ts_malloc(sizeof(Node));
+        ret &= node_deserialize(node, qb);
+        node->next = self->top;
+        self->top = node;
+    }
+
+    Node *head = self->top;
+    Node *bak = head;
+    while(self->top) {
+        Node *b = head;
+        head = self->top;
+        self->top = self->top->next;
+        head->next = b;
+    }
+    if(bak) {
+        bak->next = NULL;
+    }
+    self->top = head;
+
+    return ret;
+}
+
+static bool scanner_assert_top(Scanner *scanner, BlockKind kind, usize counter) {
+    if(!scanner->top) {
+        return false;
+    }
+
+    return scanner->top->kind == kind && scanner->top->counter == counter;
+}
+
+static void scanner_pop(Scanner *scanner) {
+    if(scanner->top) {
+        Node *top = scanner->top;
+        scanner->top = scanner->top->next;
+        ts_free(top);
+        scanner->counter -= 1;
+    }
+}
+
+static void scanner_push(Scanner *scanner, BlockKind kind, usize counter) {
+    Node *block = (Node *)ts_malloc(sizeof(Node));
+    block->kind = kind;
+    block->counter = counter;
+    block->next = scanner->top;
+
+    scanner->top = block;
+    scanner->counter += 1;
+}
 
 void *tree_sitter_loongdoc_external_scanner_create() {
     Scanner *s = (Scanner *)malloc(sizeof(Scanner));
+    s->top = NULL;
     s->is_matching_raw_block = false;
     return s;
 }
 
 void tree_sitter_loongdoc_external_scanner_destroy(void *payload) {
-    free(payload);
+    Scanner *s = (Scanner *)payload;
+    while(s->top) {
+        scanner_pop(s);
+    }
+    ts_free(s);
 }
 
 unsigned tree_sitter_loongdoc_external_scanner_serialize(void *payload, char *buffer) {
     Scanner *s = (Scanner *)payload;
-    usize size = 0;
 
-    buffer[size++] = (char)s->is_matching_raw_block;
+    QuickBuffer qb = quick_buffer_new(buffer, TREE_SITTER_SERIALIZATION_BUFFER_SIZE);
 
-    return size;
+    Result ret = scanner_serialize(s, &qb);
+    assert(ret == RESULT_OK);
+
+    return qb.pos;
 }
 
 void tree_sitter_loongdoc_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
-    ADOC_UNUSED(length);
-
-    if(buffer) {
-        Scanner *s = (Scanner *)payload;
-        s->is_matching_raw_block = (bool)buffer[0];
+    if(!buffer) {
+        return;
     }
+
+    Scanner *s = (Scanner *)payload;
+    QuickBuffer qb = quick_buffer_new((void *)buffer, length);
+    Result ret = scanner_deserialize(s, &qb);
+    assert(ret == RESULT_OK);
 }
 
 bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
@@ -165,8 +280,15 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     consume('=', lexer, false, NULL, USIZE_MAX);
                     lexer->mark_end(lexer);
                     if(!s->is_matching_raw_block) {
-                        if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                            lexer->result_symbol = TOKEN_DELIMITED_BLOCK_MARKER;
+                        usize counter = lexer->get_column(lexer);
+                        if(counter >= 4 && is_new_line(lexer->lookahead)) {
+                            if(scanner_assert_top(s, BLOCK_KIND_DELIMITED, counter)) {
+                                lexer->result_symbol = TOKEN_DELIMITED_BLOCK_END_MARKER;
+                                scanner_pop(s);
+                            } else {
+                                scanner_push(s, BLOCK_KIND_DELIMITED, counter);
+                                lexer->result_symbol = TOKEN_DELIMITED_BLOCK_START_MARKER;
+                            }
                             return true;
                         }
                     }

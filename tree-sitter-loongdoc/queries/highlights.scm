@@ -135,8 +135,8 @@
     (attr_value) @attribute @comment.note
     (element_attr_marker) @comment.note)
   (delimited_block
-    (delimited_block_marker) @comment.note
-    (delimited_block_marker) @comment.note))
+    (delimited_block_start_marker) @comment.note
+    (delimited_block_end_marker) @comment.note))
   (#any-of? @attribute "NOTE" "TIP"))
 
 ((section_block
@@ -145,8 +145,8 @@
     (attr_value) @attribute @comment.warning
     (element_attr_marker) @comment.warning)
   (delimited_block
-    (delimited_block_marker) @comment.warning
-    (delimited_block_marker) @comment.warning))
+    (delimited_block_start_marker) @comment.warning
+    (delimited_block_end_marker) @comment.warning))
   (#any-of? @attribute "CAUTION" "WARNING"))
 
 ((section_block
@@ -155,8 +155,8 @@
     (attr_value) @attribute @comment.error
     (element_attr_marker) @comment.error)
   (delimited_block
-    (delimited_block_marker) @comment.error
-    (delimited_block_marker) @comment.error))
+    (delimited_block_start_marker) @comment.error
+    (delimited_block_end_marker) @comment.error))
   (#eq? @attribute "IMPORTANT"))
 
 ((element_attr

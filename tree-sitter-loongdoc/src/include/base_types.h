@@ -1,4 +1,13 @@
+#pragma once
 #include "../tree_sitter/parser.h"
+
+#ifndef u8
+typedef uint8_t u8;
+#endif
+
+#ifndef i8
+typedef int8_t i8;
+#endif
 
 #ifndef u32
 typedef uint32_t u32;
