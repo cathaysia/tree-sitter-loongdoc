@@ -115,11 +115,10 @@ static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usiz
         return false;
     }
 
-    if(!counter) {
+    if(counter == 0) {
         return self->top->kind == kind;
     }
-
-    return self->top->kind == kind && self->top->kind == counter;
+    return self->top->kind == kind && self->top->counter == counter;
 }
 static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
@@ -405,10 +404,12 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                                 lexer->result_symbol = TOKEN_LISTING_BLOCK_END_MARKER;
                                 return true;
                             } else {
-                                scanner_push(s, BLOCK_KIND_LISTING, counter);
-                                s->is_matching_raw_block = true;
-                                lexer->result_symbol = TOKEN_LISTING_BLOCK_START_MARKER;
-                                return true;
+                                if(!s->is_matching_raw_block) {
+                                    scanner_push(s, BLOCK_KIND_LISTING, counter);
+                                    s->is_matching_raw_block = true;
+                                    lexer->result_symbol = TOKEN_LISTING_BLOCK_START_MARKER;
+                                    return true;
+                                }
                             }
                         }
                     }

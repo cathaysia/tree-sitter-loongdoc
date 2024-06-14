@@ -109,3 +109,38 @@ line of code <!--4-->
         (anno_list_item
           (anno_list_marker)
           (line))))))
+
+================
+multi chars
+================
+
+----
+raw block
+----
+
+-----
+raw block
+-----
+
+----
+--------
+----
+
+--------
+
+(document
+  (section_block
+    (listing_block
+      (listing_block_start_marker)
+      (listing_block_body)
+      (listing_block_end_marker)))
+  (section_block
+    (listing_block
+      (listing_block_start_marker)
+      (listing_block_body)
+      (listing_block_end_marker)))
+  (section_block
+    (listing_block
+      (listing_block_start_marker)
+      (listing_block_body)
+      (listing_block_end_marker))))
