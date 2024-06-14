@@ -274,7 +274,11 @@
       "required": true,
       "types": [
         {
-          "type": "delimited_block_marker",
+          "type": "delimited_block_end_marker",
+          "named": true
+        },
+        {
+          "type": "delimited_block_start_marker",
           "named": true
         },
         {
@@ -1275,7 +1279,11 @@
     "named": true
   },
   {
-    "type": "delimited_block_marker",
+    "type": "delimited_block_end_marker",
+    "named": true
+  },
+  {
+    "type": "delimited_block_start_marker",
     "named": true
   },
   {

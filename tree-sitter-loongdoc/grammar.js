@@ -25,7 +25,8 @@ module.exports = grammar({
     $.table_block_marker,
     $.ntable_block_marker,
     $.table_cell_attr,
-    $.delimited_block_marker,
+    $.delimited_block_start_marker,
+    $.delimited_block_end_marker,
     $.listing_block_marker,
     $.literal_block_marker,
     $.quoted_block_marker,
@@ -280,9 +281,9 @@ module.exports = grammar({
     delimited_block: $ =>
       prec.left(
         seq(
-          $.delimited_block_marker,
+          $.delimited_block_start_marker,
           repeat($.section_block),
-          $.delimited_block_marker,
+          $.delimited_block_end_marker,
         ),
       ),
     open_block: $ =>
