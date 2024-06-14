@@ -65,7 +65,9 @@ static bool is_newline(i32 ch);
 static bool is_eof(TSLexer *lexer);
 
 typedef enum BlockKind {
-    BLOCK_KIND_DELIMITED
+    BLOCK_KIND_DELIMITED,
+    BLOCK_KIND_TITLE,
+    BLOCK_KIND_ATTR,
 } BlockKind;
 
 typedef struct Node {
@@ -97,6 +99,13 @@ typedef struct Scanner {
     Node *top;
 } Scanner;
 
+static bool scanner_is_expect_block_start(Scanner const *self) {
+    if(!self->top) {
+        return false;
+    }
+
+    return self->top->kind == BLOCK_KIND_ATTR || self->top->kind == BLOCK_KIND_TITLE;
+}
 static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
 
@@ -151,12 +160,34 @@ static bool scanner_assert_top(Scanner *scanner, BlockKind kind, usize counter) 
     return scanner->top->kind == kind && scanner->top->counter == counter;
 }
 
-static void scanner_pop(Scanner *scanner) {
-    if(scanner->top) {
-        Node *top = scanner->top;
-        scanner->top = scanner->top->next;
+static inline bool scanner_pop_kind(Scanner *self, BlockKind kind, usize counter) {
+    if(!self->top) {
+        return false;
+    }
+
+    if(self->top->kind == kind && self->top->counter == counter) {
+        Node *top = self->top;
+        self->top = top->next;
         ts_free(top);
-        scanner->counter -= 1;
+        self->counter -= 1;
+        return true;
+    }
+
+    return false;
+}
+
+static void scanner_pop(Scanner *self) {
+    if(!self->top) {
+        return;
+    }
+    Node *top = self->top;
+    self->top = top->next;
+    ts_free(top);
+    self->counter -= 1;
+
+    while(scanner_pop_kind(self, BLOCK_KIND_TITLE, 1) ||
+          scanner_pop_kind(self, BLOCK_KIND_ATTR, 1)
+    ) {
     }
 }
 
@@ -282,7 +313,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     if(!s->is_matching_raw_block) {
                         usize counter = lexer->get_column(lexer);
                         if(counter >= 4 && is_new_line(lexer->lookahead)) {
-                            if(scanner_assert_top(s, BLOCK_KIND_DELIMITED, counter)) {
+                            if(!scanner_is_expect_block_start(s) && scanner_assert_top(s, BLOCK_KIND_DELIMITED, counter)) {
                                 lexer->result_symbol = TOKEN_DELIMITED_BLOCK_END_MARKER;
                                 scanner_pop(s);
                             } else {
@@ -409,6 +440,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         if(lexer->get_column(lexer) == 1) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_BLOCK_TITLE_MARKER;
+                            scanner_push(s, BLOCK_KIND_ATTR, 1);
                             return true;
                         }
                     }
@@ -429,6 +461,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         lexer->advance(lexer, false);
                         lexer->mark_end(lexer);
                         lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
+                        scanner_push(s, BLOCK_KIND_ATTR, 1);
                         return true;
                     }
                     break;
