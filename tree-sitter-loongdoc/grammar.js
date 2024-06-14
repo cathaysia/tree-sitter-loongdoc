@@ -27,7 +27,8 @@ module.exports = grammar({
     $.table_cell_attr,
     $.delimited_block_start_marker,
     $.delimited_block_end_marker,
-    $.listing_block_marker,
+    $.listing_block_start_marker,
+    $.listing_block_end_marker,
     $.literal_block_marker,
     $.quoted_block_marker,
     $.quoted_block_md_marker,
@@ -298,7 +299,7 @@ module.exports = grammar({
       ),
     listing_block: $ =>
       seq(
-        $.listing_block_marker,
+        $.listing_block_start_marker,
         alias(
           repeat(
             choice(
@@ -308,7 +309,7 @@ module.exports = grammar({
           ),
           $.listing_block_body,
         ),
-        $.listing_block_marker,
+        $.listing_block_end_marker,
         optional($.anno_list),
       ),
     literal_block: $ =>

@@ -27,7 +27,8 @@ typedef enum TokenType {
     TOKEN_CELL_ATTR,
     TOKEN_DELIMITED_BLOCK_START_MARKER,
     TOKEN_DELIMITED_BLOCK_END_MARKER,
-    TOKEN_LISTING_BLOCK_MARKER,
+    TOKEN_LISTING_BLOCK_START_MARKER,
+    TOKEN_LISTING_BLOCK_END_MARKER,
     TOKEN_LITERAL_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MARKER,
     TOKEN_QUOTED_BLOCK_MD_MARKER,
@@ -69,6 +70,7 @@ typedef enum BlockKind {
     BLOCK_KIND_TITLE,
     BLOCK_KIND_ATTR,
     BLOCK_KIND_TABLE,
+    BLOCK_KIND_LISTING
 } BlockKind;
 
 typedef struct Node {
@@ -197,11 +199,6 @@ static void scanner_pop(Scanner *self) {
     self->top = top->next;
     ts_free(top);
     self->counter -= 1;
-
-    while(scanner_pop_kind(self, BLOCK_KIND_TITLE, 1) ||
-          scanner_pop_kind(self, BLOCK_KIND_ATTR, 1)
-    ) {
-    }
 }
 
 static void scanner_push(Scanner *scanner, BlockKind kind, usize counter) {
@@ -329,6 +326,10 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                             if(!scanner_is_expect_block_start(s) && scanner_assert_top(s, BLOCK_KIND_DELIMITED, counter)) {
                                 lexer->result_symbol = TOKEN_DELIMITED_BLOCK_END_MARKER;
                                 scanner_pop(s);
+                                while(scanner_pop_kind(s, BLOCK_KIND_TITLE, 1) ||
+                                      scanner_pop_kind(s, BLOCK_KIND_ATTR, 1)
+                                ) {
+                                }
                             } else {
                                 scanner_push(s, BLOCK_KIND_DELIMITED, counter);
                                 lexer->result_symbol = TOKEN_DELIMITED_BLOCK_START_MARKER;
@@ -395,11 +396,20 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
 
-                    if(valid_symbols[TOKEN_LISTING_BLOCK_MARKER]) {
-                        if(lexer->get_column(lexer) == 4 && is_newline(lexer->lookahead)) {
-                            lexer->result_symbol = TOKEN_LISTING_BLOCK_MARKER;
-                            s->is_matching_raw_block = !s->is_matching_raw_block;
-                            return true;
+                    if(valid_symbols[TOKEN_LISTING_BLOCK_START_MARKER] || valid_symbols[TOKEN_LISTING_BLOCK_END_MARKER]) {
+                        usize counter = lexer->get_column(lexer);
+                        if(counter >= 4 && is_newline(lexer->lookahead)) {
+                            if(scanner_is_matching(s, BLOCK_KIND_LISTING, counter)) {
+                                s->is_matching_raw_block = false;
+                                scanner_pop(s);
+                                lexer->result_symbol = TOKEN_LISTING_BLOCK_END_MARKER;
+                                return true;
+                            } else {
+                                scanner_push(s, BLOCK_KIND_LISTING, counter);
+                                s->is_matching_raw_block = true;
+                                lexer->result_symbol = TOKEN_LISTING_BLOCK_START_MARKER;
+                                return true;
+                            }
                         }
                     }
 

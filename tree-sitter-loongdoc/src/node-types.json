@@ -460,7 +460,11 @@
           "named": true
         },
         {
-          "type": "listing_block_marker",
+          "type": "listing_block_end_marker",
+          "named": true
+        },
+        {
+          "type": "listing_block_start_marker",
           "named": true
         }
       ]
@@ -1339,7 +1343,11 @@
     "named": true
   },
   {
-    "type": "listing_block_marker",
+    "type": "listing_block_end_marker",
+    "named": true
+  },
+  {
+    "type": "listing_block_start_marker",
     "named": true
   },
   {

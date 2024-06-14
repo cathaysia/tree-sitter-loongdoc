@@ -155,9 +155,9 @@ print("one")
         (list_continuation)
         (section_block
           (listing_block
-            (listing_block_marker)
+            (listing_block_start_marker)
             (listing_block_body)
-            (listing_block_marker)))
+            (listing_block_end_marker)))
         (list_continuation)
         (section_block
           (paragraph
@@ -169,9 +169,9 @@ print("one")
         (list_continuation)
         (section_block
           (listing_block
-            (listing_block_marker)
+            (listing_block_start_marker)
             (listing_block_body)
-            (listing_block_marker))))
+            (listing_block_end_marker))))
       (ul_item
         (unordered_list_marker
           (list_marker_star))
@@ -185,9 +185,9 @@ print("one")
                 (line)))
             (section_block
               (listing_block
-                (listing_block_marker)
+                (listing_block_start_marker)
                 (listing_block_body)
-                (listing_block_marker)))
+                (listing_block_end_marker)))
             (section_block
               (admonition
                 (admonition_note)
@@ -215,9 +215,9 @@ print("one")
         (list_continuation)
         (section_block
           (listing_block
-            (listing_block_marker)
+            (listing_block_start_marker)
             (listing_block_body)
-            (listing_block_marker))))
+            (listing_block_end_marker))))
       (ol_item
         (ordered_list_marker
           (list_marker_dot))
@@ -225,6 +225,6 @@ print("one")
         (list_continuation)
         (section_block
           (listing_block
-            (listing_block_marker)
+            (listing_block_start_marker)
             (listing_block_body)
-            (listing_block_marker)))))))
+            (listing_block_end_marker)))))))
