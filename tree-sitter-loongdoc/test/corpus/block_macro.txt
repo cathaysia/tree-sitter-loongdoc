@@ -78,12 +78,12 @@ image::sunset.jpg[Sunset]
       (attr_value)
       (element_attr_marker))
     (listing_block
-      (listing_block_marker)
+      (listing_block_start_marker)
       (listing_block_body
         (block_macro
           (block_macro_name)
           (target)))
-      (listing_block_marker)))
+      (listing_block_end_marker)))
   (section_block
     (block_macro
       (block_macro_name)

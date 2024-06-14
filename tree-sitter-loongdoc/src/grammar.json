@@ -1446,7 +1446,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "listing_block_marker"
+          "name": "listing_block_start_marker"
         },
         {
           "type": "ALIAS",
@@ -1492,7 +1492,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "listing_block_marker"
+          "name": "listing_block_end_marker"
         },
         {
           "type": "CHOICE",
@@ -1983,7 +1983,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "listing_block_marker"
+      "name": "listing_block_start_marker"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "listing_block_end_marker"
     },
     {
       "type": "SYMBOL",
