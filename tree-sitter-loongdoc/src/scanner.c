@@ -1,236 +1,30 @@
+#include "include/scanner.h"
 #include <assert.h>
 #include "include/base_types.h"
 #include "include/quick_buffer.h"
+#include "include/utils.h"
 #include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
 
-typedef enum TokenType {
-    TOKEN_TYPE_EOF,
-    TOKEN_TITLE_H0_MARKER,
-    TOKEN_TITLE_H1_MARKER,
-    TOKEN_TITLE_H2_MARKER,
-    TOKEN_TITLE_H3_MARKER,
-    TOKEN_TITLE_H4_MARKER,
-    TOKEN_TITLE_H5_MARKER,
-    TOKEN_LIST_MARKER_STAR,
-    TOKEN_LIST_MARKER_HYPHEN,
-    TOKEN_LIST_MARKER_DOT,
-    TOKEN_LIST_MARKER_DIGIT,
-    TOKEN_LIST_MARKER_GEEK,
-    TOKEN_LIST_MARKER_ALPHA,
-    TOKEN_DOCUMENT_ATTR_MARKER,
-    TOKEN_ELEMENT_ATTR_MARKER,
-    TOKEN_BLOCK_TITLE_MARKER,
-    TOKEN_BREAKS_MARKS,
-    TOKEN_TABLE_BLOCK_MARKER,
-    TOKEN_NTABLE_BLOCK_MARKER,
-    TOKEN_CELL_ATTR,
-    TOKEN_DELIMITED_BLOCK_START_MARKER,
-    TOKEN_DELIMITED_BLOCK_END_MARKER,
-    TOKEN_LISTING_BLOCK_START_MARKER,
-    TOKEN_LISTING_BLOCK_END_MARKER,
-    TOKEN_LITERAL_BLOCK_MARKER,
-    TOKEN_QUOTED_BLOCK_MARKER,
-    TOKEN_QUOTED_BLOCK_MD_MARKER,
-    TOKEN_QUOTED_PARAGRAPH_MARKER,
-    TOKEN_OPEN_BLOCK_MARKER,
-    TOKEN_PASSTHROUGH_BLOCK_MARKER,
-    TOKEN_BLOCK_MACRO_NAME,
-    TOKEN_ANNO_MARKER,
-    TOKEN_ANNO_LIST_MARKER,
-    TOKEN_LINE_COMMENT_MARKER,
-    TOKEN_BLOCK_COMMENT_MARKER,
-
-    TOKEN_ADMONITION_NOTE,
-    TOKEN_ADMONITION_TIP,
-    TOKEN_ADMONITION_IMPORTANT,
-    TOKEN_ADMONITION_CAUTION,
-    TOKEN_ADMONITION_WARNING,
-    TOKEN_IDENT_MARKER,
-    TOKEN_LIST_CONTINUATION
-} TokenType;
-
-static bool parse_table_attr(TSLexer *lexer);
-static bool parse_number(TSLexer *lexer);
-static bool parse_sequence(TSLexer *lexer, char const *sequence);
-static bool parse_ordered_marker(TSLexer *lexer);
-static bool parse_breaks(char start, TSLexer *lexer);
-static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
-static bool skip_white_space(TSLexer *lexer);
-static bool is_white_space(i32 ch);
-static bool is_new_line(i32 ch);
-static bool is_ascii_digit(i32 ch);
-static bool is_ascii_alpha_lower(i32 ch);
-static bool is_geek_lower(i32 ch);
-static bool is_newline(i32 ch);
-static bool is_eof(TSLexer *lexer);
-
-typedef enum BlockKind {
-    BLOCK_KIND_DELIMITED,
-    BLOCK_KIND_TITLE,
-    BLOCK_KIND_ATTR,
-    BLOCK_KIND_TABLE,
-    BLOCK_KIND_LISTING
-} BlockKind;
-
-typedef struct Node {
-    BlockKind kind;
-    usize counter;
-    struct Node *next;
-} Node;
-
-static Result node_serialize(Node const *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-
-    ret &= quick_buffer_write_u32(qb, self->kind);
-    ret &= quick_buffer_write_usize(qb, self->counter);
-
-    return ret;
-}
-
-static Result node_deserialize(Node *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-    bzero(self, sizeof(Node));
-    ret &= quick_buffer_read_u32(qb, &self->kind);
-    ret &= quick_buffer_read_usize(qb, &self->counter);
-    return ret;
-}
-
-typedef struct Scanner {
-    bool is_matching_raw_block;
-    usize counter;
-    Node *top;
-} Scanner;
-
-static bool scanner_is_expect_block_start(Scanner const *self) {
-    if(!self->top) {
-        return false;
-    }
-
-    return self->top->kind == BLOCK_KIND_ATTR || self->top->kind == BLOCK_KIND_TITLE;
-}
-
-static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usize counter) {
-    if(!self->top) {
-        return false;
-    }
-
-    if(counter == 0) {
-        return self->top->kind == kind;
-    }
-    return self->top->kind == kind && self->top->counter == counter;
-}
-static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-
-    ret &= quick_buffer_write_bool(qb, self->is_matching_raw_block);
-    ret &= quick_buffer_write_usize(qb, self->counter);
-
-    Node *head = self->top;
-    while(head) {
-        ret &= node_serialize(head, qb);
-        head = head->next;
-    }
-
-    return ret;
-}
-
-static Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-
-    bzero(self, sizeof(Scanner));
-
-    ret &= quick_buffer_read_bool(qb, &self->is_matching_raw_block);
-    ret &= quick_buffer_read_usize(qb, &self->counter);
-
-    for(usize i = 0; i < self->counter; ++i) {
-        Node *node = ts_malloc(sizeof(Node));
-        ret &= node_deserialize(node, qb);
-        node->next = self->top;
-        self->top = node;
-    }
-
-    Node *head = self->top;
-    Node *bak = head;
-    while(self->top) {
-        Node *b = head;
-        head = self->top;
-        self->top = self->top->next;
-        head->next = b;
-    }
-    if(bak) {
-        bak->next = NULL;
-    }
-    self->top = head;
-
-    return ret;
-}
-
-static bool scanner_assert_top(Scanner *scanner, BlockKind kind, usize counter) {
-    if(!scanner->top) {
-        return false;
-    }
-
-    return scanner->top->kind == kind && scanner->top->counter == counter;
-}
-
-static inline bool scanner_pop_kind(Scanner *self, BlockKind kind, usize counter) {
-    if(!self->top) {
-        return false;
-    }
-
-    if(self->top->kind == kind && self->top->counter == counter) {
-        Node *top = self->top;
-        self->top = top->next;
-        ts_free(top);
-        self->counter -= 1;
-        return true;
-    }
-
-    return false;
-}
-
-static void scanner_pop(Scanner *self) {
-    if(!self->top) {
-        return;
-    }
-    Node *top = self->top;
-    self->top = top->next;
-    ts_free(top);
-    self->counter -= 1;
-}
-
-static void scanner_push(Scanner *scanner, BlockKind kind, usize counter) {
-    Node *block = (Node *)ts_malloc(sizeof(Node));
-    block->kind = kind;
-    block->counter = counter;
-    block->next = scanner->top;
-
-    scanner->top = block;
-    scanner->counter += 1;
-}
-
 void *tree_sitter_loongdoc_external_scanner_create() {
-    Scanner *s = (Scanner *)malloc(sizeof(Scanner));
-    s->top = NULL;
-    s->is_matching_raw_block = false;
-    return s;
+    Scanner *scanner = (Scanner *)malloc(sizeof(Scanner));
+    scanner_init(scanner);
+    scanner->is_matching_raw_block = false;
+    return scanner;
 }
 
 void tree_sitter_loongdoc_external_scanner_destroy(void *payload) {
-    Scanner *s = (Scanner *)payload;
-    while(s->top) {
-        scanner_pop(s);
-    }
-    ts_free(s);
+    Scanner *scanner = (Scanner *)payload;
+    scanner_free(scanner);
+    ts_free(scanner);
 }
 
 unsigned tree_sitter_loongdoc_external_scanner_serialize(void *payload, char *buffer) {
-    Scanner *s = (Scanner *)payload;
+    Scanner *scanner = (Scanner *)payload;
 
     QuickBuffer qb = quick_buffer_new(buffer, TREE_SITTER_SERIALIZATION_BUFFER_SIZE);
 
-    Result ret = scanner_serialize(s, &qb);
+    Result ret = scanner_serialize(scanner, &qb);
     assert(ret == RESULT_OK);
 
     return qb.pos;
@@ -242,6 +36,8 @@ void tree_sitter_loongdoc_external_scanner_deserialize(void *payload, const char
     }
 
     Scanner *s = (Scanner *)payload;
+    scanner_free(s);
+
     QuickBuffer qb = quick_buffer_new((void *)buffer, length);
     Result ret = scanner_deserialize(s, &qb);
     assert(ret == RESULT_OK);
@@ -894,4 +690,139 @@ static bool parse_table_attr(TSLexer *lexer) {
     }
 
     return false;
+}
+
+static Result node_serialize(Node const *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+
+    ret &= quick_buffer_write_u32(qb, self->kind);
+    ret &= quick_buffer_write_usize(qb, self->counter);
+
+    return ret;
+}
+
+static Result node_deserialize(Node *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+    bzero(self, sizeof(Node));
+    ret &= quick_buffer_read_u32(qb, &self->kind);
+    ret &= quick_buffer_read_usize(qb, &self->counter);
+    return ret;
+}
+
+static bool scanner_is_expect_block_start(Scanner const *self) {
+    if(!self->top) {
+        return false;
+    }
+
+    return self->top->kind == BLOCK_KIND_ATTR || self->top->kind == BLOCK_KIND_TITLE;
+}
+
+static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usize counter) {
+    if(!self->top) {
+        return false;
+    }
+
+    if(counter == 0) {
+        return self->top->kind == kind;
+    }
+    return self->top->kind == kind && self->top->counter == counter;
+}
+static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
+    Result ret = RESULT_OK;
+
+    ret &= quick_buffer_write_bool(qb, self->is_matching_raw_block);
+    ret &= quick_buffer_write_usize(qb, self->counter);
+
+    Node *head = self->top;
+    while(head) {
+        ret &= node_serialize(head, qb);
+        head = head->next;
+    }
+
+    return ret;
+}
+
+static Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
+    scanner_init(self);
+
+    Result ret = RESULT_OK;
+
+    ret &= quick_buffer_read_bool(qb, &self->is_matching_raw_block);
+    ret &= quick_buffer_read_usize(qb, &self->counter);
+
+    for(usize i = 0; i < self->counter; ++i) {
+        Node *node = ts_malloc(sizeof(Node));
+        ret &= node_deserialize(node, qb);
+        node->next = self->top;
+        self->top = node;
+    }
+
+    Node *head = self->top;
+    Node *bak = head;
+    while(self->top) {
+        Node *node = self->top;
+        self->top = self->top->next;
+        node->next = head;
+        head = node;
+    }
+    self->top = head;
+    if(bak) {
+        bak->next = NULL;
+    }
+
+    return ret;
+}
+
+static bool scanner_assert_top(Scanner *scanner, BlockKind kind, usize counter) {
+    if(!scanner->top) {
+        return false;
+    }
+
+    return scanner->top->kind == kind && scanner->top->counter == counter;
+}
+
+static inline bool scanner_pop_kind(Scanner *self, BlockKind kind, usize counter) {
+    if(!self->top) {
+        return false;
+    }
+
+    if(self->top->kind == kind && self->top->counter == counter) {
+        Node *top = self->top;
+        self->top = top->next;
+        ts_free(top);
+        self->counter -= 1;
+        return true;
+    }
+
+    return false;
+}
+
+static void scanner_pop(Scanner *self) {
+    if(!self->top) {
+        return;
+    }
+    Node *top = self->top;
+    self->top = top->next;
+    ts_free(top);
+    self->counter -= 1;
+}
+
+static void scanner_push(Scanner *scanner, BlockKind kind, usize counter) {
+    Node *block = (Node *)ts_malloc(sizeof(Node));
+    block->kind = kind;
+    block->counter = counter;
+    block->next = scanner->top;
+
+    scanner->top = block;
+    scanner->counter += 1;
+}
+
+static inline void scanner_init(Scanner *self) {
+    bzero(self, sizeof(Scanner));
+}
+
+static inline void scanner_free(Scanner *self) {
+    while(self->top) {
+        scanner_pop(self);
+    }
 }
