@@ -49,17 +49,17 @@ typedef enum TokenType {
     TOKEN_LIST_CONTINUATION
 } TokenType;
 
-static bool parse_table_attr(TSLexer *lexer);
-static bool parse_number(TSLexer *lexer);
-static bool parse_sequence(TSLexer *lexer, char const *sequence);
-static bool parse_ordered_marker(TSLexer *lexer);
-static bool parse_breaks(char start, TSLexer *lexer);
-static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
-static bool skip_white_space(TSLexer *lexer);
-static bool is_white_space(i32 ch);
-static bool is_new_line(i32 ch);
-static bool is_ascii_digit(i32 ch);
-static bool is_ascii_alpha_lower(i32 ch);
-static bool is_geek_lower(i32 ch);
-static bool is_newline(i32 ch);
-static bool is_eof(TSLexer *lexer);
+static inline bool parse_table_attr(TSLexer *lexer);
+static inline bool parse_number(TSLexer *lexer);
+static inline bool parse_sequence(TSLexer *lexer, char const *sequence);
+static inline bool parse_ordered_marker(TSLexer *lexer);
+static inline bool parse_breaks(char start, TSLexer *lexer);
+static inline bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
+static inline bool skip_white_space(TSLexer *lexer);
+static inline bool is_white_space(i32 ch);
+static inline bool is_new_line(i32 ch);
+static inline bool is_ascii_digit(i32 ch);
+static inline bool is_ascii_alpha_lower(i32 ch);
+static inline bool is_geek_lower(i32 ch);
+static inline bool is_newline(i32 ch);
+static inline bool is_eof(TSLexer *lexer);
