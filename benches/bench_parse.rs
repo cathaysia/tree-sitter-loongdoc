@@ -40,13 +40,15 @@ fn criterion_benchmark(c: &mut Criterion) {
     });
     println!("total {} files need be parsed.", datas.len());
 
-    c.bench_function("bench loongdoc", |b| {
+    let mut group = c.benchmark_group("asciidoctor document");
+
+    group.bench_function("block", |b| {
         b.iter(|| {
             bench_loongdoc(&datas);
         })
     });
 
-    c.bench_function("bench loongdoc_inline", |b| {
+    group.bench_function("inline", |b| {
         b.iter(|| {
             bench_loongdoc_inline(&datas);
         })
