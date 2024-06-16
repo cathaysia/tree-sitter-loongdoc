@@ -6,7 +6,7 @@ use tree_sitter::Parser;
 fn bench_content(text: &[u8]) {
     let mut parser = Parser::new();
     parser
-        .set_language(&tree_sitter_loongdoc::language())
+        .set_language(&tree_sitter_loongdoc_inline::language())
         .unwrap();
 
     parser.parse(text, None).unwrap();
@@ -16,7 +16,7 @@ fn criterion_benchmark(c: &mut Criterion) {
     {
         let one_mb = std::fs::read("./1mb.data").unwrap();
         let mut group = c.benchmark_group("1MB");
-        group.bench_function("block", |b| {
+        group.bench_function("inline", |b| {
             b.iter(|| {
                 bench_content(&one_mb);
             })
@@ -27,7 +27,7 @@ fn criterion_benchmark(c: &mut Criterion) {
         group.warm_up_time(Duration::from_secs(20));
         group.sample_size(50);
         let one_mb = std::fs::read("./8mb.data").unwrap();
-        group.bench_function("block", |b| {
+        group.bench_function("inline", |b| {
             b.iter(|| {
                 bench_content(&one_mb);
             })
@@ -38,7 +38,7 @@ fn criterion_benchmark(c: &mut Criterion) {
         group.warm_up_time(Duration::from_secs(20));
         group.sample_size(10);
         let one_mb = std::fs::read("./64mb.data").unwrap();
-        group.bench_function("block", |b| {
+        group.bench_function("inline", |b| {
             b.iter(|| {
                 bench_content(&one_mb);
             })
@@ -49,7 +49,7 @@ fn criterion_benchmark(c: &mut Criterion) {
         group.warm_up_time(Duration::from_secs(20));
         group.sample_size(10);
         let one_mb = std::fs::read("./128mb.data").unwrap();
-        group.bench_function("block", |b| {
+        group.bench_function("inline", |b| {
             b.iter(|| {
                 bench_content(&one_mb);
             })
