@@ -1,7 +1,8 @@
-#include "include/scanner.h"
 #include <assert.h>
+
 #include "include/base_types.h"
 #include "include/quick_buffer.h"
+#include "include/scanner.h"
 #include "include/utils.h"
 #include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
@@ -9,7 +10,6 @@
 void *tree_sitter_loongdoc_external_scanner_create() {
     Scanner *scanner = (Scanner *)malloc(sizeof(Scanner));
     scanner_init(scanner);
-    scanner->is_matching_raw_block = false;
     return scanner;
 }
 
@@ -85,7 +85,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
         }
 
-        if(is_alpha_lower && s->is_matching_raw_block) {
+        if(is_alpha_lower && scanner_is_matching_raw_block(s)) {
             if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
                 if(parse_sequence(lexer, "include")) {
                     lexer->mark_end(lexer);
@@ -97,7 +97,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
         }
 
-        if(is_alpha_lower && !s->is_matching_raw_block) {
+        if(is_alpha_lower && !scanner_is_matching_raw_block(s)) {
             if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
                 while(is_ascii_alpha_lower(lexer->lookahead)) {
                     lexer->advance(lexer, false);
@@ -115,10 +115,10 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 case '=': {
                     consume('=', lexer, false, NULL, USIZE_MAX);
                     lexer->mark_end(lexer);
-                    if(!s->is_matching_raw_block) {
+                    if(!scanner_is_matching_raw_block(s)) {
                         usize counter = lexer->get_column(lexer);
                         if(counter >= 4 && is_new_line(lexer->lookahead)) {
-                            if(!scanner_is_expect_block_start(s) && scanner_assert_top(s, BLOCK_KIND_DELIMITED, counter)) {
+                            if(!scanner_is_expect_block_start(s) && scanner_is_matching(s, BLOCK_KIND_DELIMITED, counter)) {
                                 lexer->result_symbol = TOKEN_DELIMITED_BLOCK_END_MARKER;
                                 scanner_pop(s);
                                 while(scanner_pop_kind(s, BLOCK_KIND_TITLE, 1) ||
@@ -133,7 +133,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
 
-                    if(!s->is_matching_raw_block) {
+                    if(!scanner_is_matching_raw_block(s)) {
                         usize level = TOKEN_TITLE_H0_MARKER - 1 + lexer->get_column(lexer);
                         if(level <= TOKEN_TITLE_H5_MARKER && is_white_space(lexer->lookahead)) {
                             lexer->result_symbol = level;
@@ -195,14 +195,12 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         usize counter = lexer->get_column(lexer);
                         if(counter >= 4 && is_newline(lexer->lookahead)) {
                             if(scanner_is_matching(s, BLOCK_KIND_LISTING, counter)) {
-                                s->is_matching_raw_block = false;
                                 scanner_pop(s);
                                 lexer->result_symbol = TOKEN_LISTING_BLOCK_END_MARKER;
                                 return true;
                             } else {
-                                if(!s->is_matching_raw_block) {
+                                if(!scanner_is_matching_raw_block(s)) {
                                     scanner_push(s, BLOCK_KIND_LISTING, counter);
-                                    s->is_matching_raw_block = true;
                                     lexer->result_symbol = TOKEN_LISTING_BLOCK_START_MARKER;
                                     return true;
                                 }
@@ -241,7 +239,11 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                             if(is_newline(lexer->lookahead)) {
                                 lexer->mark_end(lexer);
                                 lexer->result_symbol = TOKEN_LITERAL_BLOCK_MARKER;
-                                s->is_matching_raw_block = !s->is_matching_raw_block;
+                                if(scanner_is_matching(s, BLOCK_KIND_LITERAL, 0)) {
+                                    scanner_pop(s);
+                                } else {
+                                    scanner_push(s, BLOCK_KIND_LITERAL, 4);
+                                }
                                 return true;
                             }
                         }
@@ -527,23 +529,23 @@ bool parse_ordered_marker(TSLexer *lexer) {
     return true;
 }
 
-static bool is_white_space(i32 ch) {
+static inline bool is_white_space(i32 ch) {
     return ch == ' ' || ch == '\t';
 }
 
-static bool is_ascii_digit(i32 ch) {
+static inline bool is_ascii_digit(i32 ch) {
     return ch >= '0' && ch <= '9';
 }
 
-static bool is_ascii_alpha_lower(i32 ch) {
+static inline bool is_ascii_alpha_lower(i32 ch) {
     return ch >= 'a' && ch <= 'z';
 }
 
-static bool is_geek_lower(i32 ch) {
+static inline bool is_geek_lower(i32 ch) {
     return ch >= 945 && ch <= 969;
 }
 
-static bool parse_breaks(char start, TSLexer *lexer) {
+static inline bool parse_breaks(char start, TSLexer *lexer) {
     if(lexer->get_column(lexer) != 0) {
         return false;
     }
@@ -564,7 +566,7 @@ static bool parse_breaks(char start, TSLexer *lexer) {
     return counter == 3 && is_newline(lexer->lookahead);
 }
 
-static bool skip_white_space(TSLexer *lexer) {
+static inline bool skip_white_space(TSLexer *lexer) {
     bool has_skiped = false;
     while(is_white_space(lexer->lookahead)) {
         lexer->advance(lexer, false);
@@ -574,19 +576,19 @@ static bool skip_white_space(TSLexer *lexer) {
     return has_skiped;
 }
 
-static bool is_newline(i32 ch) {
+static inline bool is_newline(i32 ch) {
     return ch == '\r' || ch == '\n';
 }
 
-static bool is_eof(TSLexer *lexer) {
+static inline bool is_eof(TSLexer *lexer) {
     return lexer->eof(lexer);
 }
 
-static bool is_new_line(i32 ch) {
+static inline bool is_new_line(i32 ch) {
     return ch == '\r' || ch == '\n';
 }
 
-static bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max) {
+static inline bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max) {
     bool has_space = false;
     if(skip_space) {
         has_space |= skip_white_space(lexer);
@@ -619,7 +621,7 @@ static usize ts_str_len(char const *str) {
     return len;
 }
 
-static bool parse_sequence(TSLexer *lexer, char const *sequence) {
+static inline bool parse_sequence(TSLexer *lexer, char const *sequence) {
     usize len = ts_str_len(sequence);
     usize pos = 0;
 
@@ -635,7 +637,7 @@ static bool parse_sequence(TSLexer *lexer, char const *sequence) {
     return true;
 }
 
-static bool parse_number(TSLexer *lexer) {
+static inline bool parse_number(TSLexer *lexer) {
     bool has_number = false;
     while(is_ascii_digit(lexer->lookahead)) {
         lexer->advance(lexer, false);
@@ -655,7 +657,7 @@ char table_cell_attr_style_header = 'h';
 char table_cell_attr_style_literal = 'l';
 char table_cell_attr_style_loongdoc = 'a';
 
-static bool parse_table_attr(TSLexer *lexer) {
+static inline bool parse_table_attr(TSLexer *lexer) {
     if(lexer->lookahead == table_cell_attr_align_left ||
        lexer->lookahead == table_cell_attr_align_right ||
        lexer->lookahead == table_cell_attr_align_middle ||
@@ -692,7 +694,7 @@ static bool parse_table_attr(TSLexer *lexer) {
     return false;
 }
 
-static Result node_serialize(Node const *self, QuickBuffer *qb) {
+static inline Result node_serialize(Node const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
 
     ret &= quick_buffer_write_u32(qb, self->kind);
@@ -701,7 +703,7 @@ static Result node_serialize(Node const *self, QuickBuffer *qb) {
     return ret;
 }
 
-static Result node_deserialize(Node *self, QuickBuffer *qb) {
+static inline Result node_deserialize(Node *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
     bzero(self, sizeof(Node));
     ret &= quick_buffer_read_u32(qb, &self->kind);
@@ -709,28 +711,25 @@ static Result node_deserialize(Node *self, QuickBuffer *qb) {
     return ret;
 }
 
-static bool scanner_is_expect_block_start(Scanner const *self) {
-    if(!self->top) {
-        return false;
-    }
-
-    return self->top->kind == BLOCK_KIND_ATTR || self->top->kind == BLOCK_KIND_TITLE;
+static inline bool scanner_is_expect_block_start(Scanner const *self) {
+    return scanner_is_matching(self, BLOCK_KIND_ATTR, 0) ||
+           scanner_is_matching(self, BLOCK_KIND_TITLE, 0);
 }
 
 static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usize counter) {
-    if(!self->top) {
+    Node *top = scanner_top(self);
+    if(!top) {
         return false;
     }
 
     if(counter == 0) {
-        return self->top->kind == kind;
+        return top->kind == kind;
     }
-    return self->top->kind == kind && self->top->counter == counter;
+    return top->kind == kind && top->counter == counter;
 }
-static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
+static inline Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
 
-    ret &= quick_buffer_write_bool(qb, self->is_matching_raw_block);
     ret &= quick_buffer_write_usize(qb, self->counter);
 
     Node *head = self->top;
@@ -742,12 +741,11 @@ static Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     return ret;
 }
 
-static Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
+static inline Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
     scanner_init(self);
 
     Result ret = RESULT_OK;
 
-    ret &= quick_buffer_read_bool(qb, &self->is_matching_raw_block);
     ret &= quick_buffer_read_usize(qb, &self->counter);
 
     for(usize i = 0; i < self->counter; ++i) {
@@ -773,31 +771,16 @@ static Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
     return ret;
 }
 
-static bool scanner_assert_top(Scanner *scanner, BlockKind kind, usize counter) {
-    if(!scanner->top) {
-        return false;
-    }
-
-    return scanner->top->kind == kind && scanner->top->counter == counter;
-}
-
 static inline bool scanner_pop_kind(Scanner *self, BlockKind kind, usize counter) {
-    if(!self->top) {
-        return false;
-    }
-
-    if(self->top->kind == kind && self->top->counter == counter) {
-        Node *top = self->top;
-        self->top = top->next;
-        ts_free(top);
-        self->counter -= 1;
+    if(scanner_is_matching(self, kind, counter)) {
+        scanner_pop(self);
         return true;
     }
 
     return false;
 }
 
-static void scanner_pop(Scanner *self) {
+static inline void scanner_pop(Scanner *self) {
     if(!self->top) {
         return;
     }
@@ -807,14 +790,14 @@ static void scanner_pop(Scanner *self) {
     self->counter -= 1;
 }
 
-static void scanner_push(Scanner *scanner, BlockKind kind, usize counter) {
+static inline void scanner_push(Scanner *self, BlockKind kind, usize counter) {
     Node *block = (Node *)ts_malloc(sizeof(Node));
     block->kind = kind;
     block->counter = counter;
-    block->next = scanner->top;
+    block->next = self->top;
 
-    scanner->top = block;
-    scanner->counter += 1;
+    self->top = block;
+    self->counter += 1;
 }
 
 static inline void scanner_init(Scanner *self) {
@@ -825,4 +808,13 @@ static inline void scanner_free(Scanner *self) {
     while(self->top) {
         scanner_pop(self);
     }
+}
+
+static inline bool scanner_is_matching_raw_block(Scanner *self) {
+    return scanner_is_matching(self, BLOCK_KIND_LISTING, 0) ||
+           scanner_is_matching(self, BLOCK_KIND_LITERAL, 0);
+}
+
+static inline Node *scanner_top(Scanner const *self) {
+    return self->top;
 }
