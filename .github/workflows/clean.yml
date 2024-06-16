@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  gh_pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +26,20 @@ jobs:
           git add -A
           git commit -am "first commit"
           git push origin single:gh-pages -f
+  playground-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-playground
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: clean gh_pages
+        run: |
+          git checkout --orphan single
+          git add -A
+          git commit -am "first commit"
+          git push origin single:gh-playground -f
