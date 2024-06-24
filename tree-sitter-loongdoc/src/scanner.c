@@ -59,15 +59,15 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     if(lexer->get_column(lexer) == 0) {
         if(valid_symbols[TOKEN_ADMONITION_NOTE]) {
             do {
-                if(parse_sequence(lexer, "NOTE")) {
+                if(parse_sequence(lexer, "NOTE", 4)) {
                     lexer->result_symbol = TOKEN_ADMONITION_NOTE;
-                } else if(parse_sequence(lexer, "TIP")) {
+                } else if(parse_sequence(lexer, "TIP", 3)) {
                     lexer->result_symbol = TOKEN_ADMONITION_TIP;
-                } else if(parse_sequence(lexer, "IMPORTANT")) {
+                } else if(parse_sequence(lexer, "IMPORTANT", 9)) {
                     lexer->result_symbol = TOKEN_ADMONITION_IMPORTANT;
-                } else if(parse_sequence(lexer, "CAUTION")) {
+                } else if(parse_sequence(lexer, "CAUTION", 7)) {
                     lexer->result_symbol = TOKEN_ADMONITION_CAUTION;
-                } else if(parse_sequence(lexer, "WARNING")) {
+                } else if(parse_sequence(lexer, "WARNING", 7)) {
                     lexer->result_symbol = TOKEN_ADMONITION_WARNING;
                 } else {
                     break;
@@ -89,9 +89,9 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
 
         if(is_alpha_lower && scanner_is_matching_raw_block(s)) {
             if(valid_symbols[TOKEN_BLOCK_MACRO_NAME]) {
-                if(parse_sequence(lexer, "include")) {
+                if(parse_sequence(lexer, "include", 7)) {
                     lexer->mark_end(lexer);
-                    if(parse_sequence(lexer, "::")) {
+                    if(parse_sequence(lexer, "::", 2)) {
                         lexer->result_symbol = TOKEN_BLOCK_MACRO_NAME;
                         return true;
                     }
@@ -105,7 +105,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     lexer->advance(lexer, false);
                 }
                 lexer->mark_end(lexer);
-                if(parse_sequence(lexer, "::")) {
+                if(parse_sequence(lexer, "::", 2)) {
                     lexer->result_symbol = TOKEN_BLOCK_MACRO_NAME;
                     return true;
                 }
@@ -237,7 +237,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     lexer->advance(lexer, false);
                     lexer->mark_end(lexer);
                     if(valid_symbols[TOKEN_LITERAL_BLOCK_MARKER]) {
-                        if(parse_sequence(lexer, "...")) {
+                        if(parse_sequence(lexer, "...", 3)) {
                             if(is_newline(lexer->lookahead)) {
                                 lexer->mark_end(lexer);
                                 lexer->result_symbol = TOKEN_LITERAL_BLOCK_MARKER;
@@ -308,7 +308,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                     }
                     if(valid_symbols[TOKEN_ANNO_LIST_MARKER]) {
                         if(lexer->get_column(lexer) == 1) {
-                            if(parse_sequence(lexer, ".>")) {
+                            if(parse_sequence(lexer, ".>", 2)) {
                                 lexer->mark_end(lexer);
                                 lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
                                 if(is_white_space(lexer->lookahead)) {
@@ -367,10 +367,10 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 case '/': {
                     if(valid_symbols[TOKEN_LINE_COMMENT_MARKER] ||
                        valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
-                        if(parse_sequence(lexer, "//")) {
+                        if(parse_sequence(lexer, "//", 2)) {
                             lexer->mark_end(lexer);
                             if(valid_symbols[TOKEN_BLOCK_COMMENT_MARKER]) {
-                                if(parse_sequence(lexer, "//")) {
+                                if(parse_sequence(lexer, "//", 2)) {
                                     if(is_newline(lexer->lookahead)) {
                                         lexer->result_symbol = TOKEN_BLOCK_COMMENT_MARKER;
                                         lexer->mark_end(lexer);
@@ -386,7 +386,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 }
                 case '_': {
                     if(valid_symbols[TOKEN_QUOTED_BLOCK_MARKER]) {
-                        if(parse_sequence(lexer, "____")) {
+                        if(parse_sequence(lexer, "____", 4)) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_QUOTED_BLOCK_MARKER;
                             if(is_newline(lexer->lookahead) || is_eof(lexer)) {
@@ -417,7 +417,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                         }
                     }
                     if(valid_symbols[TOKEN_PASSTHROUGH_BLOCK_MARKER]) {
-                        if(parse_sequence(lexer, "+++")) {
+                        if(parse_sequence(lexer, "+++", 3)) {
                             lexer->mark_end(lexer);
                             lexer->result_symbol = TOKEN_PASSTHROUGH_BLOCK_MARKER;
                             if(is_new_line(lexer->lookahead) || is_eof(lexer)) {
@@ -442,12 +442,12 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
     }
 
     if(valid_symbols[TOKEN_ANNO_MARKER]) {
-        parse_sequence(lexer, "#");
-        parse_sequence(lexer, "//");
-        parse_sequence(lexer, ";;");
+        parse_sequence(lexer, "#", 1);
+        parse_sequence(lexer, "//", 2);
+        parse_sequence(lexer, ";;", 2);
         skip_white_space(lexer);
 
-        if(parse_sequence(lexer, "<.>")) {
+        if(parse_sequence(lexer, "<.>", 3)) {
             lexer->mark_end(lexer);
             if(is_newline(lexer->lookahead)) {
                 lexer->result_symbol = TOKEN_ANNO_MARKER;
@@ -466,9 +466,9 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
             }
         }
 
-        if(parse_sequence(lexer, "!--")) {
+        if(parse_sequence(lexer, "!--", 3)) {
             if(lexer->lookahead == '.' || parse_number(lexer)) {
-                if(parse_sequence(lexer, "-->")) {
+                if(parse_sequence(lexer, "-->", 3)) {
                     lexer->mark_end(lexer);
                     if(is_new_line(lexer->lookahead)) {
                         lexer->result_symbol = TOKEN_ANNO_MARKER;
@@ -614,17 +614,7 @@ static inline bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *count
     return has_space;
 }
 
-static usize ts_str_len(char const *str) {
-    usize len = 0;
-    while(str[len] != 0) {
-        ++len;
-    }
-
-    return len;
-}
-
-static inline bool parse_sequence(TSLexer *lexer, char const *sequence) {
-    usize len = ts_str_len(sequence);
+static inline bool parse_sequence(TSLexer *lexer, char const *sequence, usize len) {
     usize pos = 0;
 
     while(pos < len) {
