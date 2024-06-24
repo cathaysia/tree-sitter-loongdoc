@@ -1,8 +1,6 @@
-#include <assert.h>
-
+#include "include/scanner.h"
 #include "include/base_types.h"
 #include "include/quick_buffer.h"
-#include "include/scanner.h"
 #include "include/utils.h"
 #include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
@@ -32,8 +30,7 @@ unsigned tree_sitter_loongdoc_external_scanner_serialize(void *payload, char *bu
 
     QuickBuffer qb = quick_buffer_new(buffer, TREE_SITTER_SERIALIZATION_BUFFER_SIZE);
 
-    Result ret = scanner_serialize(scanner, &qb);
-    assert(ret == RESULT_OK);
+    scanner_serialize(scanner, &qb);
 
     return qb.pos;
 }
@@ -47,8 +44,7 @@ void tree_sitter_loongdoc_external_scanner_deserialize(void *payload, const char
     scanner_free(s);
 
     QuickBuffer qb = quick_buffer_new((void *)buffer, length);
-    Result ret = scanner_deserialize(s, &qb);
-    assert(ret == RESULT_OK);
+    scanner_deserialize(s, &qb);
 }
 
 bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
@@ -721,7 +717,6 @@ static inline bool scanner_is_matching(Scanner const *self, BlockKind kind, usiz
 static inline Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
 
-    ret &= quick_buffer_write_usize(qb, self->counter);
     ret &= quick_buffer_write_usize(qb, self->len);
     ret &= quick_buffer_extend_bytes(qb, self->buffer, sizeof(Node) * self->len);
 
@@ -732,8 +727,6 @@ static inline Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
     scanner_init(self);
 
     Result ret = RESULT_OK;
-
-    ret &= quick_buffer_read_usize(qb, &self->counter);
 
     usize len = 0;
     ret &= quick_buffer_read_usize(qb, &len);
@@ -764,9 +757,19 @@ static inline void scanner_pop(Scanner *self) {
 }
 
 static inline void scanner_push(Scanner *self, BlockKind kind, usize counter) {
+    const usize BUFFER_SIZE = TREE_SITTER_SERIALIZATION_BUFFER_SIZE - sizeof(usize);
+
     if(self->len == self->capacity) {
-        self->buffer = ts_realloc(self->buffer, sizeof(Node) * (self->capacity + LIST_GROW_SIZE));
-        self->capacity = self->capacity + LIST_GROW_SIZE;
+        usize grow_counter = BUFFER_SIZE / sizeof(Node) - self->capacity;
+        if(grow_counter == 0) {
+            return;
+        }
+        if(LIST_GROW_SIZE < grow_counter) {
+            grow_counter = LIST_GROW_SIZE;
+        }
+
+        self->capacity = self->capacity + grow_counter;
+        self->buffer = ts_realloc(self->buffer, sizeof(Node) * self->capacity);
     }
 
     Node *top = &(self->buffer[self->len++]);
