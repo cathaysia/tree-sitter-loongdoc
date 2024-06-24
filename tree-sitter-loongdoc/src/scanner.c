@@ -7,6 +7,14 @@
 #include "tree_sitter/alloc.h"
 #include "tree_sitter/parser.h"
 
+#ifndef LIST_INIT_SIZE
+#define LIST_INIT_SIZE 10
+#endif  // ifndef LIST_INIT_SIZE
+
+#ifndef LIST_GROW_SIZE
+#define LIST_GROW_SIZE 10
+#endif  // ifndef LIST_GROW_SIZE
+
 void *tree_sitter_loongdoc_external_scanner_create() {
     Scanner *scanner = (Scanner *)malloc(sizeof(Scanner));
     scanner_init(scanner);
@@ -694,23 +702,6 @@ static inline bool parse_table_attr(TSLexer *lexer) {
     return false;
 }
 
-static inline Result node_serialize(Node const *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-
-    ret &= quick_buffer_write_u32(qb, self->kind);
-    ret &= quick_buffer_write_usize(qb, self->counter);
-
-    return ret;
-}
-
-static inline Result node_deserialize(Node *self, QuickBuffer *qb) {
-    Result ret = RESULT_OK;
-    bzero(self, sizeof(Node));
-    ret &= quick_buffer_read_u32(qb, &self->kind);
-    ret &= quick_buffer_read_usize(qb, &self->counter);
-    return ret;
-}
-
 static inline bool scanner_is_expect_block_start(Scanner const *self) {
     return scanner_is_matching(self, BLOCK_KIND_ATTR, 0) ||
            scanner_is_matching(self, BLOCK_KIND_TITLE, 0);
@@ -731,12 +722,8 @@ static inline Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
     Result ret = RESULT_OK;
 
     ret &= quick_buffer_write_usize(qb, self->counter);
-
-    Node *head = self->top;
-    while(head) {
-        ret &= node_serialize(head, qb);
-        head = head->next;
-    }
+    ret &= quick_buffer_write_usize(qb, self->len);
+    ret &= quick_buffer_extend_bytes(qb, self->buffer, sizeof(Node) * self->len);
 
     return ret;
 }
@@ -748,25 +735,14 @@ static inline Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
 
     ret &= quick_buffer_read_usize(qb, &self->counter);
 
-    for(usize i = 0; i < self->counter; ++i) {
-        Node *node = ts_malloc(sizeof(Node));
-        ret &= node_deserialize(node, qb);
-        node->next = self->top;
-        self->top = node;
+    usize len = 0;
+    ret &= quick_buffer_read_usize(qb, &len);
+    if(self->capacity < len) {
+        self->buffer = ts_realloc(self->buffer, len * sizeof(Node));
+        self->capacity = len;
     }
-
-    Node *head = self->top;
-    Node *bak = head;
-    while(self->top) {
-        Node *node = self->top;
-        self->top = self->top->next;
-        node->next = head;
-        head = node;
-    }
-    self->top = head;
-    if(bak) {
-        bak->next = NULL;
-    }
+    self->len = len;
+    ret &= quick_buffer_read_bytes(qb, self->buffer, len * sizeof(Node));
 
     return ret;
 }
@@ -781,33 +757,32 @@ static inline bool scanner_pop_kind(Scanner *self, BlockKind kind, usize counter
 }
 
 static inline void scanner_pop(Scanner *self) {
-    if(!self->top) {
+    if(self->len == 0) {
         return;
     }
-    Node *top = self->top;
-    self->top = top->next;
-    ts_free(top);
-    self->counter -= 1;
+    self->len -= 1;
 }
 
 static inline void scanner_push(Scanner *self, BlockKind kind, usize counter) {
-    Node *block = (Node *)ts_malloc(sizeof(Node));
-    block->kind = kind;
-    block->counter = counter;
-    block->next = self->top;
+    if(self->len == self->capacity) {
+        self->buffer = ts_realloc(self->buffer, sizeof(Node) * (self->capacity + LIST_GROW_SIZE));
+        self->capacity = self->capacity + LIST_GROW_SIZE;
+    }
 
-    self->top = block;
-    self->counter += 1;
+    Node *top = &(self->buffer[self->len++]);
+    top->kind = kind;
+    top->counter = counter;
 }
 
 static inline void scanner_init(Scanner *self) {
     bzero(self, sizeof(Scanner));
+    self->buffer = ts_malloc(LIST_INIT_SIZE * sizeof(Node));
+    self->capacity = LIST_INIT_SIZE;
 }
 
 static inline void scanner_free(Scanner *self) {
-    while(self->top) {
-        scanner_pop(self);
-    }
+    ts_free(self->buffer);
+    bzero(self, sizeof(Scanner));
 }
 
 static inline bool scanner_is_matching_raw_block(Scanner *self) {
@@ -816,5 +791,9 @@ static inline bool scanner_is_matching_raw_block(Scanner *self) {
 }
 
 static inline Node *scanner_top(Scanner const *self) {
-    return self->top;
+    if(self->len == 0) {
+        return NULL;
+    }
+
+    return &(self->buffer[self->len - 1]);
 }
