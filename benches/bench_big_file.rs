@@ -33,28 +33,6 @@ fn criterion_benchmark(c: &mut Criterion) {
             })
         });
     }
-    {
-        let mut group = c.benchmark_group("64MB");
-        group.warm_up_time(Duration::from_secs(20));
-        group.sample_size(10);
-        let one_mb = std::fs::read("./64mb.data").unwrap();
-        group.bench_function("block", |b| {
-            b.iter(|| {
-                bench_content(&one_mb);
-            })
-        });
-    }
-    {
-        let mut group = c.benchmark_group("128MB");
-        group.warm_up_time(Duration::from_secs(20));
-        group.sample_size(10);
-        let one_mb = std::fs::read("./128mb.data").unwrap();
-        group.bench_function("block", |b| {
-            b.iter(|| {
-                bench_content(&one_mb);
-            })
-        });
-    }
 }
 
 criterion_group!(benches, criterion_benchmark);
