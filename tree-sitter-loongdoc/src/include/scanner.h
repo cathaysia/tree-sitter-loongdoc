@@ -18,7 +18,6 @@ typedef struct Node {
 } Node;
 
 typedef struct Scanner {
-    usize counter;
     usize capacity;
     usize len;
     Node *buffer;
