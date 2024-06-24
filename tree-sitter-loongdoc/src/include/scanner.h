@@ -15,16 +15,14 @@ typedef enum BlockKind {
 typedef struct Node {
     BlockKind kind;
     usize counter;
-    struct Node *next;
 } Node;
 
 typedef struct Scanner {
     usize counter;
-    Node *top;
+    usize capacity;
+    usize len;
+    Node *buffer;
 } Scanner;
-
-static inline Result node_serialize(Node const *self, QuickBuffer *qb);
-static inline Result node_deserialize(Node *self, QuickBuffer *qb);
 
 static inline void scanner_init(Scanner *self);
 static inline void scanner_free(Scanner *self);
