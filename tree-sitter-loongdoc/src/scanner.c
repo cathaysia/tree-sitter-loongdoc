@@ -41,8 +41,6 @@ void tree_sitter_loongdoc_external_scanner_deserialize(void *payload, const char
     }
 
     Scanner *s = (Scanner *)payload;
-    scanner_free(s);
-
     QuickBuffer qb = quick_buffer_new((void *)buffer, length);
     scanner_deserialize(s, &qb);
 }
@@ -724,8 +722,6 @@ static inline Result scanner_serialize(Scanner const *self, QuickBuffer *qb) {
 }
 
 static inline Result scanner_deserialize(Scanner *self, QuickBuffer *qb) {
-    scanner_init(self);
-
     Result ret = RESULT_OK;
 
     usize len = 0;
