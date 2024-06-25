@@ -51,7 +51,7 @@ typedef enum TokenType {
 
 static inline bool parse_table_attr(TSLexer *lexer);
 static inline bool parse_number(TSLexer *lexer);
-static inline bool parse_sequence(TSLexer *lexer, char const *sequence, usize len);
+static inline bool parse_sequence(TSLexer *lexer, char const *sequence);
 static inline bool parse_ordered_marker(TSLexer *lexer);
 static inline bool parse_breaks(char start, TSLexer *lexer);
 static inline bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *counter, usize max);
