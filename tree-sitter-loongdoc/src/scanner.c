@@ -46,7 +46,6 @@ void tree_sitter_loongdoc_external_scanner_deserialize(void *payload, const char
 }
 
 bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-    usize start_pos = lexer->get_column(lexer);
     Scanner *s = (Scanner *)payload;
 
     if(lexer->eof(lexer)) {
@@ -56,7 +55,8 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
     }
 
-    if(lexer->get_column(lexer) == 0) {
+    usize start_pos = lexer->get_column(lexer);
+    if(start_pos == 0) {
         if(valid_symbols[TOKEN_ADMONITION_NOTE]) {
             do {
                 if(parse_sequence(lexer, "NOTE")) {
@@ -548,10 +548,6 @@ static inline bool is_geek_lower(i32 ch) {
 }
 
 static inline bool parse_breaks(char start, TSLexer *lexer) {
-    if(lexer->get_column(lexer) != 0) {
-        return false;
-    }
-
     i32 counter = 0;
 
     while(lexer->lookahead == start) {
@@ -612,15 +608,6 @@ static inline bool consume(i32 ch, TSLexer *lexer, bool skip_space, usize *count
 
     lexer->mark_end(lexer);
     return has_space;
-}
-
-static usize ts_str_len(char const *str) {
-    usize len = 0;
-    while(str[len] != 0) {
-        ++len;
-    }
-
-    return len;
 }
 
 static inline bool parse_sequence_impl(TSLexer *lexer, char const *sequence, usize len) {
