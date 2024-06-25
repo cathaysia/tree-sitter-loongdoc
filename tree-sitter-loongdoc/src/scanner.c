@@ -623,8 +623,7 @@ static usize ts_str_len(char const *str) {
     return len;
 }
 
-static inline bool parse_sequence(TSLexer *lexer, char const *sequence) {
-    usize len = ts_str_len(sequence);
+static inline bool parse_sequence_impl(TSLexer *lexer, char const *sequence, usize len) {
     usize pos = 0;
 
     while(pos < len) {
