@@ -34,7 +34,10 @@ export const LoongDoc = function (props: LoongDocProps) {
     if (parse_loongdoc == null) {
       return ''
     } else {
+      let start = new Date()
       let resptr = parse_loongdoc(props.text)
+      let end = new Date()
+      console.log(`parse data costs ${end.getTime() - start.getTime()} msec`)
       return resptr
     }
   }
