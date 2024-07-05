@@ -93,10 +93,15 @@ module.exports = grammar({
           'wavedrom',
         ),
         token.immediate(':'),
-        alias(repeat(escaped_ch('[', false, $.replacement)), $.target),
+        alias(
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          $.target,
+        ),
         '[',
         alias(
-          repeat(escaped_ch(']', false, $.replacement, $.autolink)),
+          repeat(
+            escaped_ch(']', false, $.replacement, $.autolink, $.escaped_ch),
+          ),
           $.attr,
         ),
         ']',
@@ -119,6 +124,7 @@ module.exports = grammar({
     _digits: $ => /[0-9][0-9_]*/,
     escaped_ch: $ =>
       choice(
+        echar('{'),
         echar('+++'),
         echar('+'),
         echar('`'),
