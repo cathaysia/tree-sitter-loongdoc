@@ -90,9 +90,7 @@
 (block_title
   (block_title_marker) @punctuation.special) @attribute
 
-[
-  (ident_block)
-] @markup.raw.block
+(ident_block) @markup.raw.block
 
 (anno_list_marker) @punctuation.special
 
