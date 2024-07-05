@@ -477,6 +477,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "replacement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "escaped_ch"
                 }
               ]
             }
@@ -510,6 +514,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "autolink"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "escaped_ch"
                 }
               ]
             }
@@ -588,6 +596,17 @@
     "escaped_ch": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PREC",
+            "value": 1,
+            "content": {
+              "type": "STRING",
+              "value": "\\{"
+            }
+          }
+        },
         {
           "type": "TOKEN",
           "content": {

@@ -31,6 +31,10 @@
           "named": true
         },
         {
+          "type": "escaped_ch",
+          "named": true
+        },
+        {
           "type": "replacement",
           "named": true
         }
@@ -253,6 +257,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "escaped_ch",
+          "named": true
+        },
         {
           "type": "replacement",
           "named": true
@@ -591,6 +599,10 @@
   },
   {
     "type": "\\xref",
+    "named": false
+  },
+  {
+    "type": "\\{",
     "named": false
   },
   {

@@ -1,0 +1,15 @@
+====================
+stmt
+====================
+
+stem:[a + b = c]
+stem:[A = \{ a + b \}]
+
+-----
+
+(inline
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr
+      (escaped_ch))))
