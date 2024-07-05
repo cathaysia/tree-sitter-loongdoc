@@ -8,8 +8,7 @@ stem:[A = \{ a + b \}]
 -----
 
 (inline
-  (inline_macro
+  (stem_macro
     (attr))
-  (inline_macro
-    (attr
-      (escaped_ch))))
+  (stem_macro
+    (attr)))

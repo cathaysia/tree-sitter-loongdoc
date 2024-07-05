@@ -147,6 +147,10 @@
           "named": true
         },
         {
+          "type": "stem_macro",
+          "named": true
+        },
+        {
           "type": "xref",
           "named": true
         }
@@ -244,6 +248,25 @@
       "types": [
         {
           "type": "intrinsic_attributes",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stem_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "target",
           "named": true
         }
       ]
@@ -599,10 +622,6 @@
   },
   {
     "type": "\\xref",
-    "named": false
-  },
-  {
-    "type": "\\{",
     "named": false
   },
   {

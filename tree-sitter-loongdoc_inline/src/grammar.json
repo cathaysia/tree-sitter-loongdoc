@@ -53,6 +53,10 @@
           {
             "type": "SYMBOL",
             "name": "inline_macro"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "stem_macro"
           }
         ]
       }
@@ -281,18 +285,6 @@
             {
               "type": "STRING",
               "value": "menu"
-            },
-            {
-              "type": "STRING",
-              "value": "stem"
-            },
-            {
-              "type": "STRING",
-              "value": "latexmath"
-            },
-            {
-              "type": "STRING",
-              "value": "asciimath"
             },
             {
               "type": "STRING",
@@ -531,6 +523,81 @@
         }
       ]
     },
+    "stem_macro": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "latexmath"
+            },
+            {
+              "type": "STRING",
+              "value": "stem"
+            },
+            {
+              "type": "STRING",
+              "value": "asciimath"
+            }
+          ]
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\[]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\["
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "replacement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "escaped_ch"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "target"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[^\\]]*"
+          },
+          "named": true,
+          "value": "attr"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
     "replacement": {
       "type": "SEQ",
       "members": [
@@ -603,40 +670,7 @@
             "value": 1,
             "content": {
               "type": "STRING",
-              "value": "\\{"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
               "value": "\\+++"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\+"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\`"
             }
           }
         },
@@ -658,29 +692,7 @@
             "value": 1,
             "content": {
               "type": "STRING",
-              "value": "\\*"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
               "value": "\\**"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\$"
             }
           }
         },
@@ -702,29 +714,7 @@
             "value": 1,
             "content": {
               "type": "STRING",
-              "value": "\\#"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
               "value": "\\##"
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\_"
             }
           }
         },
@@ -758,17 +748,6 @@
             "content": {
               "type": "STRING",
               "value": "\\[["
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\["
             }
           }
         },
@@ -1002,6 +981,10 @@
               "value": "\\endif"
             }
           }
+        },
+        {
+          "type": "PATTERN",
+          "value": "\\\\."
         }
       ]
     },
