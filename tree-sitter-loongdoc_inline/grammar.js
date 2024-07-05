@@ -32,6 +32,7 @@ module.exports = grammar({
           $.monospace,
           $.highlight,
           $.inline_macro,
+          $.stem_macro,
         ),
       ),
     ...autolink.rules,
@@ -48,9 +49,6 @@ module.exports = grammar({
           'link',
           'mailto',
           'menu',
-          'stem',
-          'latexmath',
-          'asciimath',
           'footnote',
           'footnoteref',
           'anchor',
@@ -106,6 +104,18 @@ module.exports = grammar({
         ),
         ']',
       ),
+    stem_macro: $ =>
+      seq(
+        choice('latexmath', 'stem', 'asciimath'),
+        token.immediate(':'),
+        alias(
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          $.target,
+        ),
+        '[',
+        alias(/[^\]]*/, $.attr),
+        ']',
+      ),
     replacement: $ =>
       seq(
         '{',
@@ -124,22 +134,14 @@ module.exports = grammar({
     _digits: $ => /[0-9][0-9_]*/,
     escaped_ch: $ =>
       choice(
-        echar('{'),
         echar('+++'),
-        echar('+'),
-        echar('`'),
         echar('``'),
-        echar('*'),
         echar('**'),
-        echar('$'),
         echar('$$'),
-        echar('#'),
         echar('##'),
-        echar('_'),
         echar('__'),
         echar('<<'),
         echar('[['),
-        echar('['),
 
         echar('kbd'),
         echar('btn'),
@@ -162,6 +164,7 @@ module.exports = grammar({
         echar('ifndef'),
         echar('ifeval'),
         echar('endif'),
+        /\\./,
       ),
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     anchor: $ =>

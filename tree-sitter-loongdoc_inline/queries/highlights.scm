@@ -137,11 +137,14 @@
   (target)? @markup.link @markup.link.url
   (attr)? @label)
 
-(inline_macro
+(stem_macro
   [
     "stem"
     "latexmath"
     "asciimath"
-  ]
-  (target)?
-  (attr)? @markup.raw)
+  ] @keyword
+  ":" @punctuation.delimiter
+  "[" @punctuation.bracket
+  (target)? @label
+  (attr)? @markup.raw @nospell
+  "]" @punctuation.bracket)
