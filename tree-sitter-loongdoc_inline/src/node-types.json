@@ -89,6 +89,25 @@
     "fields": {}
   },
   {
+    "type": "footnote",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "target",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "highlight",
     "named": true,
     "fields": {}
@@ -120,6 +139,10 @@
         },
         {
           "type": "escaped_ch",
+          "named": true
+        },
+        {
+          "type": "footnote",
           "named": true
         },
         {

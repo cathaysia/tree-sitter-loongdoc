@@ -148,3 +148,14 @@
   (target)? @label
   (attr)? @markup.raw @nospell
   "]" @punctuation.bracket)
+
+(footnote
+  [
+    "footnote"
+    "footnoteref"
+  ] @keyword
+  ":" @punctuation.delimiter
+  "[" @punctuation.bracket
+  (target)? @label
+  (attr) @attribute
+  "]" @punctuation.bracket)
