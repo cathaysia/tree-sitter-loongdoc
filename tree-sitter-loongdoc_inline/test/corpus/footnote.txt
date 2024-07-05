@@ -7,14 +7,14 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
 -----
 
 (inline
-  (inline_macro
+  (footnote
     (attr))
-  (inline_macro
+  (footnote
     (target)
     (attr))
-  (inline_macro
+  (footnote
     (target))
-  (inline_macro
+  (footnote
     (attr))
-  (inline_macro
+  (footnote
     (attr)))

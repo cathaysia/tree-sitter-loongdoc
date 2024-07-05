@@ -57,6 +57,10 @@
           {
             "type": "SYMBOL",
             "name": "stem_macro"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "footnote"
           }
         ]
       }
@@ -288,14 +292,6 @@
             },
             {
               "type": "STRING",
-              "value": "footnote"
-            },
-            {
-              "type": "STRING",
-              "value": "footnoteref"
-            },
-            {
-              "type": "STRING",
               "value": "anchor"
             },
             {
@@ -441,6 +437,101 @@
             {
               "type": "STRING",
               "value": "wavedrom"
+            }
+          ]
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": ":"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\[]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\["
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "replacement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "escaped_ch"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "target"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "REPEAT",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "PATTERN",
+                  "value": "[^\\]]"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\]"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "replacement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "autolink"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "escaped_ch"
+                }
+              ]
+            }
+          },
+          "named": true,
+          "value": "attr"
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "footnote": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "footnote"
+            },
+            {
+              "type": "STRING",
+              "value": "footnoteref"
             }
           ]
         },

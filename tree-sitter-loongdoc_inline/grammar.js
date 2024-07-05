@@ -33,6 +33,7 @@ module.exports = grammar({
           $.highlight,
           $.inline_macro,
           $.stem_macro,
+          $.footnote,
         ),
       ),
     ...autolink.rules,
@@ -49,8 +50,6 @@ module.exports = grammar({
           'link',
           'mailto',
           'menu',
-          'footnote',
-          'footnoteref',
           'anchor',
           'xref',
           'ifdef',
@@ -91,6 +90,24 @@ module.exports = grammar({
           'wavedrom',
         ),
         token.immediate(':'),
+        alias(
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          $.target,
+        ),
+        '[',
+        alias(
+          repeat(
+            escaped_ch(']', false, $.replacement, $.autolink, $.escaped_ch),
+          ),
+          $.attr,
+        ),
+        ']',
+      ),
+    footnote: $ =>
+      seq(
+        choice('footnote', 'footnoteref'),
+        token.immediate(':'),
+
         alias(
           repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
           $.target,
