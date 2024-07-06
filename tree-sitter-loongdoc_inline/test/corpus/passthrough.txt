@@ -12,9 +12,10 @@ pass:quotes[text]
 -----
 
 (inline
+  (passthrough)
   (monospace)
   (passthrough)
   (passthrough)
-  (inline_macro
+  (inline_passthrough
     (target)
     (attr)))

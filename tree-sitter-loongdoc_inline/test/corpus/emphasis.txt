@@ -14,17 +14,11 @@ this is a _`monospace` inside ltalic_ code.
 (inline
   (emphasis)
   (emphasis)
-  (escaped_ch)
-  (emphasis)
   (ltalic)
   (escaped_ch)
   (monospace)
   (monospace)
-  (escaped_ch)
-  (monospace)
   (highlight)
-  (highlight)
-  (escaped_ch)
   (highlight)
   (ltalic
     (monospace)))
