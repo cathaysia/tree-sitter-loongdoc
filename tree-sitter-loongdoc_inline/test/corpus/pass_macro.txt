@@ -9,11 +9,9 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
 -----
 
 (inline
-  (inline_macro
+  (inline_passthrough
     (target)
     (attr))
-  (inline_macro
+  (inline_passthrough
     (target)
-    (attr
-      (replacement
-        (intrinsic_attributes)))))
+    (attr)))

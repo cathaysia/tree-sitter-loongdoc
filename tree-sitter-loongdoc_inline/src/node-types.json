@@ -154,6 +154,10 @@
           "named": true
         },
         {
+          "type": "inline_passthrough",
+          "named": true
+        },
+        {
           "type": "ltalic",
           "named": true
         },
@@ -187,6 +191,25 @@
     "children": {
       "multiple": true,
       "required": false,
+      "types": [
+        {
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "target",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_passthrough",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "attr",
@@ -308,6 +331,10 @@
           "named": true
         },
         {
+          "type": "passthrough",
+          "named": true
+        },
+        {
           "type": "replacement",
           "named": true
         }
@@ -424,7 +451,7 @@
     "named": false
   },
   {
-    "type": "+++",
+    "type": "++",
     "named": false
   },
   {

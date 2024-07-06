@@ -25,6 +25,7 @@ module.exports = grammar({
           $.anchor,
           $.autolink,
           $.passthrough,
+          $.inline_passthrough,
           $._punctuation,
           $.xref,
           $.emphasis,
@@ -46,7 +47,6 @@ module.exports = grammar({
           'audio',
           'video',
           'icon',
-          'pass',
           'link',
           'mailto',
           'menu',
@@ -91,7 +91,9 @@ module.exports = grammar({
         ),
         token.immediate(':'),
         alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          repeat(
+            escaped_ch('[', false, $.replacement, $.escaped_ch, $.passthrough),
+          ),
           $.target,
         ),
         '[',
@@ -124,6 +126,18 @@ module.exports = grammar({
     stem_macro: $ =>
       seq(
         choice('latexmath', 'stem', 'asciimath'),
+        token.immediate(':'),
+        alias(
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          $.target,
+        ),
+        '[',
+        alias(/[^\]]*/, $.attr),
+        ']',
+      ),
+    inline_passthrough: $ =>
+      seq(
+        'pass',
         token.immediate(':'),
         alias(
           repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
@@ -195,8 +209,7 @@ module.exports = grammar({
     key: $ => choice(/[\w\d]+/, '\\]'),
     passthrough: $ =>
       choice(
-        seq('+', repeat1(escaped_ch('+', true)), '+'),
-        seq('+++', repeat1(escaped_ch('+', true, '\\+++')), '+++'),
+        create_text_formatting('+'),
         seq('$$', repeat1(escaped_ch('$', true, '\\$$')), '$$'),
       ),
     xref: $ =>
@@ -219,7 +232,11 @@ module.exports = grammar({
 function create_text_formatting(ch, ...args) {
   return choice(
     seq(token(prec(1, ch)), repeat(escaped_ch(ch, true, ...args)), ch),
-    seq(ch + ch, repeat(escaped_ch(ch, true, ...args)), ch + ch),
+    seq(
+      token(prec(1, ch + ch)),
+      repeat(escaped_ch(ch, true, ...args)),
+      ch + ch,
+    ),
   )
 }
 
