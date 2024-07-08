@@ -1,0 +1,14 @@
+====================
+inline_assign
+====================
+
+[#free_the_world]#free the world#
+[[free_the_world]]free the world
+
+---
+
+(inline
+  (id_assignment)
+  (highlight)
+  (anchor
+    (id)))

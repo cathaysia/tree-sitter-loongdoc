@@ -37,9 +37,15 @@ module.exports = grammar({
           $.footnote,
           $.index_term,
           $.index_term2,
+          $.id_assignment,
         ),
       ),
     ...autolink.rules,
+    id_assignment: $ =>
+      choice(
+        seq('[#', repeat(escaped_ch(']')), ']'),
+        seq('[[', repeat(escaped_ch(']')), ']]'),
+      ),
     inline_macro: $ =>
       seq(
         choice(

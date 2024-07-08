@@ -118,6 +118,11 @@
     "fields": {}
   },
   {
+    "type": "id_assignment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "index_term",
     "named": true,
     "fields": {},
@@ -177,6 +182,10 @@
         },
         {
           "type": "highlight",
+          "named": true
+        },
+        {
+          "type": "id_assignment",
           "named": true
         },
         {
@@ -567,6 +576,10 @@
   },
   {
     "type": "[",
+    "named": false
+  },
+  {
+    "type": "[#",
     "named": false
   },
   {

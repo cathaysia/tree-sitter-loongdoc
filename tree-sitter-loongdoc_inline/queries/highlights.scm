@@ -175,3 +175,5 @@
   "((" @keyword
   ","? @punctuation.delimiter
   "))" @keyword)
+
+(id_assignment) @label
