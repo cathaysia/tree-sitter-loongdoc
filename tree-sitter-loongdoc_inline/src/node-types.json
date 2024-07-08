@@ -118,6 +118,36 @@
     "fields": {}
   },
   {
+    "type": "index_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "index_term2",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "inline",
     "named": true,
     "fields": {},
@@ -147,6 +177,14 @@
         },
         {
           "type": "highlight",
+          "named": true
+        },
+        {
+          "type": "index_term",
+          "named": true
+        },
+        {
+          "type": "index_term2",
           "named": true
         },
         {
@@ -342,6 +380,11 @@
     }
   },
   {
+    "type": "term",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "uri",
     "named": true,
     "fields": {},
@@ -435,7 +478,23 @@
     "named": false
   },
   {
+    "type": "((",
+    "named": false
+  },
+  {
+    "type": "(((",
+    "named": false
+  },
+  {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": "))",
+    "named": false
+  },
+  {
+    "type": ")))",
     "named": false
   },
   {
@@ -532,6 +591,10 @@
   },
   {
     "type": "\\$$",
+    "named": false
+  },
+  {
+    "type": "\\)",
     "named": false
   },
   {
@@ -804,6 +867,14 @@
   },
   {
     "type": "image",
+    "named": false
+  },
+  {
+    "type": "indexterm",
+    "named": false
+  },
+  {
+    "type": "indexterm2",
     "named": false
   },
   {

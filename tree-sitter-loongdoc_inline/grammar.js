@@ -35,6 +35,8 @@ module.exports = grammar({
           $.inline_macro,
           $.stem_macro,
           $.footnote,
+          $.index_term,
+          $.index_term2,
         ),
       ),
     ...autolink.rules,
@@ -56,6 +58,8 @@ module.exports = grammar({
           'ifndef',
           'ifeval',
           'endif',
+          'indexterm2',
+          'indexterm',
           // diagram
           'a2s',
           'barcode',
@@ -226,6 +230,17 @@ module.exports = grammar({
       create_text_formatting('_', $.emphasis, $.monospace, $.highlight),
     monospace: $ => create_text_formatting('`'),
     highlight: $ => create_text_formatting('#'),
+
+    index_term2: $ => seq('((', $.term, optional(seq(',', $.term)), '))'),
+    index_term: $ =>
+      seq(
+        '(((',
+        $.term,
+        optional(seq(',', $.term)),
+        optional(seq(',', $.term)),
+        ')))',
+      ),
+    term: $ => repeat1(escaped_ch(',)')),
   },
 })
 
