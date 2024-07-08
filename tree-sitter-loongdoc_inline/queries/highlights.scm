@@ -51,6 +51,8 @@
 
 (inline_macro
   [
+    "indexterm"
+    "indexterm2"
     "kbd"
     "btn"
     "image"
@@ -159,3 +161,17 @@
   (target)? @label
   (attr) @attribute
   "]" @punctuation.bracket)
+
+(term) @attribute
+
+(index_term
+  "," @punctuation.delimiter)
+
+(index_term
+  "(((" @keyword
+  ")))" @keyword)
+
+(index_term2
+  "((" @keyword
+  ","? @punctuation.delimiter
+  "))" @keyword)

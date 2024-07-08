@@ -1,0 +1,28 @@
+====================
+index_term
+====================
+
+(((knight, "Arthur, King")))
+
+(((Repository, create)))
+(((Create Git repository)))
+
+indexterm:[knight, Arthur, King]
+indexterm2:[Arthur, King]
+
+-----
+
+(inline
+  (index_term
+    (term)
+    (term)
+    (term))
+  (index_term
+    (term)
+    (term))
+  (index_term
+    (term))
+  (inline_macro
+    (attr))
+  (inline_macro
+    (attr)))
