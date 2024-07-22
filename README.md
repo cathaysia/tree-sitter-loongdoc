@@ -17,6 +17,14 @@ There two website for this repo:
 
 add the following lines to your tree-sitter configuration:
 
+### Add this repo to your lazy.nvim config:
+
+```lua
+{
+    'cathaysia/tree-sitter-loongdoc',
+},
+```
+
 ```lua
 vim.filetype.add({
     extension = {
