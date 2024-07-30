@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/cathaysia/tree-sitter-loongdoc/compare/v0.1.0...v0.2.0) (2024-07-30)
+
+
+### Features
+
+* **inline:** allow escape ++ ([8baa82d](https://github.com/cathaysia/tree-sitter-loongdoc/commit/8baa82d7a52a1ca250ae23ed227c76da7e8580d3))
+
 ## 0.1.0 (2024-07-20)
 
 
