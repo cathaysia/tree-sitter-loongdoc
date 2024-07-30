@@ -1,5 +1,4 @@
 {
-  ".": "0.0.4",
   "tree-sitter-loongdoc": "0.1.0",
   "tree-sitter-loongdoc_inline": "0.2.0"
 }
