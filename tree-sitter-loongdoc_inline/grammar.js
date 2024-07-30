@@ -183,6 +183,7 @@ module.exports = grammar({
         echar('__'),
         echar('<<'),
         echar('[['),
+        echar('++'),
 
         echar('kbd'),
         echar('btn'),
