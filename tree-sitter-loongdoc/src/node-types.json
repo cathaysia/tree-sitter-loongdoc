@@ -309,6 +309,10 @@
           "named": true
         },
         {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
           "type": "section_block",
           "named": true
         },

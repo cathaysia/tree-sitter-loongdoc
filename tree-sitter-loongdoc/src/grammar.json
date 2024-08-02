@@ -25,6 +25,10 @@
           {
             "type": "SYMBOL",
             "name": "block_comment"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "list_continuation"
           }
         ]
       }
