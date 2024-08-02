@@ -98,7 +98,6 @@ list_continuation
 ==================
 
 block1
-
 +
 block2
 

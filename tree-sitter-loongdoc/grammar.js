@@ -341,7 +341,17 @@ module.exports = grammar({
     anno_list_item: $ => seq($.anno_list_marker, $._WHITE_SPACE, $.line),
 
     line: $ => seq(/[^\r\n]+/, $._block_end),
-    paragraph: $ => prec(-1, seq(repeat1($.line), optional($.quoted_line))),
+    paragraph: $ =>
+      prec.left(
+        prec(
+          -1,
+          seq(
+            repeat1($.line),
+            optional($.quoted_line),
+            optional($.list_continuation),
+          ),
+        ),
+      ),
     quoted_line: $ =>
       seq($.quoted_paragraph_marker, token.immediate(' '), $.line),
 

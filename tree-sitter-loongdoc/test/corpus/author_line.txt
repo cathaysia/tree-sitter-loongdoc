@@ -137,7 +137,9 @@ The second author's last name is {lastname_2}.
         (lastname))))
   (section_block
     (paragraph
-      (line)
+      (line)))
+  (section_block
+    (paragraph
       (line)))
   (title0
     (title_h0_marker)
