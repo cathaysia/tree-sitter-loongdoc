@@ -36,19 +36,6 @@
 (xref
   (id) @markup.link.label)
 
-(anchor
-  "[[" @punctuation.bracket
-  "]]" @punctuation.bracket)
-
-(anchor
-  "," @punctuation.delimiter)
-
-(anchor
-  (id) @markup.link.label)
-
-(anchor
-  (reftext) @markup.link)
-
 (inline_macro
   [
     "indexterm"

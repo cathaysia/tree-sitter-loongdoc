@@ -16,10 +16,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "anchor"
-          },
-          {
-            "type": "SYMBOL",
             "name": "autolink"
           },
           {
@@ -1369,54 +1365,6 @@
         {
           "type": "STRING",
           "value": "~"
-        }
-      ]
-    },
-    "anchor": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "[["
-        },
-        {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "\\w+"
-          },
-          "named": true,
-          "value": "id"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": ","
-                },
-                {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[\\w\\s ]+"
-                  },
-                  "named": true,
-                  "value": "reftext"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "STRING",
-          "value": "]]"
         }
       ]
     },

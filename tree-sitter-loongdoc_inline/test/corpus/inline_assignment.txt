@@ -10,5 +10,4 @@ inline_assign
 (inline
   (id_assignment)
   (highlight)
-  (anchor
-    (id)))
+  (id_assignment))

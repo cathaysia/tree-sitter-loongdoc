@@ -1,0 +1,42 @@
+=============
+id
+=============
+
+[#goals]
+* Goal 1
+* Goal 2
+
+----
+
+(inline
+  (id_assignment)
+  (emphasis))
+
+===============
+id 2
+===============
+
+[[goals]]
+* Goal 1
+* Goal 2
+
+------
+
+(inline
+  (id_assignment)
+  (emphasis))
+
+===============
+id in line
+===============
+
+[#free_the_world]#free the world#
+[#free_the_world]#free the world#
+
+--------
+
+(inline
+  (id_assignment)
+  (highlight)
+  (id_assignment)
+  (highlight))
