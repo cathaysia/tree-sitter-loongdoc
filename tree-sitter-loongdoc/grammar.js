@@ -60,6 +60,7 @@ module.exports = grammar({
           $.section_block,
           $.line_comment,
           $.block_comment,
+          $.list_continuation,
         ),
       ),
 
