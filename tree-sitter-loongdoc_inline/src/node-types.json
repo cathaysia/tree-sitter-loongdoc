@@ -1,24 +1,5 @@
 [
   {
-    "type": "anchor",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "id",
-          "named": true
-        },
-        {
-          "type": "reftext",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "attr",
     "named": true,
     "fields": {},
@@ -160,10 +141,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "anchor",
-          "named": true
-        },
         {
           "type": "autolink",
           "named": true

@@ -7,11 +7,8 @@ this is a [[idname]] or [[idname,Reference Text]] or anchor:idname[] or anchor:i
 -----
 
 (inline
-  (anchor
-    (id))
-  (anchor
-    (id)
-    (reftext))
+  (id_assignment)
+  (id_assignment)
   (inline_macro
     (target))
   (inline_macro

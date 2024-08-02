@@ -22,7 +22,6 @@ module.exports = grammar({
         choice(
           $.replacement,
           $._word,
-          $.anchor,
           $.autolink,
           $.passthrough,
           $.inline_passthrough,
@@ -209,13 +208,6 @@ module.exports = grammar({
         /\\./,
       ),
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
-    anchor: $ =>
-      seq(
-        '[[',
-        alias(/\w+/, $.id),
-        optional(seq(',', alias(/[\w\s ]+/, $.reftext))),
-        ']]',
-      ),
     // https://stackoverflow.com/a/201378
     key: $ => choice(/[\w\d]+/, '\\]'),
     passthrough: $ =>
