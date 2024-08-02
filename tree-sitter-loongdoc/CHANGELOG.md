@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/cathaysia/tree-sitter-loongdoc/compare/v0.1.0...v0.2.0) (2024-08-02)
+
+
+### Features
+
+* **adoc:** allow list_continuation appears before block ([a0106a6](https://github.com/cathaysia/tree-sitter-loongdoc/commit/a0106a6ed668d6c1544b8cbff2a4663b0f66b2c3))
+
+
+### Bug Fixes
+
+* **adoc:** fix inline anchor ([47c9e54](https://github.com/cathaysia/tree-sitter-loongdoc/commit/47c9e54f436334ca20116f138d460539439129bd))
+* **adoc:** fix paragraph ending ([0963584](https://github.com/cathaysia/tree-sitter-loongdoc/commit/09635844e85a97ed721706174da36f04d2bf575e))
+* **adoc:** reversion 827b58c214fdd14c92fe7ecb44990a01c5dcfcf3 ([bd128cc](https://github.com/cathaysia/tree-sitter-loongdoc/commit/bd128ccaad56857e0e20155ecf2173166f74a75f))
+
 ## 0.1.0 (2024-07-20)
 
 
