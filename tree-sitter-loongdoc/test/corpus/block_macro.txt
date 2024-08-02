@@ -1,6 +1,5 @@
 ===========
 block_macro
-:language(loongdoc)
 ===========
 
 = Document Title
@@ -94,7 +93,6 @@ image::sunset.jpg[Sunset]
 
 ==================
 list_continuation
-:language(loongdoc)
 ==================
 
 block1
@@ -108,6 +106,19 @@ block2
     (paragraph
       (line)))
   (list_continuation)
+  (section_block
+    (paragraph
+      (line))))
+
+==================
+anchor
+==================
+
+[[id]]xxxxxxxxxxx
+
+----
+
+(document
   (section_block
     (paragraph
       (line))))
