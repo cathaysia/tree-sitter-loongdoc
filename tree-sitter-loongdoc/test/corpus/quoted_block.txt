@@ -1,5 +1,6 @@
 ===========
 quoted_block
+:language(loongdoc)
 ===========
 
 [quote,Monty Python and the Holy Grail]
@@ -78,7 +79,9 @@ and as necessary in the political world as storms in the physical."
       (line)))
   (section_block
     (paragraph
-      (line)
+      (line)))
+  (section_block
+    (paragraph
       (line)
       (quoted_line
         (quoted_paragraph_marker)

@@ -688,6 +688,10 @@
           "named": true
         },
         {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
           "type": "quoted_line",
           "named": true
         }
