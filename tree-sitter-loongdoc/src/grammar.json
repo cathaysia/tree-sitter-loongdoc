@@ -1693,10 +1693,6 @@
                 "type": "BLANK"
               }
             ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_block_end"
           }
         ]
       }
