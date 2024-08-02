@@ -283,6 +283,9 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 case '[': {
                     if(valid_symbols[TOKEN_ELEMENT_ATTR_MARKER]) {
                         lexer->advance(lexer, false);
+                        if(lexer->lookahead == '[' || lexer->lookahead == '#') {
+                            return false;
+                        }
                         lexer->mark_end(lexer);
                         lexer->result_symbol = TOKEN_ELEMENT_ATTR_MARKER;
                         scanner_push(s, BLOCK_KIND_ATTR, 1);
