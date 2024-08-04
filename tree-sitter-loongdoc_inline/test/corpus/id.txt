@@ -9,7 +9,8 @@ id
 ----
 
 (inline
-  (id_assignment)
+  (id_assignment
+    (id))
   (emphasis))
 
 ===============
@@ -23,7 +24,8 @@ id 2
 ------
 
 (inline
-  (id_assignment)
+  (id_assignment
+    (id))
   (emphasis))
 
 ===============
@@ -36,7 +38,9 @@ id in line
 --------
 
 (inline
-  (id_assignment)
+  (id_assignment
+    (id))
   (highlight)
-  (id_assignment)
+  (id_assignment
+    (id))
   (highlight))

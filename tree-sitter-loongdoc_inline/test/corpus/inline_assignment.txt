@@ -8,6 +8,8 @@ inline_assign
 ---
 
 (inline
-  (id_assignment)
+  (id_assignment
+    (id))
   (highlight)
-  (id_assignment))
+  (id_assignment
+    (id)))
