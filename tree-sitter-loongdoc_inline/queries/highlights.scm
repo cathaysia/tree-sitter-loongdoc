@@ -109,7 +109,7 @@
 (inline_macro
   (attr) @attribute)
 
-(escaped_ch) @string.escape
+(escaped_sequence) @string.escape
 
 (inline_macro
   [
