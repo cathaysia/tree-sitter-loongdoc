@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/cathaysia/tree-sitter-loongdoc/compare/tree-sitter-loongdoc-inline-v0.3.1...tree-sitter-loongdoc-inline-v0.4.0) (2024-08-04)
+
+
+### Features
+
+* **inline:** allow stem and pass empty ([e528259](https://github.com/cathaysia/tree-sitter-loongdoc/commit/e528259375fa59c0d3cdccc163add67522d2d33c))
+
 ## [0.3.1](https://github.com/cathaysia/tree-sitter-loongdoc/compare/tree-sitter-loongdoc-inline-v0.3.0...tree-sitter-loongdoc-inline-v0.3.1) (2024-08-04)
 
 
