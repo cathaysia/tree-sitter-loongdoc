@@ -15,7 +15,7 @@ this is a _`monospace` inside ltalic_ code.
   (emphasis)
   (emphasis)
   (ltalic)
-  (escaped_ch)
+  (escaped_sequence)
   (monospace)
   (monospace)
   (highlight)

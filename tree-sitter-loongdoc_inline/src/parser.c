@@ -129,7 +129,7 @@ enum ts_symbol_identifiers {
     anon_sym_BSLASHifndef = 103,
     anon_sym_BSLASHifeval = 104,
     anon_sym_BSLASHendif = 105,
-    aux_sym_escaped_ch_token1 = 106,
+    aux_sym_escaped_sequence_token1 = 106,
     anon_sym_BANG = 107,
     anon_sym_POUND = 108,
     anon_sym_DOLLAR = 109,
@@ -210,7 +210,7 @@ enum ts_symbol_identifiers {
     sym_inline_passthrough = 184,
     sym_replacement = 185,
     sym__word = 186,
-    sym_escaped_ch = 187,
+    sym_escaped_sequence = 187,
     sym__punctuation = 188,
     sym_passthrough = 189,
     sym_xref = 190,
@@ -350,7 +350,7 @@ static const char *const ts_symbol_names[] = {
     [anon_sym_BSLASHifndef] = "\\ifndef",
     [anon_sym_BSLASHifeval] = "\\ifeval",
     [anon_sym_BSLASHendif] = "\\endif",
-    [aux_sym_escaped_ch_token1] = "escaped_ch_token1",
+    [aux_sym_escaped_sequence_token1] = "escaped_sequence_token1",
     [anon_sym_BANG] = "!",
     [anon_sym_POUND] = "#",
     [anon_sym_DOLLAR] = "$",
@@ -431,7 +431,7 @@ static const char *const ts_symbol_names[] = {
     [sym_inline_passthrough] = "inline_passthrough",
     [sym_replacement] = "replacement",
     [sym__word] = "_word",
-    [sym_escaped_ch] = "escaped_ch",
+    [sym_escaped_sequence] = "escaped_sequence",
     [sym__punctuation] = "_punctuation",
     [sym_passthrough] = "passthrough",
     [sym_xref] = "xref",
@@ -571,7 +571,7 @@ static const TSSymbol ts_symbol_map[] = {
     [anon_sym_BSLASHifndef] = anon_sym_BSLASHifndef,
     [anon_sym_BSLASHifeval] = anon_sym_BSLASHifeval,
     [anon_sym_BSLASHendif] = anon_sym_BSLASHendif,
-    [aux_sym_escaped_ch_token1] = aux_sym_escaped_ch_token1,
+    [aux_sym_escaped_sequence_token1] = aux_sym_escaped_sequence_token1,
     [anon_sym_BANG] = anon_sym_BANG,
     [anon_sym_POUND] = anon_sym_POUND,
     [anon_sym_DOLLAR] = anon_sym_DOLLAR,
@@ -652,7 +652,7 @@ static const TSSymbol ts_symbol_map[] = {
     [sym_inline_passthrough] = sym_inline_passthrough,
     [sym_replacement] = sym_replacement,
     [sym__word] = sym__word,
-    [sym_escaped_ch] = sym_escaped_ch,
+    [sym_escaped_sequence] = sym_escaped_sequence,
     [sym__punctuation] = sym__punctuation,
     [sym_passthrough] = sym_passthrough,
     [sym_xref] = sym_xref,
@@ -1110,7 +1110,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
         .visible = true,
         .named = false,
     },
-    [aux_sym_escaped_ch_token1] = {
+    [aux_sym_escaped_sequence_token1] = {
         .visible = false,
         .named = false,
     },
@@ -1434,7 +1434,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
         .visible = false,
         .named = true,
     },
-    [sym_escaped_ch] = {
+    [sym_escaped_sequence] = {
         .visible = true,
         .named = true,
     },
@@ -27340,74 +27340,74 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
                 ADVANCE(670);
             END_STATE();
         case 956:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             END_STATE();
         case 957:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '#')
                 ADVANCE(904);
             END_STATE();
         case 958:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '$')
                 ADVANCE(902);
             END_STATE();
         case 959:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '*')
                 ADVANCE(900);
             END_STATE();
         case 960:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '+')
                 ADVANCE(912);
             END_STATE();
         case 961:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '<')
                 ADVANCE(908);
             END_STATE();
         case 962:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '[')
                 ADVANCE(910);
             END_STATE();
         case 963:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '_')
                 ADVANCE(906);
             END_STATE();
         case 964:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == '`')
                 ADVANCE(898);
             END_STATE();
         case 965:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'a')
                 ADVANCE(148);
             if(lookahead == 'i')
                 ADVANCE(132);
             END_STATE();
         case 966:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'a')
                 ADVANCE(120);
             if(lookahead == 'e')
                 ADVANCE(133);
             END_STATE();
         case 967:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'a')
                 ADVANCE(145);
             END_STATE();
         case 968:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'b')
                 ADVANCE(96);
             END_STATE();
         case 969:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'c')
                 ADVANCE(141);
             if(lookahead == 'f')
@@ -27416,12 +27416,12 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
                 ADVANCE(90);
             END_STATE();
         case 970:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'i')
                 ADVANCE(100);
             END_STATE();
         case 971:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'n')
                 ADVANCE(94);
             if(lookahead == 's')
@@ -27430,27 +27430,27 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
                 ADVANCE(97);
             END_STATE();
         case 972:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'n')
                 ADVANCE(99);
             END_STATE();
         case 973:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'o')
                 ADVANCE(140);
             END_STATE();
         case 974:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 'r')
                 ADVANCE(103);
             END_STATE();
         case 975:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 't')
                 ADVANCE(131);
             END_STATE();
         case 976:
-            ACCEPT_TOKEN(aux_sym_escaped_ch_token1);
+            ACCEPT_TOKEN(aux_sym_escaped_sequence_token1);
             if(lookahead == 't')
                 ADVANCE(102);
             END_STATE();
@@ -28849,7 +28849,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(1),
         [anon_sym_BSLASHifeval] = ACTIONS(1),
         [anon_sym_BSLASHendif] = ACTIONS(1),
-        [aux_sym_escaped_ch_token1] = ACTIONS(1),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(1),
         [anon_sym_BANG] = ACTIONS(1),
         [anon_sym_POUND] = ACTIONS(1),
         [anon_sym_DOLLAR] = ACTIONS(1),
@@ -28905,7 +28905,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [sym_inline_passthrough] = STATE(3),
         [sym_replacement] = STATE(3),
         [sym__word] = STATE(3),
-        [sym_escaped_ch] = STATE(3),
+        [sym_escaped_sequence] = STATE(3),
         [sym__punctuation] = STATE(3),
         [sym_passthrough] = STATE(3),
         [sym_xref] = STATE(3),
@@ -29012,7 +29012,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(25),
         [anon_sym_BSLASHifeval] = ACTIONS(25),
         [anon_sym_BSLASHendif] = ACTIONS(25),
-        [aux_sym_escaped_ch_token1] = ACTIONS(25),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(25),
         [anon_sym_BANG] = ACTIONS(5),
         [anon_sym_POUND] = ACTIONS(5),
         [anon_sym_DOLLAR] = ACTIONS(5),
@@ -29066,7 +29066,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [sym_inline_passthrough] = STATE(2),
         [sym_replacement] = STATE(2),
         [sym__word] = STATE(2),
-        [sym_escaped_ch] = STATE(2),
+        [sym_escaped_sequence] = STATE(2),
         [sym__punctuation] = STATE(2),
         [sym_passthrough] = STATE(2),
         [sym_xref] = STATE(2),
@@ -29174,7 +29174,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(90),
         [anon_sym_BSLASHifeval] = ACTIONS(90),
         [anon_sym_BSLASHendif] = ACTIONS(90),
-        [aux_sym_escaped_ch_token1] = ACTIONS(90),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(90),
         [anon_sym_BANG] = ACTIONS(60),
         [anon_sym_POUND] = ACTIONS(60),
         [anon_sym_DOLLAR] = ACTIONS(60),
@@ -29228,7 +29228,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [sym_inline_passthrough] = STATE(2),
         [sym_replacement] = STATE(2),
         [sym__word] = STATE(2),
-        [sym_escaped_ch] = STATE(2),
+        [sym_escaped_sequence] = STATE(2),
         [sym__punctuation] = STATE(2),
         [sym_passthrough] = STATE(2),
         [sym_xref] = STATE(2),
@@ -29336,7 +29336,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(25),
         [anon_sym_BSLASHifeval] = ACTIONS(25),
         [anon_sym_BSLASHendif] = ACTIONS(25),
-        [aux_sym_escaped_ch_token1] = ACTIONS(25),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(25),
         [anon_sym_BANG] = ACTIONS(137),
         [anon_sym_POUND] = ACTIONS(137),
         [anon_sym_DOLLAR] = ACTIONS(137),
@@ -29479,7 +29479,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(141),
         [anon_sym_BSLASHifeval] = ACTIONS(141),
         [anon_sym_BSLASHendif] = ACTIONS(141),
-        [aux_sym_escaped_ch_token1] = ACTIONS(141),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(141),
         [anon_sym_BANG] = ACTIONS(141),
         [anon_sym_POUND] = ACTIONS(141),
         [anon_sym_DOLLAR] = ACTIONS(141),
@@ -29620,7 +29620,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(149),
         [anon_sym_BSLASHifeval] = ACTIONS(149),
         [anon_sym_BSLASHendif] = ACTIONS(149),
-        [aux_sym_escaped_ch_token1] = ACTIONS(149),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(149),
         [anon_sym_BANG] = ACTIONS(149),
         [anon_sym_POUND] = ACTIONS(149),
         [anon_sym_DOLLAR] = ACTIONS(149),
@@ -29761,7 +29761,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(155),
         [anon_sym_BSLASHifeval] = ACTIONS(155),
         [anon_sym_BSLASHendif] = ACTIONS(155),
-        [aux_sym_escaped_ch_token1] = ACTIONS(155),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(155),
         [anon_sym_BANG] = ACTIONS(155),
         [anon_sym_POUND] = ACTIONS(155),
         [anon_sym_DOLLAR] = ACTIONS(155),
@@ -29902,7 +29902,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(141),
         [anon_sym_BSLASHifeval] = ACTIONS(141),
         [anon_sym_BSLASHendif] = ACTIONS(141),
-        [aux_sym_escaped_ch_token1] = ACTIONS(141),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(141),
         [anon_sym_BANG] = ACTIONS(141),
         [anon_sym_POUND] = ACTIONS(141),
         [anon_sym_DOLLAR] = ACTIONS(141),
@@ -30043,7 +30043,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(164),
         [anon_sym_BSLASHifeval] = ACTIONS(164),
         [anon_sym_BSLASHendif] = ACTIONS(164),
-        [aux_sym_escaped_ch_token1] = ACTIONS(164),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(164),
         [anon_sym_BANG] = ACTIONS(164),
         [anon_sym_POUND] = ACTIONS(164),
         [anon_sym_DOLLAR] = ACTIONS(164),
@@ -30183,7 +30183,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(168),
         [anon_sym_BSLASHifeval] = ACTIONS(168),
         [anon_sym_BSLASHendif] = ACTIONS(168),
-        [aux_sym_escaped_ch_token1] = ACTIONS(168),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(168),
         [anon_sym_BANG] = ACTIONS(168),
         [anon_sym_POUND] = ACTIONS(168),
         [anon_sym_DOLLAR] = ACTIONS(168),
@@ -30323,7 +30323,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(172),
         [anon_sym_BSLASHifeval] = ACTIONS(172),
         [anon_sym_BSLASHendif] = ACTIONS(172),
-        [aux_sym_escaped_ch_token1] = ACTIONS(172),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(172),
         [anon_sym_BANG] = ACTIONS(172),
         [anon_sym_POUND] = ACTIONS(172),
         [anon_sym_DOLLAR] = ACTIONS(172),
@@ -30463,7 +30463,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(176),
         [anon_sym_BSLASHifeval] = ACTIONS(176),
         [anon_sym_BSLASHendif] = ACTIONS(176),
-        [aux_sym_escaped_ch_token1] = ACTIONS(176),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(176),
         [anon_sym_BANG] = ACTIONS(176),
         [anon_sym_POUND] = ACTIONS(176),
         [anon_sym_DOLLAR] = ACTIONS(176),
@@ -30603,7 +30603,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(180),
         [anon_sym_BSLASHifeval] = ACTIONS(180),
         [anon_sym_BSLASHendif] = ACTIONS(180),
-        [aux_sym_escaped_ch_token1] = ACTIONS(180),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(180),
         [anon_sym_BANG] = ACTIONS(180),
         [anon_sym_POUND] = ACTIONS(180),
         [anon_sym_DOLLAR] = ACTIONS(180),
@@ -30743,7 +30743,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(184),
         [anon_sym_BSLASHifeval] = ACTIONS(184),
         [anon_sym_BSLASHendif] = ACTIONS(184),
-        [aux_sym_escaped_ch_token1] = ACTIONS(184),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(184),
         [anon_sym_BANG] = ACTIONS(184),
         [anon_sym_POUND] = ACTIONS(184),
         [anon_sym_DOLLAR] = ACTIONS(184),
@@ -30883,7 +30883,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(188),
         [anon_sym_BSLASHifeval] = ACTIONS(188),
         [anon_sym_BSLASHendif] = ACTIONS(188),
-        [aux_sym_escaped_ch_token1] = ACTIONS(188),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(188),
         [anon_sym_BANG] = ACTIONS(188),
         [anon_sym_POUND] = ACTIONS(188),
         [anon_sym_DOLLAR] = ACTIONS(188),
@@ -31023,7 +31023,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(192),
         [anon_sym_BSLASHifeval] = ACTIONS(192),
         [anon_sym_BSLASHendif] = ACTIONS(192),
-        [aux_sym_escaped_ch_token1] = ACTIONS(192),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(192),
         [anon_sym_BANG] = ACTIONS(192),
         [anon_sym_POUND] = ACTIONS(192),
         [anon_sym_DOLLAR] = ACTIONS(192),
@@ -31163,7 +31163,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(196),
         [anon_sym_BSLASHifeval] = ACTIONS(196),
         [anon_sym_BSLASHendif] = ACTIONS(196),
-        [aux_sym_escaped_ch_token1] = ACTIONS(196),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(196),
         [anon_sym_BANG] = ACTIONS(196),
         [anon_sym_POUND] = ACTIONS(196),
         [anon_sym_DOLLAR] = ACTIONS(196),
@@ -31303,7 +31303,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(200),
         [anon_sym_BSLASHifeval] = ACTIONS(200),
         [anon_sym_BSLASHendif] = ACTIONS(200),
-        [aux_sym_escaped_ch_token1] = ACTIONS(200),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(200),
         [anon_sym_BANG] = ACTIONS(200),
         [anon_sym_POUND] = ACTIONS(200),
         [anon_sym_DOLLAR] = ACTIONS(200),
@@ -31443,7 +31443,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(204),
         [anon_sym_BSLASHifeval] = ACTIONS(204),
         [anon_sym_BSLASHendif] = ACTIONS(204),
-        [aux_sym_escaped_ch_token1] = ACTIONS(204),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(204),
         [anon_sym_BANG] = ACTIONS(204),
         [anon_sym_POUND] = ACTIONS(204),
         [anon_sym_DOLLAR] = ACTIONS(204),
@@ -31583,7 +31583,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(208),
         [anon_sym_BSLASHifeval] = ACTIONS(208),
         [anon_sym_BSLASHendif] = ACTIONS(208),
-        [aux_sym_escaped_ch_token1] = ACTIONS(208),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(208),
         [anon_sym_BANG] = ACTIONS(208),
         [anon_sym_POUND] = ACTIONS(208),
         [anon_sym_DOLLAR] = ACTIONS(208),
@@ -31723,7 +31723,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(212),
         [anon_sym_BSLASHifeval] = ACTIONS(212),
         [anon_sym_BSLASHendif] = ACTIONS(212),
-        [aux_sym_escaped_ch_token1] = ACTIONS(212),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(212),
         [anon_sym_BANG] = ACTIONS(212),
         [anon_sym_POUND] = ACTIONS(212),
         [anon_sym_DOLLAR] = ACTIONS(212),
@@ -31863,7 +31863,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(216),
         [anon_sym_BSLASHifeval] = ACTIONS(216),
         [anon_sym_BSLASHendif] = ACTIONS(216),
-        [aux_sym_escaped_ch_token1] = ACTIONS(216),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(216),
         [anon_sym_BANG] = ACTIONS(216),
         [anon_sym_POUND] = ACTIONS(216),
         [anon_sym_DOLLAR] = ACTIONS(216),
@@ -32003,7 +32003,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(220),
         [anon_sym_BSLASHifeval] = ACTIONS(220),
         [anon_sym_BSLASHendif] = ACTIONS(220),
-        [aux_sym_escaped_ch_token1] = ACTIONS(220),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(220),
         [anon_sym_BANG] = ACTIONS(220),
         [anon_sym_POUND] = ACTIONS(220),
         [anon_sym_DOLLAR] = ACTIONS(220),
@@ -32143,7 +32143,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(224),
         [anon_sym_BSLASHifeval] = ACTIONS(224),
         [anon_sym_BSLASHendif] = ACTIONS(224),
-        [aux_sym_escaped_ch_token1] = ACTIONS(224),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(224),
         [anon_sym_BANG] = ACTIONS(224),
         [anon_sym_POUND] = ACTIONS(224),
         [anon_sym_DOLLAR] = ACTIONS(224),
@@ -32283,7 +32283,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(228),
         [anon_sym_BSLASHifeval] = ACTIONS(228),
         [anon_sym_BSLASHendif] = ACTIONS(228),
-        [aux_sym_escaped_ch_token1] = ACTIONS(228),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(228),
         [anon_sym_BANG] = ACTIONS(228),
         [anon_sym_POUND] = ACTIONS(228),
         [anon_sym_DOLLAR] = ACTIONS(228),
@@ -32423,7 +32423,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(232),
         [anon_sym_BSLASHifeval] = ACTIONS(232),
         [anon_sym_BSLASHendif] = ACTIONS(232),
-        [aux_sym_escaped_ch_token1] = ACTIONS(232),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(232),
         [anon_sym_BANG] = ACTIONS(232),
         [anon_sym_POUND] = ACTIONS(232),
         [anon_sym_DOLLAR] = ACTIONS(232),
@@ -32563,7 +32563,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(236),
         [anon_sym_BSLASHifeval] = ACTIONS(236),
         [anon_sym_BSLASHendif] = ACTIONS(236),
-        [aux_sym_escaped_ch_token1] = ACTIONS(236),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(236),
         [anon_sym_BANG] = ACTIONS(236),
         [anon_sym_POUND] = ACTIONS(236),
         [anon_sym_DOLLAR] = ACTIONS(236),
@@ -32703,7 +32703,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(240),
         [anon_sym_BSLASHifeval] = ACTIONS(240),
         [anon_sym_BSLASHendif] = ACTIONS(240),
-        [aux_sym_escaped_ch_token1] = ACTIONS(240),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(240),
         [anon_sym_BANG] = ACTIONS(240),
         [anon_sym_POUND] = ACTIONS(240),
         [anon_sym_DOLLAR] = ACTIONS(240),
@@ -32843,7 +32843,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(244),
         [anon_sym_BSLASHifeval] = ACTIONS(244),
         [anon_sym_BSLASHendif] = ACTIONS(244),
-        [aux_sym_escaped_ch_token1] = ACTIONS(244),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(244),
         [anon_sym_BANG] = ACTIONS(244),
         [anon_sym_POUND] = ACTIONS(244),
         [anon_sym_DOLLAR] = ACTIONS(244),
@@ -32983,7 +32983,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(248),
         [anon_sym_BSLASHifeval] = ACTIONS(248),
         [anon_sym_BSLASHendif] = ACTIONS(248),
-        [aux_sym_escaped_ch_token1] = ACTIONS(248),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(248),
         [anon_sym_BANG] = ACTIONS(248),
         [anon_sym_POUND] = ACTIONS(248),
         [anon_sym_DOLLAR] = ACTIONS(248),
@@ -33123,7 +33123,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(252),
         [anon_sym_BSLASHifeval] = ACTIONS(252),
         [anon_sym_BSLASHendif] = ACTIONS(252),
-        [aux_sym_escaped_ch_token1] = ACTIONS(252),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(252),
         [anon_sym_BANG] = ACTIONS(252),
         [anon_sym_POUND] = ACTIONS(252),
         [anon_sym_DOLLAR] = ACTIONS(252),
@@ -33263,7 +33263,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(256),
         [anon_sym_BSLASHifeval] = ACTIONS(256),
         [anon_sym_BSLASHendif] = ACTIONS(256),
-        [aux_sym_escaped_ch_token1] = ACTIONS(256),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(256),
         [anon_sym_BANG] = ACTIONS(256),
         [anon_sym_POUND] = ACTIONS(256),
         [anon_sym_DOLLAR] = ACTIONS(256),
@@ -33403,7 +33403,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(256),
         [anon_sym_BSLASHifeval] = ACTIONS(256),
         [anon_sym_BSLASHendif] = ACTIONS(256),
-        [aux_sym_escaped_ch_token1] = ACTIONS(256),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(256),
         [anon_sym_BANG] = ACTIONS(256),
         [anon_sym_POUND] = ACTIONS(256),
         [anon_sym_DOLLAR] = ACTIONS(256),
@@ -33543,7 +33543,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(262),
         [anon_sym_BSLASHifeval] = ACTIONS(262),
         [anon_sym_BSLASHendif] = ACTIONS(262),
-        [aux_sym_escaped_ch_token1] = ACTIONS(262),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(262),
         [anon_sym_BANG] = ACTIONS(262),
         [anon_sym_POUND] = ACTIONS(262),
         [anon_sym_DOLLAR] = ACTIONS(262),
@@ -33683,7 +33683,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(266),
         [anon_sym_BSLASHifeval] = ACTIONS(266),
         [anon_sym_BSLASHendif] = ACTIONS(266),
-        [aux_sym_escaped_ch_token1] = ACTIONS(266),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(266),
         [anon_sym_BANG] = ACTIONS(266),
         [anon_sym_POUND] = ACTIONS(266),
         [anon_sym_DOLLAR] = ACTIONS(266),
@@ -33823,7 +33823,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(270),
         [anon_sym_BSLASHifeval] = ACTIONS(270),
         [anon_sym_BSLASHendif] = ACTIONS(270),
-        [aux_sym_escaped_ch_token1] = ACTIONS(270),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(270),
         [anon_sym_BANG] = ACTIONS(270),
         [anon_sym_POUND] = ACTIONS(270),
         [anon_sym_DOLLAR] = ACTIONS(270),
@@ -33963,7 +33963,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(274),
         [anon_sym_BSLASHifeval] = ACTIONS(274),
         [anon_sym_BSLASHendif] = ACTIONS(274),
-        [aux_sym_escaped_ch_token1] = ACTIONS(274),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(274),
         [anon_sym_BANG] = ACTIONS(274),
         [anon_sym_POUND] = ACTIONS(274),
         [anon_sym_DOLLAR] = ACTIONS(274),
@@ -34103,7 +34103,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(278),
         [anon_sym_BSLASHifeval] = ACTIONS(278),
         [anon_sym_BSLASHendif] = ACTIONS(278),
-        [aux_sym_escaped_ch_token1] = ACTIONS(278),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(278),
         [anon_sym_BANG] = ACTIONS(278),
         [anon_sym_POUND] = ACTIONS(278),
         [anon_sym_DOLLAR] = ACTIONS(278),
@@ -34243,7 +34243,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(282),
         [anon_sym_BSLASHifeval] = ACTIONS(282),
         [anon_sym_BSLASHendif] = ACTIONS(282),
-        [aux_sym_escaped_ch_token1] = ACTIONS(282),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(282),
         [anon_sym_BANG] = ACTIONS(282),
         [anon_sym_POUND] = ACTIONS(282),
         [anon_sym_DOLLAR] = ACTIONS(282),
@@ -34383,7 +34383,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(286),
         [anon_sym_BSLASHifeval] = ACTIONS(286),
         [anon_sym_BSLASHendif] = ACTIONS(286),
-        [aux_sym_escaped_ch_token1] = ACTIONS(286),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(286),
         [anon_sym_BANG] = ACTIONS(286),
         [anon_sym_POUND] = ACTIONS(286),
         [anon_sym_DOLLAR] = ACTIONS(286),
@@ -34523,7 +34523,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(290),
         [anon_sym_BSLASHifeval] = ACTIONS(290),
         [anon_sym_BSLASHendif] = ACTIONS(290),
-        [aux_sym_escaped_ch_token1] = ACTIONS(290),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(290),
         [anon_sym_BANG] = ACTIONS(290),
         [anon_sym_POUND] = ACTIONS(290),
         [anon_sym_DOLLAR] = ACTIONS(290),
@@ -34663,7 +34663,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(294),
         [anon_sym_BSLASHifeval] = ACTIONS(294),
         [anon_sym_BSLASHendif] = ACTIONS(294),
-        [aux_sym_escaped_ch_token1] = ACTIONS(294),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(294),
         [anon_sym_BANG] = ACTIONS(294),
         [anon_sym_POUND] = ACTIONS(294),
         [anon_sym_DOLLAR] = ACTIONS(294),
@@ -34803,7 +34803,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(298),
         [anon_sym_BSLASHifeval] = ACTIONS(298),
         [anon_sym_BSLASHendif] = ACTIONS(298),
-        [aux_sym_escaped_ch_token1] = ACTIONS(298),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(298),
         [anon_sym_BANG] = ACTIONS(298),
         [anon_sym_POUND] = ACTIONS(298),
         [anon_sym_DOLLAR] = ACTIONS(298),
@@ -34943,7 +34943,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(155),
         [anon_sym_BSLASHifeval] = ACTIONS(155),
         [anon_sym_BSLASHendif] = ACTIONS(155),
-        [aux_sym_escaped_ch_token1] = ACTIONS(155),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(155),
         [anon_sym_BANG] = ACTIONS(155),
         [anon_sym_POUND] = ACTIONS(155),
         [anon_sym_DOLLAR] = ACTIONS(155),
@@ -35083,7 +35083,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(302),
         [anon_sym_BSLASHifeval] = ACTIONS(302),
         [anon_sym_BSLASHendif] = ACTIONS(302),
-        [aux_sym_escaped_ch_token1] = ACTIONS(302),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(302),
         [anon_sym_BANG] = ACTIONS(302),
         [anon_sym_POUND] = ACTIONS(302),
         [anon_sym_DOLLAR] = ACTIONS(302),
@@ -35223,7 +35223,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(306),
         [anon_sym_BSLASHifeval] = ACTIONS(306),
         [anon_sym_BSLASHendif] = ACTIONS(306),
-        [aux_sym_escaped_ch_token1] = ACTIONS(306),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(306),
         [anon_sym_BANG] = ACTIONS(306),
         [anon_sym_POUND] = ACTIONS(306),
         [anon_sym_DOLLAR] = ACTIONS(306),
@@ -35363,7 +35363,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(310),
         [anon_sym_BSLASHifeval] = ACTIONS(310),
         [anon_sym_BSLASHendif] = ACTIONS(310),
-        [aux_sym_escaped_ch_token1] = ACTIONS(310),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(310),
         [anon_sym_BANG] = ACTIONS(310),
         [anon_sym_POUND] = ACTIONS(310),
         [anon_sym_DOLLAR] = ACTIONS(310),
@@ -35503,7 +35503,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(314),
         [anon_sym_BSLASHifeval] = ACTIONS(314),
         [anon_sym_BSLASHendif] = ACTIONS(314),
-        [aux_sym_escaped_ch_token1] = ACTIONS(314),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(314),
         [anon_sym_BANG] = ACTIONS(314),
         [anon_sym_POUND] = ACTIONS(314),
         [anon_sym_DOLLAR] = ACTIONS(314),
@@ -35643,7 +35643,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
         [anon_sym_BSLASHifndef] = ACTIONS(318),
         [anon_sym_BSLASHifeval] = ACTIONS(318),
         [anon_sym_BSLASHendif] = ACTIONS(318),
-        [aux_sym_escaped_ch_token1] = ACTIONS(318),
+        [aux_sym_escaped_sequence_token1] = ACTIONS(318),
         [anon_sym_BANG] = ACTIONS(318),
         [anon_sym_POUND] = ACTIONS(318),
         [anon_sym_DOLLAR] = ACTIONS(318),
@@ -35725,7 +35725,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -35758,7 +35758,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [71] = 12,
     ACTIONS(320),
     1,
@@ -35796,7 +35796,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -35829,7 +35829,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [142] = 12,
     ACTIONS(328),
     1,
@@ -35867,7 +35867,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -35900,7 +35900,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [213] = 12,
     ACTIONS(328),
     1,
@@ -35938,7 +35938,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -35971,7 +35971,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [284] = 12,
     ACTIONS(344),
     1,
@@ -36009,7 +36009,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(361),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36042,7 +36042,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [355] = 12,
     ACTIONS(320),
     1,
@@ -36080,7 +36080,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36113,7 +36113,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [426] = 12,
     ACTIONS(320),
     1,
@@ -36151,7 +36151,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36184,7 +36184,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [497] = 12,
     ACTIONS(328),
     1,
@@ -36222,7 +36222,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36255,7 +36255,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [568] = 12,
     ACTIONS(370),
     1,
@@ -36293,7 +36293,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(387),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36326,7 +36326,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [639] = 12,
     ACTIONS(328),
     1,
@@ -36364,7 +36364,7 @@ static const uint16_t ts_small_parse_table[] = {
     3,
     sym_autolink,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(332),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -36397,7 +36397,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [710] = 3,
     ACTIONS(392),
     1,
@@ -36446,7 +36446,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [759] = 6,
     ACTIONS(145),
     1,
@@ -36501,7 +36501,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [814] = 9,
     ACTIONS(396),
     1,
@@ -36528,7 +36528,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(77),
     3,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     sym_passthrough,
     ACTIONS(402),
     31,
@@ -36562,7 +36562,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [875] = 9,
     ACTIONS(410),
     1,
@@ -36589,7 +36589,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(77),
     3,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     sym_passthrough,
     ACTIONS(418),
     31,
@@ -36623,7 +36623,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [936] = 3,
     ACTIONS(392),
     1,
@@ -36672,7 +36672,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [985] = 3,
     ACTIONS(430),
     1,
@@ -36721,7 +36721,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1034] = 9,
     ACTIONS(400),
     1,
@@ -36748,7 +36748,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(77),
     3,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     sym_passthrough,
     ACTIONS(402),
     31,
@@ -36782,7 +36782,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1095] = 1,
     ACTIONS(155),
     41,
@@ -36826,7 +36826,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1139] = 1,
     ACTIONS(220),
     40,
@@ -36869,7 +36869,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1182] = 2,
     ACTIONS(435),
     1,
@@ -36914,7 +36914,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1227] = 1,
     ACTIONS(306),
     39,
@@ -36956,7 +36956,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1269] = 1,
     ACTIONS(236),
     39,
@@ -36998,7 +36998,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1311] = 1,
     ACTIONS(437),
     39,
@@ -37040,7 +37040,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1353] = 1,
     ACTIONS(196),
     39,
@@ -37082,7 +37082,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1395] = 1,
     ACTIONS(212),
     39,
@@ -37124,7 +37124,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1437] = 1,
     ACTIONS(244),
     39,
@@ -37166,7 +37166,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1479] = 1,
     ACTIONS(394),
     39,
@@ -37208,7 +37208,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1521] = 1,
     ACTIONS(256),
     39,
@@ -37250,7 +37250,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1563] = 1,
     ACTIONS(439),
     38,
@@ -37288,7 +37288,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     anon_sym_PLUS2,
     anon_sym_PLUS_PLUS,
     anon_sym_DOLLAR_DOLLAR,
@@ -37309,7 +37309,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37342,7 +37342,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1655] = 1,
     ACTIONS(298),
     38,
@@ -37380,7 +37380,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     anon_sym_PLUS2,
     anon_sym_PLUS_PLUS,
     anon_sym_DOLLAR_DOLLAR,
@@ -37401,7 +37401,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37434,7 +37434,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1747] = 1,
     ACTIONS(252),
     38,
@@ -37472,7 +37472,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     anon_sym_PLUS2,
     anon_sym_PLUS_PLUS,
     anon_sym_DOLLAR_DOLLAR,
@@ -37493,7 +37493,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37526,7 +37526,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1839] = 1,
     ACTIONS(196),
     38,
@@ -37564,7 +37564,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     anon_sym_PLUS2,
     anon_sym_PLUS_PLUS,
     anon_sym_DOLLAR_DOLLAR,
@@ -37585,7 +37585,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(461),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37618,7 +37618,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1931] = 6,
     ACTIONS(445),
     1,
@@ -37636,7 +37636,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37669,7 +37669,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [1982] = 1,
     ACTIONS(236),
     38,
@@ -37707,7 +37707,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     anon_sym_PLUS2,
     anon_sym_PLUS_PLUS,
     anon_sym_DOLLAR_DOLLAR,
@@ -37728,7 +37728,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37761,7 +37761,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [2074] = 6,
     ACTIONS(445),
     1,
@@ -37779,7 +37779,7 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(90),
     2,
     sym_replacement,
-    sym_escaped_ch,
+    sym_escaped_sequence,
     ACTIONS(447),
     31,
     anon_sym_BSLASH_PLUS_PLUS_PLUS,
@@ -37812,7 +37812,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [2125] = 1,
     ACTIONS(196),
     35,
@@ -37850,7 +37850,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [2163] = 1,
     ACTIONS(470),
     35,
@@ -37888,7 +37888,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [2201] = 1,
     ACTIONS(236),
     35,
@@ -37926,7 +37926,7 @@ static const uint16_t ts_small_parse_table[] = {
     anon_sym_BSLASHifndef,
     anon_sym_BSLASHifeval,
     anon_sym_BSLASHendif,
-    aux_sym_escaped_ch_token1,
+    aux_sym_escaped_sequence_token1,
     [2239] = 9,
     ACTIONS(474),
     1,
@@ -40787,9 +40787,9 @@ static const TSParseActionEntry ts_parse_actions[] = {
     [192] = { .entry = { .count = 1, .reusable = false } },
     REDUCE(sym_index_term2, 5, 0, 0),
     [194] = { .entry = { .count = 1, .reusable = true } },
-    REDUCE(sym_escaped_ch, 1, 0, 0),
+    REDUCE(sym_escaped_sequence, 1, 0, 0),
     [196] = { .entry = { .count = 1, .reusable = false } },
-    REDUCE(sym_escaped_ch, 1, 0, 0),
+    REDUCE(sym_escaped_sequence, 1, 0, 0),
     [198] = { .entry = { .count = 1, .reusable = true } },
     REDUCE(sym_xref, 5, 0, 4),
     [200] = { .entry = { .count = 1, .reusable = false } },

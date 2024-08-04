@@ -101,7 +101,13 @@ module.exports = grammar({
         token.immediate(':'),
         alias(
           repeat(
-            escaped_ch('[', false, $.replacement, $.escaped_ch, $.passthrough),
+            escaped_ch(
+              '[',
+              false,
+              $.replacement,
+              $.escaped_sequence,
+              $.passthrough,
+            ),
           ),
           $.target,
         ),
@@ -113,7 +119,7 @@ module.exports = grammar({
               false,
               $.replacement,
               $.autolink,
-              $.escaped_ch,
+              $.escaped_sequence,
               prec.left(-1, '"'),
             ),
           ),
@@ -127,13 +133,19 @@ module.exports = grammar({
         token.immediate(':'),
 
         alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
           $.target,
         ),
         '[',
         alias(
           repeat(
-            escaped_ch(']', false, $.replacement, $.autolink, $.escaped_ch),
+            escaped_ch(
+              ']',
+              false,
+              $.replacement,
+              $.autolink,
+              $.escaped_sequence,
+            ),
           ),
           $.attr,
         ),
@@ -144,7 +156,7 @@ module.exports = grammar({
         choice('latexmath', 'stem', 'asciimath'),
         token.immediate(':'),
         alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
           $.target,
         ),
         '[',
@@ -156,7 +168,7 @@ module.exports = grammar({
         'pass',
         token.immediate(':'),
         alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_ch)),
+          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
           $.target,
         ),
         '[',
@@ -169,7 +181,7 @@ module.exports = grammar({
         alias(token(repeat1(escaped_ch('}'))), $.intrinsic_attributes),
         '}',
       ),
-    _word: $ => choice($._word_no_digit, $._digits, $.escaped_ch),
+    _word: $ => choice($._word_no_digit, $._digits, $.escaped_sequence),
     _word_no_digit: $ =>
       new RegExp(
         '[^' +
@@ -179,7 +191,7 @@ module.exports = grammar({
           ' \\t\\n\\r0-9]+)*',
       ),
     _digits: $ => /[0-9][0-9_]*/,
-    escaped_ch: $ => {
+    escaped_sequence: $ => {
       let args = [
         '+++',
         '``',
