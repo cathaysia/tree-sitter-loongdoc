@@ -140,7 +140,7 @@ module.exports = grammar({
         token.immediate(':'),
         optional($.target),
         '[',
-        alias($._stem_attr, $.attr),
+        optional(alias($._stem_attr, $.attr)),
         ']',
       ),
     inline_passthrough: $ =>
@@ -149,7 +149,7 @@ module.exports = grammar({
         token.immediate(':'),
         optional($.target),
         '[',
-        alias($._stem_attr, $.attr),
+        optional(alias($._stem_attr, $.attr)),
         ']',
       ),
     replacement: $ => seq('{', $.intrinsic_attributes, '}'),

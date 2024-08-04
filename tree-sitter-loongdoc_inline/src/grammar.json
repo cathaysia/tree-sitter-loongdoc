@@ -733,13 +733,21 @@
           "value": "["
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_stem_attr"
-          },
-          "named": true,
-          "value": "attr"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_stem_attr"
+              },
+              "named": true,
+              "value": "attr"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -778,13 +786,21 @@
           "value": "["
         },
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_stem_attr"
-          },
-          "named": true,
-          "value": "attr"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_stem_attr"
+              },
+              "named": true,
+              "value": "attr"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
