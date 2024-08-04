@@ -1256,19 +1256,6 @@
         }
       ]
     },
-    "key": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "[\\w\\d]+"
-        },
-        {
-          "type": "STRING",
-          "value": "\\]"
-        }
-      ]
-    },
     "passthrough": {
       "type": "CHOICE",
       "members": [

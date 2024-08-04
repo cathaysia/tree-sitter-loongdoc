@@ -218,8 +218,6 @@ module.exports = grammar({
       return choice(...args, /\\./)
     },
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
-    // https://stackoverflow.com/a/201378
-    key: $ => choice(/[\w\d]+/, '\\]'),
     passthrough: $ =>
       choice(
         create_text_formatting('+'),
