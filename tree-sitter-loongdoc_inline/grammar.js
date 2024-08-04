@@ -1,7 +1,6 @@
 const { anySep1, commaSep, escaped_ch } = require('../common/common.js')
 const autolink = require('./common/autolink.js')
 
-const PUNCTUATION_CHARACTERS_REGEX = '!-/:-@\\[-`\\{-~'
 // prettier-ignore
 const PUNCTUATION_CHARACTERS_ARRAY = [
   '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<',
@@ -154,16 +153,8 @@ module.exports = grammar({
       ),
     replacement: $ => seq('{', $.intrinsic_attributes, '}'),
     intrinsic_attributes: $ => token(repeat1(escaped_ch('}'))),
-    _word: $ => choice($._word_no_digit, $._digits, $.escaped_sequence),
-    _word_no_digit: $ =>
-      new RegExp(
-        '[^' +
-          PUNCTUATION_CHARACTERS_REGEX +
-          ' \\t\\n\\r0-9]+(_+[^' +
-          PUNCTUATION_CHARACTERS_REGEX +
-          ' \\t\\n\\r0-9]+)*',
-      ),
-    _digits: $ => /[0-9][0-9_]*/,
+    _word: $ => choice($._character, $.escaped_sequence),
+    _character: $ => /./,
     escaped_sequence: $ => {
       let args = [
         '+++',
