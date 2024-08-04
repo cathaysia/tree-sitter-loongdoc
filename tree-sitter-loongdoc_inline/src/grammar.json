@@ -910,331 +910,211 @@
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\+++"
-            }
+            "type": "STRING",
+            "value": "\\+++"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\``"
-            }
+            "type": "STRING",
+            "value": "\\``"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\**"
-            }
+            "type": "STRING",
+            "value": "\\**"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\$$"
-            }
+            "type": "STRING",
+            "value": "\\$$"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\##"
-            }
+            "type": "STRING",
+            "value": "\\##"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\__"
-            }
+            "type": "STRING",
+            "value": "\\__"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\<<"
-            }
+            "type": "STRING",
+            "value": "\\<<"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\[["
-            }
+            "type": "STRING",
+            "value": "\\[["
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\++"
-            }
+            "type": "STRING",
+            "value": "\\++"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\kbd"
-            }
+            "type": "STRING",
+            "value": "\\kbd"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\btn"
-            }
+            "type": "STRING",
+            "value": "\\btn"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\image"
-            }
+            "type": "STRING",
+            "value": "\\image"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\audio"
-            }
+            "type": "STRING",
+            "value": "\\audio"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\video"
-            }
+            "type": "STRING",
+            "value": "\\video"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\icon"
-            }
+            "type": "STRING",
+            "value": "\\icon"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\pass"
-            }
+            "type": "STRING",
+            "value": "\\pass"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\link"
-            }
+            "type": "STRING",
+            "value": "\\link"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\mailto"
-            }
+            "type": "STRING",
+            "value": "\\mailto"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\menu"
-            }
+            "type": "STRING",
+            "value": "\\menu"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\stem"
-            }
+            "type": "STRING",
+            "value": "\\stem"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\latexmath"
-            }
+            "type": "STRING",
+            "value": "\\latexmath"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\asciimath"
-            }
+            "type": "STRING",
+            "value": "\\asciimath"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\footnote"
-            }
+            "type": "STRING",
+            "value": "\\footnote"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\footnoteref"
-            }
+            "type": "STRING",
+            "value": "\\footnoteref"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\anchor"
-            }
+            "type": "STRING",
+            "value": "\\anchor"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\xref"
-            }
+            "type": "STRING",
+            "value": "\\xref"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\ifdef"
-            }
+            "type": "STRING",
+            "value": "\\ifdef"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\ifndef"
-            }
+            "type": "STRING",
+            "value": "\\ifndef"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\ifeval"
-            }
+            "type": "STRING",
+            "value": "\\ifeval"
           }
         },
         {
           "type": "TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "STRING",
-              "value": "\\endif"
-            }
+            "type": "STRING",
+            "value": "\\endif"
           }
         },
         {

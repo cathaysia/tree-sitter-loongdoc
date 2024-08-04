@@ -179,41 +179,44 @@ module.exports = grammar({
           ' \\t\\n\\r0-9]+)*',
       ),
     _digits: $ => /[0-9][0-9_]*/,
-    escaped_ch: $ =>
-      choice(
-        echar('+++'),
-        echar('``'),
-        echar('**'),
-        echar('$$'),
-        echar('##'),
-        echar('__'),
-        echar('<<'),
-        echar('[['),
-        echar('++'),
+    escaped_ch: $ => {
+      let args = [
+        '+++',
+        '``',
+        '**',
+        '$$',
+        '##',
+        '__',
+        '<<',
+        '[[',
+        '++',
+        'kbd',
+        'btn',
+        'image',
+        'audio',
+        'video',
+        'icon',
+        'pass',
+        'link',
+        'mailto',
+        'menu',
+        'stem',
+        'latexmath',
+        'asciimath',
+        'footnote',
+        'footnoteref',
+        'anchor',
+        'xref',
+        'ifdef',
+        'ifndef',
+        'ifeval',
+        'endif',
+      ].map(sequence => {
+        return token('\\' + sequence)
+      })
 
-        echar('kbd'),
-        echar('btn'),
-        echar('image'),
-        echar('audio'),
-        echar('video'),
-        echar('icon'),
-        echar('pass'),
-        echar('link'),
-        echar('mailto'),
-        echar('menu'),
-        echar('stem'),
-        echar('latexmath'),
-        echar('asciimath'),
-        echar('footnote'),
-        echar('footnoteref'),
-        echar('anchor'),
-        echar('xref'),
-        echar('ifdef'),
-        echar('ifndef'),
-        echar('ifeval'),
-        echar('endif'),
-        /\\./,
-      ),
+      return choice(...args, /\\./)
+    },
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     // https://stackoverflow.com/a/201378
     key: $ => choice(/[\w\d]+/, '\\]'),
@@ -259,8 +262,4 @@ function create_text_formatting(ch, ...args) {
       ch + ch,
     ),
   )
-}
-
-function echar(ch) {
-  return token(prec(1, '\\' + ch))
 }
