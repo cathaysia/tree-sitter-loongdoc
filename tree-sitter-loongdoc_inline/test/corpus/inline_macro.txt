@@ -34,3 +34,15 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
     (attr))
   (inline_macro
     (attr)))
+
+==============
+quote attr
+==============
+
+indexterm:[knight, "Arthur, King"]
+
+------
+
+(inline
+  (inline_macro
+    (attr)))
