@@ -589,6 +589,14 @@
                 {
                   "type": "SYMBOL",
                   "name": "escaped_ch"
+                },
+                {
+                  "type": "PREC_LEFT",
+                  "value": -1,
+                  "content": {
+                    "type": "STRING",
+                    "value": "\""
+                  }
                 }
               ]
             }

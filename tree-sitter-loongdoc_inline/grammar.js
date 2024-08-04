@@ -108,7 +108,14 @@ module.exports = grammar({
         '[',
         alias(
           repeat(
-            escaped_ch(']', false, $.replacement, $.autolink, $.escaped_ch),
+            escaped_ch(
+              ']',
+              false,
+              $.replacement,
+              $.autolink,
+              $.escaped_ch,
+              prec.left(-1, '"'),
+            ),
           ),
           $.attr,
         ),
