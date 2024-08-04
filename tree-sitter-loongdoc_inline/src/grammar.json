@@ -849,11 +849,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_word_no_digit"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_digits"
+          "name": "_character"
         },
         {
           "type": "SYMBOL",
@@ -861,13 +857,9 @@
         }
       ]
     },
-    "_word_no_digit": {
+    "_character": {
       "type": "PATTERN",
-      "value": "[^!-/:-@\\[-`\\{-~ \\t\\n\\r0-9]+(_+[^!-/:-@\\[-`\\{-~ \\t\\n\\r0-9]+)*"
-    },
-    "_digits": {
-      "type": "PATTERN",
-      "value": "[0-9][0-9_]*"
+      "value": "."
     },
     "escaped_sequence": {
       "type": "CHOICE",

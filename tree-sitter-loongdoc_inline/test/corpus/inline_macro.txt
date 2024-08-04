@@ -46,3 +46,16 @@ indexterm:[knight, "Arthur, King"]
 (inline
   (inline_macro
     (attr)))
+
+===================
+no space
+===================
+
+xxxxfootnote:xxxx[aaaa]
+
+----
+
+(inline
+  (footnote
+    (target)
+    (attr)))
