@@ -40,11 +40,8 @@ module.exports = grammar({
         ),
       ),
     ...autolink.rules,
-    id_assignment: $ =>
-      choice(
-        seq('[#', repeat(escaped_ch(']')), ']'),
-        seq('[[', repeat(escaped_ch(']')), ']]'),
-      ),
+    id_assignment: $ => choice(seq('[#', $.id, ']'), seq('[[', $.id, ']]')),
+    id: $ => repeat1(escaped_ch(']')),
     inline_macro: $ =>
       seq(
         choice(
@@ -99,88 +96,64 @@ module.exports = grammar({
           'wavedrom',
         ),
         token.immediate(':'),
-        alias(
-          repeat(
-            escaped_ch(
-              '[',
-              false,
-              $.replacement,
-              $.escaped_sequence,
-              $.passthrough,
-            ),
-          ),
-          $.target,
-        ),
+        optional($.target),
         '[',
-        alias(
-          repeat(
-            escaped_ch(
-              ']',
-              false,
-              $.replacement,
-              $.autolink,
-              $.escaped_sequence,
-              prec.left(-1, '"'),
-            ),
-          ),
-          $.attr,
-        ),
+        optional($.attr),
         ']',
       ),
+    target: $ =>
+      repeat1(
+        escaped_ch(
+          '[',
+          false,
+          $.replacement,
+          $.escaped_sequence,
+          $.passthrough,
+        ),
+      ),
+    attr: $ =>
+      repeat1(
+        escaped_ch(
+          ']',
+          false,
+          $.replacement,
+          $.autolink,
+          $.escaped_sequence,
+          prec.left(-1, '"'),
+        ),
+      ),
+
     footnote: $ =>
       seq(
         choice('footnote', 'footnoteref'),
         token.immediate(':'),
-
-        alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
-          $.target,
-        ),
+        optional($.target),
         '[',
-        alias(
-          repeat(
-            escaped_ch(
-              ']',
-              false,
-              $.replacement,
-              $.autolink,
-              $.escaped_sequence,
-            ),
-          ),
-          $.attr,
-        ),
+        optional($.attr),
         ']',
       ),
+
+    _stem_attr: $ => repeat1(choice(/[^\]]/, '\\]')),
     stem_macro: $ =>
       seq(
         choice('latexmath', 'stem', 'asciimath'),
         token.immediate(':'),
-        alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
-          $.target,
-        ),
+        optional($.target),
         '[',
-        alias(/[^\]]*/, $.attr),
+        alias($._stem_attr, $.attr),
         ']',
       ),
     inline_passthrough: $ =>
       seq(
         'pass',
         token.immediate(':'),
-        alias(
-          repeat(escaped_ch('[', false, $.replacement, $.escaped_sequence)),
-          $.target,
-        ),
+        optional($.target),
         '[',
-        alias(/[^\]]*/, $.attr),
+        alias($._stem_attr, $.attr),
         ']',
       ),
-    replacement: $ =>
-      seq(
-        '{',
-        alias(token(repeat1(escaped_ch('}'))), $.intrinsic_attributes),
-        '}',
-      ),
+    replacement: $ => seq('{', $.intrinsic_attributes, '}'),
+    intrinsic_attributes: $ => token(repeat1(escaped_ch('}'))),
     _word: $ => choice($._word_no_digit, $._digits, $.escaped_sequence),
     _word_no_digit: $ =>
       new RegExp(

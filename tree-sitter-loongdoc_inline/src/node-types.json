@@ -101,7 +101,17 @@
   {
     "type": "id_assignment",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "id",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "index_term",
