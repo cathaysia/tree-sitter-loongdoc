@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/cathaysia/tree-sitter-loongdoc/compare/tree-sitter-loongdoc-inline-v0.3.0...tree-sitter-loongdoc-inline-v0.3.1) (2024-08-04)
+
+
+### Bug Fixes
+
+* **inline:** fix quoted attr ([42a540e](https://github.com/cathaysia/tree-sitter-loongdoc/commit/42a540ebc4e8bc23ec4246385c80d88dde81d57c)), closes [#11](https://github.com/cathaysia/tree-sitter-loongdoc/issues/11)
+
 ## [0.3.0](https://github.com/cathaysia/tree-sitter-loongdoc/compare/tree-sitter-loongdoc-inline-v0.2.0...tree-sitter-loongdoc-inline-v0.3.0) (2024-08-02)
 
 
