@@ -1701,18 +1701,6 @@
                   "type": "BLANK"
                 }
               ]
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "list_continuation"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
             }
           ]
         }

@@ -244,16 +244,7 @@ module.exports = grammar({
 
     line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ =>
-      prec.left(
-        prec(
-          -1,
-          seq(
-            repeat1($.line),
-            optional($.quoted_line),
-            optional($.list_continuation),
-          ),
-        ),
-      ),
+      prec.left(prec(-1, seq(repeat1($.line), optional($.quoted_line)))),
     quoted_line: $ =>
       seq($.quoted_paragraph_marker, token.immediate(' '), $.line),
 
