@@ -111,6 +111,41 @@
     }
   },
   {
+    "type": "block_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "block_comment",
+          "named": true
+        },
+        {
+          "type": "document_attr",
+          "named": true
+        },
+        {
+          "type": "line_comment",
+          "named": true
+        },
+        {
+          "type": "list_continuation",
+          "named": true
+        },
+        {
+          "type": "section_block",
+          "named": true
+        },
+        {
+          "type": "title0",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "block_macro",
     "named": true,
     "fields": {},
@@ -234,14 +269,14 @@
       "required": true,
       "types": [
         {
-          "type": "ck_item",
+          "type": "checked_list_item",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "ck_item",
+    "type": "checked_list_item",
     "named": true,
     "fields": {},
     "children": {
@@ -249,23 +284,30 @@
       "required": true,
       "types": [
         {
+          "type": "checked_list_marker",
+          "named": true
+        },
+        {
           "type": "line",
           "named": true
-        },
+        }
+      ]
+    }
+  },
+  {
+    "type": "checked_list_marker",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
-          "type": "list_continuation",
+          "type": "checked_list_marker_checked",
           "named": true
         },
         {
-          "type": "section_block",
-          "named": true
-        },
-        {
-          "type": "task_list_marker_checked",
-          "named": true
-        },
-        {
-          "type": "task_list_marker_unchecked",
+          "type": "checked_list_marker_unchecked",
           "named": true
         },
         {
@@ -307,27 +349,7 @@
       "required": false,
       "types": [
         {
-          "type": "block_comment",
-          "named": true
-        },
-        {
-          "type": "document_attr",
-          "named": true
-        },
-        {
-          "type": "line_comment",
-          "named": true
-        },
-        {
-          "type": "list_continuation",
-          "named": true
-        },
-        {
-          "type": "section_block",
-          "named": true
-        },
-        {
-          "type": "title0",
+          "type": "block_element",
           "named": true
         }
       ]
@@ -452,6 +474,29 @@
         },
         {
           "type": "line_comment_marker",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "checked_list",
+          "named": true
+        },
+        {
+          "type": "ordered_list",
+          "named": true
+        },
+        {
+          "type": "unordered_list",
           "named": true
         }
       ]
@@ -593,33 +638,6 @@
     }
   },
   {
-    "type": "ol_item",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "line",
-          "named": true
-        },
-        {
-          "type": "list_continuation",
-          "named": true
-        },
-        {
-          "type": "ordered_list_marker",
-          "named": true
-        },
-        {
-          "type": "section_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "open_block",
     "named": true,
     "fields": {},
@@ -647,7 +665,26 @@
       "required": true,
       "types": [
         {
-          "type": "ol_item",
+          "type": "ordered_list_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ordered_list_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "ordered_list_marker",
           "named": true
         }
       ]
@@ -842,10 +879,6 @@
           "named": true
         },
         {
-          "type": "checked_list",
-          "named": true
-        },
-        {
           "type": "delimited_block",
           "named": true
         },
@@ -858,6 +891,10 @@
           "named": true
         },
         {
+          "type": "list",
+          "named": true
+        },
+        {
           "type": "listing_block",
           "named": true
         },
@@ -867,10 +904,6 @@
         },
         {
           "type": "open_block",
-          "named": true
-        },
-        {
-          "type": "ordered_list",
           "named": true
         },
         {
@@ -911,10 +944,6 @@
         },
         {
           "type": "title5",
-          "named": true
-        },
-        {
-          "type": "unordered_list",
           "named": true
         }
       ]
@@ -1102,7 +1131,22 @@
     }
   },
   {
-    "type": "ul_item",
+    "type": "unordered_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "unordered_list_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unordered_list_item",
     "named": true,
     "fields": {},
     "children": {
@@ -1114,30 +1158,7 @@
           "named": true
         },
         {
-          "type": "list_continuation",
-          "named": true
-        },
-        {
-          "type": "section_block",
-          "named": true
-        },
-        {
           "type": "unordered_list_marker",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "unordered_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "ul_item",
           "named": true
         }
       ]
@@ -1291,6 +1312,14 @@
     "named": true
   },
   {
+    "type": "checked_list_marker_checked",
+    "named": true
+  },
+  {
+    "type": "checked_list_marker_unchecked",
+    "named": true
+  },
+  {
     "type": "delimited_block_end_marker",
     "named": true
   },
@@ -1392,14 +1421,6 @@
   },
   {
     "type": "table_cell_attr",
-    "named": true
-  },
-  {
-    "type": "task_list_marker_checked",
-    "named": true
-  },
-  {
-    "type": "task_list_marker_unchecked",
     "named": true
   },
   {

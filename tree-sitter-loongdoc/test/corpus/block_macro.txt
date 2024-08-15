@@ -25,71 +25,78 @@ image::sunset.jpg[Sunset]
 -----
 
 (document
-  (title0
-    (title_h0_marker)
-    (line)
-    (block_macro
-      (block_macro_name)
-      (target))
-    (block_macro
-      (block_macro_name)
-      (target))
-    (document_attr
-      (document_attr_marker)
-      (attr_name)
-      (document_attr_marker)
-      (line)))
-  (section_block
-    (paragraph
-      (line)))
-  (section_block
-    (block_macro
-      (block_macro_name)
-      (target)))
-  (section_block
-    (block_macro
-      (block_macro_name)
-      (target)
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))
-      (block_macro_attr
-        (attribute_name)
-        (attribute_value))))
-  (section_block
-    (block_macro
-      (block_macro_name)
-      (target)))
-  (section_block
-    (element_attr
-      (element_attr_marker)
-      (attr_value)
-      (element_attr_marker))
-    (listing_block
-      (listing_block_start_marker)
-      (listing_block_body
-        (block_macro
-          (block_macro_name)
-          (target)))
-      (listing_block_end_marker)))
-  (section_block
-    (block_macro
-      (block_macro_name)
-      (target)
-      (block_macro_attr
-        (attribute_name)))))
+  (block_element
+    (title0
+      (title_h0_marker)
+      (line)
+      (block_macro
+        (block_macro_name)
+        (target))
+      (block_macro
+        (block_macro_name)
+        (target))
+      (document_attr
+        (document_attr_marker)
+        (attr_name)
+        (document_attr_marker)
+        (line))))
+  (block_element
+    (section_block
+      (paragraph
+        (line))))
+  (block_element
+    (section_block
+      (block_macro
+        (block_macro_name)
+        (target))))
+  (block_element
+    (section_block
+      (block_macro
+        (block_macro_name)
+        (target)
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value))
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value))
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value))
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value))
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value))
+        (block_macro_attr
+          (attribute_name)
+          (attribute_value)))))
+  (block_element
+    (section_block
+      (block_macro
+        (block_macro_name)
+        (target))))
+  (block_element
+    (section_block
+      (element_attr
+        (element_attr_marker)
+        (attr_value)
+        (element_attr_marker))
+      (listing_block
+        (listing_block_start_marker)
+        (listing_block_body
+          (block_macro
+            (block_macro_name)
+            (target)))
+        (listing_block_end_marker))))
+  (block_element
+    (section_block
+      (block_macro
+        (block_macro_name)
+        (target)
+        (block_macro_attr
+          (attribute_name))))))
 
 ==================
 list_continuation
@@ -102,13 +109,16 @@ block2
 ---------
 
 (document
-  (section_block
-    (paragraph
-      (line)))
-  (list_continuation)
-  (section_block
-    (paragraph
-      (line))))
+  (block_element
+    (section_block
+      (paragraph
+        (line))))
+  (block_element
+    (list_continuation))
+  (block_element
+    (section_block
+      (paragraph
+        (line)))))
 
 ==================
 anchor
@@ -119,6 +129,7 @@ anchor
 ----
 
 (document
-  (section_block
-    (paragraph
-      (line))))
+  (block_element
+    (section_block
+      (paragraph
+        (line)))))

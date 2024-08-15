@@ -1,6 +1,5 @@
 ===========
 quoted_block
-:language(loongdoc)
 ===========
 
 [quote,Monty Python and the Holy Grail]
@@ -37,52 +36,56 @@ and as necessary in the political world as storms in the physical."
 -----
 
 (document
-  (section_block
-    (element_attr
-      (element_attr_marker)
-      (attr_value)
-      (element_attr_marker))
-    (quoted_block
-      (quoted_block_marker)
-      (line)
-      (line)
-      (line)
-      (quoted_block_marker)))
-  (section_block
-    (quoted_md_block
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (quoted_block_md_marker)
-      (line)
-      (quoted_block_md_marker)
-      (quoted_block_md_marker)
-      (line)))
-  (section_block
-    (paragraph
-      (line)))
-  (section_block
-    (paragraph
-      (line)
-      (quoted_line
-        (quoted_paragraph_marker)
-        (line)))))
+  (block_element
+    (section_block
+      (element_attr
+        (element_attr_marker)
+        (attr_value)
+        (element_attr_marker))
+      (quoted_block
+        (quoted_block_marker)
+        (line)
+        (line)
+        (line)
+        (quoted_block_marker))))
+  (block_element
+    (section_block
+      (quoted_md_block
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (quoted_block_md_marker)
+        (line)
+        (quoted_block_md_marker)
+        (quoted_block_md_marker)
+        (line))))
+  (block_element
+    (section_block
+      (paragraph
+        (line))))
+  (block_element
+    (section_block
+      (paragraph
+        (line)
+        (quoted_line
+          (quoted_paragraph_marker)
+          (line))))))

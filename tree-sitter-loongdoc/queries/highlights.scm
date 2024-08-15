@@ -58,9 +58,9 @@
 (ntable_cell
   "!" @punctuation.special)
 
-(task_list_marker_unchecked) @markup.list.unchecked
+(checked_list_marker_unchecked) @markup.list.unchecked
 
-(task_list_marker_checked) @markup.list.checked
+(checked_list_marker_checked) @markup.list.checked
 
 [
   (list_marker_star)

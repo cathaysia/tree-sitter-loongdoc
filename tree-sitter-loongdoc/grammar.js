@@ -1,67 +1,23 @@
 const { commaSep, escaped_ch, anySep1, anySep } = require('../common/common.js')
+const lists = require('./common/lists.js')
 
 module.exports = grammar({
   name: 'loongdoc',
 
   extras: $ => [$._NEWLINE],
-  externals: $ => [
-    $._eof,
-    $.title_h0_marker,
-    $.title_h1_marker,
-    $.title_h2_marker,
-    $.title_h3_marker,
-    $.title_h4_marker,
-    $.title_h5_marker,
-    $.list_marker_star,
-    $.list_marker_hyphen,
-    $.list_marker_dot,
-    $.list_marker_digit,
-    $.list_marker_geek,
-    $.list_marker_alpha,
-    $.document_attr_marker,
-    $.element_attr_marker,
-    $.block_title_marker,
-    $.breaks_marker,
-    $.table_block_marker,
-    $.ntable_block_marker,
-    $.table_cell_attr,
-    $.delimited_block_start_marker,
-    $.delimited_block_end_marker,
-    $.listing_block_start_marker,
-    $.listing_block_end_marker,
-    $.literal_block_marker,
-    $.quoted_block_marker,
-    $.quoted_block_md_marker,
-    $.quoted_paragraph_marker,
-    $.open_block_marker,
-    $.passthrough_block_marker,
-    $.block_macro_name,
-    $.callout_marker,
-    $.callout_list_marker,
-    $.line_comment_marker,
-    $.block_comment_marker,
-    $.admonition_note,
-    $.admonition_tip,
-    $.admonition_important,
-    $.admonition_caution,
-    $.admonition_warning,
-    $.ident_marker,
-    $.list_continuation,
-  ],
-
   precedences: $ => [[$.checked_list, $.unordered_list]],
 
   rules: {
-    document: $ =>
-      repeat(
-        choice(
-          $.title0,
-          $.document_attr,
-          $.section_block,
-          $.line_comment,
-          $.block_comment,
-          $.list_continuation,
-        ),
+    document: $ => repeat($.block_element),
+    ...lists.rules,
+    block_element: $ =>
+      choice(
+        $.title0,
+        $.document_attr,
+        $.section_block,
+        $.line_comment,
+        $.block_comment,
+        $.list_continuation,
       ),
 
     section_block: $ => choice($._section_block_para, $._section_block),
@@ -76,9 +32,7 @@ module.exports = grammar({
           $.title3,
           $.title4,
           $.title5,
-          $.unordered_list,
-          $.ordered_list,
-          $.checked_list,
+          $.list,
           $.table_block,
           $.delimited_block,
           $.listing_block,
@@ -185,54 +139,6 @@ module.exports = grammar({
       ),
     block_title: $ => seq($.block_title_marker, $.line),
 
-    checked_list: $ => prec.left(repeat1($.ck_item)),
-    ck_item: $ =>
-      prec.left(
-        seq(
-          $.unordered_list_marker,
-          $._WHITE_SPACE,
-          choice(
-            alias(token(prec(1, /\[[*x]\]/)), $.task_list_marker_checked),
-            alias(token(prec(1, '[ ]')), $.task_list_marker_unchecked),
-          ),
-          $._WHITE_SPACE,
-          $.line,
-          repeat($._append_block),
-        ),
-      ),
-
-    unordered_list: $ => prec.right(repeat1($.ul_item)),
-    ul_item: $ =>
-      prec.left(
-        seq(
-          $.unordered_list_marker,
-          $._WHITE_SPACE,
-          $.line,
-          repeat($._append_block),
-        ),
-      ),
-    _append_block: $ => seq($.list_continuation, $.section_block),
-    unordered_list_marker: $ =>
-      choice($.list_marker_star, $.list_marker_hyphen),
-
-    ordered_list: $ => prec.right(repeat1($.ol_item)),
-    ol_item: $ =>
-      prec.left(
-        seq(
-          $.ordered_list_marker,
-          $._WHITE_SPACE,
-          $.line,
-          repeat($._append_block),
-        ),
-      ),
-    ordered_list_marker: $ =>
-      choice(
-        $.list_marker_digit,
-        $.list_marker_geek,
-        $.list_marker_alpha,
-        $.list_marker_dot,
-      ),
-
     table_block: $ =>
       prec.left(
         seq(
@@ -336,9 +242,6 @@ module.exports = grammar({
         $._block_end,
       ),
 
-    callout_list: $ => repeat1($.callout_list_item),
-    callout_list_item: $ => seq($.callout_list_marker, $._WHITE_SPACE, $.line),
-
     line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ =>
       prec.left(
@@ -383,4 +286,49 @@ module.exports = grammar({
     _NEWLINE: _ => /\r?\n/,
     _WHITE_SPACE: $ => /[ \t]+/,
   },
+
+  externals: $ => [
+    $._eof,
+    $.title_h0_marker,
+    $.title_h1_marker,
+    $.title_h2_marker,
+    $.title_h3_marker,
+    $.title_h4_marker,
+    $.title_h5_marker,
+    $.list_marker_star,
+    $.list_marker_hyphen,
+    $.list_marker_dot,
+    $.list_marker_digit,
+    $.list_marker_geek,
+    $.list_marker_alpha,
+    $.document_attr_marker,
+    $.element_attr_marker,
+    $.block_title_marker,
+    $.breaks_marker,
+    $.table_block_marker,
+    $.ntable_block_marker,
+    $.table_cell_attr,
+    $.delimited_block_start_marker,
+    $.delimited_block_end_marker,
+    $.listing_block_start_marker,
+    $.listing_block_end_marker,
+    $.literal_block_marker,
+    $.quoted_block_marker,
+    $.quoted_block_md_marker,
+    $.quoted_paragraph_marker,
+    $.open_block_marker,
+    $.passthrough_block_marker,
+    $.block_macro_name,
+    $.callout_marker,
+    $.callout_list_marker,
+    $.line_comment_marker,
+    $.block_comment_marker,
+    $.admonition_note,
+    $.admonition_tip,
+    $.admonition_important,
+    $.admonition_caution,
+    $.admonition_warning,
+    $.ident_marker,
+    $.list_continuation,
+  ],
 })

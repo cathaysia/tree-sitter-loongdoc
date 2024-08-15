@@ -15,15 +15,19 @@ https://www.abcdefg.com
 -----
 
 (document
-  (line_comment
-    (line_comment_marker)
-    (body))
-  (line_comment
-    (line_comment_marker))
-  (block_comment
-    (block_comment_marker)
-    (body)
-    (block_comment_marker))
-  (section_block
-    (paragraph
-      (line))))
+  (block_element
+    (line_comment
+      (line_comment_marker)
+      (body)))
+  (block_element
+    (line_comment
+      (line_comment_marker)))
+  (block_element
+    (block_comment
+      (block_comment_marker)
+      (body)
+      (block_comment_marker)))
+  (block_element
+    (section_block
+      (paragraph
+        (line)))))
