@@ -17,7 +17,7 @@ module.exports = grammar({
         $.section_block,
         $.line_comment,
         $.block_comment,
-        $.list_continuation,
+        prec.left(seq($.block_element, $.list_continuation, $.block_element)),
       ),
 
     section_block: $ => choice($._section_block_para, $._section_block),

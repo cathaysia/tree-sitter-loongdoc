@@ -251,8 +251,25 @@
           "name": "block_comment"
         },
         {
-          "type": "SYMBOL",
-          "name": "list_continuation"
+          "type": "PREC_LEFT",
+          "value": 0,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "block_element"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "list_continuation"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "block_element"
+              }
+            ]
+          }
         }
       ]
     },

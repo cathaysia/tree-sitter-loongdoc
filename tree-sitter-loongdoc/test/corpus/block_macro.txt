@@ -110,15 +110,15 @@ block2
 
 (document
   (block_element
-    (section_block
-      (paragraph
-        (line))))
-  (block_element
-    (list_continuation))
-  (block_element
-    (section_block
-      (paragraph
-        (line)))))
+    (block_element
+      (section_block
+        (paragraph
+          (line))))
+    (list_continuation)
+    (block_element
+      (section_block
+        (paragraph
+          (line))))))
 
 ==================
 anchor
