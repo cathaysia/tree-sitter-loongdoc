@@ -11,13 +11,17 @@ module.exports = grammar({
     document: $ => repeat($.block_element),
     ...lists.rules,
     block_element: $ =>
-      choice(
-        $.title0,
-        $.document_attr,
-        $.section_block,
-        $.line_comment,
-        $.block_comment,
-        prec.left(seq($.block_element, $.list_continuation, $.block_element)),
+      prec.left(
+        seq(
+          choice(
+            $.title0,
+            $.document_attr,
+            $.section_block,
+            $.line_comment,
+            $.block_comment,
+          ),
+          repeat(seq($.list_continuation, $.block_element)),
+        ),
       ),
 
     section_block: $ => choice($._section_block_para, $._section_block),
