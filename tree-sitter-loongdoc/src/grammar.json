@@ -695,25 +695,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "REPEAT1",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "PATTERN",
-                  "value": "[^=]"
-                },
-                {
-                  "type": "STRING",
-                  "value": "\\="
-                }
-              ]
-            }
-          },
-          "named": true,
-          "value": "name"
+          "type": "SYMBOL",
+          "name": "attribute_name"
         },
         {
           "type": "CHOICE",
@@ -726,25 +709,8 @@
                   "value": "="
                 },
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "REPEAT1",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "[^\\]]"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "\\]"
-                        }
-                      ]
-                    }
-                  },
-                  "named": true,
-                  "value": "value"
+                  "type": "SYMBOL",
+                  "name": "attribute_value"
                 }
               ]
             },
@@ -754,6 +720,38 @@
           ]
         }
       ]
+    },
+    "attribute_name": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^=]"
+          },
+          {
+            "type": "STRING",
+            "value": "\\="
+          }
+        ]
+      }
+    },
+    "attribute_value": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\]]"
+          },
+          {
+            "type": "STRING",
+            "value": "\\]"
+          }
+        ]
+      }
     },
     "document_attr": {
       "type": "SEQ",

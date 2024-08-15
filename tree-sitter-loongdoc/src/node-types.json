@@ -74,6 +74,16 @@
     "fields": {}
   },
   {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "attribute_value",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "author",
     "named": true,
     "fields": {},
@@ -166,11 +176,11 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "attribute_name",
           "named": true
         },
         {
-          "type": "value",
+          "type": "attribute_value",
           "named": true
         }
       ]
@@ -537,11 +547,6 @@
   },
   {
     "type": "middlename",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "name",
     "named": true,
     "fields": {}
   },
@@ -1156,11 +1161,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "value",
-    "named": true,
-    "fields": {}
   },
   {
     "type": " ",

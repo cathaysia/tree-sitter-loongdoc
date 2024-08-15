@@ -161,10 +161,9 @@ module.exports = grammar({
         $._block_end,
       ),
     block_macro_attr: $ =>
-      seq(
-        alias(repeat1(escaped_ch('=')), $.name),
-        optional(seq('=', alias(repeat1(escaped_ch(']')), $.value))),
-      ),
+      seq($.attribute_name, optional(seq('=', $.attribute_value))),
+    attribute_name: $ => repeat1(escaped_ch('=')),
+    attribute_value: $ => repeat1(escaped_ch(']')),
 
     document_attr: $ =>
       seq(

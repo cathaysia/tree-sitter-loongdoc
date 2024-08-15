@@ -103,10 +103,8 @@
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
-(block_macro_attr
-  (name) @attribute
-  "=" @operator
-  (value) @variable.parameter)
+(attribute_name) @attribute
+(attribute_value) @variable.parameter
 
 (admonition
   (admonition_important) @comment.error
