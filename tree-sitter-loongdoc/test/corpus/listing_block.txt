@@ -65,19 +65,19 @@ line of code <!--4-->
     (listing_block
       (listing_block_start_marker)
       (listing_block_body
-        (anno_marker)
-        (anno_marker)
-        (anno_marker))
+        (callout_marker)
+        (callout_marker)
+        (callout_marker))
       (listing_block_end_marker)
-      (anno_list
-        (anno_list_item
-          (anno_list_marker)
+      (callout_list
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line)))))
   (section_block
     (paragraph
@@ -91,23 +91,23 @@ line of code <!--4-->
     (listing_block
       (listing_block_start_marker)
       (listing_block_body
-        (anno_marker)
-        (anno_marker)
-        (anno_marker)
-        (anno_marker))
+        (callout_marker)
+        (callout_marker)
+        (callout_marker)
+        (callout_marker))
       (listing_block_end_marker)
-      (anno_list
-        (anno_list_item
-          (anno_list_marker)
+      (callout_list
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))))))
 
 ================

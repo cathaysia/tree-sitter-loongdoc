@@ -58,7 +58,7 @@ function createElement(node) {
         (ident_block
           (ident_block_line
             (ident_marker)
-            (anno_marker))))
+            (callout_marker))))
       (section_block
         (ident_block
           (ident_block_line
@@ -71,12 +71,12 @@ function createElement(node) {
         (ident_block
           (ident_block_line
             (ident_marker)
-            (anno_marker))))
+            (callout_marker))))
       (section_block
         (ident_block
           (ident_block_line
             (ident_marker)
-            (anno_marker))))
+            (callout_marker))))
       (section_block
         (ident_block
           (ident_block_line

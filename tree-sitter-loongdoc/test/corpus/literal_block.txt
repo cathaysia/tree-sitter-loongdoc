@@ -42,19 +42,19 @@ rawblock
     (literal_block
       (literal_block_marker)
       (literal_block_body
-        (anno_marker)
-        (anno_marker)
-        (anno_marker))
+        (callout_marker)
+        (callout_marker)
+        (callout_marker))
       (literal_block_marker)
-      (anno_list
-        (anno_list_item
-          (anno_list_marker)
+      (callout_list
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line)))))
   (section_block
     (paragraph
@@ -68,32 +68,32 @@ rawblock
     (ident_block
       (ident_block_line
         (ident_marker)
-        (anno_marker))))
+        (callout_marker))))
   (section_block
     (ident_block
       (ident_block_line
         (ident_marker)
-        (anno_marker))))
+        (callout_marker))))
   (section_block
     (ident_block
       (ident_block_line
         (ident_marker)
-        (anno_marker))))
+        (callout_marker))))
   (section_block
     (ident_block
       (ident_block_line
         (ident_marker)
-        (anno_marker))
-      (anno_list
-        (anno_list_item
-          (anno_list_marker)
+        (callout_marker))
+      (callout_list
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))
-        (anno_list_item
-          (anno_list_marker)
+        (callout_list_item
+          (callout_list_marker)
           (line))))))

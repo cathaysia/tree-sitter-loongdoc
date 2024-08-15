@@ -51,23 +51,23 @@ image::sunset.jpg[Sunset]
       (block_macro_name)
       (target)
       (block_macro_attr
-        (name)
-        (value))
+        (attribute_name)
+        (attribute_value))
       (block_macro_attr
-        (name)
-        (value))
+        (attribute_name)
+        (attribute_value))
       (block_macro_attr
-        (name)
-        (value))
+        (attribute_name)
+        (attribute_value))
       (block_macro_attr
-        (name)
-        (value))
+        (attribute_name)
+        (attribute_value))
       (block_macro_attr
-        (name)
-        (value))
+        (attribute_name)
+        (attribute_value))
       (block_macro_attr
-        (name)
-        (value))))
+        (attribute_name)
+        (attribute_value))))
   (section_block
     (block_macro
       (block_macro_name)
@@ -89,7 +89,7 @@ image::sunset.jpg[Sunset]
       (block_macro_name)
       (target)
       (block_macro_attr
-        (name)))))
+        (attribute_name)))))
 
 ==================
 list_continuation

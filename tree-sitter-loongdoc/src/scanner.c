@@ -309,11 +309,11 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                             return true;
                         }
                     }
-                    if(valid_symbols[TOKEN_ANNO_LIST_MARKER]) {
+                    if(valid_symbols[TOKEN_CALLOUT_LIST_MARKER]) {
                         if(lexer->get_column(lexer) == 1) {
                             if(parse_sequence(lexer, ".>")) {
                                 lexer->mark_end(lexer);
-                                lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
+                                lexer->result_symbol = TOKEN_CALLOUT_LIST_MARKER;
                                 if(is_white_space(lexer->lookahead)) {
                                     return true;
                                 }
@@ -323,7 +323,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                                     lexer->advance(lexer, false);
                                     lexer->mark_end(lexer);
                                     if(is_white_space(lexer->lookahead)) {
-                                        lexer->result_symbol = TOKEN_ANNO_LIST_MARKER;
+                                        lexer->result_symbol = TOKEN_CALLOUT_LIST_MARKER;
                                         return true;
                                     }
                                 }
@@ -444,7 +444,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         }
     }
 
-    if(valid_symbols[TOKEN_ANNO_MARKER]) {
+    if(valid_symbols[TOKEN_CALLOUT_MARKER]) {
         parse_sequence(lexer, "#");
         parse_sequence(lexer, "//");
         parse_sequence(lexer, ";;");
@@ -453,7 +453,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
         if(parse_sequence(lexer, "<.>")) {
             lexer->mark_end(lexer);
             if(is_newline(lexer->lookahead)) {
-                lexer->result_symbol = TOKEN_ANNO_MARKER;
+                lexer->result_symbol = TOKEN_CALLOUT_MARKER;
                 return true;
             }
         }
@@ -463,7 +463,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 lexer->advance(lexer, false);
                 lexer->mark_end(lexer);
                 if(is_newline(lexer->lookahead)) {
-                    lexer->result_symbol = TOKEN_ANNO_MARKER;
+                    lexer->result_symbol = TOKEN_CALLOUT_MARKER;
                     return true;
                 }
             }
@@ -474,7 +474,7 @@ bool tree_sitter_loongdoc_external_scanner_scan(void *payload, TSLexer *lexer, c
                 if(parse_sequence(lexer, "-->")) {
                     lexer->mark_end(lexer);
                     if(is_new_line(lexer->lookahead)) {
-                        lexer->result_symbol = TOKEN_ANNO_MARKER;
+                        lexer->result_symbol = TOKEN_CALLOUT_MARKER;
                         return true;
                     }
                 }

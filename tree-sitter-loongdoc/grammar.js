@@ -36,8 +36,8 @@ module.exports = grammar({
     $.open_block_marker,
     $.passthrough_block_marker,
     $.block_macro_name,
-    $.anno_marker,
-    $.anno_list_marker,
+    $.callout_marker,
+    $.callout_list_marker,
     $.line_comment_marker,
     $.block_comment_marker,
     $.admonition_note,
@@ -303,14 +303,14 @@ module.exports = grammar({
         alias(
           repeat(
             choice(
-              seq(repeat1(choice(/[^\r\n]/, $.anno_marker)), $._block_end),
+              seq(repeat1(choice(/[^\r\n]/, $.callout_marker)), $._block_end),
               $.block_macro,
             ),
           ),
           $.listing_block_body,
         ),
         $.listing_block_end_marker,
-        optional($.anno_list),
+        optional($.callout_list),
       ),
     literal_block: $ =>
       seq(
@@ -318,26 +318,26 @@ module.exports = grammar({
         alias(
           repeat(
             choice(
-              seq(repeat1(choice(/[^\r\n]/, $.anno_marker)), $._block_end),
+              seq(repeat1(choice(/[^\r\n]/, $.callout_marker)), $._block_end),
               $.block_macro,
             ),
           ),
           $.literal_block_body,
         ),
         $.literal_block_marker,
-        optional($.anno_list),
+        optional($.callout_list),
       ),
     ident_block: $ =>
-      prec.left(seq(repeat1($.ident_block_line), optional($.anno_list))),
+      prec.left(seq(repeat1($.ident_block_line), optional($.callout_list))),
     ident_block_line: $ =>
       seq(
         $.ident_marker,
-        repeat1(choice(/[^\r\n]/, $.anno_marker)),
+        repeat1(choice(/[^\r\n]/, $.callout_marker)),
         $._block_end,
       ),
 
-    anno_list: $ => repeat1($.anno_list_item),
-    anno_list_item: $ => seq($.anno_list_marker, $._WHITE_SPACE, $.line),
+    callout_list: $ => repeat1($.callout_list_item),
+    callout_list_item: $ => seq($.callout_list_marker, $._WHITE_SPACE, $.line),
 
     line: $ => seq(/[^\r\n]+/, $._block_end),
     paragraph: $ =>

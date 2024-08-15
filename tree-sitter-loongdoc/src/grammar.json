@@ -1471,7 +1471,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "anno_marker"
+                            "name": "callout_marker"
                           }
                         ]
                       }
@@ -1501,7 +1501,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "anno_list"
+              "name": "callout_list"
             },
             {
               "type": "BLANK"
@@ -1538,7 +1538,7 @@
                           },
                           {
                             "type": "SYMBOL",
-                            "name": "anno_marker"
+                            "name": "callout_marker"
                           }
                         ]
                       }
@@ -1568,7 +1568,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "anno_list"
+              "name": "callout_list"
             },
             {
               "type": "BLANK"
@@ -1595,7 +1595,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "anno_list"
+                "name": "callout_list"
               },
               {
                 "type": "BLANK"
@@ -1623,7 +1623,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "anno_marker"
+                "name": "callout_marker"
               }
             ]
           }
@@ -1634,19 +1634,19 @@
         }
       ]
     },
-    "anno_list": {
+    "callout_list": {
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
-        "name": "anno_list_item"
+        "name": "callout_list_item"
       }
     },
-    "anno_list_item": {
+    "callout_list_item": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "anno_list_marker"
+          "name": "callout_list_marker"
         },
         {
           "type": "SYMBOL",
@@ -2037,11 +2037,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "anno_marker"
+      "name": "callout_marker"
     },
     {
       "type": "SYMBOL",
-      "name": "anno_list_marker"
+      "name": "callout_list_marker"
     },
     {
       "type": "SYMBOL",
