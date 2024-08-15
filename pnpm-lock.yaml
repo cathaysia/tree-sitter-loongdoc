@@ -4,24 +4,44 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  node-addon-api:
-    specifier: ^7.1.0
-    version: 7.1.0
-  node-gyp-build:
-    specifier: ^4.8.0
-    version: 4.8.1
-  tree-sitter:
-    specifier: ^0.21.0
-    version: 0.21.1
+importers:
+  .:
+    devDependencies:
+      tree-sitter-cli:
+        specifier: ^0.22.6
+        version: 0.22.6
 
-devDependencies:
-  prebuildify:
-    specifier: ^6.0.0
-    version: 6.0.1
-  tree-sitter-cli:
-    specifier: ^0.22.6
-    version: 0.22.6
+  tree-sitter-loongdoc:
+    dependencies:
+      node-addon-api:
+        specifier: ^7.1.0
+        version: 7.1.1
+      node-gyp-build:
+        specifier: ^4.8.0
+        version: 4.8.1
+      tree-sitter:
+        specifier: ^0.21.0
+        version: 0.21.1
+    devDependencies:
+      prebuildify:
+        specifier: ^6.0.0
+        version: 6.0.1
+
+  tree-sitter-loongdoc_inline:
+    dependencies:
+      node-addon-api:
+        specifier: ^7.1.0
+        version: 7.1.1
+      node-gyp-build:
+        specifier: ^4.8.0
+        version: 4.8.1
+      tree-sitter:
+        specifier: ^0.21.0
+        version: 0.21.1
+    devDependencies:
+      prebuildify:
+        specifier: ^6.0.0
+        version: 6.0.1
 
 packages:
   /base64-js@1.5.1:
@@ -103,28 +123,27 @@ packages:
       }
     dev: true
 
-  /node-abi@3.62.0:
+  /node-abi@3.65.0:
     resolution:
       {
-        integrity: sha512-CPMcGa+y33xuL1E0TcNIu4YyaZCxnnvkVaEXrsosR3FxN+fV8xvb7Mzpb7IgKler10qeMkE6+Dp8qJhpzdq35g==,
+        integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==,
       }
     engines: { node: '>=10' }
     dependencies:
-      semver: 7.6.2
+      semver: 7.6.3
     dev: true
 
-  /node-addon-api@7.1.0:
+  /node-addon-api@7.1.1:
     resolution:
       {
-        integrity: sha512-mNcltoe1R8o7STTegSOHdnJNN7s5EUvhoS7ShnTHDyOSd+8H+UdWODq6qSv67PjC8Zc5JRT8+oLAMCr0SIXw7g==,
+        integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==,
       }
-    engines: { node: ^16 || ^18 || >= 20 }
     dev: false
 
-  /node-addon-api@8.0.0:
+  /node-addon-api@8.1.0:
     resolution:
       {
-        integrity: sha512-ipO7rsHEBqa9STO5C5T10fj732ml+5kLN1cAG8/jdHd56ldQeGj3Q7+scUS+VHK/qy1zLEwC4wMK5+yM0btPvw==,
+        integrity: sha512-yBY+qqWSv3dWKGODD6OGE6GnTX7Q2r+4+DfpqxHSHh8x0B4EKP9+wVGLS6U/AM1vxSNNmUEuIV5EGhYwPpfOwQ==,
       }
     engines: { node: ^18 || ^20 || >= 21 }
     dev: false
@@ -173,7 +192,7 @@ packages:
     dependencies:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
-      node-abi: 3.62.0
+      node-abi: 3.65.0
       npm-run-path: 3.1.0
       pump: 3.0.0
       tar-fs: 2.1.1
@@ -208,10 +227,10 @@ packages:
       }
     dev: true
 
-  /semver@7.6.2:
+  /semver@7.6.3:
     resolution:
       {
-        integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==,
+        integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==,
       }
     engines: { node: '>=10' }
     hasBin: true
@@ -268,7 +287,7 @@ packages:
       }
     requiresBuild: true
     dependencies:
-      node-addon-api: 8.0.0
+      node-addon-api: 8.1.0
       node-gyp-build: 4.8.1
     dev: false
 
