@@ -1,20 +1,23 @@
 const { commaSep, escaped_ch, anySep1, anySep } = require('../common/common.js')
 const lists = require('./common/lists.js')
+const title = require('./common/document_title.js')
+const table = require('./common/table.js')
 
 module.exports = grammar({
   name: 'loongdoc',
 
   extras: $ => [$._NEWLINE],
-  precedences: $ => [[$.checked_list, $.unordered_list]],
 
   rules: {
     document: $ => repeat($.block_element),
     ...lists.rules,
+    ...title.rules,
+    ...table.rules,
     block_element: $ =>
       prec.left(
         seq(
           choice(
-            $.title0,
+            $.document_title,
             $.document_attr,
             $.section_block,
             $.line_comment,
@@ -51,43 +54,6 @@ module.exports = grammar({
           $.block_macro,
         ),
       ),
-    title0: $ =>
-      seq(
-        $.title_h0_marker,
-        $._WHITE_SPACE,
-        $.line,
-        optional(
-          seq($.author_line, seq($._NEWLINE, optional($.revision_line))),
-        ),
-        repeat(choice($.document_attr, $.block_macro)),
-        $._block_end,
-      ),
-    author_line: $ => anySep1($.author, seq(';', $._WHITE_SPACE)),
-    author: $ =>
-      seq(
-        alias($._author_line_word, $.firstname),
-        $._WHITE_SPACE,
-        optional(seq(alias($._author_line_word, $.middlename), $._WHITE_SPACE)),
-        alias($._author_line_word, $.lastname),
-        optional(seq($._WHITE_SPACE, '<', $.email, '>')),
-      ),
-    _author_line_word: $ => repeat1(escaped_ch(' ;', true)),
-    email: $ =>
-      /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
-    revision_line: $ =>
-      seq(
-        $.revnumber,
-        ',',
-        $._WHITE_SPACE,
-        $.revdate,
-        ':',
-        $._WHITE_SPACE,
-        $.revremark,
-      ),
-    revnumber: $ => repeat1(escaped_ch(',', true)),
-    revdate: $ => repeat1(escaped_ch(':', true)),
-    revremark: $ => repeat1(escaped_ch('', true)),
-
     title1: $ => seq($.title_h1_marker, $._WHITE_SPACE, $.line),
     title2: $ => seq($.title_h2_marker, $._WHITE_SPACE, $.line),
     title3: $ => seq($.title_h3_marker, $._WHITE_SPACE, $.line),
@@ -123,14 +89,6 @@ module.exports = grammar({
     attribute_name: $ => repeat1(escaped_ch('=')),
     attribute_value: $ => repeat1(escaped_ch(']')),
 
-    document_attr: $ =>
-      seq(
-        $.document_attr_marker,
-        alias(repeat1(escaped_ch(':', true)), $.attr_name),
-        alias(':', $.document_attr_marker),
-        optional(seq(token.immediate(' '), alias($.escaped_line, $.line))),
-        $._block_end,
-      ),
     escaped_line: $ =>
       repeat1(choice(/[^\/\n]/, /\/[^*]/, /\\\r?\n/, seq($.hard_wrap))),
     hard_wrap: $ => ' +',
@@ -142,52 +100,6 @@ module.exports = grammar({
         $._NEWLINE,
       ),
     block_title: $ => seq($.block_title_marker, $.line),
-
-    table_block: $ =>
-      prec.left(
-        seq(
-          $.table_block_marker,
-          repeat(choice($.table_cell, $.ntable_block)),
-          $.table_block_marker,
-        ),
-      ),
-    table_cell: $ =>
-      seq(
-        optional($.table_cell_attr),
-        choice(
-          seq(
-            '|',
-            token.immediate(/\r?\n/),
-            anySep1(
-              alias($._section_block, $.section_block),
-              $.list_continuation,
-            ),
-          ),
-          seq('|', repeat1(escaped_ch('|'))),
-        ),
-      ),
-
-    ntable_block: $ =>
-      prec.left(
-        seq(
-          optional($.element_attr),
-          $.ntable_block_marker,
-          repeat($.ntable_cell),
-          $.ntable_block_marker,
-        ),
-      ),
-    ntable_cell: $ =>
-      seq(
-        optional($.table_cell_attr),
-        choice(
-          seq(
-            '!',
-            token.immediate(/\r?\n/),
-            alias($._section_block, $.section_block),
-          ),
-          seq('!', repeat1(escaped_ch('!'))),
-        ),
-      ),
 
     delimited_block: $ =>
       prec.left(

@@ -131,6 +131,10 @@
           "named": true
         },
         {
+          "type": "document_title",
+          "named": true
+        },
+        {
           "type": "line_comment",
           "named": true
         },
@@ -140,10 +144,6 @@
         },
         {
           "type": "section_block",
-          "named": true
-        },
-        {
-          "type": "title0",
           "named": true
         }
       ]
@@ -377,6 +377,41 @@
         },
         {
           "type": "line",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "document_title",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "author_line",
+          "named": true
+        },
+        {
+          "type": "block_macro",
+          "named": true
+        },
+        {
+          "type": "document_attr",
+          "named": true
+        },
+        {
+          "type": "line",
+          "named": true
+        },
+        {
+          "type": "revision_line",
+          "named": true
+        },
+        {
+          "type": "title_h0_marker",
           "named": true
         }
       ]
@@ -999,41 +1034,6 @@
     "type": "target",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "title0",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "author_line",
-          "named": true
-        },
-        {
-          "type": "block_macro",
-          "named": true
-        },
-        {
-          "type": "document_attr",
-          "named": true
-        },
-        {
-          "type": "line",
-          "named": true
-        },
-        {
-          "type": "revision_line",
-          "named": true
-        },
-        {
-          "type": "title_h0_marker",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "title1",

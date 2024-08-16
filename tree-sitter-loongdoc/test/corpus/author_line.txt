@@ -45,7 +45,7 @@ The second author's last name is {lastname_2}.
 
 (document
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (author_line
@@ -55,7 +55,7 @@ The second author's last name is {lastname_2}.
           (lastname)
           (email)))))
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (author_line
@@ -65,38 +65,7 @@ The second author's last name is {lastname_2}.
           (lastname)
           (email)))))
   (block_element
-    (title0
-      (title_h0_marker)
-      (line)
-      (author_line
-        (author
-          (firstname)
-          (middlename)
-          (lastname)
-          (email))
-        (author
-          (firstname)
-          (lastname))
-        (author
-          (firstname)
-          (lastname)
-          (email)))))
-  (block_element
-    (title0
-      (title_h0_marker)
-      (line)
-      (document_attr
-        (document_attr_marker)
-        (attr_name)
-        (document_attr_marker)
-        (line))
-      (document_attr
-        (document_attr_marker)
-        (attr_name)
-        (document_attr_marker)
-        (line))))
-  (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (author_line
@@ -113,12 +82,36 @@ The second author's last name is {lastname_2}.
           (lastname)
           (email)))))
   (block_element
-    (section_block
-      (block_title
-        (block_title_marker)
+    (document_title
+      (title_h0_marker)
+      (line)
+      (document_attr
+        (document_attr_marker)
+        (attr_name)
+        (document_attr_marker)
         (line))
-      (paragraph
+      (document_attr
+        (document_attr_marker)
+        (attr_name)
+        (document_attr_marker)
         (line))))
+  (block_element
+    (document_title
+      (title_h0_marker)
+      (line)
+      (author_line
+        (author
+          (firstname)
+          (middlename)
+          (lastname)
+          (email))
+        (author
+          (firstname)
+          (lastname))
+        (author
+          (firstname)
+          (lastname)
+          (email)))))
   (block_element
     (section_block
       (block_title
@@ -134,7 +127,14 @@ The second author's last name is {lastname_2}.
       (paragraph
         (line))))
   (block_element
-    (title0
+    (section_block
+      (block_title
+        (block_title_marker)
+        (line))
+      (paragraph
+        (line))))
+  (block_element
+    (document_title
       (title_h0_marker)
       (line)
       (author_line
@@ -153,7 +153,7 @@ The second author's last name is {lastname_2}.
       (paragraph
         (line))))
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (document_attr

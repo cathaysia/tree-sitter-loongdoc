@@ -26,7 +26,7 @@ image::sunset.jpg[Sunset]
 
 (document
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (block_macro
@@ -110,10 +110,9 @@ block2
 
 (document
   (block_element
-    (block_element
-      (section_block
-        (paragraph
-          (line))))
+    (section_block
+      (paragraph
+        (line)))
     (list_continuation)
     (block_element
       (section_block

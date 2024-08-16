@@ -34,7 +34,7 @@ more value
 
 (document
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)
       (document_attr
@@ -92,11 +92,11 @@ more value
         (title_h1_marker)
         (line))))
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)))
   (block_element
-    (title0
+    (document_title
       (title_h0_marker)
       (line)))
   (block_element

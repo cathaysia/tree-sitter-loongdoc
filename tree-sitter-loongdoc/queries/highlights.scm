@@ -1,4 +1,4 @@
-(title0) @markup.heading.1
+(document_title) @markup.heading.1
 
 (title1) @markup.heading.2
 
