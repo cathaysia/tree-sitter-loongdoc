@@ -95,7 +95,7 @@ module.exports = grammar({
           'wavedrom',
         ),
         token.immediate(':'),
-        optional($.target),
+        optional(choice($.target)),
         '[',
         optional($.attr),
         ']',
@@ -108,6 +108,7 @@ module.exports = grammar({
           $.replacement,
           $.escaped_sequence,
           $.passthrough,
+          $.inline_passthrough,
         ),
       ),
     attr: $ =>

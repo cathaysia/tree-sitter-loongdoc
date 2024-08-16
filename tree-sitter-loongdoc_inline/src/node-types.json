@@ -365,6 +365,10 @@
           "named": true
         },
         {
+          "type": "inline_passthrough",
+          "named": true
+        },
+        {
           "type": "passthrough",
           "named": true
         },

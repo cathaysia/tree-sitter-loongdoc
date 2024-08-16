@@ -522,8 +522,13 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "target"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "target"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -576,6 +581,10 @@
           {
             "type": "SYMBOL",
             "name": "passthrough"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "inline_passthrough"
           }
         ]
       }
