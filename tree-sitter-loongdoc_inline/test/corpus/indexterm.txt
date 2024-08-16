@@ -13,16 +13,21 @@ indexterm2:[Arthur, King]
 -----
 
 (inline
-  (index_term
-    (term)
-    (term)
-    (term))
-  (index_term
-    (term)
-    (term))
-  (index_term
-    (term))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr)))
+  (inline_element
+    (index_term
+      (term)
+      (term)
+      (term)))
+  (inline_element
+    (index_term
+      (term)
+      (term)))
+  (inline_element
+    (index_term
+      (term)))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
+    (inline_macro
+      (attr))))

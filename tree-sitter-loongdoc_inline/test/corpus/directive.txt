@@ -9,7 +9,36 @@ endif::[]
 -----
 
 (inline
-  (inline_macro
-    (target))
-  (inline_macro
-    (target)))
+  (inline_element
+    (inline_macro
+      (target)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (target))))

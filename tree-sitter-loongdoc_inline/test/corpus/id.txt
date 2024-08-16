@@ -9,9 +9,16 @@ id
 ----
 
 (inline
-  (id_assignment
-    (id))
-  (emphasis))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element
+    (emphasis))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element))
 
 ===============
 id 2
@@ -24,9 +31,16 @@ id 2
 ------
 
 (inline
-  (id_assignment
-    (id))
-  (emphasis))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element
+    (emphasis))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element))
 
 ===============
 id in line
@@ -38,9 +52,13 @@ id in line
 --------
 
 (inline
-  (id_assignment
-    (id))
-  (highlight)
-  (id_assignment
-    (id))
-  (highlight))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element
+    (highlight))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element
+    (highlight)))

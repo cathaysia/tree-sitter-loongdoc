@@ -8,8 +8,23 @@ inline_assign
 ---
 
 (inline
-  (id_assignment
-    (id))
-  (highlight)
-  (id_assignment
-    (id)))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element
+    (highlight))
+  (inline_element
+    (id_assignment
+      (id)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element))

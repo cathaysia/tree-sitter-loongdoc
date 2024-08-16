@@ -12,14 +12,18 @@ xref:id[reftext]
 -----
 
 (inline
-  (xref
-    (id)
-    (reftext))
-  (inline_macro
-    (target)
-    (attr))
-  (xref
-    (id)
-    (reftext))
-  (xref
-    (id)))
+  (inline_element
+    (xref
+      (id)
+      (reftext)))
+  (inline_element
+    (inline_macro
+      (target)
+      (attr)))
+  (inline_element
+    (xref
+      (id)
+      (reftext)))
+  (inline_element
+    (xref
+      (id))))

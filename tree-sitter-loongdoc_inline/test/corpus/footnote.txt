@@ -7,14 +7,34 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
 -----
 
 (inline
-  (footnote
-    (attr))
-  (footnote
-    (target)
-    (attr))
-  (footnote
-    (target))
-  (footnote
-    (attr))
-  (footnote
-    (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (target)
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (target)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (attr))))

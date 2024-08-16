@@ -10,14 +10,18 @@ menu:View[Page Style, No Style]
 -----
 
 (inline
-  (inline_macro
-    (target)
-    (attr))
-  (inline_macro
-    (target))
-  (inline_macro
-    (target)
-    (attr))
-  (inline_macro
-    (target)
-    (attr)))
+  (inline_element
+    (inline_macro
+      (target)
+      (attr)))
+  (inline_element
+    (inline_macro
+      (target)))
+  (inline_element
+    (inline_macro
+      (target)
+      (attr)))
+  (inline_element
+    (inline_macro
+      (target)
+      (attr))))

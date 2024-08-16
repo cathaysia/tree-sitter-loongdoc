@@ -7,6 +7,20 @@ this is a email: doc.writer@example.com
 -----
 
 (inline
-  (autolink
-    (uri
-      (email))))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (autolink
+      (uri
+        (email)))))

@@ -9,31 +9,73 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
 -----
 
 (inline
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (target
-      (replacement
-        (intrinsic_attributes)))
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr))
-  (inline_macro
-    (attr)))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (target
+        (replacement
+          (intrinsic_attributes)))
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element))
 
 ==============
 quote attr
@@ -44,8 +86,9 @@ indexterm:[knight, "Arthur, King"]
 ------
 
 (inline
-  (inline_macro
-    (attr)))
+  (inline_element
+    (inline_macro
+      (attr))))
 
 ===================
 no space
@@ -56,6 +99,11 @@ xxxxfootnote:xxxx[aaaa]
 ----
 
 (inline
-  (footnote
-    (target)
-    (attr)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (footnote
+      (target)
+      (attr))))

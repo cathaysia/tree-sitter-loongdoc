@@ -152,6 +152,21 @@
       "required": false,
       "types": [
         {
+          "type": "inline_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "inline_element",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
           "type": "autolink",
           "named": true
         },
@@ -188,11 +203,11 @@
           "named": true
         },
         {
-          "type": "inline_passthrough",
+          "type": "ltalic",
           "named": true
         },
         {
-          "type": "ltalic",
+          "type": "macro_passthrough",
           "named": true
         },
         {
@@ -220,25 +235,6 @@
   },
   {
     "type": "inline_macro",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "attr",
-          "named": true
-        },
-        {
-          "type": "target",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inline_passthrough",
     "named": true,
     "fields": {},
     "children": {
@@ -298,6 +294,25 @@
         },
         {
           "type": "monospace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_passthrough",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attr",
+          "named": true
+        },
+        {
+          "type": "target",
           "named": true
         }
       ]
@@ -365,7 +380,7 @@
           "named": true
         },
         {
-          "type": "inline_passthrough",
+          "type": "macro_passthrough",
           "named": true
         },
         {

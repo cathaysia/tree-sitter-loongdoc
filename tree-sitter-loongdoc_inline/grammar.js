@@ -16,27 +16,26 @@ module.exports = grammar({
   ],
 
   rules: {
-    inline: $ =>
-      repeat1(
-        choice(
-          $.replacement,
-          $._word,
-          $.autolink,
-          $.passthrough,
-          $.inline_passthrough,
-          $._punctuation,
-          $.xref,
-          $.emphasis,
-          $.ltalic,
-          $.monospace,
-          $.highlight,
-          $.inline_macro,
-          $.stem_macro,
-          $.footnote,
-          $.index_term,
-          $.index_term2,
-          $.id_assignment,
-        ),
+    inline: $ => repeat($.inline_element),
+    inline_element: $ =>
+      choice(
+        $.replacement,
+        $._word,
+        $.autolink,
+        $.passthrough,
+        $.macro_passthrough,
+        $._punctuation,
+        $.xref,
+        $.emphasis,
+        $.ltalic,
+        $.monospace,
+        $.highlight,
+        $.inline_macro,
+        $.stem_macro,
+        $.footnote,
+        $.index_term,
+        $.index_term2,
+        $.id_assignment,
       ),
     ...autolink.rules,
     id_assignment: $ => choice(seq('[#', $.id, ']'), seq('[[', $.id, ']]')),
@@ -108,7 +107,7 @@ module.exports = grammar({
           $.replacement,
           $.escaped_sequence,
           $.passthrough,
-          $.inline_passthrough,
+          $.macro_passthrough,
         ),
       ),
     attr: $ =>
@@ -143,7 +142,7 @@ module.exports = grammar({
         optional(alias($._stem_attr, $.attr)),
         ']',
       ),
-    inline_passthrough: $ =>
+    macro_passthrough: $ =>
       seq(
         'pass',
         token.immediate(':'),

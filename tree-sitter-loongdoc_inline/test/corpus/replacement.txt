@@ -9,7 +9,27 @@ this is a replacement {cpp}
 -----
 
 (inline
-  (replacement
-    (intrinsic_attributes))
-  (replacement
-    (intrinsic_attributes)))
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element)
+  (inline_element
+    (replacement
+      (intrinsic_attributes)))
+  (inline_element
+    (replacement
+      (intrinsic_attributes))))
