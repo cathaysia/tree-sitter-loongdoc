@@ -30,4 +30,4 @@ exports.rules = {
 
   callout_list: $ => repeat1($.callout_list_item),
   callout_list_item: $ => seq($.callout_list_marker, $._WHITE_SPACE, $.line),
-}
+};

@@ -1,10 +1,40 @@
-const { anySep1, commaSep, escaped_ch } = require('../common/common.js')
-const autolink = require('./common/autolink.js')
+const { anySep1, commaSep, escaped_ch } = require('../common/common.js');
+const autolink = require('./common/autolink.js');
 
 // prettier-ignore
 const PUNCTUATION_CHARACTERS_ARRAY = [
-  '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<',
-  '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'
+  '!',
+  '"',
+  '#',
+  '$',
+  '%',
+  '&',
+  "'",
+  '(',
+  ')',
+  '*',
+  '+',
+  ',',
+  '-',
+  '.',
+  '/',
+  ':',
+  ';',
+  '<',
+  '=',
+  '>',
+  '?',
+  '@',
+  '[',
+  '\\',
+  ']',
+  '^',
+  '_',
+  '`',
+  '{',
+  '|',
+  '}',
+  '~',
 ];
 
 module.exports = grammar({
@@ -156,7 +186,7 @@ module.exports = grammar({
     _word: $ => choice($._character, $.escaped_sequence),
     _character: $ => /./,
     escaped_sequence: $ => {
-      let args = [
+      const args = [
         '+++',
         '``',
         '**',
@@ -188,10 +218,10 @@ module.exports = grammar({
         'ifeval',
         'endif',
       ].map(sequence => {
-        return token('\\' + sequence)
-      })
+        return token(`\\${sequence}`);
+      });
 
-      return choice(...args, /\\./)
+      return choice(...args, /\\./);
     },
     _punctuation: _ => choice(...PUNCTUATION_CHARACTERS_ARRAY),
     passthrough: $ =>
@@ -225,7 +255,7 @@ module.exports = grammar({
       ),
     term: $ => repeat1(escaped_ch(',)')),
   },
-})
+});
 
 function create_text_formatting(ch, ...args) {
   return choice(
@@ -235,5 +265,5 @@ function create_text_formatting(ch, ...args) {
       repeat(escaped_ch(ch, true, ...args)),
       ch + ch,
     ),
-  )
+  );
 }

@@ -1,7 +1,12 @@
-const { commaSep, escaped_ch, anySep1, anySep } = require('../common/common.js')
-const lists = require('./common/lists.js')
-const title = require('./common/document_title.js')
-const table = require('./common/table.js')
+const {
+  commaSep,
+  escaped_ch,
+  anySep1,
+  anySep,
+} = require('../common/common.js');
+const lists = require('./common/lists.js');
+const title = require('./common/document_title.js');
+const table = require('./common/table.js');
 
 module.exports = grammar({
   name: 'loongdoc',
@@ -238,4 +243,4 @@ module.exports = grammar({
     $.ident_marker,
     $.list_continuation,
   ],
-})
+});

@@ -1,4 +1,4 @@
-const { anySep1, escaped_ch } = require('../../common/common')
+const { anySep1, escaped_ch } = require('../../common/common');
 
 exports.rules = {
   document_title: $ =>
@@ -43,4 +43,4 @@ exports.rules = {
       optional(seq(token.immediate(' '), alias($.escaped_line, $.line))),
       $._block_end,
     ),
-}
+};
