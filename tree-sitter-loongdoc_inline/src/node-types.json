@@ -75,10 +75,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "attr",
+          "named": true
+        },
+        {
+          "type": "macro_name",
           "named": true
         },
         {
@@ -239,10 +243,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "attr",
+          "named": true
+        },
+        {
+          "type": "macro_name",
           "named": true
         },
         {
@@ -300,15 +308,24 @@
     }
   },
   {
+    "type": "macro_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "macro_passthrough",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "attr",
+          "named": true
+        },
+        {
+          "type": "macro_name",
           "named": true
         },
         {
@@ -354,10 +371,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "attr",
+          "named": true
+        },
+        {
+          "type": "macro_name",
           "named": true
         },
         {
@@ -443,6 +464,10 @@
       "types": [
         {
           "type": "escaped_sequence",
+          "named": true
+        },
+        {
+          "type": "macro_name",
           "named": true
         }
       ]
@@ -961,10 +986,6 @@
   },
   {
     "type": "nomnoml",
-    "named": false
-  },
-  {
-    "type": "pass",
     "named": false
   },
   {
