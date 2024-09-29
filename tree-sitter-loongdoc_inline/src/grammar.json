@@ -315,205 +315,209 @@
         ]
       }
     },
+    "macro_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "kbd"
+        },
+        {
+          "type": "STRING",
+          "value": "btn"
+        },
+        {
+          "type": "STRING",
+          "value": "image"
+        },
+        {
+          "type": "STRING",
+          "value": "audio"
+        },
+        {
+          "type": "STRING",
+          "value": "video"
+        },
+        {
+          "type": "STRING",
+          "value": "icon"
+        },
+        {
+          "type": "STRING",
+          "value": "link"
+        },
+        {
+          "type": "STRING",
+          "value": "mailto"
+        },
+        {
+          "type": "STRING",
+          "value": "menu"
+        },
+        {
+          "type": "STRING",
+          "value": "anchor"
+        },
+        {
+          "type": "STRING",
+          "value": "xref"
+        },
+        {
+          "type": "STRING",
+          "value": "ifdef"
+        },
+        {
+          "type": "STRING",
+          "value": "ifndef"
+        },
+        {
+          "type": "STRING",
+          "value": "ifeval"
+        },
+        {
+          "type": "STRING",
+          "value": "endif"
+        },
+        {
+          "type": "STRING",
+          "value": "indexterm2"
+        },
+        {
+          "type": "STRING",
+          "value": "indexterm"
+        },
+        {
+          "type": "STRING",
+          "value": "a2s"
+        },
+        {
+          "type": "STRING",
+          "value": "barcode"
+        },
+        {
+          "type": "STRING",
+          "value": "blockdiag"
+        },
+        {
+          "type": "STRING",
+          "value": "bpmn"
+        },
+        {
+          "type": "STRING",
+          "value": "bytefield"
+        },
+        {
+          "type": "STRING",
+          "value": "d2"
+        },
+        {
+          "type": "STRING",
+          "value": "dbml"
+        },
+        {
+          "type": "STRING",
+          "value": "diagrams"
+        },
+        {
+          "type": "STRING",
+          "value": "ditaa"
+        },
+        {
+          "type": "STRING",
+          "value": "dpic"
+        },
+        {
+          "type": "STRING",
+          "value": "erd"
+        },
+        {
+          "type": "STRING",
+          "value": "gnuplot"
+        },
+        {
+          "type": "STRING",
+          "value": "graphviz"
+        },
+        {
+          "type": "STRING",
+          "value": "graphviz"
+        },
+        {
+          "type": "STRING",
+          "value": "lilypond"
+        },
+        {
+          "type": "STRING",
+          "value": "meme"
+        },
+        {
+          "type": "STRING",
+          "value": "mermaid"
+        },
+        {
+          "type": "STRING",
+          "value": "msc"
+        },
+        {
+          "type": "STRING",
+          "value": "nomnoml"
+        },
+        {
+          "type": "STRING",
+          "value": "pikchr"
+        },
+        {
+          "type": "STRING",
+          "value": "plantuml"
+        },
+        {
+          "type": "STRING",
+          "value": "shaape"
+        },
+        {
+          "type": "STRING",
+          "value": "smcat"
+        },
+        {
+          "type": "STRING",
+          "value": "structurizr"
+        },
+        {
+          "type": "STRING",
+          "value": "svgbob"
+        },
+        {
+          "type": "STRING",
+          "value": "symbolator"
+        },
+        {
+          "type": "STRING",
+          "value": "syntrax"
+        },
+        {
+          "type": "STRING",
+          "value": "tikz"
+        },
+        {
+          "type": "STRING",
+          "value": "umlet"
+        },
+        {
+          "type": "STRING",
+          "value": "vega"
+        },
+        {
+          "type": "STRING",
+          "value": "wavedrom"
+        }
+      ]
+    },
     "inline_macro": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "kbd"
-            },
-            {
-              "type": "STRING",
-              "value": "btn"
-            },
-            {
-              "type": "STRING",
-              "value": "image"
-            },
-            {
-              "type": "STRING",
-              "value": "audio"
-            },
-            {
-              "type": "STRING",
-              "value": "video"
-            },
-            {
-              "type": "STRING",
-              "value": "icon"
-            },
-            {
-              "type": "STRING",
-              "value": "link"
-            },
-            {
-              "type": "STRING",
-              "value": "mailto"
-            },
-            {
-              "type": "STRING",
-              "value": "menu"
-            },
-            {
-              "type": "STRING",
-              "value": "anchor"
-            },
-            {
-              "type": "STRING",
-              "value": "xref"
-            },
-            {
-              "type": "STRING",
-              "value": "ifdef"
-            },
-            {
-              "type": "STRING",
-              "value": "ifndef"
-            },
-            {
-              "type": "STRING",
-              "value": "ifeval"
-            },
-            {
-              "type": "STRING",
-              "value": "endif"
-            },
-            {
-              "type": "STRING",
-              "value": "indexterm2"
-            },
-            {
-              "type": "STRING",
-              "value": "indexterm"
-            },
-            {
-              "type": "STRING",
-              "value": "a2s"
-            },
-            {
-              "type": "STRING",
-              "value": "barcode"
-            },
-            {
-              "type": "STRING",
-              "value": "blockdiag"
-            },
-            {
-              "type": "STRING",
-              "value": "bpmn"
-            },
-            {
-              "type": "STRING",
-              "value": "bytefield"
-            },
-            {
-              "type": "STRING",
-              "value": "d2"
-            },
-            {
-              "type": "STRING",
-              "value": "dbml"
-            },
-            {
-              "type": "STRING",
-              "value": "diagrams"
-            },
-            {
-              "type": "STRING",
-              "value": "ditaa"
-            },
-            {
-              "type": "STRING",
-              "value": "dpic"
-            },
-            {
-              "type": "STRING",
-              "value": "erd"
-            },
-            {
-              "type": "STRING",
-              "value": "gnuplot"
-            },
-            {
-              "type": "STRING",
-              "value": "graphviz"
-            },
-            {
-              "type": "STRING",
-              "value": "graphviz"
-            },
-            {
-              "type": "STRING",
-              "value": "lilypond"
-            },
-            {
-              "type": "STRING",
-              "value": "meme"
-            },
-            {
-              "type": "STRING",
-              "value": "mermaid"
-            },
-            {
-              "type": "STRING",
-              "value": "msc"
-            },
-            {
-              "type": "STRING",
-              "value": "nomnoml"
-            },
-            {
-              "type": "STRING",
-              "value": "pikchr"
-            },
-            {
-              "type": "STRING",
-              "value": "plantuml"
-            },
-            {
-              "type": "STRING",
-              "value": "shaape"
-            },
-            {
-              "type": "STRING",
-              "value": "smcat"
-            },
-            {
-              "type": "STRING",
-              "value": "structurizr"
-            },
-            {
-              "type": "STRING",
-              "value": "svgbob"
-            },
-            {
-              "type": "STRING",
-              "value": "symbolator"
-            },
-            {
-              "type": "STRING",
-              "value": "syntrax"
-            },
-            {
-              "type": "STRING",
-              "value": "tikz"
-            },
-            {
-              "type": "STRING",
-              "value": "umlet"
-            },
-            {
-              "type": "STRING",
-              "value": "vega"
-            },
-            {
-              "type": "STRING",
-              "value": "wavedrom"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "macro_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -629,21 +633,30 @@
         ]
       }
     },
+    "_footnotename": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "footnote"
+        },
+        {
+          "type": "STRING",
+          "value": "footnoteref"
+        }
+      ]
+    },
     "footnote": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "footnote"
-            },
-            {
-              "type": "STRING",
-              "value": "footnoteref"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_footnotename"
+          },
+          "named": true,
+          "value": "macro_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -702,25 +715,34 @@
         ]
       }
     },
+    "_stem_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "latexmath"
+        },
+        {
+          "type": "STRING",
+          "value": "stem"
+        },
+        {
+          "type": "STRING",
+          "value": "asciimath"
+        }
+      ]
+    },
     "stem_macro": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "latexmath"
-            },
-            {
-              "type": "STRING",
-              "value": "stem"
-            },
-            {
-              "type": "STRING",
-              "value": "asciimath"
-            }
-          ]
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_stem_name"
+          },
+          "named": true,
+          "value": "macro_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -772,8 +794,13 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "pass"
+          "type": "ALIAS",
+          "content": {
+            "type": "STRING",
+            "value": "pass"
+          },
+          "named": true,
+          "value": "macro_name"
         },
         {
           "type": "IMMEDIATE_TOKEN",
@@ -866,11 +893,32 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_fallback_token"
+        },
+        {
+          "type": "SYMBOL",
           "name": "escaped_sequence"
         },
         {
           "type": "STRING",
           "value": "f"
+        }
+      ]
+    },
+    "_fallback_token": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "macro_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_stem_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_footnotename"
         }
       ]
     },
