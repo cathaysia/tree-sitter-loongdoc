@@ -1,4 +1,4 @@
-const { anySep1, escaped_ch } = require('../../common/common')
+const { anySep1, escaped_ch } = require('../../common/common');
 
 exports.rules = {
   table_block: $ =>
@@ -46,4 +46,4 @@ exports.rules = {
         seq('!', repeat1(escaped_ch('!'))),
       ),
     ),
-}
+};
