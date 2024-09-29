@@ -14,27 +14,15 @@ this is a image:filename.png[Alt Text] or image:http://example.com/images/filena
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (target)
       (attr)))
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (target)
       (attr)))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -48,26 +36,7 @@ this is a image:filename.png[Alt Text] or image:http://example.com/images/filena
     (word))
   (inline_element
     (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
+  (inline_element)
   (inline_element
     (word))
   (inline_element)
@@ -75,30 +44,8 @@ this is a image:filename.png[Alt Text] or image:http://example.com/images/filena
     (word))
   (inline_element
     (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element)
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element)
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element)
   (inline_element)
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

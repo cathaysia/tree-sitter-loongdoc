@@ -18,49 +18,13 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -81,45 +45,13 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -136,10 +68,6 @@ this is a \_`monospace` inside ltalic\_ code.
     (word))
   (inline_element
     (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element)
   (inline_element
     (word))
@@ -148,11 +76,8 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
+    (word
+      (escaped_sequence)))
   (inline_element
     (word))
   (inline_element
@@ -169,32 +94,8 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -203,38 +104,13 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word
-      (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
     (word))
   (inline_element)
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -251,34 +127,8 @@ this is a \_`monospace` inside ltalic\_ code.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word
       (escaped_sequence)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element))

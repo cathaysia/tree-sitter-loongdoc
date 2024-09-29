@@ -867,12 +867,23 @@
         {
           "type": "SYMBOL",
           "name": "escaped_sequence"
+        },
+        {
+          "type": "STRING",
+          "value": "f"
         }
       ]
     },
     "_character": {
-      "type": "PATTERN",
-      "value": "."
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": "[^f\\s!\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~]+"
+        }
+      }
     },
     "escaped_sequence": {
       "type": "CHOICE",
