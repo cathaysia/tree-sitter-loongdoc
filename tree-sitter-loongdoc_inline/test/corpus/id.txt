@@ -17,12 +17,6 @@ id
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (word)))
 
 ===============
@@ -41,12 +35,6 @@ id 2
       (id)))
   (inline_element
     (emphasis))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

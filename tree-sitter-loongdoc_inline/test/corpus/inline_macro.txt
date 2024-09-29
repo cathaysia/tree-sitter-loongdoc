@@ -18,11 +18,8 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
+    (inline_macro
+      (attr)))
   (inline_element
     (word))
   (inline_element
@@ -31,40 +28,19 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (attr)))
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (attr)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
     (inline_macro
       (attr)))
   (inline_element)
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -78,6 +54,9 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
   (inline_element
     (word))
   (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
     (word))
   (inline_element
     (inline_macro
@@ -85,19 +64,8 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (attr)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -127,12 +95,6 @@ xxxxfootnote:xxxx[aaaa]
 ----
 
 (inline
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

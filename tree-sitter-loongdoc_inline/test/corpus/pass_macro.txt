@@ -14,39 +14,9 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (macro_passthrough
       (target)
       (attr)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -57,39 +27,9 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (macro_passthrough
       (target)
       (attr)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

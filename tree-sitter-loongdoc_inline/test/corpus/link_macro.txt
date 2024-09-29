@@ -14,20 +14,8 @@ this is a link:vvv[] and mailto:bbb[ccc]
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (target)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

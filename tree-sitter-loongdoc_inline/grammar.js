@@ -183,8 +183,21 @@ module.exports = grammar({
       ),
     replacement: $ => seq('{', $.intrinsic_attributes, '}'),
     intrinsic_attributes: $ => token(repeat1(escaped_ch('}'))),
-    word: $ => choice($._character, $.escaped_sequence),
-    _character: $ => /./,
+    word: $ => choice($._character, $.escaped_sequence, 'f'),
+    _character: $ =>
+      token(
+        prec(
+          -1,
+          new RegExp(
+            `[^f\\s${PUNCTUATION_CHARACTERS_ARRAY.map(item => {
+              if (item === ']') {
+                return '\\]';
+              }
+              return item;
+            }).join('')}]+`,
+          ),
+        ),
+      ),
     escaped_sequence: $ => {
       const args = [
         '+++',

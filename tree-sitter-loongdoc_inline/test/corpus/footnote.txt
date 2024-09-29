@@ -4,6 +4,8 @@ footnote
 
 this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[id,text] or footnoteref:[id]
 
+This is afootnote:[text], but notstem.
+
 -----
 
 (inline
@@ -14,18 +16,8 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
     (footnote
       (attr)))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element
@@ -35,12 +27,13 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (footnote
       (target)))
   (inline_element
     (word))
+  (inline_element
+    (footnote
+      (attr)))
   (inline_element
     (word))
   (inline_element
@@ -51,5 +44,13 @@ this is a footnote:[text] or footnote:id[text] or footnote:id[] or footnoteref:[
   (inline_element
     (word))
   (inline_element
+    (word))
+  (inline_element
     (footnote
-      (attr))))
+      (attr)))
+  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element))

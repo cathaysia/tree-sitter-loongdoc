@@ -12,11 +12,8 @@ this is kbd:[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
+    (inline_macro
+      (attr)))
   (inline_element
     (word))
   (inline_element
@@ -25,26 +22,13 @@ this is kbd:[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or btn:[
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (attr)))
   (inline_element
     (word))
   (inline_element
-    (word))
-  (inline_element
     (inline_macro
       (attr)))
-  (inline_element
-    (word))
-  (inline_element
-    (word))
-  (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element
-    (word))
   (inline_element
     (word))
   (inline_element

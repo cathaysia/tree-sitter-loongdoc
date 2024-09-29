@@ -872,6 +872,10 @@
     "named": false
   },
   {
+    "type": "f",
+    "named": false
+  },
+  {
     "type": "footnote",
     "named": false
   },
