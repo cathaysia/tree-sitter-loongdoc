@@ -50,7 +50,7 @@ module.exports = grammar({
     inline_element: $ =>
       choice(
         $.replacement,
-        $._word,
+        $.word,
         $.autolink,
         $.passthrough,
         $.macro_passthrough,
@@ -183,7 +183,7 @@ module.exports = grammar({
       ),
     replacement: $ => seq('{', $.intrinsic_attributes, '}'),
     intrinsic_attributes: $ => token(repeat1(escaped_ch('}'))),
-    _word: $ => choice($._character, $.escaped_sequence),
+    word: $ => choice($._character, $.escaped_sequence),
     _character: $ => /./,
     escaped_sequence: $ => {
       const args = [

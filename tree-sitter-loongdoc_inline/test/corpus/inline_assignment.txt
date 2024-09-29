@@ -16,15 +16,27 @@ inline_assign
   (inline_element
     (id_assignment
       (id)))
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word)))

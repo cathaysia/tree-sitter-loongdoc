@@ -9,51 +9,89 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
 -----
 
 (inline
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (macro_passthrough
       (target)
       (attr)))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (macro_passthrough
       (target)
       (attr)))
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element))

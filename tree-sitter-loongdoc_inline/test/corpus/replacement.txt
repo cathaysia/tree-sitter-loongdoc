@@ -9,24 +9,42 @@ this is a replacement {cpp}
 -----
 
 (inline
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (replacement
       (intrinsic_attributes)))
