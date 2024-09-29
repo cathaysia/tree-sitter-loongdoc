@@ -175,10 +175,6 @@
           "named": true
         },
         {
-          "type": "escaped_sequence",
-          "named": true
-        },
-        {
           "type": "footnote",
           "named": true
         },
@@ -224,6 +220,10 @@
         },
         {
           "type": "stem_macro",
+          "named": true
+        },
+        {
+          "type": "word",
           "named": true
         },
         {
@@ -428,6 +428,21 @@
       "types": [
         {
           "type": "replacement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "word",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "escaped_sequence",
           "named": true
         }
       ]

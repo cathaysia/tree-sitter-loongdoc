@@ -17,7 +17,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_word"
+          "name": "word"
         },
         {
           "type": "SYMBOL",
@@ -857,7 +857,7 @@
         }
       }
     },
-    "_word": {
+    "word": {
       "type": "CHOICE",
       "members": [
         {

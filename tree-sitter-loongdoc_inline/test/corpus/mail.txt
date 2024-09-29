@@ -7,18 +7,30 @@ this is a email: doc.writer@example.com
 -----
 
 (inline
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element)
   (inline_element
     (autolink

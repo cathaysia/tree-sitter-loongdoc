@@ -13,65 +13,93 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
     (inline_macro
       (attr)))
   (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (inline_macro
+      (attr)))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (attr)))
   (inline_element)
-  (inline_element)
   (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element)
-  (inline_element)
+    (word))
   (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element)
-  (inline_element)
+    (word))
   (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element)
-  (inline_element)
+    (word))
   (inline_element
-    (inline_macro
-      (attr)))
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (target
         (replacement
           (intrinsic_attributes)))
       (attr)))
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (attr)))
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (attr)))
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (attr)))
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (inline_macro
       (attr)))
@@ -99,10 +127,14 @@ xxxxfootnote:xxxx[aaaa]
 ----
 
 (inline
-  (inline_element)
-  (inline_element)
-  (inline_element)
-  (inline_element)
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
+  (inline_element
+    (word))
   (inline_element
     (footnote
       (target)
