@@ -54,3 +54,27 @@
   (#set! injection.include-children)
   (#gsub! @injection.language "^[^,]*,%s*(%w+)" "%1")
   (#lua-match? @injection.language "^[^,]*,%s*%w+"))
+
+((section_block
+  (element_attr
+    (element_attr_marker)
+    (attr_value) @injection.language
+    (element_attr_marker))
+  (listing_block
+    (listing_block_start_marker)
+    (listing_block_body) @injection.content
+    (listing_block_end_marker)))
+  (#gsub! @injection.language "^[^,]*,%s*(%w+)" "%1")
+  (#lua-match? @injection.language "latex"))
+
+(section_block
+  (element_attr
+    (element_attr_marker)
+    (attr_value) @injection.language
+    (element_attr_marker))
+  (passthrough_block
+    (passthrough_block_marker)
+    (listing_block_body) @injection.content
+    (passthrough_block_marker))
+  (#any-of? @injection.language "latexmath")
+  (#set! injection.language "latex"))

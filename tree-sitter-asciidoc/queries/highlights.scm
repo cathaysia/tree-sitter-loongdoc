@@ -104,6 +104,7 @@
   "]" @punctuation.bracket)
 
 (attribute_name) @attribute
+
 (attribute_value) @variable.parameter
 
 (admonition
