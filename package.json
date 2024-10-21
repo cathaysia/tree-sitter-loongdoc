@@ -1,10 +1,10 @@
 {
-  "name": "tree-sitter-loongdoc",
+  "name": "tree-sitter-asciidoc",
   "version": "0.0.1",
   "private": true,
   "license": "Apache-2.0",
   "packageManager": "pnpm@8.15.5",
-  "workspaces": ["./tree-sitter-loongdoc", "./tree-sitter-loongdoc_inline"],
+  "workspaces": ["./tree-sitter-asciidoc", "./tree-sitter-asciidoc_inline"],
   "engines": {
     "node": ">=v20.12.2"
   },
