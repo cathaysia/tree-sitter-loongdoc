@@ -21,7 +21,7 @@ exports.rules = {
             $.list_continuation,
           ),
         ),
-        seq('|', repeat1(escaped_ch('|'))),
+        seq('|', alias(repeat1(escaped_ch('|')), $.table_cell_content)),
       ),
     ),
 

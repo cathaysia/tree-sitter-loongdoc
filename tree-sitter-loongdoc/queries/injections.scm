@@ -3,6 +3,10 @@
   (target) @injection.content)
   (#set! injection.language "loongdoc_inline"))
 
+((table_cell
+  (table_cell_content) @injection.content)
+  (#set! injection.language "loongdoc_inline"))
+
 ((paragraph) @injection.content
   (#set! injection.include-children)
   (#set! injection.language "loongdoc_inline"))

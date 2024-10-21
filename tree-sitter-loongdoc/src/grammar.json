@@ -701,20 +701,25 @@
                   "value": "|"
                 },
                 {
-                  "type": "REPEAT1",
+                  "type": "ALIAS",
                   "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "PATTERN",
-                        "value": "[^|]"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": "\\|"
-                      }
-                    ]
-                  }
+                    "type": "REPEAT1",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[^|]"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\|"
+                        }
+                      ]
+                    }
+                  },
+                  "named": true,
+                  "value": "table_cell_content"
                 }
               ]
             }

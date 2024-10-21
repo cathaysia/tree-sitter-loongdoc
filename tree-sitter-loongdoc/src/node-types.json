@@ -1013,7 +1013,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "list_continuation",
@@ -1026,9 +1026,18 @@
         {
           "type": "table_cell_attr",
           "named": true
+        },
+        {
+          "type": "table_cell_content",
+          "named": true
         }
       ]
     }
+  },
+  {
+    "type": "table_cell_content",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "target",
