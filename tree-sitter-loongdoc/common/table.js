@@ -1,4 +1,4 @@
-const { anySep1, escaped_ch } = require('../../common/common');
+const { anySep1, escaped_ch, anySep } = require('../../common/common');
 
 exports.rules = {
   table_block: $ =>
@@ -10,20 +10,23 @@ exports.rules = {
       ),
     ),
   table_cell: $ =>
-    seq(
-      optional($.table_cell_attr),
-      choice(
-        seq(
-          '|',
-          token.immediate(/\r?\n/),
-          anySep1(
-            alias($._section_block, $.section_block),
-            $.list_continuation,
+    prec.right(
+      seq(
+        optional($.table_cell_attr),
+        choice(
+          seq(
+            '|',
+            token.immediate(/\r?\n/),
+            anySep(
+              alias($._section_block, $.section_block),
+              $.list_continuation,
+            ),
           ),
+          seq('|', $.table_cell_content),
         ),
-        seq('|', alias(repeat1(escaped_ch('|')), $.table_cell_content)),
       ),
     ),
+  table_cell_content: $ => repeat1(choice(/[^\|]/, '\\|')),
 
   ntable_block: $ =>
     prec.left(
