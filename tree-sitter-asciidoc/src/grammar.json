@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "asciidoc",
   "rules": {
     "document": {
@@ -510,13 +511,8 @@
     "revremark": {
       "type": "REPEAT1",
       "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[^\\r\\n]"
-          }
-        ]
+        "type": "PATTERN",
+        "value": "^\\r\\n"
       }
     },
     "document_attr": {

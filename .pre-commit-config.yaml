@@ -11,10 +11,8 @@ repos:
   - repo: https://github.com/biomejs/pre-commit
     rev: "v0.4.0"
     hooks:
-    - id: biome-format
-      additional_dependencies: ["@biomejs/biome@1.8.3"]
-    - id: biome-lint
-      additional_dependencies: ["@biomejs/biome@1.8.3"]
+    - id: biome-check
+      additional_dependencies: ["@biomejs/biome@1.9.4"]
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
     rev: 'v18.1.5'
