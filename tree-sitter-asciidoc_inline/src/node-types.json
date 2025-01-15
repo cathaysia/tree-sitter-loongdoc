@@ -470,6 +470,10 @@
         {
           "type": "macro_name",
           "named": true
+        },
+        {
+          "type": "super_escape",
+          "named": true
         }
       ]
     }
@@ -1012,6 +1016,10 @@
   {
     "type": "structurizr",
     "named": false
+  },
+  {
+    "type": "super_escape",
+    "named": true
   },
   {
     "type": "svgbob",

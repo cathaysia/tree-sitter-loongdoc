@@ -187,8 +187,16 @@ module.exports = grammar({
       ),
     replacement: $ => seq('{', $.intrinsic_attributes, '}'),
     intrinsic_attributes: $ => token(repeat1(escaped_ch('}'))),
-    word: $ => choice($._character, $._fallback_token, $.escaped_sequence, 'f'),
+    word: $ =>
+      choice(
+        $.super_escape,
+        $._character,
+        $._fallback_token,
+        $.escaped_sequence,
+        'f',
+      ),
     _fallback_token: $ => choice($.macro_name, $._stem_name, $._footnotename),
+    super_escape: $ => '\\\\',
     _character: $ =>
       token(
         prec(

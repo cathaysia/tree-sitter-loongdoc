@@ -890,6 +890,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "super_escape"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_character"
         },
         {
@@ -922,6 +926,10 @@
           "name": "_footnotename"
         }
       ]
+    },
+    "super_escape": {
+      "type": "STRING",
+      "value": "\\\\"
     },
     "_character": {
       "type": "TOKEN",
