@@ -176,6 +176,10 @@ let a = 10;
   (block_element
     (section_block
       (paragraph
+        (line))))
+  (block_element
+    (section_block
+      (paragraph
         (line)))))
 
 =================
