@@ -134,6 +134,27 @@
           {
             "type": "SYMBOL",
             "name": "line"
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "list_continuation"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "block_element"
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         ]
       }
@@ -511,8 +532,13 @@
     "revremark": {
       "type": "REPEAT1",
       "content": {
-        "type": "PATTERN",
-        "value": "^\\r\\n"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\r\\n]"
+          }
+        ]
       }
     },
     "document_attr": {
@@ -872,22 +898,6 @@
                 "name": "block_comment"
               }
             ]
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "list_continuation"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "block_element"
-                }
-              ]
-            }
           }
         ]
       }

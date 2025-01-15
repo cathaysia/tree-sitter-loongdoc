@@ -2,7 +2,14 @@ exports.rules = {
   list: $ => choice($.unordered_list, $.ordered_list, $.checked_list),
   checked_list: $ => prec.left(repeat1($.checked_list_item)),
   checked_list_item: $ =>
-    prec.left(seq($.checked_list_marker, $._WHITE_SPACE, $.line)),
+    prec.left(
+      seq(
+        $.checked_list_marker,
+        $._WHITE_SPACE,
+        $.line,
+        optional(seq($.list_continuation, $.block_element)),
+      ),
+    ),
   checked_list_marker: $ =>
     seq(
       $.unordered_list_marker,
@@ -14,12 +21,26 @@ exports.rules = {
 
   unordered_list: $ => prec.right(repeat1($.unordered_list_item)),
   unordered_list_item: $ =>
-    prec.left(seq($.unordered_list_marker, $._WHITE_SPACE, $.line)),
+    prec.left(
+      seq(
+        $.unordered_list_marker,
+        $._WHITE_SPACE,
+        $.line,
+        optional(seq($.list_continuation, $.block_element)),
+      ),
+    ),
   unordered_list_marker: $ => choice($.list_marker_star, $.list_marker_hyphen),
 
   ordered_list: $ => prec.right(repeat1($.ordered_list_item)),
   ordered_list_item: $ =>
-    prec.left(seq($.ordered_list_marker, $._WHITE_SPACE, $.line)),
+    prec.left(
+      seq(
+        $.ordered_list_marker,
+        $._WHITE_SPACE,
+        $.line,
+        optional(seq($.list_continuation, $.block_element)),
+      ),
+    ),
   ordered_list_marker: $ =>
     choice(
       $.list_marker_digit,
@@ -29,5 +50,11 @@ exports.rules = {
     ),
 
   callout_list: $ => repeat1($.callout_list_item),
-  callout_list_item: $ => seq($.callout_list_marker, $._WHITE_SPACE, $.line),
+  callout_list_item: $ =>
+    seq(
+      $.callout_list_marker,
+      $._WHITE_SPACE,
+      $.line,
+      optional(seq($.list_continuation, $.block_element)),
+    ),
 };

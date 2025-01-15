@@ -28,7 +28,6 @@ module.exports = grammar({
             $.line_comment,
             $.block_comment,
           ),
-          repeat(seq($.list_continuation, $.block_element)),
         ),
       ),
 

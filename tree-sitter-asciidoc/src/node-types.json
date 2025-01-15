@@ -115,15 +115,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
           "type": "block_comment",
-          "named": true
-        },
-        {
-          "type": "block_element",
           "named": true
         },
         {
@@ -136,10 +132,6 @@
         },
         {
           "type": "line_comment",
-          "named": true
-        },
-        {
-          "type": "list_continuation",
           "named": true
         },
         {
@@ -1164,7 +1156,15 @@
       "required": true,
       "types": [
         {
+          "type": "block_element",
+          "named": true
+        },
+        {
           "type": "line",
+          "named": true
+        },
+        {
+          "type": "list_continuation",
           "named": true
         },
         {
