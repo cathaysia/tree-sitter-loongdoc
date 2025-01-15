@@ -8,7 +8,8 @@ stem:[]
 
 (inline
   (inline_element
-    (stem_macro)))
+    (stem_macro
+      (macro_name))))
 
 ====================
 stem
@@ -22,9 +23,11 @@ stem:[A = \{ a + b \}]
 (inline
   (inline_element
     (stem_macro
+      (macro_name)
       (attr)))
   (inline_element
     (stem_macro
+      (macro_name)
       (attr))))
 
 ================
@@ -38,4 +41,5 @@ stem:[aaaa\]]
 (inline
   (inline_element
     (stem_macro
+      (macro_name)
       (attr))))

@@ -15,10 +15,12 @@ this is a link:vvv[] and mailto:bbb[ccc]
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)
       (attr))))

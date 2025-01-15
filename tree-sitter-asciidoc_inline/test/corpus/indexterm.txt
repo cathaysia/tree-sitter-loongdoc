@@ -27,7 +27,9 @@ indexterm2:[Arthur, King]
       (term)))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr))))

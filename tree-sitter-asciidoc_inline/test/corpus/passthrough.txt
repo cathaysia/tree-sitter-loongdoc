@@ -8,7 +8,8 @@ pass:[]
 
 (inline
   (inline_element
-    (macro_passthrough)))
+    (macro_passthrough
+      (macro_name))))
 
 ====================
 passthrough
@@ -34,5 +35,6 @@ pass:quotes[text]
     (passthrough))
   (inline_element
     (macro_passthrough
+      (macro_name)
       (target)
       (attr))))

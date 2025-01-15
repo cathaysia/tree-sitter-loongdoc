@@ -18,6 +18,7 @@ xref:id[reftext]
       (reftext)))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)
       (attr)))
   (inline_element

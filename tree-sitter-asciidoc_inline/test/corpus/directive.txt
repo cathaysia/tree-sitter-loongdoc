@@ -11,6 +11,7 @@ endif::[]
 (inline
   (inline_element
     (inline_macro
+      (macro_name)
       (target)))
   (inline_element
     (word))
@@ -29,4 +30,5 @@ endif::[]
   (inline_element)
   (inline_element
     (inline_macro
+      (macro_name)
       (target))))

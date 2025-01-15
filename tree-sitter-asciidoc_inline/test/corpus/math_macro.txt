@@ -15,14 +15,17 @@ this is a stem:[x != 0] or asciimath:[x != 0] or latexmath:[\sqrt{4} = 2]
     (word))
   (inline_element
     (stem_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (stem_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (stem_macro
+      (macro_name)
       (attr))))

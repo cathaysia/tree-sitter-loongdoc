@@ -11,6 +11,7 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
 (inline
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element)
   (inline_element
@@ -19,26 +20,31 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element)
   (inline_element
@@ -47,6 +53,7 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (target
         (replacement
           (intrinsic_attributes)))
@@ -55,21 +62,25 @@ this is kbd:{cpp}[F3] or kbd:[Ctrl+Shift+T] or kbd:[Ctrl+\]] or kbd:[Ctrl,T] or 
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element
     (word))
   (inline_element
     (inline_macro
+      (macro_name)
       (attr)))
   (inline_element))
 
@@ -84,6 +95,7 @@ indexterm:[knight, "Arthur, King"]
 (inline
   (inline_element
     (inline_macro
+      (macro_name)
       (attr))))
 
 ===================
@@ -99,5 +111,6 @@ xxxxfootnote:xxxx[aaaa]
     (word))
   (inline_element
     (footnote
+      (macro_name)
       (target)
       (attr))))

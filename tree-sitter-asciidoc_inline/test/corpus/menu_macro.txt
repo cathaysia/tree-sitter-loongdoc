@@ -12,16 +12,20 @@ menu:View[Page Style, No Style]
 (inline
   (inline_element
     (inline_macro
+      (macro_name)
       (target)
       (attr)))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)
       (attr)))
   (inline_element
     (inline_macro
+      (macro_name)
       (target)
       (attr))))

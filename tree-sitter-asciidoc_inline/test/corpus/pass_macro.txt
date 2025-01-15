@@ -15,6 +15,7 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
     (word))
   (inline_element
     (macro_passthrough
+      (macro_name)
       (target)
       (attr)))
   (inline_element
@@ -28,6 +29,7 @@ The text pass:q,a[<u>underline _{docname}_ </u>] is underlined.
     (word))
   (inline_element
     (macro_passthrough
+      (macro_name)
       (target)
       (attr)))
   (inline_element
